@@ -1038,6 +1038,16 @@
         elementos
       );
 
+      /*
+       * Algunas páginas mantienen oculto el contenedor raíz
+       * mientras se construye el layout. La protección de rutas
+       * controla por separado el contenido privado, por lo que aquí
+       * solo se revela el área ya colocada dentro de la estructura.
+       */
+      contenidoPagina.removeAttribute(
+        "hidden"
+      );
+
       document.body.classList.add(
         "admin-layout-cargado"
       );

@@ -86,8 +86,7 @@
         </header>
         <div
           id="listaSecciones-${slug}"
-          class="gestion-contenido"
-          style="padding: 1.25rem;"
+          class="gestion-contenido gestion-contenido--con-relleno"
         ></div>
       </section>
     `;

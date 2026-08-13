@@ -1086,16 +1086,10 @@ body[data-pagina="nosotros"] .datos-institucionales .titulo-seccion {
 }
 
 body[data-pagina="nosotros"] .datos-institucionales .datos {
-  width: 760px;
+  width: 100%;
   max-width: 760px;
   justify-self: end;
-  transform: translateX(250px);
-}
-
-@media (max-width: 1200px) {
-  body[data-pagina="nosotros"] .datos-institucionales .datos {
-    transform: translateX(40px);
-  }
+  transform: none;
 }
 
 @media (max-width: 900px) {

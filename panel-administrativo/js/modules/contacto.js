@@ -52,7 +52,7 @@
           <small>${escapar(item.nombreCompleto)} · <a href="mailto:${escapar(item.correo)}">${escapar(item.correo)}</a></small>
           <details>
             <summary>Ver mensaje completo</summary>
-            <p style="white-space:pre-wrap">${escapar(item.mensaje)}</p>
+            <p class="gestion-contenido__texto-preformateado">${escapar(item.mensaje)}</p>
             <label class="gestion-contenido__campo">
               <span>Nota interna</span>
               <textarea class="gestion-contenido__control" data-observacion maxlength="1500">${escapar(item.observacionInterna)}</textarea>

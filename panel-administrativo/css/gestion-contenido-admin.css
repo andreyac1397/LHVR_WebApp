@@ -397,6 +397,14 @@ textarea.gestion-contenido__control {
   grid-column: 1 / -1;
 }
 
+.gestion-contenido--con-relleno {
+  padding: 1.25rem;
+}
+
+.gestion-contenido__texto-preformateado {
+  white-space: pre-wrap;
+}
+
 @media (max-width: 640px) {
   .gestion-contenido__acciones-imagen {
     grid-template-columns: 1fr;

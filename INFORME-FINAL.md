@@ -130,6 +130,8 @@ Se ejecutan con `npm test`:
 - validación HTTP de formularios públicos sin tocar la BD;
 - integridad de todas las rutas visibles del menú.
 
-También se verificó sintaxis de 134 archivos JavaScript y se inspeccionaron en navegador Calendario, Horarios, Contacto y BiblioCRA, incluyendo Horarios a 390 px.
+También se verificó sintaxis de 134 archivos JavaScript con contenido y se inspeccionaron en navegador Calendario, Horarios, Contacto y BiblioCRA, incluyendo Horarios a 390 px.
+
+En una segunda revisión funcional y visual se ejecutaron 34 pruebas automáticas, se validaron 29 páginas HTML y 20 hojas CSS, y se abrieron las 13 vistas públicas y 14 vistas administrativas a 1280 px y 390 px. Se corrigió el contenedor oculto que dejaba vacías varias pantallas nuevas del panel, el desbordamiento horizontal de Nosotros y dos enlaces administrativos que apuntaban a archivos de marcador vacíos. No se detectaron desbordamientos restantes en las vistas revisadas.
 
 No se afirma una prueba SQL extremo a extremo: faltan credenciales/acceso a la base real. La persistencia, autenticación con una sesión real, envío SMTP y publicación contra `BD-LHVR` deben probarse manualmente en el equipo que tiene SQL Server, siguiendo `database/README-CAMBIOS-BD.md`.
