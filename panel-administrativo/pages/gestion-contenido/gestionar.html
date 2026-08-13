@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gestión de contenido institucional del LHVR">
+  <title>Gestión de contenido | Panel administrativo LHVR</title>
+  <link rel="stylesheet" href="../../css/variables-admin.css">
+  <link rel="stylesheet" href="../../css/estilos-admin.css">
+  <link rel="stylesheet" href="../../css/barra-lateral.css">
+  <link rel="stylesheet" href="../../css/alertas-admin.css">
+  <link rel="stylesheet" href="../../css/modales-admin.css">
+  <link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+  <link rel="stylesheet" href="../../css/responsive-admin.css">
+</head>
+<body data-titulo-pagina="Gestión de contenido">
+  <div id="cargadorProteccion" class="cargador-proteccion" role="status" aria-live="polite">
+    <div class="cargador-proteccion__contenido">
+      <span class="cargador-proteccion__indicador" aria-hidden="true"></span>
+      <div>
+        <p class="cargador-proteccion__titulo">Comprobando sesión</p>
+        <p class="cargador-proteccion__texto">Espere mientras validamos su acceso.</p>
+      </div>
+    </div>
+  </div>
+
+  <main id="contenidoPagina" data-titulo="Gestión de contenido" hidden>
+    <div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
+      <header class="gestion-contenido__encabezado">
+        <div>
+          <p class="admin-pagina__etiqueta">Contenido público</p>
+          <h1 id="tituloGestionContenido" class="gestion-contenido__titulo">Gestión de contenido</h1>
+          <p id="descripcionGestionContenido" class="gestion-contenido__descripcion"></p>
+        </div>
+        <div class="gestion-contenido__acciones">
+          <button id="botonRecargarContenido" class="admin-boton admin-boton--secundario" type="button">Recargar</button>
+          <button id="botonImportarContenido" class="admin-boton admin-boton--secundario" type="button">Importar</button>
+          <button id="botonNuevoElemento" class="admin-boton admin-boton--primario" type="button">Agregar</button>
+        </div>
+      </header>
+
+      <section class="gestion-contenido__resumen" aria-label="Resumen">
+        <article class="gestion-contenido__tarjeta-resumen"><strong id="resumenColecciones">0</strong><span>Versiones</span></article>
+        <article class="gestion-contenido__tarjeta-resumen"><strong id="resumenElementos">0</strong><span>Registros</span></article>
+        <article class="gestion-contenido__tarjeta-resumen"><strong id="resumenPublicados">0</strong><span>Publicados</span></article>
+        <article class="gestion-contenido__tarjeta-resumen"><strong id="resumenBorradores">0</strong><span>Borradores</span></article>
+      </section>
+
+      <section class="gestion-contenido__panel">
+        <header class="gestion-contenido__panel-encabezado">
+          <div class="gestion-contenido__campo">
+            <label for="selectorColeccion">Versión de contenido</label>
+            <select id="selectorColeccion" class="gestion-contenido__control"></select>
+          </div>
+          <div class="gestion-contenido__acciones">
+            <button id="botonNuevaColeccion" class="admin-boton admin-boton--secundario" type="button">Nueva versión</button>
+            <button id="botonPublicarColeccion" class="admin-boton admin-boton--dorado" type="button">Publicar versión</button>
+          </div>
+        </header>
+        <div class="gestion-contenido__panel-cuerpo">
+          <div class="gestion-contenido__filtros">
+            <label class="gestion-contenido__campo">
+              <span>Buscar</span>
+              <input id="filtroTextoContenido" class="gestion-contenido__control" type="search" placeholder="Título o descripción">
+            </label>
+            <label class="gestion-contenido__campo">
+              <span>Estado</span>
+              <select id="filtroEstadoContenido" class="gestion-contenido__control">
+                <option value="">Todos</option>
+                <option value="PUBLICADO">Publicado</option>
+                <option value="BORRADOR">Borrador</option>
+                <option value="INACTIVO">Inactivo</option>
+                <option value="ARCHIVADO">Archivado</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="gestion-contenido__tabla-contenedor">
+            <table class="gestion-contenido__tabla">
+              <thead><tr><th>Contenido</th><th>Fecha</th><th>Estado</th><th>Orden</th><th>Acciones</th></tr></thead>
+              <tbody id="cuerpoTablaContenido"></tbody>
+            </table>
+            <p id="estadoVacioContenido" class="gestion-contenido__estado-vacio">No hay registros en esta versión.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section id="modalElemento" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalElemento" hidden>
+    <div class="gestion-contenido__modal-contenido">
+      <header class="gestion-contenido__modal-encabezado">
+        <h2 id="tituloModalElemento">Agregar contenido</h2>
+        <button id="botonCerrarModalElemento" class="admin-boton admin-boton--texto" type="button" aria-label="Cerrar">Cerrar</button>
+      </header>
+      <form id="formularioElemento" class="gestion-contenido__formulario">
+        <div class="gestion-contenido__modal-cuerpo">
+          <div id="camposElemento" class="gestion-contenido__cuadricula"></div>
+        </div>
+        <footer class="gestion-contenido__modal-pie">
+          <button id="botonCancelarElemento" class="admin-boton admin-boton--secundario" type="button">Cancelar</button>
+          <button class="admin-boton admin-boton--primario" type="submit">Guardar</button>
+        </footer>
+      </form>
+    </div>
+  </section>
+
+  <section id="modalColeccion" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalColeccion" hidden>
+    <div class="gestion-contenido__modal-contenido">
+      <header class="gestion-contenido__modal-encabezado">
+        <h2 id="tituloModalColeccion">Nueva versión</h2>
+        <button id="botonCerrarModalColeccion" class="admin-boton admin-boton--texto" type="button">Cerrar</button>
+      </header>
+      <form id="formularioColeccion" class="gestion-contenido__formulario">
+        <div class="gestion-contenido__modal-cuerpo gestion-contenido__cuadricula">
+          <label class="gestion-contenido__campo">
+            <span>Nombre de la versión</span>
+            <input class="gestion-contenido__control" name="nombre" required maxlength="250" placeholder="Ejemplo: Calendario 2026 revisado">
+          </label>
+          <label class="gestion-contenido__campo">
+            <span>Año (opcional)</span>
+            <input class="gestion-contenido__control" name="anio" type="number" min="2000" max="2100">
+          </label>
+        </div>
+        <footer class="gestion-contenido__modal-pie">
+          <button id="botonCancelarColeccion" class="admin-boton admin-boton--secundario" type="button">Cancelar</button>
+          <button class="admin-boton admin-boton--primario" type="submit">Crear borrador</button>
+        </footer>
+      </form>
+    </div>
+  </section>
+
+  <section id="modalImportacion" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalImportacion" hidden>
+    <div class="gestion-contenido__modal-contenido">
+      <header class="gestion-contenido__modal-encabezado">
+        <div>
+          <h2 id="tituloModalImportacion">Importar información</h2>
+          <p>Primero procese el archivo; podrá corregir, agregar o quitar filas antes de guardar.</p>
+        </div>
+        <button id="botonCerrarModalImportacion" class="admin-boton admin-boton--texto" type="button">Cerrar</button>
+      </header>
+      <form id="formularioImportacion" class="gestion-contenido__formulario">
+        <div class="gestion-contenido__modal-cuerpo">
+          <div class="gestion-contenido__cuadricula">
+            <label class="gestion-contenido__campo">
+              <span>Nombre de la versión</span>
+              <input class="gestion-contenido__control" name="nombre" maxlength="250">
+            </label>
+            <label class="gestion-contenido__campo">
+              <span>Año</span>
+              <input id="anioImportacion" class="gestion-contenido__control" name="anio" type="number" min="2000" max="2100">
+            </label>
+            <label class="gestion-contenido__campo gestion-contenido__campo--completo">
+              <span>Archivo</span>
+              <input id="archivoImportacion" class="gestion-contenido__control" type="file" accept=".json,.csv,.xlsx,text/csv,application/json">
+            </label>
+            <label class="gestion-contenido__campo gestion-contenido__campo--completo">
+              <span>O pegue JSON, CSV o celdas copiadas de Excel</span>
+              <textarea id="entradaImportacion" class="gestion-contenido__control gestion-contenido__codigo" placeholder="Pegue aquí los datos con encabezados"></textarea>
+            </label>
+            <label class="gestion-contenido__campo">
+              <span>Reemplazo de versión</span>
+              <select class="gestion-contenido__control" name="reemplazar">
+                <option value="si">Reemplazar registros de este borrador</option>
+                <option value="no">Agregar a este borrador</option>
+              </select>
+            </label>
+            <label class="gestion-contenido__campo">
+              <span><input name="publicar" type="checkbox"> Publicar después de guardar</span>
+              <small>Déjelo sin marcar para revisar el borrador primero.</small>
+            </label>
+          </div>
+
+          <div class="gestion-contenido__acciones">
+            <button id="botonProcesarImportacion" class="admin-boton admin-boton--secundario" type="button">Procesar y revisar</button>
+            <button id="botonAgregarFilaImportacion" class="admin-boton admin-boton--secundario" type="button">Agregar fila</button>
+            <a id="botonDescargarPlantilla" class="admin-boton admin-boton--texto" href="#" hidden>Descargar plantilla XLSX</a>
+          </div>
+
+          <p id="resumenImportacion" class="gestion-contenido__mensaje" aria-live="polite">Aún no se han procesado registros.</p>
+          <div class="gestion-contenido__editor-tabla">
+            <table id="tablaImportacion" hidden>
+              <thead id="cabeceraImportacion"></thead>
+              <tbody id="cuerpoImportacion"></tbody>
+            </table>
+          </div>
+        </div>
+        <footer class="gestion-contenido__modal-pie">
+          <button id="botonCancelarImportacion" class="admin-boton admin-boton--secundario" type="button">Cancelar</button>
+          <button class="admin-boton admin-boton--primario" type="submit">Guardar versión</button>
+        </footer>
+      </form>
+    </div>
+  </section>
+
+  <script src="../../js/config/api-admin.config.js" defer></script>
+  <script src="../../js/core/api-client.js" defer></script>
+  <script src="../../js/core/sesion-administrador.js" defer></script>
+  <script src="../../js/modules/autenticacion.js" defer></script>
+  <script src="../../js/core/proteccion-rutas.js" defer></script>
+  <script src="../../js/components/alertas-admin.js" defer></script>
+  <script src="../../js/components/modal-admin.js" defer></script>
+  <script src="../../js/modules/configuracion-gestion-contenido.js" defer></script>
+  <script src="../../js/modules/gestion-contenido-admin.js" defer></script>
+  <script src="../../js/components/layout-admin.js" defer></script>
+</body>
+</html>

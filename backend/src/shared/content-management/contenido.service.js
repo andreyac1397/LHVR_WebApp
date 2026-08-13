@@ -170,6 +170,7 @@ class ContenidoService {
       ),
       url: this.url(
         elemento.url ??
+        elemento.link ??
         elemento.enlace ??
         elemento.archivo
       ),
@@ -270,7 +271,7 @@ class ContenidoService {
     });
 
     await this.registrarAuditoria(
-      "GUARDAR_COLECCION",
+      datos.idColeccion ? "EDITAR" : "CREAR",
       resultado.idColeccion,
       null,
       resultado,
@@ -298,8 +299,8 @@ class ContenidoService {
 
     await this.registrarAuditoria(
       normalizado.idElemento
-        ? "ACTUALIZAR_ELEMENTO"
-        : "CREAR_ELEMENTO",
+        ? "EDITAR"
+        : "CREAR",
       resultado.idElemento,
       null,
       resultado,
@@ -334,7 +335,7 @@ class ContenidoService {
     }
 
     await this.registrarAuditoria(
-      "ARCHIVAR_ELEMENTO",
+      "DESACTIVAR",
       id,
       null,
       { estado: "ARCHIVADO" },
@@ -375,6 +376,27 @@ class ContenidoService {
         this.normalizarElemento(elemento, indice)
     );
 
+    const clavesVistas = new Map();
+
+    elementos.forEach((elemento, indice) => {
+      const clave = elemento.claveExterna
+        ? `id:${elemento.claveExterna.toLocaleLowerCase("es")}`
+        : [
+          elemento.titulo?.toLocaleLowerCase("es"),
+          elemento.fechaInicio?.toISOString() || "",
+          elemento.fechaFin?.toISOString() || ""
+        ].join("|");
+
+      if (clavesVistas.has(clave)) {
+        throw this.crearError(
+          `Las filas ${clavesVistas.get(clave) + 1} y ${indice + 1} están duplicadas.`,
+          "ELEMENTO_IMPORTACION_DUPLICADO"
+        );
+      }
+
+      clavesVistas.set(clave, indice);
+    });
+
     const resultado = await this.repositorio.importarColeccion({
       modulo: this.modulo,
       clave: this.texto(datos.clave, 120) ||
@@ -391,6 +413,8 @@ class ContenidoService {
           ? datos.metadatos
           : {},
       reemplazar: datos.reemplazar !== false,
+      alcance: this.texto(datos.alcance, 30)?.toUpperCase() || "TOTAL",
+      idColeccionBase: this.numero(datos.idColeccionBase),
       publicar: Boolean(datos.publicar),
       tipoOrigen: this.texto(datos.tipoOrigen, 30) || "JSON",
       nombreOrigen: this.texto(datos.nombreOrigen, 260),
@@ -429,7 +453,7 @@ class ContenidoService {
     );
 
     await this.registrarAuditoria(
-      "PUBLICAR_COLECCION",
+      "PUBLICAR",
       id,
       null,
       resultado,
@@ -457,7 +481,10 @@ class ContenidoService {
     await this.auditoriaService.registrarSinInterrumpir({
       idAdministrador: contexto.idAdministrador ?? null,
       codigoAccion,
-      codigoModulo: this.modulo,
+      codigoModulo:
+        this.modulo === "RECURSOS_APOYO"
+          ? "RECURSOS"
+          : this.modulo,
       tablaAfectada: "cms_elementos",
       idRegistroAfectado:
         idRegistro === null || idRegistro === undefined

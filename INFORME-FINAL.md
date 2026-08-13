@@ -1,162 +1,135 @@
-# Informe final de cambios — LICEO-WEBSITE
+# Informe de integración final — LHVR
 
-Fecha de revisión: 6 de agosto de 2026  
-Base utilizada: `LICEO-WEBSITE(1).zip`
+Fecha de revisión: 13 de agosto de 2026
+Rama de trabajo: `codex/terminar-integracion-lhvr`
 
-## Alcance respetado
+## Alcance y seguridad de la copia
 
-El desarrollo se realizó sobre una copia exacta del ZIP proporcionado. No se reconstruyó el proyecto desde cero y no se usó otra versión como base.
+El trabajo se realizó en `C:\Users\andre\Documents\ChatGPT\LHVR_WEBAPP`, una copia independiente. La carpeta original recibida no fue modificada. Se guardó un commit de línea base antes de programar.
 
-Permanecieron sin cambios respecto al ZIP original:
+No se reconstruyó el proyecto. Se conservaron los módulos funcionales y se reutilizó la capa CMS existente para cerrar los módulos incompletos sin duplicar controladores y repositorios por cada tipo de contenido.
 
-- Inicio público y su gestión administrativa.
-- Nosotros público y su gestión administrativa.
-- Oferta académica.
-- Dashboard.
-- Autenticación existente.
+## Resultado funcional
 
-No se eliminó, renombró ni movió ningún archivo existente.
+| Módulo | Resultado en código | Persistencia / salida |
+|---|---|---|
+| Inicio, Nosotros y páginas | Conservado y revisado | `paginas` y `secciones_pagina` |
+| Oferta académica | Conservado y revisado | Tablas y SP existentes |
+| Comunidad | Conservado, sin crear una segunda versión | Backend y frontend existentes |
+| Configuración institucional | Terminado | Solo `configuracion_sitio`; 12 claves administrables |
+| Boletines | Terminado | Colecciones versionadas `cms_*`; API pública |
+| Calendario | Terminado | CRUD, importación JSON editable, borrador/publicación, filtros públicos |
+| Horarios | Terminado | Plantilla XLSX, XLSX/CSV/pegado, validación, tabla editable, versión/publicación y vista móvil |
+| Biblioteca / BiblioCRA | Terminado | Contenido CMS y solicitudes normalizadas |
+| Docentes | Terminado | Contenido CMS, panel y API pública |
+| Trámites | Terminado | Contenido CMS, panel y API pública |
+| Recursos de apoyo | Terminado | Contenido CMS, panel y API pública |
+| Galería | Terminado | Contenido CMS, panel y API pública |
+| Contacto | Terminado | Envío público real, bandeja, estados, nota interna y spam |
+| Administradores | Terminado | Listado, alta segura y cambio de estado; sin mostrar hashes |
+| Auditoría | Terminado | Consulta protegida con filtros |
+| Dashboard | Integrado sin reconstruirlo | Indicadores, eventos y actividad reales |
+| Calificaciones | No se debe tocar en esta etapa | Se retiraron del menú las rutas vacías; no se inventó implementación |
 
-## Páginas y módulos implementados
+## Calendario
 
-- Gestión de páginas: Comunidad.
-- Gestión de páginas: Contacto y ubicación.
-- Boletines.
-- Calendario.
-- Biblioteca BiblioCRA.
-- Solicitudes BiblioCRA.
-- Docentes.
-- Horarios.
-- Trámites.
-- Recursos de apoyo.
-- Galería.
-- Administradores.
-- Auditoría.
-- Configuración general.
-- Calificaciones históricas: únicamente interfaz gráfica, sin backend ni almacenamiento.
+- La BD suministrada ya contiene una colección publicada 2026 con 369 eventos.
+- El administrador acepta el JSON con `id`, `titulo`, `descripcion`, `link`, `link2`, `fechaInicio`, `fechaFin`, `nombreCategoria`, `subcategorias` y `destacado`.
+- Antes de guardar se valida, detecta duplicados y muestra una vista previa editable.
+- Cada importación crea una versión nueva; no sobrescribe destructivamente la versión publicada.
+- Se puede crear, editar o archivar un evento y publicar explícitamente una versión.
+- El sitio público consulta la API por año y conserva el JSON local únicamente como respaldo cuando la API no está disponible.
 
-## Funcionalidades principales agregadas
+## Horarios
 
-### Gestión de contenido
+- Descarga de plantilla `.xlsx` generada por el backend.
+- Lectura de `.xlsx` sin depender de Microsoft Excel instalado, además de CSV y pegado tabular.
+- Reconocimiento de encabezados como `Sección`, `Lección`, `Horario` y días con tilde.
+- Vista previa editable, altas y eliminaciones de filas antes del guardado.
+- Importación total o parcial, versiones en borrador y publicación posterior.
+- Vista pública filtrable por nivel/sección y presentación móvil mediante tarjetas.
 
-Se agregó una infraestructura reutilizable para administrar colecciones, versiones y elementos sin duplicar la misma lógica en cada módulo. Incluye:
+## Seguridad aplicada
 
-- Consulta pública y administrativa.
-- Creación y edición de registros.
-- Archivado lógico.
-- Estados de borrador, publicado, inactivo y archivado.
-- Publicación de una versión activa por módulo.
-- Registro de importaciones.
-- Operaciones masivas transaccionales.
-- Validaciones en la interfaz y nuevamente en el backend.
-- Auditoría de operaciones administrativas.
+- Todas las rutas administrativas requieren la cookie de sesión validada contra SQL Server.
+- Formularios públicos de Contacto y BiblioCRA tienen validación en servidor, honeypot y límite básico por IP.
+- Los enlaces administrables bloquean protocolos como `javascript:`, `data:` y `vbscript:`.
+- La salida dinámica se escapa antes de insertarla en HTML.
+- Las contraseñas nuevas se validan y almacenan con bcrypt (12 rondas); nunca se devuelven en la API.
+- Una sesión no puede deshabilitar su propia cuenta.
+- Consultas SQL con parámetros; importaciones masivas dentro de una transacción.
 
-### Calendario
+## Auditoría de base de datos
 
-- Importación del JSON anual del MEP.
-- Validación del año y de las fechas.
-- Vista previa editable antes de guardar.
-- Conservación del calendario público vigente mientras se revisa otro año.
-- Versiones anuales en borrador y publicación posterior.
-- Edición, creación y archivado de eventos desde el panel.
-- Página pública conectada a la API con respaldo en el JSON local existente.
+### 1. Estado actual
 
-### Horarios
+El script entregado tiene 9.082 líneas, 60 tablas, 27 procedimientos, 100 relaciones FK, 85 restricciones `CHECK` y 126 índices/unicidades detectados mediante inspección estática. No hubo conexión directa a SQL Server.
 
-- Descarga de plantilla Excel `.xlsx`.
-- Lectura de Excel sin incorporar una dependencia nueva.
-- Pegado de filas copiadas desde Excel.
-- Vista previa editable.
-- Validación de niveles de sétimo a undécimo y secciones dinámicas.
-- Modos de importación: reemplazo total, por niveles, por secciones o agregado sin duplicar.
-- Versiones en borrador y publicación posterior.
-- Página pública conectada a la API con respaldo en el CSV local existente.
+Contiene dos colecciones publicadas: Boletines (5 elementos) y Calendario (369 eventos). Las tablas normalizadas de horarios y calendario están vacías, pero la capa `cms_*` ya almacena esos contenidos y es la arquitectura reutilizable elegida por el proyecto.
 
-### Formularios y solicitudes
+### 2. Aspectos correctos
 
-- Formulario público de contacto conectado a su módulo administrativo.
-- Formulario público de solicitudes BiblioCRA.
-- Estados de seguimiento y respuesta administrativa.
+- Catálogos, estados, claves foráneas, checks e índices extensos.
+- Autenticación con tokens hasheados, verificación y registro de intentos.
+- Auditoría central con acciones y módulos catalogados.
+- Colecciones CMS con borrador/publicación e historial de importación.
+- Tablas normalizadas para Contacto y BiblioCRA.
+- `configuracion_sitio` contiene las 12 claves institucionales requeridas.
 
-### Seguridad de contenido
+### 3. Problemas encontrados
 
-- Rechazo de protocolos de enlace inseguros.
-- Escape de textos administrables antes de insertarlos en HTML público.
-- Validación de correos y enlaces institucionales.
-- Protección de todas las operaciones administrativas con la sesión existente.
+- Existían dos áreas de configuración (`configuracion_sitio` y `cms_configuracion`) con posibilidad de valores contradictorios.
+- Muchas clases y páginas eran archivos vacíos, aunque sus nombres sugerían módulos completos.
+- La capa CMS ya implementada no estaba montada en la API ni conectada con el panel.
+- Las rutas de calificaciones del menú apuntaban a archivos inexistentes y el módulo está reservado para otra etapa.
+- No había endpoints administrativos reales para mensajes, BiblioCRA, dashboard, administradores y consulta de auditoría.
 
-## Archivos y estructura
+### 4. Severidad
 
-La comparación detallada se encuentra en `COMPARACION-ARCHIVOS.json`.
+- Alta: rutas administrativas vacías/rotas y formularios públicos que simulaban envío.
+- Alta: calendario y horarios sin flujo completo BD → API → panel → público.
+- Media: duplicación de configuración y contenido local usado como fuente principal.
+- Baja: falta de vista móvil útil para horarios.
 
-Resumen previo a incluir los dos archivos de informe:
+### 5. Cambios obligatorios
 
-- Archivos originales: 10 953.
-- Archivos nuevos de implementación: 30.
-- Archivos existentes modificados: 126.
-- Archivos eliminados: 0.
-- Archivos renombrados o movidos: 0.
-- Archivos originales sin cambios: 10 827.
+Se resolvieron en código reutilizando el esquema actual. No se identificó un cambio obligatorio de esquema para esta entrega.
 
-Los archivos nuevos corresponden a migraciones, servicios compartidos, pruebas, scripts de inicialización y recursos necesarios para las páginas pendientes.
+### 6. Mejoras recomendadas
 
-## Pruebas realizadas
+- Ejecutar las pruebas reales contra una copia de `BD-LHVR`.
+- En despliegue con varias instancias, sustituir el límite por IP en memoria por un almacén compartido.
+- Definir una política institucional para retiro definitivo de datos históricos.
 
-- 385 archivos JavaScript revisados sintácticamente: 0 fallos.
-- 74 archivos HTML revisados: 0 referencias locales rotas, 0 identificadores duplicados y 0 botones de formulario sin tipo.
-- 20 archivos CSS revisados: 0 bloques o delimitadores desbalanceados.
-- 9 archivos JSON validados: 0 fallos.
-- 17 pruebas unitarias: 17 aprobadas.
-- 15 pruebas HTTP con dependencias controladas: 15 aprobadas.
-- 36 pruebas del panel administrativo en escritorio y móvil: 36 aprobadas.
-- 20 pruebas de páginas públicas en escritorio y móvil: 20 aprobadas.
-- Verificación de protección administrativa: las rutas privadas respondieron 401 sin sesión, como corresponde.
-- Comparación por hash SHA-256 entre el ZIP original y la versión final.
+### 7. Mejoras no necesarias
 
-## Errores encontrados y corregidos
+- No duplicar las 369 fechas en las tablas normalizadas mientras `cms_*` sea la capa publicada.
+- No eliminar `cms_configuracion` automáticamente; basta con no usarla como fuente vigente.
+- No crear SP nuevos solo para reemplazar consultas parametrizadas que ya son transaccionales y acotadas.
 
-- Rutas administrativas que generaban `/api/api/...` porque el cliente compartido ya agregaba `/api`.
-- Error de referencia en la interfaz visual de Calificaciones.
-- Fechas que requerían normalización para controles HTML.
-- Importaciones que debían impedir el guardado de filas inválidas.
-- Enlaces administrables que necesitaban validación de protocolo.
-- Rutas del menú que apuntaban a carpetas distintas de las existentes.
-- Falsos positivos del validador de conflictos causados por separadores de comentarios SQL.
+## Informe de scripts SQL
 
-Después de cada corrección se repitieron las pruebas correspondientes.
+Cambios manuales requeridos: ninguno. Stored procedures nuevos: ninguno. Migraciones nuevas: ninguna.
 
-## Comparación con el ZIP original
+Las migraciones históricas `006`, `007` y `008` ya están reflejadas en el script de la base entregada, por lo que no deben aplicarse otra vez sin verificar primero. Se agregó `database/queries/verificar-integracion-final.sql`, que es de solo lectura.
 
-Se verificó expresamente que permanecen idénticos por hash:
+## Antes y después
 
-- `frontend-publico/index.html`
-- `frontend-publico/js/inicio.js`
-- `frontend-publico/pages/nosotros.html`
-- `frontend-publico/js/nosotros.js`
-- `frontend-publico/pages/oferta-academica.html`
-- `panel-administrativo/pages/dashboard/dashboard.html`
-- `panel-administrativo/js/modules/dashboard.js`
-- `panel-administrativo/css/dashboard.css`
-- `panel-administrativo/pages/autenticacion/iniciar-sesion.html`
-- `panel-administrativo/js/modules/autenticacion.js`
+Antes: capa CMS desconectada, importador XLSX vacío, múltiples rutas del panel vacías, formularios simulados y contenido público dependiente de archivos locales.
 
-La carpeta `.git` fue restaurada exactamente desde el ZIP original para eliminar cambios incidentales producidos por la revisión.
+Después: una capa de gestión reutilizable para ocho módulos, calendario y horarios versionados, formularios persistentes, administración segura, tablero/auditoría reales y frontend público API-first con respaldo local controlado.
 
-## Puesta en marcha de la base de datos
+## Pruebas y límites de evidencia
 
-Antes de iniciar la versión nueva en el equipo Windows del proyecto:
+Se ejecutan con `npm test`:
 
-1. Crear un respaldo de `BD-LHVR`.
-2. Entrar en la carpeta `backend`.
-3. Ejecutar `npm run setup:contenido`.
-4. Ejecutar `npm run test:db`.
-5. Iniciar el backend con `npm start`.
-6. Probar una carga y publicación real desde cada módulo administrativo.
+- servicios de autenticación, contenido, contacto, BiblioCRA y administradores;
+- lectura y reconstrucción de una plantilla XLSX;
+- duplicados de importación y bloqueo de URL insegura;
+- respuestas 401 de rutas protegidas sin sesión;
+- validación HTTP de formularios públicos sin tocar la BD;
+- integridad de todas las rutas visibles del menú.
 
-## Limitación de la prueba en este entorno
+También se verificó sintaxis de 134 archivos JavaScript y se inspeccionaron en navegador Calendario, Horarios, Contacto y BiblioCRA, incluyendo Horarios a 390 px.
 
-No fue posible ejecutar las migraciones contra el SQL Server real del liceo desde este entorno Linux, porque la conexión del proyecto utiliza `msnodesqlv8`, compilado para Windows. Se validaron el código, las consultas mediante dependencias controladas, las transacciones, las rutas, la protección, las interfaces y el comportamiento del navegador; la prueba final de persistencia real debe realizarse en el equipo Windows conectado a `BD-LHVR` después de ejecutar `npm run setup:contenido`.
-
-## Seguridad del archivo entregado
-
-El ZIP original contiene `backend/.env` con información sensible. Se conservó sin modificar porque se solicitó mantener exactamente la estructura y no eliminar archivos, pero esas credenciales deben cambiarse antes de compartir el proyecto con terceros o publicarlo.
+No se afirma una prueba SQL extremo a extremo: faltan credenciales/acceso a la base real. La persistencia, autenticación con una sesión real, envío SMTP y publicación contra `BD-LHVR` deben probarse manualmente en el equipo que tiene SQL Server, siguiendo `database/README-CAMBIOS-BD.md`.

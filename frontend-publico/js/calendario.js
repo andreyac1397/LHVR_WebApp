@@ -47,9 +47,63 @@ function rutaBaseCalendario() {
 }
 
 async function cargarJSONCalendario(rutaRelativa) {
-  const respuesta = await fetch(rutaBaseCalendario() + rutaRelativa);
-  if (!respuesta.ok) throw new Error("No se pudo cargar " + rutaRelativa);
-  return respuesta.json();
+  const apiBase = String(
+    window.API_PUBLICA_URL || "http://127.0.0.1:3001/api"
+  ).replace(/\/+$/, "");
+
+  try {
+    const respuestaApi = await fetch(`${apiBase}/calendario/publico`, {
+      headers: { Accept: "application/json" }
+    });
+
+    if (!respuestaApi.ok) {
+      throw new Error(`HTTP ${respuestaApi.status}`);
+    }
+
+    const contenido = await respuestaApi.json();
+    const elementos = contenido?.datos?.elementos;
+
+    if (!Array.isArray(elementos)) {
+      throw new Error("La API devolvió un calendario inválido.");
+    }
+
+    return elementos.map((elemento) => {
+      let subcategorias = elemento.datos?.subcategorias || [];
+
+      if (typeof subcategorias === "string") {
+        try {
+          const resultado = JSON.parse(subcategorias);
+          subcategorias = Array.isArray(resultado)
+            ? resultado
+            : subcategorias.split(",");
+        } catch (_error) {
+          subcategorias = subcategorias.split(",");
+        }
+      }
+
+      return {
+        id: elemento.claveExterna || elemento.idElemento,
+        titulo: elemento.titulo,
+        descripcion: elemento.descripcion,
+        link: elemento.url,
+        link2: elemento.urlSecundaria,
+        fechaInicio: String(elemento.fechaInicio || "").slice(0, 10),
+        fechaFin: String(elemento.fechaFin || elemento.fechaInicio || "").slice(0, 10),
+        nombreCategoria: elemento.datos?.nombreCategoria || "General",
+        subcategorias: subcategorias.map((item) => String(item).trim()).filter(Boolean),
+        destacado: elemento.destacado ? "1" : "0"
+      };
+    });
+  } catch (errorApi) {
+    console.warn(
+      "La API del calendario no está disponible; se usará el JSON local de respaldo.",
+      errorApi
+    );
+
+    const respuesta = await fetch(rutaBaseCalendario() + rutaRelativa);
+    if (!respuesta.ok) throw new Error("No se pudo cargar " + rutaRelativa);
+    return respuesta.json();
+  }
 }
 
 function crearFechaLocal(iso) {
@@ -198,6 +252,7 @@ async function iniciarCalendarioInteractivo() {
       .sort((a, b) => compararFechas(a._inicio, b._inicio));
 
     prepararFechaInicial();
+    configurarFiltroAnioCalendario();
     configurarBotonesCalendario();
     configurarFiltrosCalendario();
     renderizarCalendarioCompleto();
@@ -205,6 +260,37 @@ async function iniciarCalendarioInteractivo() {
     grid.innerHTML = `<p class="estado">No se pudo cargar el calendario.</p>`;
     console.error(error);
   }
+}
+
+function configurarFiltroAnioCalendario() {
+  const selector = document.getElementById("filtroAnioCalendario");
+  if (!selector) return;
+
+  const anios = [...new Set(
+    estadoCalendario.eventos.flatMap((evento) => {
+      const resultado = [];
+      for (let anio = evento._inicio.getFullYear(); anio <= evento._fin.getFullYear(); anio++) {
+        resultado.push(anio);
+      }
+      return resultado;
+    })
+  )].sort((a, b) => b - a);
+
+  if (anios.length === 0) anios.push(new Date().getFullYear());
+  selector.innerHTML = anios.map((anio) =>
+    `<option value="${anio}">${anio}</option>`).join("");
+  selector.value = String(estadoCalendario.fechaVista.getFullYear());
+
+  selector.addEventListener("change", () => {
+    const anio = Number(selector.value);
+    estadoCalendario.fechaVista = new Date(anio, estadoCalendario.fechaVista.getMonth(), 1);
+    const primerEvento = estadoCalendario.eventos.find((evento) =>
+      evento._inicio.getFullYear() === anio || evento._fin.getFullYear() === anio);
+    estadoCalendario.fechaSeleccionada = primerEvento
+      ? new Date(primerEvento._inicio)
+      : new Date(anio, 0, 1);
+    renderizarCalendarioCompleto();
+  });
 }
 
 function prepararFechaInicial() {
@@ -318,6 +404,11 @@ function renderizarTituloMes() {
   const anio = estadoCalendario.fechaVista.getFullYear();
 
   tituloMes.textContent = `${mes.charAt(0).toUpperCase() + mes.slice(1)} ${anio}`;
+
+  const selector = document.getElementById("filtroAnioCalendario");
+  if (selector && [...selector.options].some((opcion) => Number(opcion.value) === anio)) {
+    selector.value = String(anio);
+  }
 }
 
 function renderizarGridCalendario() {

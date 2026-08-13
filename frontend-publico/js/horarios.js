@@ -151,14 +151,50 @@
   }
 
   async function cargarHorarios() {
-    const respuesta = await fetch(rutaBaseHorarios() + RUTA_CSV);
+    const apiBase = String(
+      window.API_PUBLICA_URL || "http://127.0.0.1:3001/api"
+    ).replace(/\/+$/, "");
 
-    if (!respuesta.ok) {
-      throw new Error("No se pudo cargar el archivo de horarios.");
+    try {
+      const respuestaApi = await fetch(`${apiBase}/horarios/publico`, {
+        headers: { Accept: "application/json" }
+      });
+
+      if (!respuestaApi.ok) {
+        throw new Error(`HTTP ${respuestaApi.status}`);
+      }
+
+      const contenido = await respuestaApi.json();
+      const elementos = contenido?.datos?.elementos;
+
+      if (!Array.isArray(elementos)) {
+        throw new Error("La API devolvió un horario inválido.");
+      }
+
+      horarios = elementos.map((elemento) => {
+        const fila = { ...(elemento.datos || {}) };
+        fila.seccion = limpiar(fila.seccion);
+        fila.profesor_guia = limpiar(fila.profesor_guia);
+        fila.lec = limpiar(fila.lec || fila.leccion);
+        fila.horas = limpiar(fila.horas || fila.horario);
+        fila.nivel = detectarNivel(fila.seccion);
+        return fila;
+      });
+    } catch (errorApi) {
+      console.warn(
+        "La API de horarios no está disponible; se usará el CSV local de respaldo.",
+        errorApi
+      );
+
+      const respuesta = await fetch(rutaBaseHorarios() + RUTA_CSV);
+
+      if (!respuesta.ok) {
+        throw new Error("No se pudo cargar el archivo de horarios.");
+      }
+
+      const texto = await respuesta.text();
+      horarios = parsearCSV(texto);
     }
-
-    const texto = await respuesta.text();
-    horarios = parsearCSV(texto);
   }
 
   function renderizarNiveles() {
@@ -483,7 +519,7 @@
         `Seleccione una sección de ${nivelSeleccionado} para consultar el horario correspondiente.`
       );
     } catch (error) {
-      mostrarEstado("No se pudieron cargar los horarios. Revise que el archivo CSV exista en la carpeta data.");
+      mostrarEstado("No se pudieron cargar los horarios publicados.");
       console.error(error);
     }
   }

@@ -150,6 +150,56 @@
   display: block;
 }
 
+.horario-movil__tarjeta {
+  padding: 1rem;
+  border: 1px solid #dce5df;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(31, 74, 49, 0.08);
+}
+
+.horario-movil__encabezado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.horario-movil__encabezado h4 {
+  margin: 0.25rem 0 0;
+  color: #173824;
+}
+
+.horario-movil__etiqueta,
+.horario-movil__hora {
+  color: #54705e;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.horario-movil__dias {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.horario-movil__dia {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 0.75rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid #edf1ee;
+}
+
+.horario-movil__dia span {
+  color: #66736a;
+}
+
+.horario-movil__tarjeta--receso,
+.horario-movil__tarjeta--almuerzo {
+  background: #f6f1df;
+}
+
 /* Filtros de horarios */
 #filtrosNivelHorario,
 #filtrosSeccionHorario {
@@ -408,6 +458,18 @@
   .horario-estado {
     padding: 28px 22px;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .horario__vista-escritorio {
+    display: none !important;
+  }
+
+  .horario__vista-movil {
+    display: grid !important;
+    gap: 0.85rem;
+    padding: 1rem;
   }
 }
 

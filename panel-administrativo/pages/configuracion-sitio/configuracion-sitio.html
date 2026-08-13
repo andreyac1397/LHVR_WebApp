@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración general | Panel administrativo LHVR</title>
+  <link rel="stylesheet" href="../../css/variables-admin.css">
+  <link rel="stylesheet" href="../../css/estilos-admin.css">
+  <link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+</head>
+<body data-titulo-pagina="Configuración general">
+  <div id="cargadorProteccion" class="cargador-proteccion" role="status"><div class="cargador-proteccion__contenido"><span class="cargador-proteccion__indicador"></span><p>Comprobando sesión...</p></div></div>
+  <main id="contenidoPagina" data-titulo="Configuración general" hidden>
+    <div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
+      <header class="gestion-contenido__encabezado">
+        <div>
+          <p class="admin-pagina__etiqueta">Fuente institucional única</p>
+          <h1 class="gestion-contenido__titulo">Configuración general</h1>
+          <p class="gestion-contenido__descripcion">Estos valores provienen de <code>configuracion_sitio</code> y alimentan Inicio, Nosotros, Contacto, encabezado y pie de página.</p>
+        </div>
+      </header>
+
+      <form id="formularioConfiguracionSitio" class="gestion-contenido__panel gestion-contenido__formulario">
+        <div class="gestion-contenido__panel-cuerpo gestion-contenido__cuadricula">
+          <label class="gestion-contenido__campo"><span>Nombre de la institución</span><input class="gestion-contenido__control" name="nombre_institucion" maxlength="300" required></label>
+          <label class="gestion-contenido__campo"><span>Sigla</span><input class="gestion-contenido__control" name="sigla_institucion" maxlength="50" required></label>
+          <label class="gestion-contenido__campo gestion-contenido__campo--completo"><span>Lema institucional</span><input class="gestion-contenido__control" name="lema_institucional" maxlength="500"></label>
+          <label class="gestion-contenido__campo"><span>Modalidad</span><input class="gestion-contenido__control" name="modalidad_institucional" maxlength="250"></label>
+          <label class="gestion-contenido__campo"><span>Jornada</span><input class="gestion-contenido__control" name="jornada_institucional" maxlength="250"></label>
+          <label class="gestion-contenido__campo gestion-contenido__campo--completo"><span>Niveles</span><input class="gestion-contenido__control" name="niveles_institucionales" maxlength="500"></label>
+          <label class="gestion-contenido__campo gestion-contenido__campo--completo"><span>Dirección</span><textarea class="gestion-contenido__control" name="direccion_institucional" maxlength="1000"></textarea></label>
+          <label class="gestion-contenido__campo"><span>Teléfonos</span><input class="gestion-contenido__control" name="telefonos_institucionales" maxlength="300"></label>
+          <label class="gestion-contenido__campo"><span>Correo</span><input class="gestion-contenido__control" name="correo_institucional" type="email" maxlength="254"></label>
+          <label class="gestion-contenido__campo"><span>Horario de atención</span><input class="gestion-contenido__control" name="horario_atencion" maxlength="500"></label>
+          <label class="gestion-contenido__campo"><span>Facebook</span><input class="gestion-contenido__control" name="facebook_url" type="url" maxlength="1000"></label>
+          <label class="gestion-contenido__campo gestion-contenido__campo--completo"><span>Google Maps</span><input class="gestion-contenido__control" name="google_maps_url" type="url" maxlength="1000"></label>
+        </div>
+        <footer class="gestion-contenido__modal-pie">
+          <p id="estadoConfiguracionSitio" class="gestion-contenido__mensaje" aria-live="polite">Cargando configuración...</p>
+          <button class="admin-boton admin-boton--primario" type="submit">Guardar cambios</button>
+        </footer>
+      </form>
+    </div>
+  </main>
+  <script src="../../js/config/api-admin.config.js" defer></script>
+  <script src="../../js/core/api-client.js" defer></script>
+  <script src="../../js/core/sesion-administrador.js" defer></script>
+  <script src="../../js/modules/autenticacion.js" defer></script>
+  <script src="../../js/core/proteccion-rutas.js" defer></script>
+  <script src="../../js/components/alertas-admin.js" defer></script>
+  <script src="../../js/components/modal-admin.js" defer></script>
+  <script src="../../js/modules/configuracion-sitio.js" defer></script>
+  <script src="../../js/components/layout-admin.js" defer></script>
+</body>
+</html>

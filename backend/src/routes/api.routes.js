@@ -28,6 +28,30 @@ const configuracionRoutes = require(
   "../modules/configuracion-sitio/routes/configuracion.routes"
 );
 
+const contenidoRoutes = require(
+  "./contenido.routes"
+);
+
+const contactoRoutes = require(
+  "../modules/contacto/routes/contacto.routes"
+);
+
+const solicitudBibliocraRoutes = require(
+  "../modules/biblioteca/routes/solicitud-bibliocra.routes"
+);
+
+const dashboardRoutes = require(
+  "../modules/dashboard/routes/dashboard.routes"
+);
+
+const auditoriaRoutes = require(
+  "../modules/auditoria/routes/auditoria.routes"
+);
+
+const administradorRoutes = require(
+  "../modules/administradores/routes/administrador.routes"
+);
+
 const {
   respuestaExitosa
 } = require(
@@ -117,6 +141,41 @@ router.use(
 router.use(
   "/configuracion-sitio",
   configuracionRoutes
+);
+
+router.use(
+  "/contacto",
+  contactoRoutes
+);
+
+router.use(
+  "/solicitudes-bibliocra",
+  solicitudBibliocraRoutes
+);
+
+router.use(
+  "/dashboard",
+  dashboardRoutes
+);
+
+router.use(
+  "/auditoria",
+  auditoriaRoutes
+);
+
+router.use(
+  "/administradores",
+  administradorRoutes
+);
+
+
+/*
+ * Contenido versionado: boletines, calendario, BiblioCRA, docentes,
+ * horarios, trámites, recursos de apoyo y galería.
+ */
+router.use(
+  "/",
+  contenidoRoutes
 );
 
 

@@ -279,6 +279,67 @@ class SqlAuditoriaRepository
         fila.fecha_accion ?? null
     };
   }
+
+  async listarAuditoria(filtros = {}) {
+    const conexion = await obtenerConexion();
+    const resultado = await conexion.request()
+      .input("modulo", sql.NVarChar(60), filtros.modulo ?? null)
+      .input("accion", sql.NVarChar(50), filtros.accion ?? null)
+      .input("busqueda", sql.NVarChar(250), filtros.busqueda ?? null)
+      .query(`
+        SELECT TOP 500
+          a.id_auditoria,
+          a.id_administrador,
+          adm.nombre_completo AS administrador,
+          acc.codigo AS codigo_accion,
+          acc.nombre AS accion,
+          mod.codigo AS codigo_modulo,
+          mod.nombre AS modulo,
+          a.tabla_afectada,
+          a.id_registro_afectado,
+          a.descripcion,
+          a.direccion_ip,
+          a.fecha_accion
+        FROM dbo.auditoria AS a
+        INNER JOIN dbo.acciones_auditoria AS acc
+          ON acc.id_accion_auditoria = a.id_accion_auditoria
+        INNER JOIN dbo.modulos_sistema AS mod
+          ON mod.id_modulo_sistema = a.id_modulo_sistema
+        LEFT JOIN dbo.administradores AS adm
+          ON adm.id_administrador = a.id_administrador
+        WHERE (@modulo IS NULL OR mod.codigo = @modulo)
+          AND (@accion IS NULL OR acc.codigo = @accion)
+          AND (
+            @busqueda IS NULL OR
+            a.descripcion LIKE N'%' + @busqueda + N'%' OR
+            adm.nombre_completo LIKE N'%' + @busqueda + N'%' OR
+            a.tabla_afectada LIKE N'%' + @busqueda + N'%'
+          )
+        ORDER BY a.fecha_accion DESC, a.id_auditoria DESC;
+
+        SELECT codigo, nombre FROM dbo.modulos_sistema WHERE activo = 1 ORDER BY orden, nombre;
+        SELECT codigo, nombre FROM dbo.acciones_auditoria WHERE activo = 1 ORDER BY nombre;
+      `);
+
+    return {
+      registros: resultado.recordsets[0].map((fila) => ({
+        idAuditoria: Number(fila.id_auditoria),
+        idAdministrador: this.convertirNumero(fila.id_administrador),
+        administrador: fila.administrador,
+        codigoAccion: fila.codigo_accion,
+        accion: fila.accion,
+        codigoModulo: fila.codigo_modulo,
+        modulo: fila.modulo,
+        tablaAfectada: fila.tabla_afectada,
+        idRegistroAfectado: fila.id_registro_afectado,
+        descripcion: fila.descripcion,
+        direccionIp: fila.direccion_ip,
+        fechaAccion: fila.fecha_accion
+      })),
+      modulos: resultado.recordsets[1],
+      acciones: resultado.recordsets[2]
+    };
+  }
 }
 
 module.exports = SqlAuditoriaRepository;

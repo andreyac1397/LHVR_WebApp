@@ -24,6 +24,35 @@ async function cargarJSON(rutaRelativa) {
   return respuesta.json();
 }
 
+async function cargarModuloPublico(modulo) {
+  const apiBase = String(
+    window.API_PUBLICA_URL || "http://127.0.0.1:3001/api"
+  ).replace(/\/+$/, "");
+  const respuesta = await fetch(`${apiBase}/${modulo}/publico`, {
+    headers: { Accept: "application/json" }
+  });
+
+  if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+  const contenido = await respuesta.json();
+  const elementos = contenido?.datos?.elementos;
+  if (!Array.isArray(elementos)) throw new Error("La API devolvió datos inválidos.");
+  return elementos;
+}
+
+function escaparDato(valor) {
+  return String(valor ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function urlPublicaSegura(valor) {
+  const url = String(valor ?? "").trim();
+  return /^(https?:\/\/|\/|\.\.\/|\.\/|#)/i.test(url) ? url : "#";
+}
+
 /* Convierte "2025-03-18" en "18 de marzo de 2025" */
 const MESES = [
   "enero", "febrero", "marzo", "abril", "mayo", "junio",
@@ -73,18 +102,31 @@ async function renderDocumentos(idContenedor) {
   if (!contenedor) return;
 
   try {
-    const documentos = await cargarJSON("data/documentos.json");
+    let documentos;
+
+    try {
+      const elementos = await cargarModuloPublico("tramites");
+      documentos = elementos.map((item) => ({
+        categoria: item.datos?.categoria || "tramite",
+        titulo: item.titulo,
+        descripcion: item.descripcion || item.subtitulo || "",
+        archivo: item.url || "#"
+      }));
+    } catch (errorApi) {
+      console.warn("Se usarán los documentos locales de respaldo.", errorApi);
+      documentos = await cargarJSON("data/documentos.json");
+    }
 
     contenedor.innerHTML = documentos
       .map(
         (doc) => `
-        <article class="tarjeta" data-categoria="${doc.categoria}">
-          <span class="etiqueta etiqueta--${doc.categoria}">${doc.categoria}</span>
-          <h3 class="tarjeta__titulo">${doc.titulo}</h3>
-          <p class="tarjeta__texto">${doc.descripcion}</p>
+        <article class="tarjeta" data-categoria="${escaparDato(doc.categoria)}">
+          <span class="etiqueta">${escaparDato(doc.categoria)}</span>
+          <h3 class="tarjeta__titulo">${escaparDato(doc.titulo)}</h3>
+          <p class="tarjeta__texto">${escaparDato(doc.descripcion)}</p>
           <div class="tarjeta__pie">
             <a class="boton boton--primario boton--pequeno"
-              href="${doc.archivo.startsWith("http") || doc.archivo.startsWith("/") ? doc.archivo : rutaBase() + doc.archivo}"
+              href="${escaparDato(urlPublicaSegura(doc.archivo).startsWith("http") || urlPublicaSegura(doc.archivo).startsWith("/") ? urlPublicaSegura(doc.archivo) : rutaBase() + urlPublicaSegura(doc.archivo))}"
               target="_blank"
               rel="noopener">
               Ver documento
@@ -104,18 +146,31 @@ async function renderEnlaces(idContenedor) {
   if (!contenedor) return;
 
   try {
-    const enlaces = await cargarJSON("data/enlaces.json");
+    let enlaces;
+
+    try {
+      const elementos = await cargarModuloPublico("recursos-apoyo");
+      enlaces = elementos.map((item) => ({
+        publico: item.datos?.publico || item.datos?.categoria || "Comunidad",
+        titulo: item.titulo,
+        descripcion: item.descripcion || item.subtitulo || "",
+        url: item.url || "#"
+      }));
+    } catch (errorApi) {
+      console.warn("Se usarán los enlaces locales de respaldo.", errorApi);
+      enlaces = await cargarJSON("data/enlaces.json");
+    }
 
     contenedor.innerHTML = enlaces
       .map(
         (enlace) => `
-        <article class="tarjeta" data-categoria="${enlace.publico}">
-          <span class="etiqueta etiqueta--circular">${enlace.publico}</span>
-          <h3 class="tarjeta__titulo">${enlace.titulo}</h3>
-          <p class="tarjeta__texto">${enlace.descripcion}</p>
+        <article class="tarjeta" data-categoria="${escaparDato(enlace.publico)}">
+          <span class="etiqueta etiqueta--circular">${escaparDato(enlace.publico)}</span>
+          <h3 class="tarjeta__titulo">${escaparDato(enlace.titulo)}</h3>
+          <p class="tarjeta__texto">${escaparDato(enlace.descripcion)}</p>
           <div class="tarjeta__pie">
             <a class="boton boton--secundario boton--pequeno"
-              href="${enlace.url}"
+              href="${escaparDato(urlPublicaSegura(enlace.url))}"
               target="_blank"
               rel="noopener">
               Abrir recurso
@@ -135,7 +190,19 @@ async function renderDocentes(idContenedor) {
   if (!contenedor) return;
 
   try {
-    const docentes = await cargarJSON("data/docentes.json");
+    let docentes;
+
+    try {
+      const elementos = await cargarModuloPublico("docentes");
+      docentes = elementos.map((item) => ({
+        nombre: item.titulo,
+        area: item.subtitulo || item.datos?.departamento || "Docente",
+        correo: item.datos?.correo || ""
+      }));
+    } catch (errorApi) {
+      console.warn("Se usará el directorio local de respaldo.", errorApi);
+      docentes = await cargarJSON("data/docentes.json");
+    }
 
     contenedor.innerHTML = docentes
       .map((d) => {
@@ -143,10 +210,10 @@ async function renderDocentes(idContenedor) {
 
         return `
         <article class="tarjeta docente">
-          <div class="docente__avatar" aria-hidden="true">${inicial}</div>
-          <h3 class="docente__nombre">${d.nombre}</h3>
-          <p class="docente__area">${d.area}</p>
-          <a class="docente__correo" href="mailto:${d.correo}">${d.correo}</a>
+          <div class="docente__avatar" aria-hidden="true">${escaparDato(inicial)}</div>
+          <h3 class="docente__nombre">${escaparDato(d.nombre)}</h3>
+          <p class="docente__area">${escaparDato(d.area)}</p>
+          ${d.correo ? `<a class="docente__correo" href="mailto:${escaparDato(d.correo)}">${escaparDato(d.correo)}</a>` : ""}
         </article>`;
       })
       .join("");

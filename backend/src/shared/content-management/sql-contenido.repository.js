@@ -683,170 +683,133 @@ class SqlContenidoRepository {
           datos.idAdministrador ?? null
         )
         .query(`
-          DECLARE @id_coleccion INT;
+          INSERT INTO dbo.cms_colecciones (
+            modulo,
+            clave,
+            nombre,
+            anio,
+            estado,
+            publicada,
+            metadatos_json,
+            id_administrador_ultima_modificacion
+          )
+          VALUES (
+            @modulo,
+            @clave,
+            @nombre,
+            @anio,
+            N'BORRADOR',
+            0,
+            @metadatos_json,
+            @id_administrador
+          );
 
-          SELECT
-            @id_coleccion = id_coleccion
-          FROM dbo.cms_colecciones
-          WHERE modulo = @modulo
-            AND clave = @clave;
-
-          IF @id_coleccion IS NULL
-          BEGIN
-            INSERT INTO dbo.cms_colecciones (
-              modulo,
-              clave,
-              nombre,
-              anio,
-              estado,
-              publicada,
-              metadatos_json,
-              id_administrador_ultima_modificacion
-            )
-            VALUES (
-              @modulo,
-              @clave,
-              @nombre,
-              @anio,
-              N'BORRADOR',
-              0,
-              @metadatos_json,
-              @id_administrador
-            );
-
-            SET @id_coleccion = SCOPE_IDENTITY();
-          END;
-          ELSE
-          BEGIN
-            UPDATE dbo.cms_colecciones
-            SET
-              nombre = @nombre,
-              anio = @anio,
-              estado = N'BORRADOR',
-              metadatos_json = @metadatos_json,
-              id_administrador_ultima_modificacion =
-                @id_administrador,
-              fecha_actualizacion = SYSUTCDATETIME()
-            WHERE id_coleccion = @id_coleccion;
-          END;
-
-          SELECT @id_coleccion AS id_coleccion;
+          SELECT CAST(SCOPE_IDENTITY() AS INT) AS id_coleccion;
         `);
 
       const idColeccion = Number(
         resultadoColeccion.recordset[0].id_coleccion
       );
 
-      if (datos.reemplazar) {
+      const alcance = String(datos.alcance || "TOTAL").toUpperCase();
+      const idColeccionBase = Number(datos.idColeccionBase);
+
+      if (
+        alcance !== "TOTAL" &&
+        Number.isInteger(idColeccionBase) &&
+        idColeccionBase > 0
+      ) {
         await new sql.Request(transaccion)
-          .input("id_coleccion", sql.Int, idColeccion)
+          .input("id_coleccion_nueva", sql.Int, idColeccion)
+          .input("id_coleccion_base", sql.Int, idColeccionBase)
+          .input("modulo", sql.NVarChar(60), datos.modulo)
+          .input("id_administrador", sql.Int, datos.idAdministrador ?? null)
           .query(`
-            DELETE FROM dbo.cms_elementos
-            WHERE id_coleccion = @id_coleccion;
+            INSERT INTO dbo.cms_elementos (
+              id_coleccion, modulo, clave_externa, titulo, subtitulo,
+              descripcion, fecha_inicio, fecha_fin, orden, estado,
+              destacado, url, url_secundaria, id_archivo, datos_json,
+              id_administrador_ultima_modificacion
+            )
+            SELECT
+              @id_coleccion_nueva, modulo, clave_externa, titulo, subtitulo,
+              descripcion, fecha_inicio, fecha_fin, orden, estado,
+              destacado, url, url_secundaria, id_archivo, datos_json,
+              @id_administrador
+            FROM dbo.cms_elementos
+            WHERE id_coleccion = @id_coleccion_base
+              AND modulo = @modulo;
           `);
       }
 
-      for (const elemento of datos.elementos) {
+      if (alcance !== "TOTAL") {
+        const claves = datos.elementos
+          .map((elemento) => elemento.claveExterna)
+          .filter(Boolean);
+        const secciones = datos.elementos
+          .map((elemento) => elemento.datos?.seccion)
+          .filter(Boolean);
+
         await new sql.Request(transaccion)
           .input("id_coleccion", sql.Int, idColeccion)
-          .input("modulo", sql.NVarChar(60), datos.modulo)
-          .input(
-            "clave_externa",
-            sql.NVarChar(180),
-            elemento.claveExterna ?? null
-          )
-          .input(
-            "titulo",
-            sql.NVarChar(500),
-            elemento.titulo ?? null
-          )
-          .input(
-            "subtitulo",
-            sql.NVarChar(500),
-            elemento.subtitulo ?? null
-          )
-          .input(
-            "descripcion",
-            sql.NVarChar(sql.MAX),
-            elemento.descripcion ?? null
-          )
-          .input(
-            "fecha_inicio",
-            sql.DateTime2,
-            elemento.fechaInicio ?? null
-          )
-          .input(
-            "fecha_fin",
-            sql.DateTime2,
-            elemento.fechaFin ?? null
-          )
-          .input("orden", sql.Int, elemento.orden ?? 0)
-          .input("estado", sql.NVarChar(20), elemento.estado)
-          .input("destacado", sql.Bit, elemento.destacado)
-          .input(
-            "url",
-            sql.NVarChar(2048),
-            elemento.url ?? null
-          )
-          .input(
-            "url_secundaria",
-            sql.NVarChar(2048),
-            elemento.urlSecundaria ?? null
-          )
-          .input(
-            "id_archivo",
-            sql.Int,
-            elemento.idArchivo ?? null
-          )
-          .input(
-            "datos_json",
-            sql.NVarChar(sql.MAX),
-            this.convertirJson(elemento.datos)
-          )
-          .input(
-            "id_administrador",
-            sql.Int,
-            datos.idAdministrador ?? null
-          )
+          .input("claves", sql.NVarChar(sql.MAX), JSON.stringify(claves))
+          .input("secciones", sql.NVarChar(sql.MAX), JSON.stringify(secciones))
           .query(`
-            INSERT INTO dbo.cms_elementos (
-              id_coleccion,
-              modulo,
-              clave_externa,
-              titulo,
-              subtitulo,
-              descripcion,
-              fecha_inicio,
-              fecha_fin,
-              orden,
-              estado,
-              destacado,
-              url,
-              url_secundaria,
-              id_archivo,
-              datos_json,
-              id_administrador_ultima_modificacion
-            )
-            VALUES (
-              @id_coleccion,
-              @modulo,
-              @clave_externa,
-              @titulo,
-              @subtitulo,
-              @descripcion,
-              @fecha_inicio,
-              @fecha_fin,
-              @orden,
-              @estado,
-              @destacado,
-              @url,
-              @url_secundaria,
-              @id_archivo,
-              @datos_json,
-              @id_administrador
-            );
+            DELETE elemento
+            FROM dbo.cms_elementos AS elemento
+            WHERE elemento.id_coleccion = @id_coleccion
+              AND (
+                elemento.clave_externa IN (
+                  SELECT CONVERT(NVARCHAR(180), [value]) FROM OPENJSON(@claves)
+                )
+                OR JSON_VALUE(elemento.datos_json, '$.seccion') IN (
+                  SELECT CONVERT(NVARCHAR(60), [value]) FROM OPENJSON(@secciones)
+                )
+              );
           `);
       }
+
+      const tabla = new sql.Table("dbo.cms_elementos");
+      tabla.create = false;
+      tabla.columns.add("id_coleccion", sql.Int, { nullable: true });
+      tabla.columns.add("modulo", sql.NVarChar(60), { nullable: false });
+      tabla.columns.add("clave_externa", sql.NVarChar(180), { nullable: true });
+      tabla.columns.add("titulo", sql.NVarChar(500), { nullable: true });
+      tabla.columns.add("subtitulo", sql.NVarChar(500), { nullable: true });
+      tabla.columns.add("descripcion", sql.NVarChar(sql.MAX), { nullable: true });
+      tabla.columns.add("fecha_inicio", sql.DateTime2, { nullable: true });
+      tabla.columns.add("fecha_fin", sql.DateTime2, { nullable: true });
+      tabla.columns.add("orden", sql.Int, { nullable: false });
+      tabla.columns.add("estado", sql.NVarChar(20), { nullable: false });
+      tabla.columns.add("destacado", sql.Bit, { nullable: false });
+      tabla.columns.add("url", sql.NVarChar(2048), { nullable: true });
+      tabla.columns.add("url_secundaria", sql.NVarChar(2048), { nullable: true });
+      tabla.columns.add("id_archivo", sql.Int, { nullable: true });
+      tabla.columns.add("datos_json", sql.NVarChar(sql.MAX), { nullable: true });
+      tabla.columns.add("id_administrador_ultima_modificacion", sql.Int, { nullable: true });
+
+      datos.elementos.forEach((elemento) => {
+        tabla.rows.add(
+          idColeccion,
+          datos.modulo,
+          elemento.claveExterna ?? null,
+          elemento.titulo ?? null,
+          elemento.subtitulo ?? null,
+          elemento.descripcion ?? null,
+          elemento.fechaInicio ?? null,
+          elemento.fechaFin ?? null,
+          elemento.orden ?? 0,
+          elemento.estado,
+          elemento.destacado,
+          elemento.url ?? null,
+          elemento.urlSecundaria ?? null,
+          elemento.idArchivo ?? null,
+          this.convertirJson(elemento.datos),
+          datos.idAdministrador ?? null
+        );
+      });
+
+      await new sql.Request(transaccion).bulk(tabla);
 
       await new sql.Request(transaccion)
         .input("id_coleccion", sql.Int, idColeccion)

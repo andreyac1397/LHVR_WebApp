@@ -34,7 +34,7 @@
 
         <p>
           Complete la información solicitada para registrar la boleta digital de préstamo de materiales.
-          Este formulario queda preparado para una segunda versión con conexión a base de datos.
+          La solicitud se registra directamente para que el personal de BiblioCRA pueda atenderla.
         </p>
       </div>
     </section>
@@ -56,7 +56,11 @@
             </div>
           </div>
 
-          <form class="formulario-bibliocra__form" action="#" method="post">
+          <form id="formularioSolicitudBibliocra" class="formulario-bibliocra__form" action="#" method="post">
+            <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+              <label for="sitioWebBibliocra">No complete este campo</label>
+              <input id="sitioWebBibliocra" name="sitioWeb" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <fieldset>
               <legend>Datos del material</legend>
 
@@ -159,8 +163,8 @@
               </button>
             </div>
 
-            <p class="formulario-bibliocra__nota">
-              Nota: en esta versión el formulario queda preparado visualmente. El envío y almacenamiento se integrarán en la segunda versión del sistema. :D
+            <p id="estadoSolicitudBibliocra" class="formulario-bibliocra__nota" role="status" aria-live="polite">
+              Revise los datos antes de enviar. La solicitud quedará pendiente de atención por BiblioCRA.
             </p>
           </form>
         </article>
@@ -171,6 +175,7 @@
   <div id="pie"></div>
 
   <script src="../js/main.js"></script>
+  <script src="../js/solicitud-bibliocra.js"></script>
 </body>
 
 </html>

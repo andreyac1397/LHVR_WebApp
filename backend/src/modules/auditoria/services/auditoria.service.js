@@ -347,6 +347,14 @@ class AuditoriaService {
       datosAuditoria
     );
   }
+
+  listarAuditoria(filtros = {}) {
+    return this.repositorio.listarAuditoria({
+      modulo: this.normalizarTextoOpcional(filtros.modulo, 60)?.toUpperCase(),
+      accion: this.normalizarTextoOpcional(filtros.accion, 50)?.toUpperCase(),
+      busqueda: this.normalizarTextoOpcional(filtros.busqueda, 250)
+    });
+  }
 }
 
 module.exports = AuditoriaService;

@@ -70,6 +70,12 @@
           texto: "Contacto",
           ruta:
              "pages/paginas-contenido/editar-secciones.html?pagina=contacto"
+        },
+        {
+          id: "mensajes-contacto",
+          texto: "Mensajes de contacto",
+          ruta:
+             "pages/contacto/lista-mensajes.html"
         }
       ]
     },
@@ -79,9 +85,7 @@
       texto: "Gestión de boletines",
       icono: "boletines",
       ruta:
-        "pages/boletines/lista-boletines.html",
-      carpetaActiva:
-        "pages/boletines/"
+        "pages/gestion-contenido/gestionar.html?modulo=boletines"
     },
 
     {
@@ -89,9 +93,7 @@
       texto: "Gestión de calendario",
       icono: "calendario",
       ruta:
-        "pages/calendario/lista-eventos.html",
-      carpetaActiva:
-        "pages/calendario/"
+        "pages/gestion-contenido/gestionar.html?modulo=calendario"
     },
 
     {
@@ -105,11 +107,9 @@
           id: "biblioteca-contenido",
           texto: "Gestión de biblioteca",
           ruta:
-            "pages/biblioteca/contenido-biblioteca.html",
+            "pages/gestion-contenido/gestionar.html?modulo=biblioteca",
           rutasActivas: [
-            "pages/biblioteca/contenido-biblioteca.html",
-            "pages/biblioteca/nuevo-recurso-biblioteca.html",
-            "pages/biblioteca/editar-recurso-biblioteca.html"
+            "pages/gestion-contenido/gestionar.html?modulo=biblioteca"
           ]
         },
         {
@@ -118,8 +118,7 @@
           ruta:
             "pages/biblioteca/solicitudes-bibliocra.html",
           rutasActivas: [
-            "pages/biblioteca/solicitudes-bibliocra.html",
-            "pages/biblioteca/detalle-solicitud.html"
+            "pages/biblioteca/solicitudes-bibliocra.html"
           ]
         }
       ]
@@ -130,9 +129,7 @@
       texto: "Gestión de docentes",
       icono: "docentes",
       ruta:
-        "pages/docentes/lista-docentes.html",
-      carpetaActiva:
-        "pages/docentes/"
+        "pages/gestion-contenido/gestionar.html?modulo=docentes"
     },
 
     {
@@ -144,17 +141,13 @@
           id: "horarios",
           texto: "Horarios",
           ruta:
-            "pages/horarios/lista-horarios.html",
-          carpetaActiva:
-            "pages/horarios/"
+            "pages/gestion-contenido/gestionar.html?modulo=horarios"
         },
         {
           id: "tramites",
           texto: "Trámites",
           ruta:
-            "pages/tramites/lista-tramites.html",
-          carpetaActiva:
-            "pages/tramites/"
+            "pages/gestion-contenido/gestionar.html?modulo=tramites"
         }
       ]
     },
@@ -164,9 +157,7 @@
       texto: "Gestión de recursos de apoyo",
       icono: "recursos",
       ruta:
-        "pages/recursos-apoyo/lista-recursos.html",
-      carpetaActiva:
-        "pages/recursos-apoyo/"
+        "pages/gestion-contenido/gestionar.html?modulo=recursos-apoyo"
     },
 
     {
@@ -174,34 +165,7 @@
       texto: "Gestión de galería",
       icono: "galeria",
       ruta:
-        "pages/galeria/lista-imagenes.html",
-      carpetaActiva:
-        "pages/galeria/"
-    },
-
-    {
-      id: "consulta-calificaciones",
-      texto: "Consulta de calificaciones",
-      icono: "consulta",
-      ruta:
-        "pages/calificaciones/consultas-calificaciones.html",
-      rutasActivas: [
-        "pages/calificaciones/consultas-calificaciones.html"
-      ]
-    },
-
-    {
-      id: "gestion-calificaciones",
-      texto: "Gestión de calificaciones",
-      icono: "calificaciones",
-      ruta:
-        "pages/calificaciones/lista-calificaciones.html",
-      rutasActivas: [
-        "pages/calificaciones/lista-calificaciones.html",
-        "pages/calificaciones/nueva-calificacion.html",
-        "pages/calificaciones/editar-calificacion.html",
-        "pages/calificaciones/importar-calificaciones.html"
-      ]
+        "pages/gestion-contenido/gestionar.html?modulo=galeria"
     },
 
     {
@@ -229,9 +193,9 @@
       texto: "Configuración general",
       icono: "configuracion",
       ruta:
-        "pages/configuracion/configuracion-sitio.html",
+        "pages/configuracion-sitio/configuracion-sitio.html",
       carpetaActiva:
-        "pages/configuracion/"
+        "pages/configuracion-sitio/"
     }
   ];
 

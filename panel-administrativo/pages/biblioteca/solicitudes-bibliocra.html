@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitudes BiblioCRA | Panel administrativo LHVR</title>
+  <link rel="stylesheet" href="../../css/variables-admin.css"><link rel="stylesheet" href="../../css/estilos-admin.css"><link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+</head>
+<body data-titulo-pagina="Solicitudes BiblioCRA">
+  <div id="cargadorProteccion" class="cargador-proteccion"><div class="cargador-proteccion__contenido"><span class="cargador-proteccion__indicador"></span><p>Comprobando sesión...</p></div></div>
+  <main id="contenidoPagina" data-titulo="Solicitudes BiblioCRA" hidden><div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
+    <header class="gestion-contenido__encabezado"><div><p class="admin-pagina__etiqueta">Biblioteca</p><h1 class="gestion-contenido__titulo">Solicitudes BiblioCRA</h1><p class="gestion-contenido__descripcion">Consulte el material pedido, los datos del solicitante y el estado de atención.</p></div></header>
+    <section class="gestion-contenido__panel"><div class="gestion-contenido__panel-cuerpo">
+      <div class="gestion-contenido__filtros"><label class="gestion-contenido__campo"><span>Buscar</span><input id="busquedaBibliocra" class="gestion-contenido__control" type="search" placeholder="Persona, identificación o material"></label><label class="gestion-contenido__campo"><span>Estado</span><select id="filtroEstadoBibliocra" class="gestion-contenido__control"><option value="">Todos</option></select></label></div>
+      <p id="estadoSolicitudesBibliocra" class="gestion-contenido__mensaje">Cargando solicitudes...</p>
+      <div class="gestion-contenido__tabla-contenedor"><table class="gestion-contenido__tabla"><thead><tr><th>Material</th><th>Solicitante</th><th>Fecha</th><th>Estado</th><th>Acción</th></tr></thead><tbody id="cuerpoSolicitudesBibliocra"></tbody></table></div>
+    </div></section>
+  </div></main>
+  <script src="../../js/config/api-admin.config.js" defer></script><script src="../../js/core/api-client.js" defer></script><script src="../../js/core/sesion-administrador.js" defer></script><script src="../../js/modules/autenticacion.js" defer></script><script src="../../js/core/proteccion-rutas.js" defer></script><script src="../../js/components/alertas-admin.js" defer></script><script src="../../js/components/modal-admin.js" defer></script><script src="../../js/modules/biblioteca.js" defer></script><script src="../../js/components/layout-admin.js" defer></script>
+</body></html>

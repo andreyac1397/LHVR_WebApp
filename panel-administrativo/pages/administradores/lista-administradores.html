@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administradores | Panel administrativo LHVR</title>
+  <link rel="stylesheet" href="../../css/variables-admin.css">
+  <link rel="stylesheet" href="../../css/estilos-admin.css">
+  <link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+</head>
+<body data-titulo-pagina="Gestión de administradores">
+  <div id="cargadorProteccion" class="cargador-proteccion" role="status">
+    <div class="cargador-proteccion__contenido"><span class="cargador-proteccion__indicador"></span><p>Comprobando sesión...</p></div>
+  </div>
+  <main id="contenidoPagina" data-titulo="Gestión de administradores" hidden>
+    <div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
+      <header class="gestion-contenido__encabezado">
+        <div><p class="admin-pagina__etiqueta">Seguridad</p><h1 class="gestion-contenido__titulo">Administradores</h1><p class="gestion-contenido__descripcion">Administre cuentas sin exponer contraseñas ni datos internos de autenticación.</p></div>
+        <button id="botonMostrarNuevoAdmin" class="admin-boton admin-boton--primario" type="button">Nuevo administrador</button>
+      </header>
+
+      <section id="panelNuevoAdministrador" class="gestion-contenido__panel" hidden>
+        <header class="gestion-contenido__panel-encabezado"><div><h2>Crear cuenta</h2><p>La contraseña se almacena con hash bcrypt y nunca vuelve a mostrarse.</p></div></header>
+        <form id="formularioAdministrador" class="gestion-contenido__panel-cuerpo">
+          <div class="gestion-contenido__filtros">
+            <label class="gestion-contenido__campo"><span>Nombre completo</span><input id="nombreNuevoAdmin" class="gestion-contenido__control" maxlength="150" minlength="3" required autocomplete="name"></label>
+            <label class="gestion-contenido__campo"><span>Correo</span><input id="correoNuevoAdmin" class="gestion-contenido__control" type="email" maxlength="254" required autocomplete="email"></label>
+            <label class="gestion-contenido__campo"><span>Contraseña inicial</span><input id="contrasenaNuevoAdmin" class="gestion-contenido__control" type="password" minlength="12" required autocomplete="new-password"><small>12 caracteres o más, con mayúscula, minúscula, número y símbolo.</small></label>
+            <label class="gestion-contenido__campo"><span>Estado inicial</span><select id="estadoNuevoAdmin" class="gestion-contenido__control" required></select></label>
+          </div>
+          <div class="admin-pagina__acciones"><button class="admin-boton admin-boton--primario" type="submit">Crear cuenta</button><button id="botonCancelarNuevoAdmin" class="admin-boton admin-boton--secundario" type="button">Cancelar</button></div>
+        </form>
+      </section>
+
+      <section class="gestion-contenido__panel">
+        <div class="gestion-contenido__panel-cuerpo">
+          <div class="gestion-contenido__filtros">
+            <label class="gestion-contenido__campo"><span>Buscar</span><input id="busquedaAdministradores" class="gestion-contenido__control" type="search" placeholder="Nombre o correo"></label>
+            <label class="gestion-contenido__campo"><span>Estado</span><select id="filtroEstadoAdministradores" class="gestion-contenido__control"><option value="">Todos</option></select></label>
+          </div>
+          <p id="estadoAdministradores" class="gestion-contenido__mensaje" aria-live="polite">Cargando cuentas...</p>
+          <div class="gestion-contenido__tabla-contenedor">
+            <table class="gestion-contenido__tabla"><thead><tr><th>Administrador</th><th>Verificación</th><th>Último acceso</th><th>Estado</th><th>Acción</th></tr></thead><tbody id="cuerpoAdministradores"></tbody></table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="../../js/config/api-admin.config.js" defer></script>
+  <script src="../../js/core/api-client.js" defer></script>
+  <script src="../../js/core/sesion-administrador.js" defer></script>
+  <script src="../../js/modules/autenticacion.js" defer></script>
+  <script src="../../js/core/proteccion-rutas.js" defer></script>
+  <script src="../../js/components/alertas-admin.js" defer></script>
+  <script src="../../js/components/modal-admin.js" defer></script>
+  <script src="../../js/modules/administradores.js" defer></script>
+  <script src="../../js/components/layout-admin.js" defer></script>
+</body>
+</html>

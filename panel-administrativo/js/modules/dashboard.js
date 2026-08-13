@@ -14,8 +14,8 @@
  *
  * js/core/sesion-administrador.js
  *
- * Los indicadores y actividades mostrados actualmente
- * en el dashboard son únicamente datos de demostración.
+ * Los indicadores y actividades provienen del resumen
+ * protegido que entrega la API.
  * ============================================================
  */
 
@@ -33,6 +33,109 @@
    * los eventos del dashboard.
    */
   let dashboardInicializado = false;
+  let resumenCargado = false;
+
+  function escapar(valor) {
+    return String(valor ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function formatearFecha(valor) {
+    return new Intl.DateTimeFormat("es-CR", {
+      dateStyle: "medium",
+      timeStyle: "short"
+    }).format(new Date(valor));
+  }
+
+  async function cargarResumen() {
+    if (resumenCargado || !global.API_ADMIN_CLIENT) return;
+    resumenCargado = true;
+
+    [
+      "indicadorBoletines",
+      "indicadorEventos",
+      "indicadorBibliocra",
+      "indicadorDocentes"
+    ].forEach((id) => {
+      const elemento = document.getElementById(id);
+      if (elemento) elemento.textContent = "—";
+    });
+
+    const actividadInicial = document.getElementById("listaActividadDashboard");
+    const eventosIniciales = document.getElementById("listaEventosDashboard");
+    if (actividadInicial) {
+      actividadInicial.innerHTML = '<li class="dashboard__actividad">Cargando actividad registrada...</li>';
+    }
+    if (eventosIniciales) {
+      eventosIniciales.innerHTML = "<p>Cargando eventos publicados...</p>";
+    }
+
+    try {
+      const respuesta = await global.API_ADMIN_CLIENT.get("/dashboard/resumen");
+      const datos = respuesta?.datos || {};
+      const indicadores = datos.indicadores || {};
+      const valores = {
+        indicadorBoletines: indicadores.boletinesPublicados,
+        indicadorEventos: indicadores.eventosProximos,
+        indicadorBibliocra: indicadores.solicitudesBibliocraPendientes,
+        indicadorDocentes: indicadores.docentesPublicados
+      };
+
+      Object.entries(valores).forEach(([id, valor]) => {
+        const elemento = document.getElementById(id);
+        if (elemento) elemento.textContent = String(valor ?? 0);
+      });
+
+      const actividad = document.getElementById("listaActividadDashboard");
+      if (actividad) {
+        actividad.innerHTML = (datos.actividadReciente || []).length
+          ? datos.actividadReciente.map((item) => `
+            <li class="dashboard__actividad">
+              <span class="dashboard__actividad-indicador dashboard__actividad-indicador--verde" aria-hidden="true"></span>
+              <div class="dashboard__actividad-contenido">
+                <strong>${escapar(item.accion)} · ${escapar(item.modulo)}</strong>
+                <span>${escapar(item.descripcion || "Cambio registrado")}</span>
+                <time>${escapar(formatearFecha(item.fechaAccion))}${item.administrador ? ` · ${escapar(item.administrador)}` : ""}</time>
+              </div>
+            </li>
+          `).join("")
+          : '<li class="dashboard__actividad">No hay cambios registrados todavía.</li>';
+      }
+
+      const eventos = document.getElementById("listaEventosDashboard");
+      if (eventos) {
+        eventos.innerHTML = (datos.proximosEventos || []).length
+          ? datos.proximosEventos.map((item) => {
+            const fecha = new Date(item.fechaInicio);
+            return `
+              <article class="dashboard__evento">
+                <div class="dashboard__evento-fecha"><strong>${String(fecha.getDate()).padStart(2, "0")}</strong><span>${fecha.toLocaleDateString("es-CR", { month: "short" }).toUpperCase()}</span></div>
+                <div class="dashboard__evento-informacion"><h3>${escapar(item.titulo)}</h3><p>${escapar(item.descripcion || "Actividad institucional")}</p></div>
+                <span class="admin-etiqueta admin-etiqueta--informacion">${escapar(item.categoria)}</span>
+              </article>
+            `;
+          }).join("")
+          : '<p>No hay eventos próximos en el calendario publicado.</p>';
+      }
+    } catch (error) {
+      resumenCargado = false;
+      if (actividadInicial) {
+        actividadInicial.innerHTML = '<li class="dashboard__actividad">No fue posible consultar la actividad.</li>';
+      }
+      if (eventosIniciales) {
+        eventosIniciales.innerHTML = "<p>No fue posible consultar los eventos.</p>";
+      }
+      const mensaje = document.getElementById("mensajeDashboard");
+      if (mensaje) {
+        mensaje.hidden = false;
+        mensaje.textContent = error.message || "No fue posible cargar el resumen.";
+      }
+    }
+  }
 
   /**
    * Obtiene los elementos que muestran
@@ -136,6 +239,8 @@
     if (!esSesionValida(sesion)) {
       return;
     }
+
+    cargarResumen();
 
     const elementos =
       obtenerElementos();

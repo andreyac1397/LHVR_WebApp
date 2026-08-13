@@ -125,7 +125,7 @@ app.use(cors(opcionesCors));
  */
 app.use(
   express.json({
-    limit: "1mb"
+    limit: "6mb"
   })
 );
 
@@ -136,7 +136,7 @@ app.use(
 app.use(
   express.urlencoded({
     extended: true,
-    limit: "1mb"
+    limit: "6mb"
   })
 );
 

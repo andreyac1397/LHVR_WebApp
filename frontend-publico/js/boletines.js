@@ -14,10 +14,32 @@ async function renderBoletines(idContenedor, opciones = {}) {
   if (!contenedor) return;
 
   try {
-    let boletines =
-    await cargarJSON(
-      "data/boletines.json"
-    );
+    let boletines;
+
+    try {
+      const apiBase = String(
+        window.API_PUBLICA_URL || "http://127.0.0.1:3001/api"
+      ).replace(/\/+$/, "");
+      const respuesta = await fetch(`${apiBase}/boletines/publico`, {
+        headers: { Accept: "application/json" }
+      });
+
+      if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+      const contenido = await respuesta.json();
+      const elementos = contenido?.datos?.elementos;
+      if (!Array.isArray(elementos)) throw new Error("Respuesta inválida");
+
+      boletines = elementos.map((elemento) => ({
+        fecha: String(elemento.fechaInicio || elemento.fechaCreacion || "").slice(0, 10),
+        categoria: elemento.datos?.categoria || elemento.datos?.edicion || "boletin",
+        titulo: elemento.titulo,
+        resumen: elemento.descripcion || elemento.subtitulo || "",
+        enlace: elemento.url || "#"
+      }));
+    } catch (errorApi) {
+      console.warn("Se usarán los boletines locales de respaldo.", errorApi);
+      boletines = await cargarJSON("data/boletines.json");
+    }
 
     /* Ordenar del más reciente al más antiguo */
     boletines.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
@@ -32,18 +54,32 @@ async function renderBoletines(idContenedor, opciones = {}) {
 
     contenedor.innerHTML = boletines
       .map(
-        (b) => `
-        <article class="tarjeta" data-categoria="${b.categoria}">
-          <span class="etiqueta etiqueta--${b.categoria}">${b.categoria}</span>
-          <p class="tarjeta__fecha">${formatearFecha(b.fecha)}</p>
-          <h3 class="tarjeta__titulo">${b.titulo}</h3>
-          <p class="tarjeta__texto">${b.resumen}</p>
+        (b) => {
+          const escapar = (valor) => String(valor ?? "")
+            .replaceAll("&", "&amp;")
+            .replaceAll("<", "&lt;")
+            .replaceAll(">", "&gt;")
+            .replaceAll('"', "&quot;")
+            .replaceAll("'", "&#039;");
+          const categoriaClase = String(b.categoria || "boletin")
+            .toLowerCase().replace(/[^a-z0-9_-]/g, "-");
+          const enlace = /^(https?:\/\/|\/|\.\.\/|\.\/|#)/i.test(b.enlace || "")
+            ? b.enlace
+            : "#";
+
+          return `
+        <article class="tarjeta" data-categoria="${escapar(b.categoria)}">
+          <span class="etiqueta etiqueta--${categoriaClase}">${escapar(b.categoria)}</span>
+          <p class="tarjeta__fecha">${escapar(formatearFecha(b.fecha))}</p>
+          <h3 class="tarjeta__titulo">${escapar(b.titulo)}</h3>
+          <p class="tarjeta__texto">${escapar(b.resumen)}</p>
           <div class="tarjeta__pie">
-          <a class="boton boton--secundario boton--pequeno" href="${b.enlace}" target="_blank" rel="noopener noreferrer">
+          <a class="boton boton--secundario boton--pequeno" href="${escapar(enlace)}" target="_blank" rel="noopener noreferrer">
             Leer más
           </a>
         </div>
-        </article>`
+        </article>`;
+        }
       )
       .join("");
   } catch (error) {

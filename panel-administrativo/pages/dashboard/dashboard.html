@@ -118,7 +118,7 @@
 
         <div class="admin-pagina__acciones">
           <span class="dashboard__modo-demostracion">
-            Vista de demostración
+            Datos en tiempo real
           </span>
         </div>
       </section>
@@ -250,7 +250,7 @@
             </h2>
 
             <p class="dashboard__seccion-descripcion">
-              Valores de demostración para visualizar la estructura del dashboard.
+              Información actualizada desde la base de datos institucional.
             </p>
           </div>
         </div>
@@ -281,12 +281,12 @@
                 Boletines publicados
               </span>
 
-              <strong class="dashboard__indicador-valor">
-                12
+              <strong id="indicadorBoletines" class="dashboard__indicador-valor">
+                —
               </strong>
 
               <span class="dashboard__indicador-detalle">
-                3 publicados este mes
+                Total visible en el sitio
               </span>
             </div>
           </article>
@@ -323,8 +323,8 @@
                 Eventos próximos
               </span>
 
-              <strong class="dashboard__indicador-valor">
-                6
+              <strong id="indicadorEventos" class="dashboard__indicador-valor">
+                —
               </strong>
 
               <span class="dashboard__indicador-detalle">
@@ -361,8 +361,8 @@
                 Solicitudes BiblioCRA
               </span>
 
-              <strong class="dashboard__indicador-valor">
-                4
+              <strong id="indicadorBibliocra" class="dashboard__indicador-valor">
+                —
               </strong>
 
               <span class="dashboard__indicador-detalle">
@@ -401,12 +401,12 @@
                 Docentes registrados
               </span>
 
-              <strong class="dashboard__indicador-valor">
-                37
+              <strong id="indicadorDocentes" class="dashboard__indicador-valor">
+                —
               </strong>
 
               <span class="dashboard__indicador-detalle">
-                35 perfiles activos
+                Perfiles publicados
               </span>
             </div>
           </article>
@@ -443,7 +443,7 @@
             <div class="dashboard__accesos">
               <a
                 class="dashboard__acceso"
-                href="../boletines/lista-boletines.html"
+                href="../gestion-contenido/gestionar.html?modulo=boletines"
               >
                 <span class="dashboard__acceso-icono">
                   <svg
@@ -485,7 +485,7 @@
 
               <a
                 class="dashboard__acceso"
-                href="../calendario/lista-eventos.html"
+                href="../gestion-contenido/gestionar.html?modulo=calendario"
               >
                 <span class="dashboard__acceso-icono">
                   <svg
@@ -534,7 +534,7 @@
 
               <a
                 class="dashboard__acceso"
-                href="../docentes/lista-docentes.html"
+                href="../gestion-contenido/gestionar.html?modulo=docentes"
               >
                 <span class="dashboard__acceso-icono">
                   <svg
@@ -581,7 +581,7 @@
 
               <a
                 class="dashboard__acceso"
-                href="../galeria/lista-imagenes.html"
+                href="../gestion-contenido/gestionar.html?modulo=galeria"
               >
                 <span class="dashboard__acceso-icono">
                   <svg
@@ -635,7 +635,7 @@
           </div>
         </article>
 
-        <!-- Actividad reciente ficticia -->
+        <!-- Actividad reciente -->
 
         <article
           class="admin-panel dashboard__panel-actividad"
@@ -651,7 +651,7 @@
               </h2>
 
               <p class="admin-panel__descripcion">
-                Ejemplo de los últimos cambios realizados.
+                Últimos cambios registrados en la auditoría.
               </p>
             </div>
 
@@ -664,7 +664,7 @@
           </header>
 
           <div class="admin-panel__contenido">
-            <ul class="dashboard__actividad-lista">
+            <ul id="listaActividadDashboard" class="dashboard__actividad-lista">
               <li class="dashboard__actividad">
                 <span
                   class="dashboard__actividad-indicador dashboard__actividad-indicador--verde"
@@ -771,20 +771,20 @@
             </h2>
 
             <p class="admin-panel__descripcion">
-              Ejemplo de actividades próximas del calendario institucional.
+              Actividades próximas del calendario publicado.
             </p>
           </div>
 
           <a
             class="admin-boton admin-boton--secundario admin-boton--pequeno"
-            href="../calendario/lista-eventos.html"
+            href="../gestion-contenido/gestionar.html?modulo=calendario"
           >
             Ver calendario
           </a>
         </header>
 
         <div class="admin-panel__contenido">
-          <div class="dashboard__eventos-lista">
+          <div id="listaEventosDashboard" class="dashboard__eventos-lista">
             <article class="dashboard__evento">
               <div class="dashboard__evento-fecha">
                 <strong>05</strong>

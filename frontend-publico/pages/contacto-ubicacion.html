@@ -253,6 +253,13 @@
             class="formulario"
             novalidate
           >
+            <div
+              aria-hidden="true"
+              style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"
+            >
+              <label for="sitioWeb">No complete este campo</label>
+              <input id="sitioWeb" name="sitioWeb" type="text" tabindex="-1" autocomplete="off">
+            </div>
             <div class="campo">
               <label for="nombre">
                 Nombre completo
@@ -263,6 +270,8 @@
                 id="nombre"
                 name="nombre"
                 required
+                minlength="3"
+                maxlength="180"
                 autocomplete="name"
               >
             </div>
@@ -277,6 +286,7 @@
                 id="email"
                 name="email"
                 required
+                maxlength="254"
                 autocomplete="email"
               >
             </div>
@@ -291,6 +301,8 @@
                 id="asunto"
                 name="asunto"
                 required
+                minlength="3"
+                maxlength="250"
               >
             </div>
 
@@ -304,6 +316,8 @@
                 name="mensaje"
                 rows="5"
                 required
+                minlength="10"
+                maxlength="4000"
               ></textarea>
             </div>
 

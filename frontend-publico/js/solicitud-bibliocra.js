@@ -46,25 +46,19 @@
       const boton = formulario.querySelector('button[type="submit"]');
 
       const datos = {
-        nombreCompleto: nombre,
+        nombreSolicitante: nombre,
         correo: String(datosFormulario.get("correo") || "").trim(),
         telefono: String(datosFormulario.get("telefono") || "").trim(),
-        asunto: `Solicitud de préstamo: ${titulo}`,
-        mensaje:
-          `Solicitud de ${titulo}, autor ${datosFormulario.get("autor")}. ` +
-          `Signatura: ${datosFormulario.get("signatura")}. ` +
-          `Sección: ${datosFormulario.get("seccion")}.`,
-        datos: {
-          signatura: datosFormulario.get("signatura"),
-          fechaSolicitud: datosFormulario.get("fecha"),
-          autor: datosFormulario.get("autor"),
-          titulo,
-          cedula: datosFormulario.get("cedula"),
-          seccion: datosFormulario.get("seccion"),
-          fechaDevolucion: datosFormulario.get("fechaDevolucion"),
-          tipoPrestamo: datosFormulario.get("tipoPrestamo"),
-          tipoUsuario: datosFormulario.get("tipoUsuario")
-        }
+        identificacionSolicitante: datosFormulario.get("cedula"),
+        tipoSolicitante: datosFormulario.get("tipoUsuario"),
+        nivelSeccion: datosFormulario.get("seccion"),
+        nombreMaterial: titulo,
+        signatura: datosFormulario.get("signatura"),
+        fechaSolicitud: datosFormulario.get("fecha"),
+        autor: datosFormulario.get("autor"),
+        fechaDevolucion: datosFormulario.get("fechaDevolucion"),
+        tipoPrestamo: datosFormulario.get("tipoPrestamo"),
+        sitioWeb: datosFormulario.get("sitioWeb")
       };
 
       boton.disabled = true;

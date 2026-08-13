@@ -11,9 +11,7 @@
    - Mantener el contenido estático como respaldo.
    - Validar el formulario de contacto.
 
-   IMPORTANTE:
-   El envío real del formulario se conectará posteriormente
-   al módulo de mensajes del backend.
+   El formulario guarda cada mensaje en solicitudes_contacto.
    ============================================================ */
 
 (function configurarContactoPublico(global) {
@@ -705,7 +703,7 @@
 
     formulario.addEventListener(
       "submit",
-      (evento) => {
+      async (evento) => {
         evento.preventDefault();
 
         const nombre =
@@ -763,19 +761,46 @@
           return;
         }
 
-        /*
-         * Temporal:
-         *
-         * El envío real se conectará al endpoint de
-         * solicitudes_contacto cuando terminemos de conectar
-         * el contenido público.
-         */
-        mostrarEstado(
-          `¡Gracias, ${nombre}! Tu mensaje fue registrado (demostración).`,
-          "exito"
-        );
+        const boton = formulario.querySelector('button[type="submit"]');
+        boton.disabled = true;
+        mostrarEstado("Enviando mensaje...", "cargando");
 
-        formulario.reset();
+        try {
+          const respuesta = await fetch(`${API_BASE_URL}/contacto/publico`, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              nombre,
+              email,
+              asunto,
+              mensaje,
+              sitioWeb: formulario.sitioWeb?.value || ""
+            })
+          });
+          const contenido = await respuesta.json().catch(() => null);
+
+          if (!respuesta.ok) {
+            throw new Error(
+              contenido?.mensaje || "No fue posible enviar el mensaje."
+            );
+          }
+
+          mostrarEstado(
+            `¡Gracias, ${nombre}! Tu mensaje fue recibido correctamente.`,
+            "exito"
+          );
+          formulario.reset();
+        } catch (error) {
+          mostrarEstado(
+            error.message || "No fue posible enviar el mensaje. Intente nuevamente.",
+            "error"
+          );
+        } finally {
+          boton.disabled = false;
+        }
       }
     );
   }

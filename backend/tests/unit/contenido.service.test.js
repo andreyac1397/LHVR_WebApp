@@ -88,3 +88,29 @@ test("rechaza importaciones vacías", async () => {
     (error) => error.codigo === "IMPORTACION_VACIA"
   );
 });
+
+test("rechaza registros duplicados dentro de una importación", async () => {
+  const servicio = new ContenidoService(
+    "CALENDARIO",
+    crearRepositorio()
+  );
+
+  await assert.rejects(
+    servicio.importar({
+      anio: 2026,
+      elementos: [
+        { id: "MEP-1", titulo: "Actividad", fechaInicio: "2026-08-01" },
+        { id: "MEP-1", titulo: "Actividad repetida", fechaInicio: "2026-08-01" }
+      ]
+    }),
+    (error) => error.codigo === "ELEMENTO_IMPORTACION_DUPLICADO"
+  );
+});
+
+test("bloquea protocolos inseguros en enlaces de contenido", () => {
+  const servicio = new ContenidoService("BOLETINES", crearRepositorio());
+  assert.throws(
+    () => servicio.normalizarElemento({ titulo: "Prueba", url: "javascript:alert(1)" }),
+    (error) => error.codigo === "URL_CONTENIDO_INVALIDA"
+  );
+});
