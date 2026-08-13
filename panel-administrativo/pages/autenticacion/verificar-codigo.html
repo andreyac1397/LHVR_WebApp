@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Verificación de acceso al panel administrativo del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Verificar código | Panel administrativo LHVR
+  </title>
+
+  <!-- Estilos generales del panel -->
+  <link
+    rel="stylesheet"
+    href="../../css/variables-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/estilos-admin.css"
+  >
+
+  <!-- Estilos exclusivos de autenticación -->
+  <link
+    rel="stylesheet"
+    href="../../css/autenticacion.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/responsive-admin.css"
+  >
+</head>
+
+<body class="pagina-autenticacion">
+  <main class="autenticacion">
+    <section
+      class="autenticacion__contenedor"
+      aria-labelledby="tituloVerificarCodigo"
+    >
+      <!-- Parte izquierda: identidad institucional -->
+      <div class="autenticacion__identidad">
+        <div class="autenticacion__marca">
+          <img
+            class="autenticacion__logo"
+            src="../../assets/logos/logo-liceo.jpg"
+            alt="Logo del Liceo Hernán Vargas Ramírez"
+          >
+
+          <div class="autenticacion__institucion">
+            <p class="autenticacion__siglas">
+              LHVR
+            </p>
+
+            <h1 class="autenticacion__nombre-liceo">
+              Liceo Hernán Vargas Ramírez
+            </h1>
+
+            <p class="autenticacion__descripcion">
+              Sistema de administración del sitio web institucional
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="autenticacion__decoracion"
+          aria-hidden="true"
+        >
+          <span
+            class="autenticacion__circulo autenticacion__circulo--uno"
+          ></span>
+
+          <span
+            class="autenticacion__circulo autenticacion__circulo--dos"
+          ></span>
+
+          <span
+            class="autenticacion__circulo autenticacion__circulo--tres"
+          ></span>
+        </div>
+      </div>
+
+      <!-- Parte derecha: verificación -->
+      <div class="autenticacion__panel">
+        <div class="autenticacion__formulario-contenedor">
+          <header class="autenticacion__encabezado">
+            <p class="autenticacion__etiqueta">
+              Verificación de seguridad
+            </p>
+
+            <h2
+              id="tituloVerificarCodigo"
+              class="autenticacion__titulo"
+            >
+              Ingrese el código
+            </h2>
+
+            <p class="autenticacion__texto">
+              Enviamos un código de seis dígitos al correo:
+            </p>
+
+            <p
+              id="correoDestino"
+              class="autenticacion__correo-destino"
+              aria-live="polite"
+            >
+              Correo del administrador
+            </p>
+
+            <p class="autenticacion__texto-secundario">
+              El código tiene una vigencia limitada y solo puede utilizarse una vez.
+            </p>
+          </header>
+
+          <!-- Mensaje general -->
+          <div
+            id="mensajeAutenticacion"
+            class="autenticacion__mensaje"
+            role="alert"
+            aria-live="polite"
+            hidden
+          ></div>
+
+          <form
+            id="formularioVerificarCodigo"
+            class="formulario-autenticacion"
+            novalidate
+          >
+            <div class="campo-autenticacion">
+              <label
+                class="campo-autenticacion__etiqueta"
+                for="codigoVerificacion"
+              >
+                Código de verificación
+              </label>
+
+              <div class="campo-autenticacion__control">
+                <span
+                  class="campo-autenticacion__icono"
+                  aria-hidden="true"
+                >
+                  #
+                </span>
+
+                <input
+                  class="campo-autenticacion__entrada campo-autenticacion__entrada--codigo"
+                  type="text"
+                  id="codigoVerificacion"
+                  name="codigo"
+                  placeholder="000000"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  maxlength="6"
+                  minlength="6"
+                  pattern="[0-9]{6}"
+                  required
+                  aria-describedby="ayudaCodigo errorCodigo"
+                >
+              </div>
+
+              <p
+                id="ayudaCodigo"
+                class="campo-autenticacion__ayuda"
+              >
+                Escriba únicamente los seis números recibidos por correo.
+              </p>
+
+              <p
+                id="errorCodigo"
+                class="campo-autenticacion__error"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <button
+              id="botonVerificarCodigo"
+              class="boton-autenticacion"
+              type="submit"
+            >
+              <span class="boton-autenticacion__texto">
+                Verificar código
+              </span>
+
+              <span
+                id="cargadorVerificarCodigo"
+                class="boton-autenticacion__cargador"
+                aria-hidden="true"
+                hidden
+              ></span>
+            </button>
+          </form>
+
+          <div class="autenticacion__acciones-secundarias">
+            <a
+              id="enlaceVolverInicioSesion"
+              class="formulario-autenticacion__enlace"
+              href="iniciar-sesion.html"
+            >
+              Volver al inicio de sesión
+            </a>
+          </div>
+
+          <div class="autenticacion__seguridad">
+            <span
+              class="autenticacion__seguridad-icono"
+              aria-hidden="true"
+            >
+              🔒
+            </span>
+
+            <p>
+              Nunca comparta este código con otras personas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie-autenticacion">
+    <div class="pie-autenticacion__contenido">
+      <p>
+        © 2026 Liceo Hernán Vargas Ramírez. Todos los derechos reservados.
+      </p>
+
+      <a
+        class="pie-autenticacion__enlace"
+        href="../../../frontend-publico/index.html"
+      >
+        Volver al sitio institucional
+      </a>
+    </div>
+  </footer>
+
+  <!-- Configuración y conexión con la API -->
+  <script
+    src="../../js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/autenticacion.js"
+    defer
+  ></script>
+</body>
+</html>

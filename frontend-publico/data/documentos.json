@@ -1,0 +1,38 @@
+[
+  {
+    "titulo": "Información de prematrícula y matrícula",
+    "categoria": "matricula",
+    "descripcion": "Documento informativo con requisitos generales, pasos y recomendaciones para el proceso de prematrícula y matrícula estudiantil.",
+    "archivo": "https://drive.google.com/file/d/198PCAwLvzvUAwCvCmfZFZY8t0G7Q_t89/view?usp=sharing"
+  },
+  {
+    "titulo": "Solicitud de traslado estudiantil",
+    "categoria": "Solicitud",
+    "descripcion": "Información para estudiantes que requieren trasladarse desde o hacia otra institución educativa.",
+    "archivo": "https://drive.google.com/file/d/1mop2YWrSUa9AXOJdZ_uxfbYrCQf7cAdn/view?usp=sharing"
+  },
+  {
+    "titulo": "Guía de justificación de ausencias",
+    "categoria": "solicitud",
+    "descripcion": "Formulario o guía para presentar la justificación de una ausencia estudiantil.",
+    "archivo": "https://drive.google.com/file/d/1xeRjM4SpjW_iNiEjxEHzJdYRI5AucG3-/view?usp=drive_link"
+  },
+  {
+    "titulo": "Avancemos - IMAS",
+    "categoria": "beneficio",
+    "descripcion": "Información sobre el beneficio económico Avancemos, dirigido a apoyar la permanencia de estudiantes en el sistema educativo.",
+    "archivo": "https://drive.google.com/file/d/1C8G-6xJxzCNudtODUFf2UMl7EfmPWgE3/view?usp=drive_link"
+  },
+  {
+    "titulo": "Transporte estudiantil - MEP",
+    "categoria": "beneficio",
+    "descripcion": "Información sobre el programa de transporte estudiantil para estudiantes que requieren apoyo de traslado al centro educativo.",
+    "archivo": "https://drive.google.com/file/d/1VSxxeAV31CM1XWN61hG5G66ukJNmbWJp/view?usp=drive_link"
+  },
+  {
+    "titulo": "Comedor estudiantil - PANEA",
+    "categoria": "beneficio",
+    "descripcion": "Información sobre el servicio de alimentación estudiantil del Programa de Alimentación y Nutrición del Escolar y del Adolescente.",
+    "archivo": "https://drive.google.com/file/d/1p4Eb6SPDxf7EMuZfjXHAeMMgOonFjBVc/view?usp=drive_link"
+  }
+]

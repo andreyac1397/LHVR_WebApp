@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Inicio de sesión del panel administrativo del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Iniciar sesión | Panel administrativo LHVR
+  </title>
+
+  <!-- Estilos generales del panel -->
+  <link
+    rel="stylesheet"
+    href="../../css/variables-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/estilos-admin.css"
+  >
+
+  <!-- Estilos exclusivos de autenticación -->
+  <link
+    rel="stylesheet"
+    href="../../css/autenticacion.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/responsive-admin.css"
+  >
+</head>
+
+<body class="pagina-autenticacion">
+  <main class="autenticacion">
+    <section
+      class="autenticacion__contenedor"
+      aria-labelledby="tituloInicioSesion"
+    >
+      <!-- Parte izquierda: identidad del liceo -->
+      <div class="autenticacion__identidad">
+        <div class="autenticacion__marca">
+          <img
+            class="autenticacion__logo"
+            src="../../assets/logos/logo-liceo.jpg"
+            alt="Logo del Liceo Hernán Vargas Ramírez"
+          >
+
+          <div class="autenticacion__institucion">
+            <p class="autenticacion__siglas">
+              LHVR
+            </p>
+
+            <h1 class="autenticacion__nombre-liceo">
+              Liceo Hernán Vargas Ramírez
+            </h1>
+
+            <p class="autenticacion__descripcion">
+              Sistema de administración del sitio web institucional
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="autenticacion__decoracion"
+          aria-hidden="true"
+        >
+          <span class="autenticacion__circulo autenticacion__circulo--uno"></span>
+          <span class="autenticacion__circulo autenticacion__circulo--dos"></span>
+          <span class="autenticacion__circulo autenticacion__circulo--tres"></span>
+        </div>
+      </div>
+
+      <!-- Parte derecha: formulario -->
+      <div class="autenticacion__panel">
+        <div class="autenticacion__formulario-contenedor">
+          <header class="autenticacion__encabezado">
+            <p class="autenticacion__etiqueta">
+              Panel administrativo
+            </p>
+
+            <h2
+              id="tituloInicioSesion"
+              class="autenticacion__titulo"
+            >
+              Iniciar sesión
+            </h2>
+
+            <p class="autenticacion__texto">
+              Ingrese sus credenciales para acceder a la administración del sitio.
+            </p>
+          </header>
+
+          <!-- Mensajes generales -->
+          <div
+            id="mensajeAutenticacion"
+            class="autenticacion__mensaje"
+            role="alert"
+            aria-live="polite"
+            hidden
+          ></div>
+
+          <form
+            id="formularioInicioSesion"
+            class="formulario-autenticacion"
+            novalidate
+          >
+            <!-- Correo -->
+            <div class="campo-autenticacion">
+              <label
+                class="campo-autenticacion__etiqueta"
+                for="correo"
+              >
+                Correo electrónico
+              </label>
+
+              <div class="campo-autenticacion__control">
+                <span
+                  class="campo-autenticacion__icono"
+                  aria-hidden="true"
+                >
+                  @
+                </span>
+
+                <input
+                  class="campo-autenticacion__entrada"
+                  type="email"
+                  id="correo"
+                  name="correo"
+                  placeholder="administrador@correo.com"
+                  autocomplete="username"
+                  inputmode="email"
+                  maxlength="254"
+                  required
+                  aria-describedby="errorCorreo"
+                >
+              </div>
+
+              <p
+                id="errorCorreo"
+                class="campo-autenticacion__error"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="campo-autenticacion">
+              <label
+                class="campo-autenticacion__etiqueta"
+                for="contrasena"
+              >
+                Contraseña
+              </label>
+
+              <div class="campo-autenticacion__control">
+                <span
+                  class="campo-autenticacion__icono"
+                  aria-hidden="true"
+                >
+                  ●
+                </span>
+
+                <input
+                  class="campo-autenticacion__entrada campo-autenticacion__entrada--con-boton"
+                  type="password"
+                  id="contrasena"
+                  name="contrasena"
+                  placeholder="Ingrese su contraseña"
+                  autocomplete="current-password"
+                  maxlength="128"
+                  required
+                  aria-describedby="errorContrasena"
+                >
+
+                <button
+                  id="botonMostrarContrasena"
+                  class="campo-autenticacion__mostrar"
+                  type="button"
+                  aria-label="Mostrar contraseña"
+                  aria-pressed="false"
+                >
+                  Mostrar
+                </button>
+              </div>
+
+              <p
+                id="errorContrasena"
+                class="campo-autenticacion__error"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <div class="formulario-autenticacion__opciones">
+              <a
+                class="formulario-autenticacion__enlace"
+                href="./recuperar-contrasena.html"
+              >
+                ¿Olvidó su contraseña?
+              </a>
+            </div>
+
+            <button
+              id="botonIniciarSesion"
+              class="boton-autenticacion"
+              type="submit"
+            >
+              <span class="boton-autenticacion__texto">
+                Iniciar sesión
+              </span>
+
+              <span
+                id="cargadorInicioSesion"
+                class="boton-autenticacion__cargador"
+                aria-hidden="true"
+                hidden
+              ></span>
+            </button>
+          </form>
+
+          <div class="autenticacion__seguridad">
+            <span
+              class="autenticacion__seguridad-icono"
+              aria-hidden="true"
+            >
+              🔒
+            </span>
+
+            <p>
+              Acceso exclusivo para personal administrativo autorizado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie-autenticacion">
+    <div class="pie-autenticacion__contenido">
+      <p>
+        © 2026 Liceo Hernán Vargas Ramírez. Todos los derechos reservados.
+      </p>
+
+      <a
+        class="pie-autenticacion__enlace"
+        href="../../../frontend-publico/index.html"
+      >
+        Volver al sitio institucional
+      </a>
+    </div>
+  </footer>
+
+  <!-- Configuración y conexión con la API -->
+  <script
+    src="../../js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/autenticacion.js"
+    defer
+  ></script>
+</body>
+</html>

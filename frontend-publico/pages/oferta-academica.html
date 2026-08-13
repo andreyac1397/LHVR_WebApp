@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Oferta académica | Liceo Hernán Vargas Ramírez
+  </title>
+
+  <meta
+    name="description"
+    content="Áreas y materias que ofrece el Liceo Hernán Vargas Ramírez."
+  />
+
+  <meta
+    name="theme-color"
+    content="#2b563a"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../css/estilos.css"
+  />
+
+  <link
+    rel="stylesheet"
+    href="../css/responsive.css"
+  />
+
+  <link
+    rel="icon"
+    href="../assets/logos/logo-liceo.jpg"
+  />
+</head>
+
+<body data-pagina="oferta">
+
+  <!-- ======================================================
+       ENCABEZADO GENERAL
+       ====================================================== -->
+
+  <div id="encabezado"></div>
+
+
+  <!-- ======================================================
+       CONTENIDO PRINCIPAL
+       ====================================================== -->
+
+  <main>
+
+    <!-- ====================================================
+         ENCABEZADO DE OFERTA ACADÉMICA
+         ==================================================== -->
+
+    <section class="banda">
+      <div class="contenedor">
+
+        <p class="migas">
+          <a href="../index.html">
+            Inicio
+          </a>
+          /
+          Oferta académica
+        </p>
+
+        <h1 id="tituloOferta">
+          Oferta académica
+        </h1>
+
+        <p id="descripcionOferta">
+          Conozca las áreas de formación que ofrece el
+          Liceo Hernán Vargas Ramírez en secundaria académica.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================
+         PROGRAMAS DE ESTUDIO
+         ==================================================== -->
+
+    <section class="seccion">
+      <div class="contenedor">
+
+        <div class="encabezado-seccion texto-centrado">
+
+          <h2
+            id="tituloProgramasOferta"
+            class="titulo-seccion"
+          >
+            Programas de estudio
+          </h2>
+
+          <p
+            id="descripcionProgramasOferta"
+            class="subtitulo-seccion"
+            style="margin: 0 auto"
+          >
+            La oferta académica se organiza en III Ciclo
+            y Educación Diversificada.
+          </p>
+
+        </div>
+
+
+        <!-- ==================================================
+             FILTROS
+             Se generan automáticamente según los ciclos
+             publicados que tengan materias disponibles.
+             ================================================== -->
+
+        <div
+          id="filtrosOferta"
+          class="filtros"
+          aria-label="Filtrar materias por ciclo educativo"
+        >
+        </div>
+
+
+        <!-- ==================================================
+             MATERIAS
+             oferta-academica.js genera aquí las tarjetas
+             obtenidas desde el backend.
+             ================================================== -->
+
+        <div
+          id="tarjetasOferta"
+          class="cuadricula cuadricula--3"
+          aria-live="polite"
+        >
+          <p
+            id="estadoCargaOferta"
+            class="estado"
+          >
+            Cargando oferta académica...
+          </p>
+        </div>
+
+
+        <!-- ==================================================
+             NOTA INFORMATIVA
+             ================================================== -->
+
+        <p
+          id="notaOferta"
+          class="estado"
+          style="margin-top: 2rem"
+        >
+          Los programas de estudio corresponden al
+          Ministerio de Educación Pública.
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ======================================================
+       PIE GENERAL
+       ====================================================== -->
+
+  <div id="pie"></div>
+
+
+  <!-- ======================================================
+       JAVASCRIPT COMPARTIDO
+       ====================================================== -->
+
+  <script src="../js/main.js"></script>
+
+  <script src="../js/filtros.js"></script>
+
+
+  <!-- ======================================================
+       OFERTA ACADÉMICA DINÁMICA
+       ====================================================== -->
+
+  <script src="../js/oferta-academica.js"></script>
+
+</body>
+
+</html>

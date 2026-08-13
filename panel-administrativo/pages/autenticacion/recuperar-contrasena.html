@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Recuperación de contraseña del panel administrativo del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Recuperar contraseña | Panel administrativo LHVR
+  </title>
+
+  <!-- Estilos generales del panel -->
+  <link
+    rel="stylesheet"
+    href="../../css/variables-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/estilos-admin.css"
+  >
+
+  <!-- Estilos compartidos de autenticación -->
+  <link
+    rel="stylesheet"
+    href="../../css/autenticacion.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/responsive-admin.css"
+  >
+</head>
+
+<body class="pagina-autenticacion">
+  <main class="autenticacion">
+    <section
+      class="autenticacion__contenedor"
+      aria-labelledby="tituloRecuperarContrasena"
+    >
+      <!-- Identidad institucional -->
+      <div class="autenticacion__identidad">
+        <div class="autenticacion__marca">
+          <img
+            class="autenticacion__logo"
+            src="../../assets/logos/logo-liceo.jpg"
+            alt="Logo del Liceo Hernán Vargas Ramírez"
+          >
+
+          <div class="autenticacion__institucion">
+            <p class="autenticacion__siglas">
+              LHVR
+            </p>
+
+            <h1 class="autenticacion__nombre-liceo">
+              Liceo Hernán Vargas Ramírez
+            </h1>
+
+            <p class="autenticacion__descripcion">
+              Sistema de administración del sitio web institucional
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="autenticacion__decoracion"
+          aria-hidden="true"
+        >
+          <span
+            class="autenticacion__circulo autenticacion__circulo--uno"
+          ></span>
+
+          <span
+            class="autenticacion__circulo autenticacion__circulo--dos"
+          ></span>
+
+          <span
+            class="autenticacion__circulo autenticacion__circulo--tres"
+          ></span>
+        </div>
+      </div>
+
+      <!-- Recuperación de contraseña -->
+      <div class="autenticacion__panel">
+        <div class="autenticacion__formulario-contenedor">
+          <header class="autenticacion__encabezado">
+            <p class="autenticacion__etiqueta">
+              Recuperación de acceso
+            </p>
+
+            <h2
+              id="tituloRecuperarContrasena"
+              class="autenticacion__titulo"
+            >
+              Recuperar contraseña
+            </h2>
+
+            <p
+              id="descripcionRecuperacion"
+              class="autenticacion__texto"
+            >
+              Ingrese el correo asociado a su cuenta administrativa.
+            </p>
+          </header>
+
+          <!-- Mensajes generales -->
+          <div
+            id="mensajeRecuperacion"
+            class="autenticacion__mensaje"
+            role="alert"
+            aria-live="polite"
+            hidden
+          ></div>
+
+          <!-- PASO 1: solicitar código -->
+          <section
+            id="pasoSolicitarCodigo"
+            aria-labelledby="tituloPasoCorreo"
+          >
+            <h3
+              id="tituloPasoCorreo"
+              class="sr-only"
+            >
+              Solicitar código de recuperación
+            </h3>
+
+            <form
+              id="formularioSolicitarRecuperacion"
+              class="formulario-autenticacion"
+              novalidate
+            >
+              <div class="campo-autenticacion">
+                <label
+                  class="campo-autenticacion__etiqueta"
+                  for="correoRecuperacion"
+                >
+                  Correo electrónico
+                </label>
+
+                <div class="campo-autenticacion__control">
+                  <span
+                    class="campo-autenticacion__icono"
+                    aria-hidden="true"
+                  >
+                    @
+                  </span>
+
+                  <input
+                    class="campo-autenticacion__entrada"
+                    type="email"
+                    id="correoRecuperacion"
+                    name="correo"
+                    placeholder="administrador@correo.com"
+                    autocomplete="email"
+                    inputmode="email"
+                    maxlength="254"
+                    required
+                    aria-describedby="errorCorreoRecuperacion"
+                  >
+                </div>
+
+                <p
+                  id="errorCorreoRecuperacion"
+                  class="campo-autenticacion__error"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <button
+                id="botonSolicitarCodigo"
+                class="boton-autenticacion"
+                type="submit"
+              >
+                <span class="boton-autenticacion__texto">
+                  Enviar código
+                </span>
+
+                <span
+                  id="cargadorSolicitarCodigo"
+                  class="boton-autenticacion__cargador"
+                  aria-hidden="true"
+                  hidden
+                ></span>
+              </button>
+            </form>
+          </section>
+
+          <!-- PASO 2: verificar código -->
+          <section
+            id="pasoVerificarRecuperacion"
+            aria-labelledby="tituloPasoCodigo"
+            hidden
+          >
+            <h3
+              id="tituloPasoCodigo"
+              class="sr-only"
+            >
+              Verificar código de recuperación
+            </h3>
+
+            <p class="autenticacion__texto">
+              Escriba el código de seis dígitos enviado a:
+            </p>
+
+            <p
+              id="correoDestinoRecuperacion"
+              class="autenticacion__correo-destino"
+              aria-live="polite"
+            >
+              Correo del administrador
+            </p>
+
+            <form
+              id="formularioVerificarRecuperacion"
+              class="formulario-autenticacion"
+              novalidate
+            >
+              <div class="campo-autenticacion">
+                <label
+                  class="campo-autenticacion__etiqueta"
+                  for="codigoRecuperacion"
+                >
+                  Código de recuperación
+                </label>
+
+                <div class="campo-autenticacion__control">
+                  <span
+                    class="campo-autenticacion__icono"
+                    aria-hidden="true"
+                  >
+                    #
+                  </span>
+
+                  <input
+                    class="campo-autenticacion__entrada campo-autenticacion__entrada--codigo"
+                    type="text"
+                    id="codigoRecuperacion"
+                    name="codigo"
+                    placeholder="000000"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    minlength="6"
+                    maxlength="6"
+                    pattern="[0-9]{6}"
+                    required
+                    aria-describedby="ayudaCodigoRecuperacion errorCodigoRecuperacion"
+                  >
+                </div>
+
+                <p
+                  id="ayudaCodigoRecuperacion"
+                  class="campo-autenticacion__ayuda"
+                >
+                  Escriba únicamente los seis números recibidos por correo.
+                </p>
+
+                <p
+                  id="errorCodigoRecuperacion"
+                  class="campo-autenticacion__error"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <button
+                id="botonVerificarRecuperacion"
+                class="boton-autenticacion"
+                type="submit"
+              >
+                <span class="boton-autenticacion__texto">
+                  Verificar código
+                </span>
+
+                <span
+                  id="cargadorVerificarRecuperacion"
+                  class="boton-autenticacion__cargador"
+                  aria-hidden="true"
+                  hidden
+                ></span>
+              </button>
+            </form>
+          </section>
+
+          <!-- PASO 3: establecer contraseña nueva -->
+          <section
+            id="pasoNuevaContrasena"
+            aria-labelledby="tituloPasoNuevaContrasena"
+            hidden
+          >
+            <h3
+              id="tituloPasoNuevaContrasena"
+              class="sr-only"
+            >
+              Crear contraseña nueva
+            </h3>
+
+            <form
+              id="formularioRestablecerContrasena"
+              class="formulario-autenticacion"
+              novalidate
+            >
+              <div class="campo-autenticacion">
+                <label
+                  class="campo-autenticacion__etiqueta"
+                  for="contrasenaNuevaRecuperacion"
+                >
+                  Contraseña nueva
+                </label>
+
+                <div class="campo-autenticacion__control">
+                  <span
+                    class="campo-autenticacion__icono"
+                    aria-hidden="true"
+                  >
+                    ●
+                  </span>
+
+                  <input
+                    class="campo-autenticacion__entrada campo-autenticacion__entrada--con-boton"
+                    type="password"
+                    id="contrasenaNuevaRecuperacion"
+                    name="contrasenaNueva"
+                    placeholder="Ingrese la contraseña nueva"
+                    autocomplete="new-password"
+                    minlength="12"
+                    maxlength="128"
+                    required
+                    aria-describedby="ayudaNuevaContrasena errorNuevaContrasena"
+                  >
+
+                  <button
+                    id="botonMostrarNuevaContrasena"
+                    class="campo-autenticacion__mostrar"
+                    type="button"
+                    aria-label="Mostrar contraseña nueva"
+                    aria-pressed="false"
+                  >
+                    Mostrar
+                  </button>
+                </div>
+
+                <p
+                  id="ayudaNuevaContrasena"
+                  class="campo-autenticacion__ayuda"
+                >
+                  Debe incluir al menos 12 caracteres, mayúscula, minúscula, número y carácter especial.
+                </p>
+
+                <p
+                  id="errorNuevaContrasena"
+                  class="campo-autenticacion__error"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <div class="campo-autenticacion">
+                <label
+                  class="campo-autenticacion__etiqueta"
+                  for="confirmarContrasenaRecuperacion"
+                >
+                  Confirmar contraseña nueva
+                </label>
+
+                <div class="campo-autenticacion__control">
+                  <span
+                    class="campo-autenticacion__icono"
+                    aria-hidden="true"
+                  >
+                    ●
+                  </span>
+
+                  <input
+                    class="campo-autenticacion__entrada campo-autenticacion__entrada--con-boton"
+                    type="password"
+                    id="confirmarContrasenaRecuperacion"
+                    name="confirmarContrasenaNueva"
+                    placeholder="Repita la contraseña nueva"
+                    autocomplete="new-password"
+                    minlength="12"
+                    maxlength="128"
+                    required
+                    aria-describedby="errorConfirmarContrasenaRecuperacion"
+                  >
+
+                  <button
+                    id="botonMostrarConfirmacionRecuperacion"
+                    class="campo-autenticacion__mostrar"
+                    type="button"
+                    aria-label="Mostrar confirmación de contraseña"
+                    aria-pressed="false"
+                  >
+                    Mostrar
+                  </button>
+                </div>
+
+                <p
+                  id="errorConfirmarContrasenaRecuperacion"
+                  class="campo-autenticacion__error"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <button
+                id="botonRestablecerContrasena"
+                class="boton-autenticacion"
+                type="submit"
+              >
+                <span class="boton-autenticacion__texto">
+                  Restablecer contraseña
+                </span>
+
+                <span
+                  id="cargadorRestablecerContrasena"
+                  class="boton-autenticacion__cargador"
+                  aria-hidden="true"
+                  hidden
+                ></span>
+              </button>
+            </form>
+          </section>
+
+          <div class="autenticacion__acciones-secundarias">
+            <a
+              id="enlaceVolverInicioSesion"
+              class="formulario-autenticacion__enlace"
+              href="iniciar-sesion.html"
+            >
+              Volver al inicio de sesión
+            </a>
+          </div>
+
+          <div class="autenticacion__seguridad">
+            <span
+              class="autenticacion__seguridad-icono"
+              aria-hidden="true"
+            >
+              🔒
+            </span>
+
+            <p>
+              Por seguridad, el código tendrá una vigencia limitada y solo podrá utilizarse una vez.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie-autenticacion">
+    <div class="pie-autenticacion__contenido">
+      <p>
+        © 2026 Liceo Hernán Vargas Ramírez. Todos los derechos reservados.
+      </p>
+
+      <a
+        class="pie-autenticacion__enlace"
+        href="../../../frontend-publico/index.html"
+      >
+        Volver al sitio institucional
+      </a>
+    </div>
+  </footer>
+
+  <script
+    src="../../js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/recuperar-contrasena.js"
+    defer
+  ></script>
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Ciclos educativos de la Oferta académica del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Ciclos educativos | Panel administrativo LHVR
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="../../css/variables-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/estilos-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/barra-lateral.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/formularios-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/alertas-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/modales-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/responsive-admin.css"
+  >
+</head>
+
+<body
+  data-titulo-pagina="Ciclos educativos"
+>
+  <!-- ======================================================
+       PROTECCIÓN DE RUTA
+       ====================================================== -->
+
+  <div
+    id="cargadorProteccion"
+    class="cargador-proteccion"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="cargador-proteccion__contenido">
+      <span
+        class="cargador-proteccion__indicador"
+        aria-hidden="true"
+      ></span>
+
+      <div>
+        <p class="cargador-proteccion__titulo">
+          Comprobando sesión
+        </p>
+
+        <p class="cargador-proteccion__texto">
+          Espere un momento mientras validamos su acceso.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       CONTENIDO PRINCIPAL
+       ====================================================== -->
+
+  <main
+    id="contenidoPagina"
+    data-titulo="Ciclos educativos"
+  >
+    <div
+      id="contenidoCiclosEducativos"
+      class="admin-pagina pagina-contenido-admin"
+      hidden
+    >
+      <!-- ==================================================
+           ENCABEZADO
+           ================================================== -->
+
+      <section class="admin-pagina__encabezado">
+        <div class="admin-pagina__titulo-contenedor">
+          <span class="admin-pagina__etiqueta">
+            Oferta académica
+          </span>
+
+          <h1 class="admin-pagina__titulo">
+            Ciclos educativos
+          </h1>
+
+          <p class="admin-pagina__descripcion">
+            Consulte los ciclos utilizados para organizar las materias de la Oferta académica.
+          </p>
+        </div>
+
+        <div class="admin-pagina__acciones">
+          <a
+            class="admin-boton admin-boton--secundario"
+            href="lista-materias.html"
+          >
+            Volver a materias
+          </a>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           MENSAJES
+           ================================================== -->
+
+      <div
+        id="mensajeCiclosEducativos"
+        class="alerta-admin"
+        role="alert"
+        aria-live="polite"
+        hidden
+      ></div>
+
+      <!-- ==================================================
+           INFORMACIÓN
+           ================================================== -->
+
+      <section
+        class="admin-panel"
+        aria-labelledby="tituloInformacionCiclos"
+      >
+        <header class="admin-panel__encabezado">
+          <div>
+            <h2
+              id="tituloInformacionCiclos"
+              class="admin-panel__titulo"
+            >
+              Organización de la oferta
+            </h2>
+
+            <p class="admin-panel__descripcion">
+              Estos ciclos se utilizan para clasificar las materias y generar los filtros de la página pública.
+            </p>
+          </div>
+
+          <button
+            id="botonRecargarCiclos"
+            class="admin-boton admin-boton--secundario"
+            type="button"
+          >
+            Actualizar
+          </button>
+        </header>
+
+        <div class="admin-panel__contenido">
+          <div
+            id="listaCiclosEducativos"
+            class="pagina-contenido-admin__automaticos"
+            aria-live="polite"
+          >
+            <div
+              id="estadoCargandoCiclos"
+              class="admin-estado-vacio"
+            >
+              <h3>
+                Cargando ciclos educativos
+              </h3>
+
+              <p>
+                Espere mientras se consulta la información.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           AYUDA
+           ================================================== -->
+
+      <section
+        class="admin-panel"
+        aria-labelledby="tituloAyudaCiclos"
+      >
+        <header class="admin-panel__encabezado">
+          <div>
+            <h2
+              id="tituloAyudaCiclos"
+              class="admin-panel__titulo"
+            >
+              Uso de los ciclos
+            </h2>
+          </div>
+        </header>
+
+        <div class="admin-panel__contenido">
+          <div class="pagina-contenido-admin__automaticos">
+            <article class="pagina-contenido-admin__automatico-item">
+              <h3>
+                Clasificación de materias
+              </h3>
+
+              <p>
+                Cada materia puede pertenecer a uno o varios ciclos educativos.
+              </p>
+
+              <a
+                class="admin-boton admin-boton--texto"
+                href="lista-materias.html"
+              >
+                Administrar materias
+              </a>
+            </article>
+
+            <article class="pagina-contenido-admin__automatico-item">
+              <h3>
+                Filtros públicos
+              </h3>
+
+              <p>
+                Los ciclos con materias activas y publicadas se utilizan automáticamente como filtros en la página pública.
+              </p>
+
+              <a
+                class="admin-boton admin-boton--texto"
+                href="../../../frontend-publico/pages/oferta-academica.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver página pública
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================
+           PIE
+           ================================================== -->
+
+      <footer class="pagina-contenido-admin__pie">
+        <p>
+          © 2026 Liceo Hernán Vargas Ramírez
+        </p>
+
+        <span>
+          Gestión de Oferta académica
+        </span>
+      </footer>
+    </div>
+  </main>
+
+  <!-- ======================================================
+       CONFIGURACIÓN Y SESIÓN
+       ====================================================== -->
+
+  <script
+    src="../../js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/sesion-administrador.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/autenticacion.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/proteccion-rutas.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/alertas-admin.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/modal-admin.js"
+    defer
+  ></script>
+
+  <!-- ======================================================
+       CARGA DE CICLOS EDUCATIVOS
+       ====================================================== -->
+
+  <script>
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        "use strict";
+
+        const contenido =
+          document.getElementById(
+            "contenidoCiclosEducativos"
+          );
+
+        const lista =
+          document.getElementById(
+            "listaCiclosEducativos"
+          );
+
+        const mensaje =
+          document.getElementById(
+            "mensajeCiclosEducativos"
+          );
+
+        const botonRecargar =
+          document.getElementById(
+            "botonRecargarCiclos"
+          );
+
+        function mostrarMensaje(
+          texto
+        ) {
+          if (!mensaje) {
+            return;
+          }
+
+          mensaje.textContent =
+            texto;
+
+          mensaje.hidden = false;
+        }
+
+        function ocultarMensaje() {
+          if (!mensaje) {
+            return;
+          }
+
+          mensaje.textContent = "";
+          mensaje.hidden = true;
+        }
+
+        function obtenerDatos(
+          respuesta
+        ) {
+          if (
+            respuesta &&
+            typeof respuesta === "object" &&
+            respuesta.datos !== undefined
+          ) {
+            return respuesta.datos;
+          }
+
+          return respuesta;
+        }
+
+        function crearTarjetaCiclo(
+          ciclo
+        ) {
+          const tarjeta =
+            document.createElement(
+              "article"
+            );
+
+          tarjeta.className =
+            "pagina-contenido-admin__automatico-item";
+
+          const titulo =
+            document.createElement(
+              "h3"
+            );
+
+          titulo.textContent =
+            ciclo.nombre ||
+            "Ciclo educativo";
+
+          const descripcion =
+            document.createElement(
+              "p"
+            );
+
+          descripcion.textContent =
+            ciclo.descripcion ||
+            "Sin descripción registrada.";
+
+          const estado =
+            document.createElement(
+              "span"
+            );
+
+          estado.className =
+            "admin-etiqueta";
+
+          estado.textContent =
+            ciclo.activo === false ||
+            ciclo.activo === 0
+              ? "Inactivo"
+              : "Activo";
+
+          tarjeta.append(
+            titulo,
+            descripcion,
+            estado
+          );
+
+          return tarjeta;
+        }
+
+        function renderizarCiclos(
+          ciclos
+        ) {
+          lista.innerHTML = "";
+
+          if (
+            !Array.isArray(ciclos) ||
+            ciclos.length === 0
+          ) {
+            const vacio =
+              document.createElement(
+                "div"
+              );
+
+            vacio.className =
+              "admin-estado-vacio";
+
+            vacio.innerHTML = `
+              <h3>
+                No hay ciclos educativos
+              </h3>
+
+              <p>
+                No se encontraron ciclos configurados en la base de datos.
+              </p>
+            `;
+
+            lista.appendChild(
+              vacio
+            );
+
+            return;
+          }
+
+          ciclos
+            .sort(
+              (a, b) =>
+                Number(a.orden || 0) -
+                Number(b.orden || 0)
+            )
+            .forEach(
+              (ciclo) => {
+                lista.appendChild(
+                  crearTarjetaCiclo(
+                    ciclo
+                  )
+                );
+              }
+            );
+        }
+
+        async function cargarCiclos() {
+          ocultarMensaje();
+
+          if (botonRecargar) {
+            botonRecargar.disabled =
+              true;
+          }
+
+          try {
+            const apiClient =
+              window.API_ADMIN_CLIENT;
+
+            const configuracion =
+              window.API_ADMIN_CONFIG;
+
+            if (
+              !apiClient ||
+              !configuracion
+            ) {
+              throw new Error(
+                "No se pudo cargar la configuración de la API."
+              );
+            }
+
+            const endpoint =
+              configuracion
+                .endpoints
+                .ofertaAcademica
+                .ciclos;
+
+            const respuesta =
+              await apiClient.get(
+                endpoint
+              );
+
+            const datos =
+              obtenerDatos(
+                respuesta
+              );
+
+            const ciclos =
+              Array.isArray(datos)
+                ? datos
+                : datos?.ciclos || [];
+
+            renderizarCiclos(
+              ciclos
+            );
+          } catch (error) {
+            console.error(
+              "Error al cargar ciclos educativos:",
+              error
+            );
+
+            renderizarCiclos(
+              []
+            );
+
+            mostrarMensaje(
+              error?.message ||
+              "No fue posible cargar los ciclos educativos."
+            );
+          } finally {
+            if (botonRecargar) {
+              botonRecargar.disabled =
+                false;
+            }
+          }
+        }
+
+        botonRecargar
+          ?.addEventListener(
+            "click",
+            cargarCiclos
+          );
+
+        /*
+         * La protección de rutas controla la sesión.
+         * Una vez cargado el documento mostramos
+         * el contenedor y consultamos los ciclos.
+         */
+        if (contenido) {
+          contenido.hidden =
+            false;
+        }
+
+        cargarCiclos();
+      }
+    );
+  </script>
+
+  <!-- Layout administrativo -->
+  <script
+    src="../../js/components/layout-admin.js"
+    defer
+  ></script>
+</body>
+
+</html>

@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Administración de la Oferta académica del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Oferta académica | Panel administrativo LHVR
+  </title>
+
+  <!-- Variables compartidas -->
+  <link
+    rel="stylesheet"
+    href="../../css/variables-admin.css"
+  >
+
+  <!-- Estilos generales -->
+  <link
+    rel="stylesheet"
+    href="../../css/estilos-admin.css"
+  >
+
+  <!-- Barra lateral -->
+  <link
+    rel="stylesheet"
+    href="../../css/barra-lateral.css"
+  >
+
+  <!-- Formularios -->
+  <link
+    rel="stylesheet"
+    href="../../css/formularios-admin.css"
+  >
+
+  <!-- Alertas -->
+  <link
+    rel="stylesheet"
+    href="../../css/alertas-admin.css"
+  >
+
+  <!-- Modales -->
+  <link
+    rel="stylesheet"
+    href="../../css/modales-admin.css"
+  >
+
+  <!-- Responsive -->
+  <link
+    rel="stylesheet"
+    href="../../css/responsive-admin.css"
+  >
+</head>
+
+<body
+  class="pagina-contenido"
+  data-titulo-pagina="Oferta académica"
+  data-pagina-slug="oferta-academica"
+>
+
+  <!-- ======================================================
+       PROTECCIÓN DE RUTA
+       ====================================================== -->
+
+  <div
+    id="cargadorProteccion"
+    class="cargador-proteccion"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="cargador-proteccion__contenido">
+
+      <span
+        class="cargador-proteccion__indicador"
+        aria-hidden="true"
+      ></span>
+
+      <div>
+        <p class="cargador-proteccion__titulo">
+          Comprobando sesión
+        </p>
+
+        <p class="cargador-proteccion__texto">
+          Espere un momento mientras validamos su acceso.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ======================================================
+       CONTENIDO PRINCIPAL
+       ====================================================== -->
+
+  <main
+    id="contenidoPagina"
+    data-titulo="Oferta académica"
+  >
+
+    <div
+      id="contenidoPaginasContenido"
+      class="admin-pagina pagina-contenido-admin"
+      hidden
+    >
+
+      <!-- ==================================================
+           ENCABEZADO DEL MÓDULO
+           ================================================== -->
+
+      <section class="admin-pagina__encabezado">
+
+        <div class="admin-pagina__titulo-contenedor">
+
+          <span class="admin-pagina__etiqueta">
+            Gestión de páginas
+          </span>
+
+          <h1
+            id="tituloEditorPagina"
+            class="admin-pagina__titulo"
+          >
+            Oferta académica
+          </h1>
+
+          <p
+            id="descripcionEditorPagina"
+            class="admin-pagina__descripcion"
+          >
+            Administre el contenido y las materias de la Oferta académica.
+          </p>
+
+        </div>
+
+        <div class="admin-pagina__acciones">
+
+          <button
+            id="botonRecargarContenido"
+            class="admin-boton admin-boton--secundario"
+            type="button"
+          >
+            Recargar contenido
+          </button>
+
+          <a
+            id="enlacePaginaPublica"
+            class="admin-boton admin-boton--primario"
+            href="../../../frontend-publico/pages/oferta-academica.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver página pública
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           INFORMACIÓN GENERAL
+           ================================================== -->
+
+      <section
+        class="admin-panel pagina-contenido-admin__resumen"
+        aria-labelledby="tituloResumenPagina"
+      >
+
+        <header class="admin-panel__encabezado">
+
+          <div>
+
+            <h2
+              id="tituloResumenPagina"
+              class="admin-panel__titulo"
+            >
+              Información de la página
+            </h2>
+
+            <p
+              id="descripcionResumenPagina"
+              class="admin-panel__descripcion"
+            >
+              Información general de Oferta académica.
+            </p>
+
+          </div>
+
+        </header>
+
+        <div class="admin-panel__contenido">
+
+          <dl class="pagina-contenido-admin__datos">
+
+            <div class="pagina-contenido-admin__dato">
+
+              <dt>
+                Nombre
+              </dt>
+
+              <dd id="nombrePagina">
+                Cargando...
+              </dd>
+
+            </div>
+
+
+            <div class="pagina-contenido-admin__dato">
+
+              <dt>
+                Dirección
+              </dt>
+
+              <dd id="rutaPagina">
+                Cargando...
+              </dd>
+
+            </div>
+
+
+            <div class="pagina-contenido-admin__dato">
+
+              <dt>
+                Estado
+              </dt>
+
+              <dd>
+
+                <span
+                  id="estadoPagina"
+                  class="admin-etiqueta"
+                >
+                  Cargando...
+                </span>
+
+              </dd>
+
+            </div>
+
+
+            <div class="pagina-contenido-admin__dato">
+
+              <dt>
+                Última actualización
+              </dt>
+
+              <dd id="fechaActualizacionPagina">
+                Cargando...
+              </dd>
+
+            </div>
+
+          </dl>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           MENSAJE DE RESPALDO
+           ================================================== -->
+
+      <div
+        id="mensajePaginaContenido"
+        class="alerta-admin"
+        role="alert"
+        aria-live="polite"
+        hidden
+      ></div>
+
+
+      <!-- ==================================================
+           EDITOR DE OFERTA ACADÉMICA
+           ================================================== -->
+
+      <div
+        id="editorPaginaOfertaAcademica"
+        data-editor-pagina="oferta-academica"
+      >
+
+
+        <!-- ================================================
+             ENCABEZADO PRINCIPAL
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelEncabezadoOferta"
+        >
+
+          <header class="admin-panel__encabezado">
+
+            <div>
+
+              <h2
+                id="tituloPanelEncabezadoOferta"
+                class="admin-panel__titulo"
+              >
+                Encabezado
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Contenido que aparece al inicio de Oferta académica.
+              </p>
+
+            </div>
+
+          </header>
+
+
+          <div class="admin-panel__contenido">
+
+            <form
+              id="formularioEncabezadoOferta"
+              class="formulario-admin"
+              novalidate
+            >
+
+              <input
+                id="idSeccionEncabezadoOferta"
+                type="hidden"
+              >
+
+              <input
+                id="claveEncabezadoOferta"
+                type="hidden"
+                value="ENCABEZADO_OFERTA_ACADEMICA"
+              >
+
+
+              <div class="formulario-admin__cuadricula">
+
+
+                <div class="formulario-admin__grupo">
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="tituloEncabezadoOferta"
+                  >
+                    Título
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="tituloEncabezadoOferta"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="250"
+                    autocomplete="off"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="formulario-admin__grupo">
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="estadoEncabezadoOferta"
+                  >
+                    Estado
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <select
+                    id="estadoEncabezadoOferta"
+                    class="formulario-admin__control"
+                    required
+                  >
+                    <option value="">
+                      Seleccione un estado
+                    </option>
+                  </select>
+
+                </div>
+
+
+                <div
+                  class="formulario-admin__grupo formulario-admin__grupo--completo"
+                >
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="descripcionEncabezadoOferta"
+                  >
+                    Descripción
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <textarea
+                    id="descripcionEncabezadoOferta"
+                    class="formulario-admin__control formulario-admin__control--textarea"
+                    maxlength="500"
+                    rows="3"
+                    required
+                  ></textarea>
+
+                </div>
+
+
+              </div>
+
+
+              <div class="formulario-admin__acciones">
+
+                <button
+                  id="botonGuardarEncabezadoOferta"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+
+                  <span>
+                    Guardar encabezado
+                  </span>
+
+                  <span
+                    id="cargadorGuardarEncabezadoOferta"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </section>
+
+
+        <!-- ================================================
+             PROGRAMAS DE ESTUDIO
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelProgramasOferta"
+        >
+
+          <header class="admin-panel__encabezado">
+
+            <div>
+
+              <h2
+                id="tituloPanelProgramasOferta"
+                class="admin-panel__titulo"
+              >
+                Programas de estudio
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Encabezado que aparece antes de los filtros y las materias.
+              </p>
+
+            </div>
+
+          </header>
+
+
+          <div class="admin-panel__contenido">
+
+            <form
+              id="formularioEncabezadoProgramasOferta"
+              class="formulario-admin"
+              novalidate
+            >
+
+              <input
+                id="idSeccionEncabezadoProgramasOferta"
+                type="hidden"
+              >
+
+              <input
+                id="claveEncabezadoProgramasOferta"
+                type="hidden"
+                value="ENCABEZADO_PROGRAMAS_ESTUDIO"
+              >
+
+
+              <div class="formulario-admin__cuadricula">
+
+
+                <div class="formulario-admin__grupo">
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="tituloProgramasOferta"
+                  >
+                    Título
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="tituloProgramasOferta"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="250"
+                    autocomplete="off"
+                    required
+                  >
+
+                </div>
+
+
+                <div class="formulario-admin__grupo">
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="estadoEncabezadoProgramasOferta"
+                  >
+                    Estado
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <select
+                    id="estadoEncabezadoProgramasOferta"
+                    class="formulario-admin__control"
+                    required
+                  >
+                    <option value="">
+                      Seleccione un estado
+                    </option>
+                  </select>
+
+                </div>
+
+
+                <div
+                  class="formulario-admin__grupo formulario-admin__grupo--completo"
+                >
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="descripcionProgramasOferta"
+                  >
+                    Descripción
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <textarea
+                    id="descripcionProgramasOferta"
+                    class="formulario-admin__control formulario-admin__control--textarea"
+                    maxlength="500"
+                    rows="3"
+                    required
+                  ></textarea>
+
+                </div>
+
+
+              </div>
+
+
+              <div class="formulario-admin__acciones">
+
+                <button
+                  id="botonGuardarEncabezadoProgramasOferta"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+
+                  <span>
+                    Guardar programas
+                  </span>
+
+                  <span
+                    id="cargadorGuardarEncabezadoProgramasOferta"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </section>
+
+
+        <!-- ================================================
+             MATERIAS
+             ================================================ -->
+
+        <section
+          class="admin-panel oferta-academica-admin"
+          aria-labelledby="tituloPanelMateriasOferta"
+        >
+
+          <header class="admin-panel__encabezado">
+
+            <div>
+
+              <h2
+                id="tituloPanelMateriasOferta"
+                class="admin-panel__titulo"
+              >
+                Materias
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Las materias se muestran como tarjetas compactas.
+                Abra únicamente la que necesite modificar.
+              </p>
+
+            </div>
+
+
+            <button
+              id="botonAgregarMateriaOferta"
+              class="admin-boton admin-boton--secundario"
+              type="button"
+            >
+              Agregar materia
+            </button>
+
+          </header>
+
+
+          <div class="admin-panel__contenido">
+
+
+            <!-- ============================================
+                 BUSCADOR
+                 ============================================ -->
+
+            <div class="oferta-academica-admin__busqueda">
+
+              <label
+                class="formulario-admin__etiqueta"
+                for="buscarMateriaOferta"
+              >
+                Buscar materia
+              </label>
+
+              <input
+                id="buscarMateriaOferta"
+                class="formulario-admin__control"
+                type="search"
+                placeholder="Ej. Español, Matemáticas, Ciencias..."
+                autocomplete="off"
+              >
+
+            </div>
+
+
+            <!-- ============================================
+                 LISTA DE MATERIAS
+                 ============================================ -->
+
+            <div
+              id="listaMateriasOferta"
+              class="oferta-academica-admin__tarjetas"
+              aria-live="polite"
+            >
+
+              <div
+                id="estadoVacioMateriasOferta"
+                class="admin-estado-vacio"
+              >
+
+                <h3>
+                  No hay materias
+                </h3>
+
+                <p>
+                  Presione Agregar materia para registrar una.
+                </p>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+        <!-- ================================================
+             NOTA INFORMATIVA
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelNotaOferta"
+        >
+
+          <header class="admin-panel__encabezado">
+
+            <div>
+
+              <h2
+                id="tituloPanelNotaOferta"
+                class="admin-panel__titulo"
+              >
+                Nota informativa
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Texto que aparece después de las materias.
+              </p>
+
+            </div>
+
+          </header>
+
+
+          <div class="admin-panel__contenido">
+
+            <form
+              id="formularioNotaOferta"
+              class="formulario-admin"
+              novalidate
+            >
+
+              <input
+                id="idSeccionNotaOferta"
+                type="hidden"
+              >
+
+              <input
+                id="claveNotaOferta"
+                type="hidden"
+                value="NOTA_OFERTA_ACADEMICA"
+              >
+
+
+              <div class="formulario-admin__cuadricula">
+
+
+                <div
+                  class="formulario-admin__grupo formulario-admin__grupo--completo"
+                >
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="contenidoNotaOferta"
+                  >
+                    Texto
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <textarea
+                    id="contenidoNotaOferta"
+                    class="formulario-admin__control formulario-admin__control--textarea"
+                    maxlength="1000"
+                    rows="3"
+                    required
+                  ></textarea>
+
+                </div>
+
+
+                <div class="formulario-admin__grupo">
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="estadoNotaOferta"
+                  >
+                    Estado
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <select
+                    id="estadoNotaOferta"
+                    class="formulario-admin__control"
+                    required
+                  >
+                    <option value="">
+                      Seleccione un estado
+                    </option>
+                  </select>
+
+                </div>
+
+
+              </div>
+
+
+              <div class="formulario-admin__acciones">
+
+                <button
+                  id="botonGuardarNotaOferta"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+
+                  <span>
+                    Guardar nota
+                  </span>
+
+                  <span
+                    id="cargadorGuardarNotaOferta"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </section>
+
+
+      </div>
+
+
+      <!-- ==================================================
+           PIE
+           ================================================== -->
+
+      <footer class="pagina-contenido-admin__pie">
+
+        <p>
+          © 2026 Liceo Hernán Vargas Ramírez
+        </p>
+
+        <span id="textoPieGestion">
+          Gestión de Oferta académica
+        </span>
+
+      </footer>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- ======================================================
+       PLANTILLA DE MATERIA
+       ====================================================== -->
+
+  <template id="plantillaMateriaOferta">
+
+    <article class="oferta-materia-admin">
+
+      <input
+        class="oferta-materia__id"
+        type="hidden"
+      >
+
+      <input
+        class="oferta-materia__codigo"
+        type="hidden"
+      >
+
+
+      <!-- ==================================================
+           VISTA COMPACTA
+           ================================================== -->
+
+      <div class="oferta-materia-admin__vista">
+
+        <div class="oferta-materia-admin__vista-contenido">
+
+          <span class="oferta-materia__numero">
+            Materia
+          </span>
+
+          <h3 class="oferta-materia__titulo-visual">
+            Nueva materia
+          </h3>
+
+        </div>
+
+
+        <button
+          class="admin-boton admin-boton--texto oferta-materia__retirar"
+          type="button"
+        >
+          Retirar
+        </button>
+
+      </div>
+
+
+      <!-- ==================================================
+           EDITOR DESPLEGABLE
+           ================================================== -->
+
+      <details class="oferta-materia-admin__desplegable">
+
+        <summary class="oferta-materia-admin__editar">
+          Editar materia
+        </summary>
+
+
+        <div class="oferta-materia-admin__contenido">
+
+
+          <!-- ============================================
+               NOMBRE
+               ============================================ -->
+
+          <div class="formulario-admin__grupo">
+
+            <label class="formulario-admin__etiqueta">
+              Nombre
+              <span aria-hidden="true">*</span>
+            </label>
+
+            <input
+              class="formulario-admin__control oferta-materia__nombre"
+              type="text"
+              maxlength="150"
+              autocomplete="off"
+              required
+            >
+
+          </div>
+
+
+          <!-- ============================================
+               DESCRIPCIÓN
+               ============================================ -->
+
+          <div class="formulario-admin__grupo">
+
+            <label class="formulario-admin__etiqueta">
+              Descripción
+              <span aria-hidden="true">*</span>
+            </label>
+
+            <textarea
+              class="formulario-admin__control formulario-admin__control--textarea oferta-materia__descripcion"
+              maxlength="800"
+              rows="3"
+              required
+            ></textarea>
+
+          </div>
+
+
+          <!-- ============================================
+               CICLOS
+               ============================================ -->
+
+          <fieldset class="oferta-materia-admin__seccion">
+
+            <legend class="formulario-admin__leyenda">
+              Ciclo educativo
+              <span aria-hidden="true">*</span>
+            </legend>
+
+            <div class="oferta-materia__ciclos">
+              <!-- Generado desde JavaScript -->
+            </div>
+
+          </fieldset>
+
+
+          <!-- ============================================
+               ENLACE
+               ============================================ -->
+
+          <div class="oferta-materia-admin__fila">
+
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Tipo de enlace
+              </label>
+
+              <select
+                class="formulario-admin__control oferta-materia__tipo-enlace"
+              >
+
+                <option value="NINGUNO">
+                  Sin enlace
+                </option>
+
+                <option value="EXTERNO">
+                  Sitio externo
+                </option>
+
+                <option value="INTERNO">
+                  Página interna
+                </option>
+
+                <option value="ARCHIVO">
+                  Archivo
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Texto del botón
+              </label>
+
+              <input
+                class="formulario-admin__control oferta-materia__texto-boton"
+                type="text"
+                maxlength="120"
+                autocomplete="off"
+                placeholder="Ver plan de estudio"
+              >
+
+            </div>
+
+
+          </div>
+
+
+          <div class="formulario-admin__grupo">
+
+            <label class="formulario-admin__etiqueta">
+              Dirección del plan de estudio
+            </label>
+
+            <input
+              class="formulario-admin__control oferta-materia__url"
+              type="text"
+              maxlength="1000"
+              autocomplete="off"
+              placeholder="https://..."
+            >
+
+          </div>
+
+
+          <!-- ============================================
+               ORDEN Y ESTADO
+               ============================================ -->
+
+          <div
+            class="oferta-materia-admin__fila oferta-materia-admin__fila--pequena"
+          >
+
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Orden
+              </label>
+
+              <input
+                class="formulario-admin__control oferta-materia__orden"
+                type="number"
+                min="0"
+                step="1"
+                value="0"
+              >
+
+            </div>
+
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Estado
+                <span aria-hidden="true">*</span>
+              </label>
+
+              <select
+                class="formulario-admin__control oferta-materia__estado"
+                required
+              >
+                <option value="">
+                  Seleccione un estado
+                </option>
+              </select>
+
+            </div>
+
+
+          </div>
+
+
+          <!-- ============================================
+               ACCIONES
+               ============================================ -->
+
+          <div class="oferta-materia-admin__acciones">
+
+            <button
+              class="admin-boton admin-boton--primario oferta-materia__guardar"
+              type="button"
+            >
+
+              <span>
+                Guardar
+              </span>
+
+              <span
+                class="admin-boton__cargador oferta-materia__cargador"
+                aria-hidden="true"
+                hidden
+              ></span>
+
+            </button>
+
+          </div>
+
+
+        </div>
+
+      </details>
+
+    </article>
+
+  </template>
+
+
+  <!-- ======================================================
+       CONFIGURACIÓN, SESIÓN Y PROTECCIÓN
+       ====================================================== -->
+
+  <script
+    src="../../js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/sesion-administrador.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/autenticacion.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/proteccion-rutas.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/alertas-admin.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/modal-admin.js"
+    defer
+  ></script>
+
+  <!-- Lógica compartida -->
+  <script
+    src="../../js/modules/paginas-contenido.js"
+    defer
+  ></script>
+
+  <!-- Oferta académica -->
+  <script
+    src="../../js/modules/oferta-academica.js"
+    defer
+  ></script>
+
+  <!-- Layout administrativo -->
+  <script
+    src="../../js/components/layout-admin.js"
+    defer
+  ></script>
+
+</body>
+
+</html>

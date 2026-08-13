@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boletines | Liceo Hernán Vargas Ramírez</title>
+  <meta name="description" content="Boletines, comunicados y avisos importantes del Liceo Hernán Vargas Ramírez." />
+  <meta name="theme-color" content="#2b563a" />
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="../assets/logos/logo-liceo.jpg" />
+</head>
+
+<body data-pagina="boletines">
+  <div id="encabezado"></div>
+
+  <main>
+    <section class="banda">
+      <div class="contenedor">
+        <p class="migas"><a href="../index.html">Inicio</a> / Boletines</p>
+        <h1>Boletines y comunicados</h1>
+        <p>Mantente informado sobre las novedades, avisos y comunicados oficiales del liceo.</p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <!-- Filtros por categoría -->
+        <div class="filtros" id="filtrosBoletines">
+          <button class="filtro activo" data-filtro="todos">Todos</button>
+          <button class="filtro" data-filtro="comunicado">Comunicados</button>
+          <button class="filtro" data-filtro="circular">Circulares</button>
+          <button class="filtro" data-filtro="noticia">Noticias</button>
+          <button class="filtro" data-filtro="actividad">Actividades</button>
+          <button class="filtro" data-filtro="recordatorio">Recordatorios</button>
+        </div>
+
+        <!-- Tarjetas cargadas desde data/boletines.json -->
+        <div class="cuadricula cuadricula--3" id="listaBoletines">
+          <p class="estado">Cargando publicaciones...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="pie"></div>
+  <script src="../js/main.js"></script>
+  <script src="../js/filtros.js"></script>
+  <script src="../js/boletines.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      await renderBoletines("listaBoletines");
+      activarFiltros("filtrosBoletines", "listaBoletines");
+    });
+  </script>
+</body>
+
+</html>

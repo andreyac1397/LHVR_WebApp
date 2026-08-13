@@ -1,0 +1,373 @@
+/* ============================================================
+   BIBLIOTECA.CSS - Liceo Hernán Vargas Ramírez
+   ------------------------------------------------------------
+   Estilos específicos para la página Biblioteca BiblioCRA.
+   Usa las clases generales del sitio y solo ajusta esta página.
+   ============================================================ */
+
+/* ===== BOTONES DEL ENCABEZADO ===== */
+body[data-pagina="biblioteca"] .banda .tarjeta__pie {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ===== PRESENTACIÓN ===== */
+.biblioteca-presentacion {
+  align-items: center;
+}
+
+.biblioteca-destacado {
+  border-left: 6px solid var(--color-primario, #2b563a);
+  background:
+    linear-gradient(135deg, rgba(43, 86, 58, 0.08), rgba(255, 255, 255, 0.95));
+}
+
+.biblioteca-destacado .tarjeta__titulo {
+  margin-bottom: 0.75rem;
+}
+
+/* ===== HISTORIA ===== */
+.biblioteca-historia {
+  max-width: 980px;
+  margin: 0 auto 2rem;
+}
+
+.biblioteca-historia .tarjeta__texto {
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.biblioteca-historia .tarjeta__texto:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== LÍNEA DE TIEMPO ===== */
+.biblioteca-linea-tiempo {
+  margin-top: 1.5rem;
+}
+
+.biblioteca-linea-tiempo .tarjeta {
+  position: relative;
+  overflow: hidden;
+}
+
+.biblioteca-linea-tiempo .tarjeta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--color-primario, #2b563a);
+}
+
+/* ===== GALERÍA DE ÁREAS ===== */
+.biblioteca-galeria {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.biblioteca-galeria .galeria__item {
+  min-height: 210px;
+}
+
+/* ===== DOCUMENTOS EN IMAGEN: REGLAMENTO Y BOLETA ===== */
+.biblioteca-documentos {
+  margin-top: 1.5rem;
+}
+
+.biblioteca-documento {
+  margin-top: 1rem;
+  aspect-ratio: auto;
+  min-height: 320px;
+  max-height: 520px;
+  background: #f7f7f4;
+  border: 1px solid rgba(43, 86, 58, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.biblioteca-documento img {
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.biblioteca-documento .galeria__pie {
+  background: linear-gradient(to top, rgba(25, 20, 18, 0.85), transparent);
+}
+
+/* ===== LISTAS DENTRO DE TARJETAS ===== */
+body[data-pagina="biblioteca"] .lista {
+  margin-top: 0.85rem;
+  padding-left: 1.2rem;
+  color: var(--color-texto, #2f2f2f);
+  line-height: 1.7;
+}
+
+body[data-pagina="biblioteca"] .lista li {
+  margin-bottom: 0.45rem;
+}
+
+body[data-pagina="biblioteca"] .lista li:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== MATERIAL DISPONIBLE ===== */
+body[data-pagina="biblioteca"] .cuadricula--4 .tarjeta {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body[data-pagina="biblioteca"] .cuadricula--4 .tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== AJUSTES DE BOTONES EN RECURSOS ===== */
+body[data-pagina="biblioteca"] .tarjeta__pie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .biblioteca-presentacion {
+    gap: 1.5rem;
+  }
+
+  .biblioteca-documento {
+    min-height: 280px;
+    max-height: 460px;
+  }
+
+  .biblioteca-documento img {
+    max-height: 460px;
+  }
+}
+
+@media (max-width: 600px) {
+  body[data-pagina="biblioteca"] .banda .tarjeta__pie {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body[data-pagina="biblioteca"] .banda .boton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .biblioteca-galeria {
+    grid-template-columns: 1fr;
+  }
+
+  .biblioteca-galeria .galeria__item {
+    min-height: 220px;
+  }
+
+  .biblioteca-documento {
+    min-height: 260px;
+    max-height: 420px;
+  }
+
+  .biblioteca-documento img {
+    max-height: 420px;
+  }
+}
+
+/* ============================================================
+   CORRECCIONES VISUALES BIBLIOTECA
+   ============================================================ */
+
+/* Botones del encabezado de biblioteca */
+body[data-pagina="biblioteca"] .banda .tarjeta__pie {
+  margin-top: 1.5rem;
+  padding-top: 0;
+  border-top: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+body[data-pagina="biblioteca"] .banda .boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+body[data-pagina="biblioteca"] .banda .boton--primario {
+  background: #ffffff;
+  color: #25563a;
+  border: 2px solid #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+body[data-pagina="biblioteca"] .banda .boton--secundario {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+body[data-pagina="biblioteca"] .banda .boton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+}
+
+/* Separación correcta entre imágenes de áreas */
+body[data-pagina="biblioteca"] .biblioteca-galeria {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  column-gap: 24px !important;
+  row-gap: 24px !important;
+  gap: 24px !important;
+  margin-top: 1.5rem;
+}
+
+body[data-pagina="biblioteca"] .biblioteca-galeria .galeria__item {
+  width: 100%;
+  min-height: 220px;
+  margin: 0 !important;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+body[data-pagina="biblioteca"] .biblioteca-galeria .galeria__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* En móvil los botones del encabezado quedan uno debajo del otro */
+@media (max-width: 600px) {
+  body[data-pagina="biblioteca"] .banda .tarjeta__pie {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body[data-pagina="biblioteca"] .banda .boton {
+    width: 100%;
+    text-align: center;
+  }
+
+  .biblioteca-galeria {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* ===== MINI GALERÍA DE REVISTAS BIBLIOCRA ===== */
+.biblioteca-revistas-mini {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin: 1rem 0 1.2rem;
+}
+
+.biblioteca-revista-mini {
+  min-height: 130px;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+}
+
+.biblioteca-revista-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.biblioteca-revista-mini .galeria__pie {
+  padding: 28px 8px 8px;
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.biblioteca-recursos-card .tarjeta__pie {
+  margin-top: auto;
+}
+
+@media (max-width: 700px) {
+  .biblioteca-revistas-mini {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+body[data-pagina="biblioteca"] .biblioteca-documento {
+  margin-top: 0.9rem;
+}
+
+/* ===== TARJETA DEL REGLAMENTO ===== */
+.biblioteca-reglamento-card {
+  justify-content: flex-start;
+}
+
+.biblioteca-reglamento-card .tarjeta__texto {
+  flex-grow: 0;
+  margin-bottom: 0.8rem;
+}
+
+.biblioteca-reglamento-card .biblioteca-documento {
+  margin-top: 0.5rem;
+}
+
+/* ===== AJUSTE FINAL: REGLAMENTO MÁS ALTO ===== */
+.biblioteca-reglamento-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.biblioteca-reglamento-card .tarjeta__texto {
+  flex-grow: 0;
+  margin-bottom: 0.9rem;
+}
+
+.biblioteca-reglamento-card .biblioteca-documento {
+  flex-grow: 1;
+  width: 100%;
+  min-height: 560px;
+  max-height: none;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.biblioteca-reglamento-card .biblioteca-documento img {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  padding: 8px;
+  background: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .biblioteca-reglamento-card .biblioteca-documento {
+    min-height: 460px;
+  }
+}
+
+@media (max-width: 600px) {
+  .biblioteca-reglamento-card .biblioteca-documento {
+    min-height: 380px;
+  }
+}
+
+/* Espacio del botón para llenar la boleta de préstamo */
+.biblioteca-formulario-accion {
+  margin-top: 1rem;
+}

@@ -1,0 +1,833 @@
+/* ============================================================
+   CALENDARIO.CSS - Liceo Hernán Vargas Ramírez
+   ------------------------------------------------------------
+   Estilos para calendario institucional moderno:
+   vista mensual compacta, filtros, panel de eventos y detalle
+   desplegable por evento.
+   ============================================================ */
+
+/* ===== VARIABLES ===== */
+
+:root {
+  --cal-verde: #2b563a;
+  --cal-verde-oscuro: #1f3f2b;
+  --cal-verde-suave: #e8f1ec;
+  --cal-fondo: #f7f8f5;
+  --cal-blanco: #ffffff;
+  --cal-borde: #dde4dc;
+  --cal-texto: #24352b;
+  --cal-texto-suave: #6b756d;
+  --cal-sombra: 0 14px 35px rgba(28, 50, 36, 0.10);
+
+  --color-periodos: #2b563a;
+  --color-matricula: #7952b3;
+  --color-pruebas: #d9822b;
+  --color-participacion: #1f7a8c;
+  --color-efemerides: #b23a48;
+  --color-administrativo: #3f6f9f;
+  --color-orientacion: #6a994e;
+  --color-abierta: #8a6f3d;
+  --color-general: #687076;
+}
+
+/* ===== CONTROLES SUPERIORES ===== */
+
+.calendario-controles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0 1.2rem;
+  flex-wrap: wrap;
+}
+
+.calendario-navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.calendario-navegacion h3 {
+  min-width: 210px;
+  margin: 0;
+  text-align: center;
+  color: var(--cal-verde-oscuro);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+/* ===== FILTROS ===== */
+
+.calendario-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1rem 0 1.2rem;
+}
+
+.calendario-filtros .filtro {
+  border: 1px solid var(--cal-borde);
+  background: var(--cal-blanco);
+  color: var(--cal-verde);
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.calendario-filtros .filtro:hover {
+  background: var(--cal-verde-suave);
+  border-color: var(--cal-verde);
+}
+
+.calendario-filtros .filtro.activo {
+  background: var(--cal-verde);
+  color: var(--cal-blanco);
+  border-color: var(--cal-verde);
+  box-shadow: 0 8px 18px rgba(43, 86, 58, 0.22);
+}
+
+/* ===== LEYENDA ===== */
+
+.calendario-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 0 1.5rem;
+  color: var(--cal-texto-suave);
+  font-size: 0.9rem;
+}
+
+.calendario-leyenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.leyenda-color {
+  width: 13px;
+  height: 13px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.leyenda--periodos {
+  background: var(--color-periodos);
+}
+
+.leyenda--matricula {
+  background: var(--color-matricula);
+}
+
+.leyenda--pruebas {
+  background: var(--color-pruebas);
+}
+
+.leyenda--participacion {
+  background: var(--color-participacion);
+}
+
+.leyenda--efemerides {
+  background: var(--color-efemerides);
+}
+
+.leyenda--administrativo {
+  background: var(--color-administrativo);
+}
+
+.leyenda--orientacion {
+  background: var(--color-orientacion);
+}
+
+.leyenda--abierta {
+  background: var(--color-abierta);
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+
+.calendario-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 1.4rem;
+  align-items: start;
+}
+
+.calendario-panel,
+.calendario-detalle {
+  background: var(--cal-blanco);
+  border: 1px solid var(--cal-borde);
+  border-radius: 24px;
+  box-shadow: var(--cal-sombra);
+}
+
+.calendario-panel {
+  overflow: hidden;
+}
+
+/* ===== DÍAS DE LA SEMANA ===== */
+
+.calendario-dias-semana {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  background: var(--cal-verde);
+  color: var(--cal-blanco);
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.calendario-dias-semana span {
+  padding: 0.85rem 0.3rem;
+}
+
+/* ===== GRID DEL CALENDARIO ===== */
+
+.calendario-grid {
+  background: var(--cal-borde);
+  display: grid;
+  gap: 1px;
+}
+
+.calendario-semana {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--cal-borde);
+  min-height: 112px;
+}
+
+/* ===== DÍA ===== */
+
+.calendario-dia {
+  position: relative;
+  min-height: 112px;
+  border: none;
+  background: var(--cal-blanco);
+  color: var(--cal-texto);
+  padding: 0.65rem 0.55rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  overflow: hidden;
+}
+
+.calendario-dia:hover {
+  background: #f4faf6;
+  box-shadow: inset 0 0 0 2px rgba(43, 86, 58, 0.18);
+}
+
+.calendario-dia__numero {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: var(--cal-verde-oscuro);
+}
+
+.calendario-dia--fuera {
+  background: #f2f4f1;
+  color: #a4aaa5;
+}
+
+.calendario-dia--fuera .calendario-dia__numero,
+.calendario-dia--fuera .calendario-dia__conteo,
+.calendario-dia--fuera .calendario-dia__extra {
+  color: #a4aaa5;
+}
+
+.calendario-dia--hoy .calendario-dia__numero {
+  background: var(--cal-verde);
+  color: var(--cal-blanco);
+}
+
+.calendario-dia--seleccionado {
+  background: var(--cal-verde-suave);
+  box-shadow: inset 0 0 0 2px var(--cal-verde);
+}
+
+.calendario-dia--con-eventos::after {
+  content: "";
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--cal-verde);
+}
+
+/* ===== RESUMEN COMPACTO DE EVENTOS EN CADA DÍA ===== */
+
+.calendario-dia__resumen {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+}
+
+.calendario-dia__puntos {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.calendario-dia__punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  display: inline-block;
+  background: var(--color-general);
+}
+
+.calendario-dia__punto--periodos {
+  background: var(--color-periodos);
+}
+
+.calendario-dia__punto--matricula {
+  background: var(--color-matricula);
+}
+
+.calendario-dia__punto--pruebas {
+  background: var(--color-pruebas);
+}
+
+.calendario-dia__punto--participacion {
+  background: var(--color-participacion);
+}
+
+.calendario-dia__punto--efemerides {
+  background: var(--color-efemerides);
+}
+
+.calendario-dia__punto--administrativo {
+  background: var(--color-administrativo);
+}
+
+.calendario-dia__punto--orientacion {
+  background: var(--color-orientacion);
+}
+
+.calendario-dia__punto--abierta {
+  background: var(--color-abierta);
+}
+
+.calendario-dia__punto--general {
+  background: var(--color-general);
+}
+
+.calendario-dia__conteo {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--cal-texto-suave);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.calendario-dia__extra {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.16rem 0.45rem;
+  border-radius: 999px;
+  background: var(--cal-verde-suave);
+  color: var(--cal-verde);
+  font-size: 0.68rem;
+  font-weight: 900;
+}
+
+/* ===== DESACTIVAR BARRAS VIEJAS SI QUEDAN EN CACHÉ ===== */
+
+.calendario-barras,
+.evento-barra {
+  display: none !important;
+}
+
+/* ===== PANEL DE DETALLE ===== */
+
+.calendario-detalle {
+  padding: 1.2rem;
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: hidden;
+}
+
+.calendario-detalle__encabezado {
+  border-bottom: 1px solid var(--cal-borde);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.etiqueta-fecha {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0 0 0.45rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--cal-verde-suave);
+  color: var(--cal-verde);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.calendario-detalle h3 {
+  margin: 0;
+  color: var(--cal-verde-oscuro);
+  font-size: 1.25rem;
+}
+
+#eventosDiaSeleccionado {
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+#eventosDiaSeleccionado::-webkit-scrollbar {
+  width: 8px;
+}
+
+#eventosDiaSeleccionado::-webkit-scrollbar-track {
+  background: #f2f4f1;
+  border-radius: 999px;
+}
+
+#eventosDiaSeleccionado::-webkit-scrollbar-thumb {
+  background: #c8d5cb;
+  border-radius: 999px;
+}
+
+#eventosDiaSeleccionado::-webkit-scrollbar-thumb:hover {
+  background: #9fb4a5;
+}
+
+/* ===== TARJETAS DE EVENTOS ===== */
+
+.evento-detalle {
+  border: 1px solid var(--cal-borde);
+  border-left: 5px solid var(--color-general);
+  border-radius: 18px;
+  padding: 0.95rem;
+  margin-bottom: 0.85rem;
+  background: #ffffff;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.evento-detalle:hover {
+  box-shadow: 0 8px 20px rgba(28, 50, 36, 0.08);
+}
+
+.evento-detalle--abierto {
+  box-shadow: 0 10px 24px rgba(28, 50, 36, 0.10);
+}
+
+.evento-detalle--periodos {
+  border-left-color: var(--color-periodos);
+}
+
+.evento-detalle--matricula {
+  border-left-color: var(--color-matricula);
+}
+
+.evento-detalle--pruebas {
+  border-left-color: var(--color-pruebas);
+}
+
+.evento-detalle--participacion {
+  border-left-color: var(--color-participacion);
+}
+
+.evento-detalle--efemerides {
+  border-left-color: var(--color-efemerides);
+}
+
+.evento-detalle--administrativo {
+  border-left-color: var(--color-administrativo);
+}
+
+.evento-detalle--orientacion {
+  border-left-color: var(--color-orientacion);
+}
+
+.evento-detalle--abierta {
+  border-left-color: var(--color-abierta);
+}
+
+.evento-detalle__superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.evento-categoria,
+.evento-destacado {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.evento-categoria {
+  background: var(--cal-verde-suave);
+  color: var(--cal-verde);
+}
+
+.evento-destacado {
+  background: #fff3cd;
+  color: #7a4f00;
+  flex-shrink: 0;
+}
+
+.evento-detalle h4 {
+  margin: 0 0 0.45rem;
+  color: var(--cal-texto);
+  font-size: 0.96rem;
+  line-height: 1.35;
+}
+
+.evento-fecha {
+  margin: 0 0 0.55rem;
+  color: var(--cal-verde);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.evento-estado {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 0.7rem;
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  background: #f2f4f1;
+  color: var(--cal-texto-suave);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.btn-ver-detalle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--cal-borde);
+  background: var(--cal-blanco);
+  color: var(--cal-verde);
+  border-radius: 999px;
+  padding: 0.42rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ver-detalle:hover {
+  background: var(--cal-verde-suave);
+  border-color: var(--cal-verde);
+}
+
+.evento-detalle__contenido {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--cal-borde);
+}
+
+.evento-detalle__contenido[hidden] {
+  display: none;
+}
+
+.evento-descripcion {
+  margin: 0;
+  color: var(--cal-texto-suave);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.evento-subcategorias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+.evento-subcategorias span {
+  display: inline-flex;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  background: #f2f4f1;
+  color: var(--cal-texto-suave);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.evento-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+.evento-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  background: var(--cal-verde);
+  color: var(--cal-blanco);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.evento-links a:hover {
+  background: var(--cal-verde-oscuro);
+}
+
+/* ===== ESTADOS ===== */
+
+.calendario-grid .estado,
+.calendario-detalle .estado {
+  margin: 0;
+  padding: 1rem;
+  color: var(--cal-texto-suave);
+}
+
+/* ===== COMPATIBILIDAD CON LISTAS SIMPLES ===== */
+
+.lista-actividades {
+  display: grid;
+  gap: 1rem;
+}
+
+.actividad {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1rem;
+  align-items: center;
+  background: var(--cal-blanco);
+  border: 1px solid var(--cal-borde);
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: 0 10px 24px rgba(28, 50, 36, 0.08);
+}
+
+.actividad__fecha {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  background: var(--cal-verde);
+  color: var(--cal-blanco);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.actividad__dia {
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.actividad__mes {
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-top: 0.2rem;
+}
+
+.actividad__info h3 {
+  margin: 0 0 0.35rem;
+  color: var(--cal-verde-oscuro);
+}
+
+.actividad__info p {
+  margin: 0 0 0.45rem;
+  color: var(--cal-texto-suave);
+}
+
+.actividad__lugar {
+  color: var(--cal-verde);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1050px) {
+  .calendario-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .calendario-detalle {
+    position: static;
+    max-height: none;
+  }
+
+  #eventosDiaSeleccionado {
+    max-height: 620px;
+  }
+}
+
+@media (max-width: 760px) {
+  .calendario-controles {
+    justify-content: center;
+  }
+
+  .calendario-navegacion {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .calendario-navegacion h3 {
+    min-width: 150px;
+    font-size: 1.1rem;
+  }
+
+  .calendario-filtros {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+  }
+
+  .calendario-filtros .filtro {
+    white-space: nowrap;
+  }
+
+  .calendario-leyenda {
+    justify-content: flex-start;
+  }
+
+  .calendario-dias-semana span {
+    font-size: 0.72rem;
+    padding: 0.65rem 0.2rem;
+  }
+
+  .calendario-semana {
+    min-height: 92px;
+  }
+
+  .calendario-dia {
+    min-height: 92px;
+    padding: 0.45rem 0.35rem;
+  }
+
+  .calendario-dia__numero {
+    width: 26px;
+    height: 26px;
+    font-size: 0.85rem;
+  }
+
+  .calendario-dia__conteo {
+    font-size: 0.64rem;
+  }
+
+  .calendario-dia__punto {
+    width: 7px;
+    height: 7px;
+  }
+
+  .calendario-dia__extra {
+    font-size: 0.62rem;
+    padding: 0.12rem 0.35rem;
+  }
+
+  .evento-detalle {
+    padding: 0.85rem;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .calendario-panel,
+  .calendario-detalle {
+    border-radius: 18px;
+  }
+
+  .calendario-dias-semana span {
+    font-size: 0.65rem;
+  }
+
+  .calendario-semana {
+    min-height: 74px;
+  }
+
+  .calendario-dia {
+    min-height: 74px;
+    padding: 0.35rem 0.25rem;
+  }
+
+  .calendario-dia__numero {
+    width: 23px;
+    height: 23px;
+    font-size: 0.78rem;
+  }
+
+  .calendario-dia--con-eventos::after {
+    width: 6px;
+    height: 6px;
+    top: 0.45rem;
+    right: 0.45rem;
+  }
+
+  .calendario-subtitulo {
+    max-width: 520px;
+    margin: 0.5rem auto 1.5rem;
+    text-align: center;
+    color: var(--cal-texto-suave);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .calendario-dia__conteo {
+    display: none;
+  }
+
+  .calendario-dia__resumen {
+    margin-top: 0.35rem;
+  }
+
+  .calendario-dia__puntos {
+    gap: 0.18rem;
+  }
+
+  .calendario-dia__punto {
+    width: 6px;
+    height: 6px;
+  }
+
+  .calendario-dia__extra {
+    font-size: 0.58rem;
+    padding: 0.1rem 0.3rem;
+  }
+
+  #eventosDiaSeleccionado {
+    max-height: 560px;
+  }
+
+  .evento-detalle__superior {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .actividad {
+    grid-template-columns: 1fr;
+  }
+}

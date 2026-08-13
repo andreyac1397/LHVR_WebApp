@@ -1,0 +1,13 @@
+{
+  "name": "sitio-web-lhvr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web institucional del Liceo Hernán Vargas Ramírez (HTML, CSS y JavaScript puro).",
+  "scripts": {
+    "dev": "serve . -l 3000",
+    "start": "serve . -l 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

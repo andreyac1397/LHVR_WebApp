@@ -1,0 +1,92 @@
+[
+  {
+    "titulo": "Cisco Networking Academy / NetAcad",
+    "descripcion": "Plataforma educativa de Cisco con cursos gratuitos de tecnología, redes, ciberseguridad, Python, inteligencia artificial y habilidades digitales. Algunos cursos ofrecen certificados o insignias de finalización.",
+    "publico": "Tecnología y certificaciones",
+    "url": "https://www.netacad.com/"
+  },
+  {
+    "titulo": "Microsoft Learn / Azure Fundamentals",
+    "descripcion": "Ruta de aprendizaje para estudiantes interesados en nube, sistemas y tecnología Microsoft. El material de estudio es gratuito; el examen de certificación puede tener costo.",
+    "publico": "Tecnología y certificaciones",
+    "url": "https://learn.microsoft.com/es-es/credentials/certifications/azure-fundamentals/"
+  },
+  {
+    "titulo": "Code.org",
+    "descripcion": "Plataforma para aprender programación, lógica computacional e inteligencia artificial desde niveles básicos.",
+    "publico": "Tecnología y certificaciones",
+    "url": "https://code.org/"
+  },
+  {
+    "titulo": "Scratch",
+    "descripcion": "Herramienta para crear juegos, historias y animaciones usando programación visual. Ideal para iniciar en programación.",
+    "publico": "Tecnología y certificaciones",
+    "url": "https://scratch.mit.edu/"
+  },
+  {
+    "titulo": "Khan Academy",
+    "descripcion": "Videos, ejercicios y explicaciones para reforzar Matemática, Ciencias y otras materias.",
+    "publico": "Matemática y ciencias",
+    "url": "https://es.khanacademy.org/"
+  },
+  {
+    "titulo": "Profe Alex",
+    "descripcion": "Canal de YouTube con explicaciones paso a paso para reforzar temas de Matemática.",
+    "publico": "Matemática y ciencias",
+    "url": "https://www.youtube.com/@MatematicasprofeAlex"
+  },
+  {
+    "titulo": "GeoGebra",
+    "descripcion": "Herramienta para gráficos, geometría, álgebra, funciones y actividades matemáticas interactivas.",
+    "publico": "Matemática y ciencias",
+    "url": "https://www.geogebra.org/"
+  },
+  {
+    "titulo": "Desmos",
+    "descripcion": "Calculadora gráfica para funciones, ecuaciones, tablas, puntos y análisis visual de gráficos.",
+    "publico": "Matemática y ciencias",
+    "url": "https://www.desmos.com/calculator?lang=es"
+  },
+  {
+    "titulo": "PhET Simulations",
+    "descripcion": "Simulaciones interactivas de Física, Química, Biología, Matemática y Ciencias.",
+    "publico": "Matemática y ciencias",
+    "url": "https://phet.colorado.edu/es/"
+  },
+  {
+    "titulo": "British Council LearnEnglish Teens",
+    "descripcion": "Recurso para practicar inglés con lecturas, audios, videos, vocabulario, gramática y ejercicios.",
+    "publico": "Idiomas",
+    "url": "https://learnenglishteens.britishcouncil.org/"
+  },
+  {
+    "titulo": "Duolingo",
+    "descripcion": "Plataforma para practicar inglés y otros idiomas con lecciones cortas y ejercicios diarios.",
+    "publico": "Idiomas",
+    "url": "https://es.duolingo.com/"
+  },
+  {
+    "titulo": "Canva",
+    "descripcion": "Herramienta para crear presentaciones, infografías, afiches, videos y materiales visuales.",
+    "publico": "Herramientas para trabajos y clases",
+    "url": "https://www.canva.com/"
+  },
+  {
+    "titulo": "Kahoot",
+    "descripcion": "Plataforma para crear cuestionarios, juegos de repaso y actividades participativas en clase.",
+    "publico": "Herramientas para trabajos y clases",
+    "url": "https://kahoot.com/"
+  },
+  {
+    "titulo": "Padlet",
+    "descripcion": "Muro digital colaborativo para compartir ideas, recursos, trabajos, imágenes y actividades grupales.",
+    "publico": "Herramientas para trabajos y clases",
+    "url": "https://padlet.com/"
+  },
+  {
+    "titulo": "Google Scholar",
+    "descripcion": "Buscador académico para encontrar artículos, libros, tesis y documentos útiles para investigaciones.",
+    "publico": "Herramientas para trabajos y clases",
+    "url": "https://scholar.google.com/"
+  }
+]

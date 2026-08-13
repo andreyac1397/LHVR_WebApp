@@ -1,0 +1,319 @@
+
+/* ============================================================
+   ESTILOS RESPONSIVE - Liceo Hernán Vargas Ramírez
+   ------------------------------------------------------------
+   Ajustes para tablet y celular.
+   Puntos de corte:
+   - hasta 992px  -> tablet
+   - hasta 768px  -> tablet pequeña / menú hamburguesa
+   - hasta 560px  -> celular
+   ============================================================ */
+
+/* ===== TABLET (<= 992px) ===== */
+@media (max-width: 992px) {
+  .hero__grid {
+    grid-template-columns: 260px 1fr;
+    gap: 32px;
+  }
+
+  .hero__nombre {
+    font-size: 2rem;
+  }
+
+  .cuadricula--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cuadricula--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .galeria {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pie__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* ===== HORARIOS EN TABLET ===== */
+  .horarios,
+  .horarios__contenedor,
+  .contenedor-horarios,
+  .tabla-horarios-contenedor,
+  .tabla-responsive,
+  .seccion-horarios {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .horarios table,
+  .seccion-horarios table,
+  .tabla-horarios,
+  .tabla-horario {
+    min-width: 760px;
+  }
+}
+
+/* ===== MENÚ HAMBURGUESA (<= 768px) ===== */
+@media (max-width: 768px) {
+  /* La barra queda por encima del contenido */
+  .barra {
+    position: relative;
+    z-index: 1000;
+  }
+
+  /* Mostrar botón hamburguesa */
+  .boton-menu {
+    display: flex;
+    z-index: 1002;
+  }
+
+  /* Menú móvil corregido */
+  .menu {
+    position: fixed;
+    top: 76px;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    max-width: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+
+    background-color: var(--color-blanco);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+
+    padding: 10px;
+    max-height: calc(100dvh - 100px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-10px);
+
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .menu.abierto {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .menu__enlace {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+  }
+
+  .menu__enlace:hover,
+  .menu__enlace.activo {
+    background-color: rgba(25, 79, 55, 0.09);
+  }
+
+  /* Animación del icono hamburguesa a "X" */
+  .boton-menu.activo span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .boton-menu.activo span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .boton-menu.activo span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* ===== TABLET PEQUEÑA / CELULAR GRANDE (<= 768px) ===== */
+@media (max-width: 768px) {
+  .seccion {
+    padding: 48px 0;
+  }
+
+  /* El hero pasa a una sola columna y el logo se centra arriba */
+  .hero__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .hero__logo-marco {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .hero__lema {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__acciones {
+    justify-content: center;
+  }
+
+  .cuadricula--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .datos li {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .datos li span:last-child {
+    text-align: left;
+  }
+
+  /* ===== HORARIOS EN CELULAR Y TABLET PEQUEÑA ===== */
+  .horarios,
+  .horarios__contenedor,
+  .contenedor-horarios,
+  .tabla-horarios-contenedor,
+  .tabla-responsive,
+  .seccion-horarios {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+  }
+
+  .horarios table,
+  .seccion-horarios table,
+  .tabla-horarios,
+  .tabla-horario {
+    width: max-content;
+    min-width: 720px;
+    border-collapse: collapse;
+  }
+
+  .horarios th,
+  .horarios td,
+  .seccion-horarios th,
+  .seccion-horarios td,
+  .tabla-horarios th,
+  .tabla-horarios td,
+  .tabla-horario th,
+  .tabla-horario td {
+    white-space: nowrap;
+    font-size: 0.88rem;
+    padding: 10px 12px;
+  }
+
+  .horarios::-webkit-scrollbar,
+  .horarios__contenedor::-webkit-scrollbar,
+  .contenedor-horarios::-webkit-scrollbar,
+  .tabla-horarios-contenedor::-webkit-scrollbar,
+  .tabla-responsive::-webkit-scrollbar,
+  .seccion-horarios::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .horarios::-webkit-scrollbar-thumb,
+  .horarios__contenedor::-webkit-scrollbar-thumb,
+  .contenedor-horarios::-webkit-scrollbar-thumb,
+  .tabla-horarios-contenedor::-webkit-scrollbar-thumb,
+  .tabla-responsive::-webkit-scrollbar-thumb,
+  .seccion-horarios::-webkit-scrollbar-thumb {
+    background-color: rgba(25, 79, 55, 0.35);
+    border-radius: 999px;
+  }
+}
+
+/* ===== CELULAR (<= 560px) ===== */
+@media (max-width: 560px) {
+  .hero__nombre {
+    font-size: 1.7rem;
+  }
+
+  .titulo-seccion {
+    font-size: 1.55rem;
+  }
+
+  .banda h1 {
+    font-size: 1.7rem;
+  }
+
+  .cuadricula--3,
+  .cuadricula--4 {
+    grid-template-columns: 1fr;
+  }
+
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+
+  .pie__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .marca__lema {
+    display: none;
+  }
+
+  .actividad {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .actividad__fecha {
+    width: auto;
+    display: inline-flex;
+    flex-direction: column;
+    align-self: flex-start;
+    padding: 8px 14px;
+  }
+
+  .hero__acciones .boton {
+    width: 100%;
+  }
+
+  /* Menú más cómodo en pantallas pequeñas */
+  .menu {
+    top: 70px;
+    left: 12px;
+    right: 12px;
+    max-height: calc(100dvh - 88px);
+    border-radius: 14px;
+  }
+
+  .menu__enlace {
+    padding: 12px 13px;
+    font-size: 0.9rem;
+  }
+
+  /* Horarios en celular */
+  .horarios table,
+  .seccion-horarios table,
+  .tabla-horarios,
+  .tabla-horario {
+    min-width: 680px;
+  }
+
+  .horarios th,
+  .horarios td,
+  .seccion-horarios th,
+  .seccion-horarios td,
+  .tabla-horarios th,
+  .tabla-horarios td,
+  .tabla-horario th,
+  .tabla-horario td {
+    font-size: 0.82rem;
+    padding: 9px 10px;
+  }
+}

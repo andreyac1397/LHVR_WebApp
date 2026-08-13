@@ -1,0 +1,4376 @@
+{
+  "baseOriginal": "LICEO-WEBSITE(1).zip",
+  "fechaComparacion": "2026-08-06",
+  "nota": "Este archivo no se incluye en su propio hash ni conteo para evitar autorreferencia.",
+  "resumen": {
+    "archivosOriginales": 10953,
+    "archivosFinalesSinEsteInforme": 10984,
+    "archivosNuevos": 31,
+    "archivosModificados": 126,
+    "archivosEliminados": 0,
+    "archivosRenombradosOMovidos": 0,
+    "archivosSinCambios": 10827
+  },
+  "comprobaciones": {
+    "ningunArchivoEliminado": true,
+    "ningunArchivoRenombradoOMovido": true,
+    "carpetaGitRestauradaDesdeOriginal": true,
+    "archivosProtegidos": [
+      {
+        "ruta": "frontend-publico/index.html",
+        "sinCambios": true,
+        "sha256": "055ca9da0af41f98910daa86ed463f3b416d344898485262596a7381845f36da"
+      },
+      {
+        "ruta": "frontend-publico/js/inicio.js",
+        "sinCambios": true,
+        "sha256": "3125cef04746739cb90b0637e9e6c3d48f01436b9e31d437c1f419a85021e317"
+      },
+      {
+        "ruta": "frontend-publico/pages/nosotros.html",
+        "sinCambios": true,
+        "sha256": "97af2e5e5998f1e31d8e34a611a79a5af204643194e131cab83b8f64caf1bde4"
+      },
+      {
+        "ruta": "frontend-publico/js/nosotros.js",
+        "sinCambios": true,
+        "sha256": "cc71b4c72287d54276c0f7905f6400bdddc3d5f512affa9803ac96f0006f43d4"
+      },
+      {
+        "ruta": "frontend-publico/pages/oferta-academica.html",
+        "sinCambios": true,
+        "sha256": "18f8eef1c162f2e86e7e47bafca6f9f41e08741c782c77b74516e1c097f7e72f"
+      },
+      {
+        "ruta": "panel-administrativo/pages/dashboard/dashboard.html",
+        "sinCambios": true,
+        "sha256": "4b978ee7d008f2467d515dd06846213fb4b149fb42aa9e051a4e743008879334"
+      },
+      {
+        "ruta": "panel-administrativo/js/modules/dashboard.js",
+        "sinCambios": true,
+        "sha256": "ebe396287da6b262f7cfa48466a7f5b3a6a979379b475a9a73cfe430fdf9f350"
+      },
+      {
+        "ruta": "panel-administrativo/css/dashboard.css",
+        "sinCambios": true,
+        "sha256": "3c67ca7af65cda5e91f5378d2ea8a6dfe3c350317447e92a1d7f60006148a2a5"
+      },
+      {
+        "ruta": "panel-administrativo/pages/autenticacion/iniciar-sesion.html",
+        "sinCambios": true,
+        "sha256": "24c664c021261729ff056720c1caa78414f2e1e4e5edf7bf200f3cf3b162643d"
+      },
+      {
+        "ruta": "panel-administrativo/js/modules/autenticacion.js",
+        "sinCambios": true,
+        "sha256": "d2a4200b360640a637a2b0e68cd7e64d7ce94da8987aa5fc4db3b522939b0459"
+      }
+    ]
+  },
+  "cambios": [
+    {
+      "ruta": "INFORME-FINAL.md",
+      "estado": "NUEVO",
+      "tamanoFinal": 6802,
+      "sha256Final": "ae7ddfe4d6e12d3d386750330251e153cf5eb230e353eb0c3d28601ce15380dd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 162,
+      "lineasAgregadas": 162,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 162
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/scripts/aplicar-contenido-pendiente.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 1423,
+      "sha256Final": "777a3f89e031ef39a26fbf4b15815f024450095fe6363fad1616023dfae4611f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 65,
+      "lineasAgregadas": 65,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 65
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/scripts/inicializar-contenido-publico.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 7204,
+      "sha256Final": "a816b56c1c294f48db12d6668d5af0f58436aa982f986096bf41b48b8af6367c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 293,
+      "lineasAgregadas": 293,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 293
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/integrations/excel/excel-writer.service.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 8216,
+      "sha256Final": "8ed23ed4c3637a7e4981e066760a3e711af3bcb3f063702786e6f38811817d95",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 240,
+      "lineasAgregadas": 240,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 240
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/biblioteca/repositories/sql-solicitud-bibliocra.repository.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 237,
+      "sha256Final": "070fd9a18926a5a707d91b1c867a6e1e6cf3a813fe474d58d5c8b21614b1c53f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 8,
+      "lineasAgregadas": 8,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 8
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/biblioteca/routes/solicitud-bibliocra.routes.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 281,
+      "sha256Final": "1e03a31531e7eb1273443bc472601be2baf0eef62e4d3a44b8ababd7a58dd32c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/biblioteca/services/biblioteca.service.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 441,
+      "sha256Final": "8008f81fe943fcb5af83551bb48b56d09fa3e5ec598d6bb15ef58ab0a2220726",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 21,
+      "lineasAgregadas": 21,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 21
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/calendario/services/calendario.service.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 1436,
+      "sha256Final": "6ce88aa8436b6670e1b4dd0ac26d9efc57240db5f452a050415dd13b45a64385",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 58,
+      "lineasAgregadas": 58,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 58
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/content-management/contenido-modulos.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 775,
+      "sha256Final": "2903c838cfee44f298a3083ee41aed7e05951083d4d5be97f7483c3e91ad32b6",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 39,
+      "lineasAgregadas": 39,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 39
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/content-management/contenido.controller.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 4237,
+      "sha256Final": "59c1af224ce6cbd5675f9d1df9d872465f8d43ded392d10bb8f96011ead66c9a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 185,
+      "lineasAgregadas": 185,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 185
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/content-management/contenido.service.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 10996,
+      "sha256Final": "fcc4619757149245683a5515f7b1f9cc9828c96086e9d9c7e346c44056c496ab",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 476,
+      "lineasAgregadas": 476,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 476
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/content-management/crear-contenido.routes.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 1013,
+      "sha256Final": "dc7f737838bd9b38e61ea2248b92549801ae6610dad1c5c144fced51bdfb9997",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 60,
+      "lineasAgregadas": 60,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 60
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/content-management/sql-contenido.repository.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 25441,
+      "sha256Final": "7b807281ae21be7ad1c675d408f41be1e66e16a23cf62084f93052f1b14df386",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 989,
+      "lineasAgregadas": 989,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 989
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/solicitudes-management/crear-solicitud.routes.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 505,
+      "sha256Final": "a2f3f634408bfbfa985df9ae1f62cec9e56dc4955cb13d204af2e6e948fd1cb5",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 30,
+      "lineasAgregadas": 30,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 30
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/solicitudes-management/solicitud.controller.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 1491,
+      "sha256Final": "bfeebc7ff7e58ae69fca078cb74772602851c7921174e97d5f4e4355f54d56f0",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 71,
+      "lineasAgregadas": 71,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 71
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/solicitudes-management/solicitud.service.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 3576,
+      "sha256Final": "735c088b197add604b4f1881bad1c5504add6464546c32ee3cacf314e7efe14f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 144,
+      "lineasAgregadas": 144,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 144
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/shared/solicitudes-management/sql-solicitud.repository.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 5185,
+      "sha256Final": "2af4ac90c668fa3c6ab1ca14733b51d8cc2cabf1111723cefc93dfacdf3a8bfa",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 224,
+      "lineasAgregadas": 224,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 224
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/tests/unit/contenido.service.test.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 2019,
+      "sha256Final": "7fc252fc08e89d3dcf41077e4c8e2418a232c8166273e7d66061d6f36fcb79cd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 90,
+      "lineasAgregadas": 90,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 90
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/tests/unit/excel.service.test.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 818,
+      "sha256Final": "9cd19aaa35fca402173e43fbefa2ff49b09a9101c69862ab56d69d771046f6d9",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 27,
+      "lineasAgregadas": 27,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 27
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/tests/unit/solicitud.service.test.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 1139,
+      "sha256Final": "266674c4f763d5e6ce13af892a4f4e99e4d71242deab18936899d6a241c528c9",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 40,
+      "lineasAgregadas": 40,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 40
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "database/migrations/006-gestion-contenido-pendiente.sql",
+      "estado": "NUEVO",
+      "tamanoFinal": 8996,
+      "sha256Final": "19ad829575b6e1216a24192aeeb9a9288f0fc9a7bce1d430a9ce90e4b1254b9e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 315,
+      "lineasAgregadas": 315,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 315
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "database/migrations/007-auditoria-consulta.sql",
+      "estado": "NUEVO",
+      "tamanoFinal": 5406,
+      "sha256Final": "85cd579ccc8bc29d316245025637bcc03e78282eacf045139ec7170c0daf9618",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 219,
+      "lineasAgregadas": 219,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 219
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "database/migrations/008-contenido-comunidad-contacto.sql",
+      "estado": "NUEVO",
+      "tamanoFinal": 7641,
+      "sha256Final": "1dcdbb8ff861e39075a7cec65363ba0f87e6c6db0464224badb165107f208724",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 301,
+      "lineasAgregadas": 301,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 301
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/comunidad.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 5604,
+      "sha256Final": "488905aac0a3cbe301faac04c98c362ab948401e7d8ceae9810765f5b557eb0c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 211,
+      "lineasAgregadas": 211,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 211
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/configuracion-publica.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 4962,
+      "sha256Final": "efef199bad6d2d1bbc377735391a170220d826670ec3fae7e31ce27dc6c6348d",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 181,
+      "lineasAgregadas": 181,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 181
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/contenido-modulos-publico.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 4917,
+      "sha256Final": "36c1142fca3e9cfea40993929c44ebc98cfdf548110b67bb707ec97d1531004c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 179,
+      "lineasAgregadas": 179,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 179
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/solicitud-bibliocra.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 3574,
+      "sha256Final": "c21157040d46392e6f5bed36311ff400d51c355027091355bab686b6d37e580a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 114,
+      "lineasAgregadas": 114,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 114
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/css/gestion-contenido-admin.css",
+      "estado": "NUEVO",
+      "tamanoFinal": 9041,
+      "sha256Final": "db221a6c8d8f6f9beb7f0409bb0088d6506756cf65acdb8ef4b4bd041a8e1bbf",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 408,
+      "lineasAgregadas": 408,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 408
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/gestion-contenido-admin.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 39175,
+      "sha256Final": "d547c33950f0ce18f00ed09a8d0de40fd2896eb1853cfe38f70783df42a2704c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 1407,
+      "lineasAgregadas": 1407,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 1407
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/paginas-simples.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 10919,
+      "sha256Final": "66a1f03b8e5344c1d8a88826b4c5f9dc97b48d57de082b8aaf035cd024a4dfcb",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 338,
+      "lineasAgregadas": 338,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 338
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/solicitudes-admin.js",
+      "estado": "NUEVO",
+      "tamanoFinal": 6675,
+      "sha256Final": "aff718dd1640cfb1ceb4a5b70a503adba601348fc7fc0fc0375a9cc576bd09bf",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 244,
+      "lineasAgregadas": 244,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 244
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/package.json",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 737,
+      "tamanoFinal": 932,
+      "sha256Original": "0a9207b73fd6b8f057c5777fbf8b0b53d1507d16122f6de14d1f87e8461ff00c",
+      "sha256Final": "5082f2908cc0bb88398b5bce167c233ee16e3c3a66903e5dcd99c710112688d8",
+      "tipoContenido": "texto",
+      "lineasOriginales": 36,
+      "lineasFinales": 39,
+      "lineasAgregadas": 4,
+      "lineasEliminadas": 1,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 12,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 12,
+            "cantidadLineas": 4
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/app.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 3986,
+      "tamanoFinal": 3776,
+      "sha256Original": "0f6eb73b3e40619ad4f4acaf2ac20273f49b33b20be2b65bca4973d9645a76dd",
+      "sha256Final": "00204e130225b87ee119abfcc392161dd026f16b14541681651cb32e02b541d2",
+      "tipoContenido": "texto",
+      "lineasOriginales": 213,
+      "lineasFinales": 213,
+      "lineasAgregadas": 2,
+      "lineasEliminadas": 2,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 128,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 128,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 139,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 139,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/container/dependency-container.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 3728,
+      "tamanoFinal": 8471,
+      "sha256Original": "20a1ad84b65aec40c21dd46047e3f45fa131fae0849e2bd8ebeb50055f1a9148",
+      "sha256Final": "c1c214e13897e7518ca26baacdc9e9a55057d5a7292391f14b694f8925f5f141",
+      "tipoContenido": "texto",
+      "lineasOriginales": 156,
+      "lineasFinales": 378,
+      "lineasAgregadas": 222,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 48,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 49,
+            "cantidadLineas": 96
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 65,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 162,
+            "cantidadLineas": 36
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 139,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 272,
+            "cantidadLineas": 78
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 154,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 365,
+            "cantidadLineas": 12
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/integrations/excel/excel-reader.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 9142,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "8bbedf326ff4ea1abf397f671fd7ef00efabb21cca692fc6dd854fd902a51f64",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 353,
+      "lineasAgregadas": 353,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 353
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/administradores/controllers/administrador.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 1462,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "780d0044f725acd9df9ea0db58053e705e0bf716882c826babe0aabfcd537da8",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 72,
+      "lineasAgregadas": 72,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 72
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/administradores/repositories/sql-administrador.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 6600,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "4dfedb3dcb1ae4e08117230f7744c3eb98012433b85eabc3a3bb34f37f781b9c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/administradores/routes/administrador.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 599,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "06d2d0b7886e00c894ae5e75b87ec7c77efebcdebcf0c22312be4d200abe9687",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 30,
+      "lineasAgregadas": 30,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 30
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/administradores/services/administrador.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 4353,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "191b4e79f698c25d8e64355a6c53445a8ca34f66b5e57bf73afc2343cb6db36a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 176,
+      "lineasAgregadas": 176,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 176
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/auditoria/controllers/auditoria.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 677,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "86eb5b4eff4842ecde72a1c29c4e87a25bbb0cd057476dd1ceca7a437ed923a2",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 33,
+      "lineasAgregadas": 33,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 33
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/auditoria/repositories/sql-auditoria.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 6475,
+      "tamanoFinal": 10330,
+      "sha256Original": "f9eaa28df7044e4538f22f74b0f2d7e7f8a93361a7f4f3b20e95c2b3e6985762",
+      "sha256Final": "c54911e544082eaad84826b7065e4586a868ffd565196d52527917e23bce8d59",
+      "tipoContenido": "texto",
+      "lineasOriginales": 284,
+      "lineasFinales": 443,
+      "lineasAgregadas": 159,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 281,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 282,
+            "cantidadLineas": 159
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/auditoria/routes/auditoria.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 391,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "e943de4fae9ec3990a7f92d6e194d4694aa0d2ee1b2bb468ad726e7644e4ce5f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 20,
+      "lineasAgregadas": 20,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 20
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/auditoria/services/auditoria.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 7571,
+      "tamanoFinal": 8299,
+      "sha256Original": "fb520b0b4f2bebb5fda112c1da57a26e66c07af85eafd8917b87f97dda920777",
+      "sha256Final": "7f25388e9f571cde438710ed85ca063c19c4d37c3672d8eb02d5bda13ffb4cbb",
+      "tipoContenido": "texto",
+      "lineasOriginales": 352,
+      "lineasFinales": 397,
+      "lineasAgregadas": 45,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 349,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 350,
+            "cantidadLineas": 45
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/biblioteca/controllers/biblioteca.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 315,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "3cbbbc48a8e28f5993a06e8f034c98ef2e66b0f6ed91f117f0e2f6fbb1217cb6",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 15,
+      "lineasAgregadas": 15,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 15
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/biblioteca/controllers/solicitud-bibliocra.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 353,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "e7d9037bbd47f6d3a97c50fea27ff0b7539730af9eaf0069f244be58d3127406",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 16,
+      "lineasAgregadas": 16,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 16
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/biblioteca/repositories/sql-biblioteca.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 215,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "f0cec79d44d93ce38b396c74e0a343f947fdc8d96a4fd38f5722d04ff650db08",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/biblioteca/routes/biblioteca.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 252,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a83c49bbc500b1b3296bf6eb8e16faf8913502656a79f891ddaf4fbbfbd80c35",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/biblioteca/services/solicitud-bibliocra.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 318,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "530219aea6ea4bd1eab33be22ccf4a571e126dc4f983d06810990fdbee8e32bf",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/boletines/controllers/boletin.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 303,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "12a39c23766b573e1569d151224f1b83b90d5c45124187f78410489994174912",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 15,
+      "lineasAgregadas": 15,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 15
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/boletines/repositories/sql-boletin.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 209,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "46a9590f066a99b95fae08364034f047ac39a02abfd5773584b85d68e1d664f2",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/boletines/routes/boletin.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 243,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "2c4c8f2a0cf2e781146f9f6c949f2887526661a6f698616b082e3466577048cc",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/boletines/services/boletin.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 678,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "f17b5cdaeb3154e7c23036075ce031018fdb08c68b7f13b3efaf9b3add522bcd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 31,
+      "lineasAgregadas": 31,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 31
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/calendario/controllers/calendario.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 315,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "b35a03aeea3b31ef445ad0f6684860a51ad71d54865bf57c6c697149dbf6eed1",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 15,
+      "lineasAgregadas": 15,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 15
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/calendario/repositories/sql-calendario.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 215,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "6bdb4ac36afc2995f52a23e377bf1b26dcf66a75e594b83532096896c41af32f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/calendario/routes/calendario.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 252,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "86e9c0d50633d53e8edb26b4617c71f3ee62beba2a61d29de984e7bb3024f674",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/configuracion-sitio/controllers/configuracion.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 1431,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "eea2b5f1d79a2df795a78325412e97f365254757c06b3f13531850097c3b3861",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 65,
+      "lineasAgregadas": 65,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 65
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/configuracion-sitio/repositories/sql-configuracion.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 3489,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "c61a76c063e6b37330b9d5210e8ed52f1b603df9163a225fd8eab3399e303e0e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 143,
+      "lineasAgregadas": 143,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 143
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/configuracion-sitio/routes/configuracion.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 533,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a3290c205a644eb2ad2a42666a1ed0ebbcbb59285a6d706c01185daa7b85f91c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 30,
+      "lineasAgregadas": 30,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 30
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/configuracion-sitio/services/configuracion.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 2296,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "79ec3563c231cbe59176231bd9b1f82937d708a43d0c8e46633dca67df4242dd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 84,
+      "lineasAgregadas": 84,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 84
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/contacto/controllers/contacto.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 307,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "8aa9b5cf0d586120983936021ec680889361d70ddbf75446c50126ffeba06d87",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 13,
+      "lineasAgregadas": 13,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 13
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/contacto/repositories/sql-contacto.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 215,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "52b8a0d51f2fa7bb1b0b333854c7b71123cdcdfd9931eebe1cec4cdcf43cae6f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/contacto/routes/contacto.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 250,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "3640d3dce68ed05e6f0a245b559fa6c309ae7a96217a7d06ce258557a5a8c5d0",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/contacto/services/contacto.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 297,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "49642d44a975f0d54d44e1a835325725187dd955a6c0ad060b89611586609295",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/docentes/controllers/docente.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 303,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "1f5e7e0afbbe90256006cea8c87c5df3f197e7b2207d3f773abbe732b9ca512c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 15,
+      "lineasAgregadas": 15,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 15
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/docentes/repositories/sql-docente.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 209,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "6efff778c6cba76a3fba4db5b61beeb1ec1b60731b741c6d35ecc3459d01ce35",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/docentes/routes/docente.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 243,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "54096eb55705e35028486dee57165813ac297749bbd20b1ce425b518dd500e16",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/docentes/services/docente.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 981,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "ed45f91de28a21107785f15d9026f331ee68b33dd14cd34d0363f57ab158b762",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 40,
+      "lineasAgregadas": 40,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 40
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/galeria/controllers/galeria.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 303,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "bee5ea065f69776d562e2b5ceb28fc78e587784a5c95ae898cd66d3e06c80803",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 15,
+      "lineasAgregadas": 15,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 15
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/galeria/repositories/sql-galeria.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 209,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "02194cf0602c3dee12f4dbe4897aaad0fe4538c504e6424f7aa8734566dd610a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/galeria/routes/galeria.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 243,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "42b8a87399b68ab57c2d545f60a6513dc08f06ad03ebb490ce0f86b2b17cca5f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/galeria/services/galeria.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 669,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "85efb90d3db7d87bac8d71031b5a19e1730da04be72f64f34af94e4e85b50867",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 31,
+      "lineasAgregadas": 31,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 31
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/horarios/controllers/horario.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 2513,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "54116a184e7e0d09afa58e7be6d596caaa6b57b60f96cacd895dadbb2199f613",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 114,
+      "lineasAgregadas": 114,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 114
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/horarios/repositories/sql-horario.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 209,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "47bd6bc8eaefa8544b6c7917919fbafe5c9353289e1c325c4c6c00d295ce782b",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/horarios/routes/horario.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 1140,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "8529435422bc566ee8180d0fb69875691313f2fbc4a38bc7d20a9035acd2268f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 52,
+      "lineasAgregadas": 52,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 52
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/horarios/services/horario.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 5378,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "9253afa8bb954948f6fd52d7e871b2b4242e6218747155566e83c587e03ba884",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 240,
+      "lineasAgregadas": 240,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 240
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/recursos-apoyo/controllers/recurso-apoyo.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 323,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "8e4ee642d8170f2aaf3216b6ab2b9fabd8a9f0eef1d4e1d878871171fcd5723e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 15,
+      "lineasAgregadas": 15,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 15
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/recursos-apoyo/repositories/sql-recurso-apoyo.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 219,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb04c4bbd18b03ea3ada7267aca532788e5bc689b1ba740bf0b4d66be388f867",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/recursos-apoyo/routes/recurso-apoyo.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 259,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "f8cf0a687cd5e0e58f0b88741901125ee145bad1d5960b4a41516bc9c49f84fb",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/recursos-apoyo/services/recurso-apoyo.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 680,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "f036ea82037d98f3f14a66e66e1f546efa190f016aa155b25d72f14d499ceb87",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 31,
+      "lineasAgregadas": 31,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 31
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/tramites/controllers/tramite.controller.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 303,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "4f79b6cb705fc85fcbe4e0121f60b44348805640c9d6958b394a9182e732f2b5",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 15,
+      "lineasAgregadas": 15,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 15
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/tramites/repositories/sql-tramite.repository.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 209,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "cf2a8c249dbd58279c65f3ddb69b122e60735c7e9550afdd280431fbd47c2c73",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 7,
+      "lineasAgregadas": 7,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/tramites/routes/tramite.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 243,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "63654b90d9cbc49a14e03be0d91fd5c7f0b37ac3fd19416876a89c2dd5e0383b",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 11,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 11
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/modules/tramites/services/tramite.service.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 433,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "8e4a1bc94ea4a12a57351e90b76a3413d6fdaefccb895d0e66d6555151c4ff61",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 21,
+      "lineasAgregadas": 21,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 21
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/src/routes/api.routes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 1075,
+      "tamanoFinal": 2904,
+      "sha256Original": "2d5ad0ec6314b91a95b2e65b661652ee697925792466b3a8b4bd6b16baf3c2bf",
+      "sha256Final": "b9bfddac1057590d030c224e63cf9f5f5a27e4d0670d36d56868c737a933e630",
+      "tipoContenido": "texto",
+      "lineasOriginales": 55,
+      "lineasFinales": 173,
+      "lineasAgregadas": 118,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 14,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 15,
+            "cantidadLineas": 52
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 54,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 107,
+            "cantidadLineas": 66
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "backend/tests/unit/horario.service.test.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 2802,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "6401d4d38db9b6a9a52366c4b08d23efaecab39674509ded04e54230d787c11a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 117,
+      "lineasAgregadas": 117,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 117
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "database/scripts/stored-procedures/autenticacion/sp_registrar_auditoria.sql",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 5406,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "85cd579ccc8bc29d316245025637bcc03e78282eacf045139ec7170c0daf9618",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 219,
+      "lineasAgregadas": 219,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 219
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/boletines.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 2012,
+      "tamanoFinal": 2856,
+      "sha256Original": "e2756b51a4cb519b4a226a2ee25d2ad0f6c762e37f4f4f9ba0f5a06c11c5dce6",
+      "sha256Final": "b1e024376d5fc002265b51de616c7bf4f43a994ddc599863a1edf6299658b287",
+      "tipoContenido": "texto",
+      "lineasOriginales": 52,
+      "lineasFinales": 82,
+      "lineasAgregadas": 46,
+      "lineasEliminadas": 16,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 17,
+            "cantidadLineas": 3
+          },
+          "final": {
+            "lineaInicio": 17,
+            "cantidadLineas": 14
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 34,
+            "cantidadLineas": 7
+          },
+          "final": {
+            "lineaInicio": 45,
+            "cantidadLineas": 23
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 42,
+            "cantidadLineas": 6
+          },
+          "final": {
+            "lineaInicio": 69,
+            "cantidadLineas": 9
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/calendario.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 21041,
+      "tamanoFinal": 22492,
+      "sha256Original": "cbbd5f0afa2cfb2d663566dddbdef91ecae12606eb69594edcf0042820a47a5b",
+      "sha256Final": "f97f32bae0ed322c31de8815e3ee72422fe5bd794ecd7e27868b9d7f45b65a4e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 670,
+      "lineasFinales": 717,
+      "lineasAgregadas": 50,
+      "lineasEliminadas": 3,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 50,
+            "cantidadLineas": 3
+          },
+          "final": {
+            "lineaInicio": 50,
+            "cantidadLineas": 50
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/contacto.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 1659,
+      "tamanoFinal": 5578,
+      "sha256Original": "012da4eb87203184fc5b8caa677f96728d580ca326605d7bd030143b68914024",
+      "sha256Final": "91e34b54e5559dde8982e399120ac6d80e94122177e6fbcdf6d9f6e79fa3b104",
+      "tipoContenido": "texto",
+      "lineasOriginales": 48,
+      "lineasFinales": 190,
+      "lineasAgregadas": 175,
+      "lineasEliminadas": 33,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 3,
+            "cantidadLineas": 5
+          },
+          "final": {
+            "lineaInicio": 3,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 8,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 5,
+            "cantidadLineas": 2
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 10,
+            "cantidadLineas": 4
+          },
+          "final": {
+            "lineaInicio": 8,
+            "cantidadLineas": 3
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 15,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 12,
+            "cantidadLineas": 5
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 18,
+            "cantidadLineas": 5
+          },
+          "final": {
+            "lineaInicio": 18,
+            "cantidadLineas": 5
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 24,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 24,
+            "cantidadLineas": 5
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 26,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 30,
+            "cantidadLineas": 2
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 31,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 35,
+            "cantidadLineas": 87
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 36,
+            "cantidadLineas": 6
+          },
+          "final": {
+            "lineaInicio": 125,
+            "cantidadLineas": 64
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 43,
+            "cantidadLineas": 6
+          },
+          "final": {
+            "lineaInicio": 190,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/filtros.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 5312,
+      "tamanoFinal": 9719,
+      "sha256Original": "29134b6709aeee29211dfb77dbe29b3d3eab47769b8149c2fb577d8f859c6886",
+      "sha256Final": "226f5297ccd421eb151b5c58f4a007bb603a8892d3531d1dc516072f989a7e1d",
+      "tipoContenido": "texto",
+      "lineasOriginales": 156,
+      "lineasFinales": 339,
+      "lineasAgregadas": 222,
+      "lineasEliminadas": 39,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 26,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 27,
+            "cantidadLineas": 40
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 32,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 73,
+            "cantidadLineas": 8
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 34,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 82,
+            "cantidadLineas": 14
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 40,
+            "cantidadLineas": 3
+          },
+          "final": {
+            "lineaInicio": 100,
+            "cantidadLineas": 63
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 76,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 196,
+            "cantidadLineas": 10
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 79,
+            "cantidadLineas": 6
+          },
+          "final": {
+            "lineaInicio": 208,
+            "cantidadLineas": 20
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 86,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 229,
+            "cantidadLineas": 3
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 89,
+            "cantidadLineas": 3
+          },
+          "final": {
+            "lineaInicio": 233,
+            "cantidadLineas": 2
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 93,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 236,
+            "cantidadLineas": 2
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 107,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 250,
+            "cantidadLineas": 10
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 110,
+            "cantidadLineas": 6
+          },
+          "final": {
+            "lineaInicio": 262,
+            "cantidadLineas": 17
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 117,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 280,
+            "cantidadLineas": 3
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 120,
+            "cantidadLineas": 3
+          },
+          "final": {
+            "lineaInicio": 284,
+            "cantidadLineas": 2
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 124,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 287,
+            "cantidadLineas": 2
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 138,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 301,
+            "cantidadLineas": 10
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 141,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 313,
+            "cantidadLineas": 6
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 147,
+            "cantidadLineas": 3
+          },
+          "final": {
+            "lineaInicio": 323,
+            "cantidadLineas": 10
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/js/horarios.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 14816,
+      "tamanoFinal": 15765,
+      "sha256Original": "d739eb2ac2b98f98928210c10bcb0a8812822389b82892a184ec2aae027be730",
+      "sha256Final": "0df3e00aad2ed0d2b83046ad770a5b341bbec8591b0f3518ffa45429b83f89d1",
+      "tipoContenido": "texto",
+      "lineasOriginales": 492,
+      "lineasFinales": 525,
+      "lineasAgregadas": 35,
+      "lineasEliminadas": 2,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 153,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 154,
+            "cantidadLineas": 33
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 160,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 193,
+            "cantidadLineas": 2
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/FormularioBibliocra.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 6753,
+      "tamanoFinal": 7120,
+      "sha256Original": "67342e468d0165bdc1520f7e76137b2a69fba52e9ce22f18043e34907892a43a",
+      "sha256Final": "e27a86daa2f99078fa45f2fbeb315b15090e5feca4e3ab8c748b41566c7397c8",
+      "tipoContenido": "texto",
+      "lineasOriginales": 176,
+      "lineasFinales": 183,
+      "lineasAgregadas": 10,
+      "lineasEliminadas": 3,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 59,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 59,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 107,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 108,
+            "cantidadLineas": 5
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 162,
+            "cantidadLineas": 2
+          },
+          "final": {
+            "lineaInicio": 167,
+            "cantidadLineas": 2
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 173,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 179,
+            "cantidadLineas": 2
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/biblioteca-recursos.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 23166,
+      "tamanoFinal": 23284,
+      "sha256Original": "8b1c67828c8edba6aa527ad26cbce1765bcd2bcc6116e1a009dddb2d44480225",
+      "sha256Final": "2ea3ffd92261ccb1e443d350503cb9a88f3f4da5e258946137aea9f068d345b8",
+      "tipoContenido": "texto",
+      "lineasOriginales": 558,
+      "lineasFinales": 560,
+      "lineasAgregadas": 2,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 555,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 556,
+            "cantidadLineas": 2
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/boletines.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 2164,
+      "tamanoFinal": 2221,
+      "sha256Original": "f76f4bf747a7c0ad1c8f31fc2c5315fecce2c2258324387fd16fa031b77e817e",
+      "sha256Final": "ceb7dc2c41ad017a552aea81374820b9c044f7a50be89c4426b6512d2d1e708b",
+      "tipoContenido": "texto",
+      "lineasOriginales": 59,
+      "lineasFinales": 60,
+      "lineasAgregadas": 1,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 48,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 49,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/calendario.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 5369,
+      "tamanoFinal": 5426,
+      "sha256Original": "271e4cf9268bfae6f6be68b3ef920fe02df9d9c8e8a44d1f392c643725e776db",
+      "sha256Final": "d7c3b0204b9683e04f1c57eeb728275b03985b4f2367020e689c14c22beec85d",
+      "tipoContenido": "texto",
+      "lineasOriginales": 134,
+      "lineasFinales": 135,
+      "lineasAgregadas": 1,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 130,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 131,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/comunidad.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 9768,
+      "tamanoFinal": 9870,
+      "sha256Original": "63f03b08c8de0b82ef5965dde9fa524debd69953bc8ee53dd6e70d7fe784bd0f",
+      "sha256Final": "184086184c39e45faba30de070ce4a2aa40e21975d4b599beed00605fd546a67",
+      "tipoContenido": "texto",
+      "lineasOriginales": 205,
+      "lineasFinales": 207,
+      "lineasAgregadas": 2,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 202,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 203,
+            "cantidadLineas": 2
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/contacto-ubicacion.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 5842,
+      "tamanoFinal": 5899,
+      "sha256Original": "b9e77ddf1572216b3cdff24ed3fe36261b5e27d86a33efe55c22b6e0e87b3f96",
+      "sha256Final": "3163e1917d3d6dc090c3f3ff5de310fd3664ead8cf77d92a71a9c329fcf50e19",
+      "tipoContenido": "texto",
+      "lineasOriginales": 114,
+      "lineasFinales": 115,
+      "lineasAgregadas": 1,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 111,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 112,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/directorio-docente.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 1917,
+      "tamanoFinal": 1974,
+      "sha256Original": "292e1b9af96bbc0890b438a138515e9469fe06489a3583cca8e62d6f9e56b145",
+      "sha256Final": "6e7d07c8bfdc4c83d36c9e84b40deb07a0e6e45e86292aed96140402e14bae9f",
+      "tipoContenido": "texto",
+      "lineasOriginales": 61,
+      "lineasFinales": 62,
+      "lineasAgregadas": 1,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 52,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 53,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/documentos-importantes.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 3533,
+      "tamanoFinal": 3590,
+      "sha256Original": "7c36acea2232d792082366e4cec5897f69a95d343cea5b4eb5753538aa76bd7f",
+      "sha256Final": "2c7e8c216fc2b3fa46ef8bf6073ecda1f67bc5eb07ee183764a608addf35e73d",
+      "tipoContenido": "texto",
+      "lineasOriginales": 100,
+      "lineasFinales": 101,
+      "lineasAgregadas": 1,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 88,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 89,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/enlaces-interes.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 2648,
+      "tamanoFinal": 2705,
+      "sha256Original": "54a7815e75d9bc1d557c4a695171c8e35d37468b1b74a72a41a6714d8a5fea78",
+      "sha256Final": "3202e84421f76faf6face3cc1975198762afb35c677ec38e8aeb71d7684d3c78",
+      "tipoContenido": "texto",
+      "lineasOriginales": 77,
+      "lineasFinales": 78,
+      "lineasAgregadas": 1,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 66,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 67,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "frontend-publico/pages/galeria.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 5261,
+      "tamanoFinal": 5379,
+      "sha256Original": "ad60e6ae0a098fe7546209a9b8b1992da373322e4693a59f83aae823117362ed",
+      "sha256Final": "0875c1590c7b7b32a0b714cb4902015ecacd33fb58bcf33231104e8b8a1870f9",
+      "tipoContenido": "texto",
+      "lineasOriginales": 125,
+      "lineasFinales": 127,
+      "lineasAgregadas": 2,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 122,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 123,
+            "cantidadLineas": 2
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/components/barra-lateral.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 23067,
+      "tamanoFinal": 22100,
+      "sha256Original": "4729bbc9af06e742ef3320de04dd9fff63eb8c1751e3686e07558de3b31b6767",
+      "sha256Final": "41927c93c1393a167cae34e10845fb0c7f8f1835ccc3ce471b690b741f705c9e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 1089,
+      "lineasFinales": 1089,
+      "lineasAgregadas": 11,
+      "lineasEliminadas": 11,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 61,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 61,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 67,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 67,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 182,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 182,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 184,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 184,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 193,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 193,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 195,
+            "cantidadLineas": 4
+          },
+          "final": {
+            "lineaInicio": 195,
+            "cantidadLineas": 4
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 227,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 227,
+            "cantidadLineas": 1
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 229,
+            "cantidadLineas": 1
+          },
+          "final": {
+            "lineaInicio": 229,
+            "cantidadLineas": 1
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/administradores.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 6020,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "9c423528c85bf3beb94770807c74839f7763b53a016df870b809339b17a67384",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 183,
+      "lineasAgregadas": 183,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 183
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/auditoria.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 3757,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "e7fd31458e7470d62745214ac2dd737cd5b4db3737d94cec7410457c04ebe248",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 123,
+      "lineasAgregadas": 123,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 123
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/biblioteca.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 2088,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "e8cc833c15126492ea6f2531f821d95c4bde1c051407d1a7d3f29a6e9e0cb466",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 83,
+      "lineasAgregadas": 83,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 83
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/boletines.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 2268,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "65ff2fcdd4120c3c89c4f0a9717992665cb92c3580b816bcd3bf3119a158ae45",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 91,
+      "lineasAgregadas": 91,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 91
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/calendario.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 5429,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "593a545a16bd0ea0cd5e6808fced07c56ed03600c557511994bca834278a09f6",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 204,
+      "lineasAgregadas": 204,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 204
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/calificaciones-historicas.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 2032,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "4e08b21c9ff05288b17feb7c09a448403c274fb28c55b577a39ad7e6ca169bc7",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 77,
+      "lineasAgregadas": 77,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 77
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/configuracion-sitio.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 4216,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "632fc4b99a9a0cd523fb54279a48c7889c4570875a922c7cf86f15e6fbaedf84",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 131,
+      "lineasAgregadas": 131,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 131
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/docentes.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 1796,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fd220405e08139ff33fd0af6c1636d52c5251e18cd81133e30f36e5eac924fa8",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 71,
+      "lineasAgregadas": 71,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 71
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/galeria.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 2249,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "1a6e7164b163a16417d1f3c1142b513d81b3cdf2a70086aa91a2277456d1f06c",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 86,
+      "lineasAgregadas": 86,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 86
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/horarios.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 4407,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fdd9598182bdb1a87d57490281af4b724618c3a2af9ab36df9e9cf5cf9053d63",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 156,
+      "lineasAgregadas": 156,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 156
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/recursos-apoyo.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 1972,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "e36d9e8f10672e266655aea2bfbc4ab7510d3d07f4156ad98d8003ba0fac2a68",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 77,
+      "lineasAgregadas": 77,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 77
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/js/modules/tramites.js",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 1795,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "1371bee4d329b8a0dd5cfc9d8fa62a4704d6a603ee81a145bd65f26c1c94c3d2",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 69,
+      "lineasAgregadas": 69,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 69
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/administradores/formulario-administrador.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 6789,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "e3fcc5ef434b8137745246c02bbef0ee803ea1ab9a2adeeebc022f5d6cd27cfa",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 199,
+      "lineasAgregadas": 199,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 199
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/administradores/lista-administradores.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 6789,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "e3fcc5ef434b8137745246c02bbef0ee803ea1ab9a2adeeebc022f5d6cd27cfa",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 199,
+      "lineasAgregadas": 199,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 199
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/auditoria/historial-auditoria.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 4796,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a9f472561d34e7167cb12eb857c6cf3b1721864753296ba40bcd3ab8fdc0a43a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 145,
+      "lineasAgregadas": 145,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 145
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/biblioteca/areas-biblioteca.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12776,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb11bad2851ca9e539650f5ca3a75960383cb169c96398fea9a789bcdd6a37fd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/biblioteca/categorias-materiales.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12776,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb11bad2851ca9e539650f5ca3a75960383cb169c96398fea9a789bcdd6a37fd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/biblioteca/contenido-biblioteca.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12776,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb11bad2851ca9e539650f5ca3a75960383cb169c96398fea9a789bcdd6a37fd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/biblioteca/detalle-solicitud-bibliocra.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 7470,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "d01022ec247b171b4f08ecc165950ac82d82cc4413ee7153b2e33adf80353a90",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 150,
+      "lineasAgregadas": 150,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 150
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/biblioteca/historia-biblioteca.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12776,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb11bad2851ca9e539650f5ca3a75960383cb169c96398fea9a789bcdd6a37fd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/biblioteca/recursos-digitales.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12776,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb11bad2851ca9e539650f5ca3a75960383cb169c96398fea9a789bcdd6a37fd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/biblioteca/servicios-biblioteca.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12776,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb11bad2851ca9e539650f5ca3a75960383cb169c96398fea9a789bcdd6a37fd",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/biblioteca/solicitudes-bibliocra.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 7470,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "d01022ec247b171b4f08ecc165950ac82d82cc4413ee7153b2e33adf80353a90",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 150,
+      "lineasAgregadas": 150,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 150
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/boletines/categorias-boletin.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12775,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "603f08d4d4b437312304b334fa3f7c67387b26ec7499d73a0ab5ab67c0a2b42a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/boletines/formulario-boletin.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12775,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "603f08d4d4b437312304b334fa3f7c67387b26ec7499d73a0ab5ab67c0a2b42a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/boletines/lista-boletines.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12775,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "603f08d4d4b437312304b334fa3f7c67387b26ec7499d73a0ab5ab67c0a2b42a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calendario/categorias-evento.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12780,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a005b14a21aa225411a15fd7a1a941c08ea89c3807d13660a3e513ab5c53783e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calendario/formulario-evento.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12780,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a005b14a21aa225411a15fd7a1a941c08ea89c3807d13660a3e513ab5c53783e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calendario/historial-importaciones.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12780,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a005b14a21aa225411a15fd7a1a941c08ea89c3807d13660a3e513ab5c53783e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calendario/importar-calendario.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12780,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a005b14a21aa225411a15fd7a1a941c08ea89c3807d13660a3e513ab5c53783e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calendario/lista-eventos.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12780,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a005b14a21aa225411a15fd7a1a941c08ea89c3807d13660a3e513ab5c53783e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calendario/subcategorias-evento.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12780,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "a005b14a21aa225411a15fd7a1a941c08ea89c3807d13660a3e513ab5c53783e",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calificaciones-historicas/consultas-calificaciones.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 5236,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "4110dc2f1faa29417233416fef65793551657503bc0c1225ee1347dc2cda111b",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 152,
+      "lineasAgregadas": 152,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 152
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calificaciones-historicas/formulario-calificacion.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 5236,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "4110dc2f1faa29417233416fef65793551657503bc0c1225ee1347dc2cda111b",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 152,
+      "lineasAgregadas": 152,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 152
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/calificaciones-historicas/lista-calificaciones.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 5236,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "4110dc2f1faa29417233416fef65793551657503bc0c1225ee1347dc2cda111b",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 152,
+      "lineasAgregadas": 152,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 152
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/configuracion-sitio/configuracion-sitio.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 6173,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "ce53e013d8e03d63892830eb32ef5cf9809c05c299e2d29b9e2954c4b10b0fc9",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 187,
+      "lineasAgregadas": 187,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 187
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/contacto/detalle-mensaje.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 7452,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "6183e97ab98cd449a93b1b47d003496ce29037214f2199f797f4ca5c90982142",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 150,
+      "lineasAgregadas": 150,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 150
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/contacto/lista-mensajes.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 7452,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "6183e97ab98cd449a93b1b47d003496ce29037214f2199f797f4ca5c90982142",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 150,
+      "lineasAgregadas": 150,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 150
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/docentes/estados-docente.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12767,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "22a9330c6f00140ec9c9160ab052fc8344519450bee1779cfec00b3805dd0fac",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/docentes/formulario-docente.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12767,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "22a9330c6f00140ec9c9160ab052fc8344519450bee1779cfec00b3805dd0fac",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/docentes/lista-docentes.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12767,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "22a9330c6f00140ec9c9160ab052fc8344519450bee1779cfec00b3805dd0fac",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/galeria/formulario-imagen.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12764,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "6c4ee5960f2cd277d21381128ec224366eacc3384b03cc93770e40bd349d1f6b",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/galeria/lista-imagenes.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12764,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "6c4ee5960f2cd277d21381128ec224366eacc3384b03cc93770e40bd349d1f6b",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/horarios/editar-horario.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12766,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "9dfcc0825f5ce62b1c0441cdd78fd190e8adba951d00064e5fe46a6cce614213",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/horarios/historial-importaciones.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12766,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "9dfcc0825f5ce62b1c0441cdd78fd190e8adba951d00064e5fe46a6cce614213",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/horarios/importar-horario.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12766,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "9dfcc0825f5ce62b1c0441cdd78fd190e8adba951d00064e5fe46a6cce614213",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/horarios/lista-horarios.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12766,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "9dfcc0825f5ce62b1c0441cdd78fd190e8adba951d00064e5fe46a6cce614213",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/horarios/versiones-horario.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12766,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "9dfcc0825f5ce62b1c0441cdd78fd190e8adba951d00064e5fe46a6cce614213",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/paginas-contenido/editar-secciones.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 67968,
+      "tamanoFinal": 66005,
+      "sha256Original": "1bb120feaefc026d9d5d07f411b32b6a78ef3f2bd22d01b4bc956136ace97b72",
+      "sha256Final": "a9b32f114b54bf83ac4c40ff347a3c01f46526f40b81715bbdb895f585e4747a",
+      "tipoContenido": "texto",
+      "lineasOriginales": 2177,
+      "lineasFinales": 2190,
+      "lineasAgregadas": 13,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 54,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 55,
+            "cantidadLineas": 6
+          }
+        },
+        {
+          "original": {
+            "lineaInicio": 2169,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 2176,
+            "cantidadLineas": 7
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/recursos-apoyo/categorias-recurso.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12824,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "b1652a13a25690f6c3016da3670b8bc5381b392477477fbccdf125f5ca5796b7",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/recursos-apoyo/formulario-recurso.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12824,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "b1652a13a25690f6c3016da3670b8bc5381b392477477fbccdf125f5ca5796b7",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/recursos-apoyo/lista-recursos.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12824,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "b1652a13a25690f6c3016da3670b8bc5381b392477477fbccdf125f5ca5796b7",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/tramites/categorias-tramite.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12773,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb545dea18c08c3fb9524e3f4ce6e3a962076a1e4b2a8d514a74fe107610bfe3",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/tramites/formulario-tramite.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12773,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb545dea18c08c3fb9524e3f4ce6e3a962076a1e4b2a8d514a74fe107610bfe3",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "panel-administrativo/pages/tramites/lista-tramites.html",
+      "estado": "MODIFICADO",
+      "tamanoOriginal": 0,
+      "tamanoFinal": 12773,
+      "sha256Original": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha256Final": "fb545dea18c08c3fb9524e3f4ce6e3a962076a1e4b2a8d514a74fe107610bfe3",
+      "tipoContenido": "texto",
+      "lineasOriginales": 0,
+      "lineasFinales": 256,
+      "lineasAgregadas": 256,
+      "lineasEliminadas": 0,
+      "bloquesCambio": [
+        {
+          "original": {
+            "lineaInicio": 0,
+            "cantidadLineas": 0
+          },
+          "final": {
+            "lineaInicio": 1,
+            "cantidadLineas": 256
+          }
+        }
+      ]
+    }
+  ]
+}

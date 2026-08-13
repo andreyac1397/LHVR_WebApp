@@ -1,0 +1,500 @@
+/* ============================================================
+   HORARIOS.CSS - Liceo Hernán Vargas Ramírez
+   ------------------------------------------------------------
+   Estilos propios para la pantalla de Horarios y trámites.
+   Mantiene la tabla en computadora.
+   En celular y tablet la tabla se hace más compacta y usa scroll.
+   ============================================================ */
+
+/* Tarjeta principal del horario */
+.horario {
+  margin-top: 24px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(43, 86, 58, 0.18);
+}
+
+/* Encabezado del horario */
+.horario .tarjeta__encabezado {
+  padding: 24px 28px 18px;
+  background: linear-gradient(135deg, rgba(43, 86, 58, 0.08), rgba(212, 175, 55, 0.10));
+  border-bottom: 1px solid rgba(43, 86, 58, 0.14);
+}
+
+.horario .etiqueta {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #2b563a;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.horario .tarjeta__titulo {
+  margin: 0 0 8px;
+  color: #173824;
+  font-size: 1.35rem;
+}
+
+.horario .tarjeta__texto {
+  margin: 0;
+  color: #374151;
+}
+
+/* Contenedor de tabla */
+.horario__tabla-contenedor {
+  width: 100%;
+  padding: 20px;
+  background: #ffffff;
+}
+
+/* Tabla */
+.horario__tabla {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.92rem;
+  color: #1f2937;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* Encabezados */
+.horario__tabla thead th {
+  padding: 14px 12px;
+  background: #2b563a;
+  color: #ffffff !important;
+  text-align: center;
+  font-weight: 700;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.horario__tabla thead th:last-child {
+  border-right: none;
+}
+
+/* Celdas */
+.horario__tabla td {
+  padding: 12px 10px;
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #edf0f2;
+  border-bottom: 1px solid #edf0f2;
+  line-height: 1.35;
+}
+
+.horario__tabla td:last-child {
+  border-right: none;
+}
+
+/* Filas alternas */
+.horario__tabla tbody tr:nth-child(even):not(.horario__fila--receso):not(.horario__fila--almuerzo) {
+  background: #f9fafb;
+}
+
+/* Hover */
+.horario__tabla tbody tr:hover:not(.horario__fila--receso):not(.horario__fila--almuerzo) {
+  background: #f1f7f3;
+}
+
+/* Columnas de lección y hora */
+.horario__tabla td:nth-child(1),
+.horario__tabla th:nth-child(1) {
+  width: 80px;
+  font-weight: 700;
+}
+
+.horario__tabla td:nth-child(2),
+.horario__tabla th:nth-child(2) {
+  width: 140px;
+  font-weight: 700;
+  color: #173824;
+}
+
+/* Recesos */
+.horario__fila--receso td {
+  background: #f7f1dd;
+  color: #5f4a12;
+  font-weight: 700;
+  border-bottom: 1px solid #eadca8;
+}
+
+/* Almuerzo */
+.horario__fila--almuerzo td {
+  background: #e8f3ec;
+  color: #1f4a31;
+  font-weight: 700;
+  border-bottom: 1px solid #cfe3d6;
+}
+
+/* Texto del receso / almuerzo centrado */
+.horario__fila--receso td[colspan],
+.horario__fila--almuerzo td[colspan] {
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Oculta vista móvil si en algún momento existe en el JS */
+.horario__vista-movil {
+  display: none;
+}
+
+/* Mantiene visible la tabla */
+.horario__vista-escritorio {
+  display: block;
+}
+
+/* Filtros de horarios */
+#filtrosNivelHorario,
+#filtrosSeccionHorario {
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+#filtrosSeccionHorario {
+  margin-top: 8px;
+}
+
+/* Estado inicial dentro de la tarjeta */
+#resultadoHorario .estado {
+  text-align: center;
+  color: #4b5563;
+}
+
+/* ============================================================
+   ESTADO INICIAL DE HORARIOS
+   ============================================================ */
+
+.horario-estado {
+  margin-top: 26px;
+  padding: 34px 28px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: linear-gradient(135deg, #ffffff 0%, #f3f8f5 55%, #fbf6e3 100%);
+  border: 1px solid rgba(43, 86, 58, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(17, 24, 39, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.horario-estado::before {
+  content: "";
+  position: absolute;
+  top: -70px;
+  right: -70px;
+  width: 180px;
+  height: 180px;
+  background: rgba(212, 175, 55, 0.18);
+  border-radius: 50%;
+}
+
+.horario-estado::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 190px;
+  height: 190px;
+  background: rgba(43, 86, 58, 0.10);
+  border-radius: 50%;
+}
+
+.horario-estado__icono {
+  width: 76px;
+  height: 76px;
+  min-width: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 22px;
+  background: #2b563a;
+  color: #ffffff;
+  box-shadow: 0 12px 28px rgba(43, 86, 58, 0.25);
+  position: relative;
+  z-index: 1;
+}
+
+.horario-estado__icono svg {
+  width: 38px;
+  height: 38px;
+}
+
+.horario-estado__contenido {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.horario-estado__contenido h3 {
+  margin: 0 0 8px;
+  color: #173824;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.horario-estado__contenido p {
+  margin: 0;
+  max-width: 720px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.horario-estado__secciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.horario-estado__secciones span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #2b563a;
+  border: 1px solid rgba(43, 86, 58, 0.18);
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+
+.horario-estado__pasos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.horario-estado__paso {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #eef2f0;
+  color: #5b6770;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.horario-estado__paso.activo {
+  background: #2b563a;
+  color: #ffffff;
+}
+
+.horario-estado__paso.completo {
+  background: #dfece4;
+  color: #1f4a31;
+}
+
+.horario-estado__separador {
+  color: #9ca3af;
+  font-weight: 800;
+}
+
+/* Estado de carga */
+.horario-estado--cargando .horario-estado__icono {
+  background: #d4af37;
+  color: #173824;
+}
+
+/* Estado de error */
+.horario-estado--error {
+  background: linear-gradient(135deg, #ffffff 0%, #fff1f1 100%);
+  border-color: rgba(185, 28, 28, 0.18);
+}
+
+.horario-estado--error .horario-estado__icono {
+  background: #b91c1c;
+}
+
+/* ============================================================
+   RESPONSIVE - TABLA COMPACTA CON SCROLL
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .horario {
+    max-width: 100%;
+    margin-top: 20px;
+    overflow: hidden;
+  }
+
+  .horario .tarjeta__encabezado {
+    padding: 20px 18px 16px;
+  }
+
+  .horario .tarjeta__titulo {
+    font-size: 1.18rem;
+  }
+
+  .horario .tarjeta__texto {
+    font-size: 0.9rem;
+  }
+
+  .horario__vista-escritorio {
+    display: block !important;
+  }
+
+  .horario__vista-movil {
+    display: none !important;
+  }
+
+  .horario__tabla-contenedor {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 12px;
+    background: #ffffff;
+  }
+
+  .horario__tabla {
+    width: 740px;
+    min-width: 740px;
+    table-layout: fixed;
+    font-size: 0.78rem;
+  }
+
+  .horario__tabla thead th {
+    padding: 9px 6px;
+    font-size: 0.76rem;
+    line-height: 1.2;
+  }
+
+  .horario__tabla td {
+    padding: 8px 6px;
+    font-size: 0.76rem;
+    line-height: 1.25;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .horario__tabla th:nth-child(1),
+  .horario__tabla td:nth-child(1) {
+    width: 58px;
+  }
+
+  .horario__tabla th:nth-child(2),
+  .horario__tabla td:nth-child(2) {
+    width: 92px;
+  }
+
+  .horario__tabla th:nth-child(n+3),
+  .horario__tabla td:nth-child(n+3) {
+    width: 118px;
+  }
+
+  .horario__tabla-contenedor::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .horario__tabla-contenedor::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 999px;
+  }
+
+  .horario__tabla-contenedor::-webkit-scrollbar-thumb {
+    background-color: rgba(43, 86, 58, 0.45);
+    border-radius: 999px;
+  }
+
+  .horario-estado {
+    padding: 28px 22px;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .horario {
+    border-radius: 16px;
+  }
+
+  .horario .tarjeta__encabezado {
+    padding: 18px 16px 14px;
+  }
+
+  .horario .etiqueta {
+    font-size: 0.68rem;
+    padding: 5px 10px;
+  }
+
+  .horario .tarjeta__titulo {
+    font-size: 1.08rem;
+  }
+
+  .horario .tarjeta__texto {
+    font-size: 0.86rem;
+  }
+
+  .horario__tabla-contenedor {
+    padding: 10px;
+  }
+
+  .horario__tabla {
+    width: 660px;
+    min-width: 660px;
+    font-size: 0.7rem;
+  }
+
+  .horario__tabla thead th {
+    padding: 8px 5px;
+    font-size: 0.68rem;
+  }
+
+  .horario__tabla td {
+    padding: 7px 5px;
+    font-size: 0.68rem;
+    line-height: 1.2;
+  }
+
+  .horario__tabla th:nth-child(1),
+  .horario__tabla td:nth-child(1) {
+    width: 50px;
+  }
+
+  .horario__tabla th:nth-child(2),
+  .horario__tabla td:nth-child(2) {
+    width: 82px;
+  }
+
+  .horario__tabla th:nth-child(n+3),
+  .horario__tabla td:nth-child(n+3) {
+    width: 105px;
+  }
+
+  .horario-estado {
+    flex-direction: column;
+    padding: 26px 20px;
+  }
+
+  .horario-estado__icono {
+    width: 62px;
+    height: 62px;
+    min-width: 62px;
+    border-radius: 18px;
+  }
+
+  .horario-estado__icono svg {
+    width: 31px;
+    height: 31px;
+  }
+
+  .horario-estado__contenido h3 {
+    font-size: 1.15rem;
+  }
+
+  .horario-estado__pasos {
+    gap: 8px;
+  }
+
+  .horario-estado__separador {
+    display: none;
+  }
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Galería · Liceo Hernán Vargas Ramírez</title>
+
+  <meta name="description"
+    content="Galería de imágenes de las instalaciones, actividades y vida escolar del Liceo Hernán Vargas Ramírez." />
+
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body data-pagina="galeria">
+  <!-- El encabezado se inserta con JavaScript (main.js) -->
+  <div id="encabezado"></div>
+
+  <main>
+    <!-- Banda / encabezado de la página -->
+    <section class="banda">
+      <div class="contenedor">
+        <p class="migas"><a href="../index.html">Inicio</a> / Galería</p>
+        <h1>Galería</h1>
+        <p>
+          Un recorrido visual por nuestras instalaciones, actividades institucionales,
+          participación estudiantil y espacios de aprendizaje.
+        </p>
+      </div>
+    </section>
+
+    <!-- Cuadrícula de imágenes -->
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="galeria">
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-0.jpg" alt="Entrada e instalaciones del Liceo Hernán Vargas Ramírez" loading="lazy" />
+            <figcaption class="galeria__pie">Instalaciones del liceo</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-2.jpg" alt="Actividad estudiantil en espacio techado del liceo" loading="lazy" />
+            <figcaption class="galeria__pie">Actividades estudiantiles</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-3.jpg" alt="Estudiantes representantes en actividades deportivas" loading="lazy" />
+            <figcaption class="galeria__pie">Representación deportiva</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-4.jpg" alt="Estudiantes participando en actividades deportivas del liceo" loading="lazy" />
+            <figcaption class="galeria__pie">Participación deportiva</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-5.jpg" alt="Participación cultural y académica en la institución" loading="lazy" />
+            <figcaption class="galeria__pie">Discurso de la directora</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-6.jpg" alt="Actividad institucional realizada en las instalaciones del liceo" loading="lazy" />
+            <figcaption class="galeria__pie">Actividad institucional</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-7.jpg" alt="Exposición de proyectos y materiales elaborados por estudiantes" loading="lazy" />
+            <figcaption class="galeria__pie">Exposiciones</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-8.jpg" alt="Grupo de estudiantes y personal durante actividad educativa" loading="lazy" />
+            <figcaption class="galeria__pie">Vida escolar</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-9.jpg" alt="Escaleras decoradas con valores institucionales" loading="lazy" />
+            <figcaption class="galeria__pie">Valores institucionales</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-10.jpg" alt="Estudiantes reunidos en actividad de convivencia escolar" loading="lazy" />
+            <figcaption class="galeria__pie">Acto cívico</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-11.jpg" alt="Actividad artística y educativa dentro del liceo" loading="lazy" />
+            <figcaption class="galeria__pie">Actividad artística</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-12.jpg" alt="Estudiantes representando a la comunidad educativa del liceo" loading="lazy" />
+            <figcaption class="galeria__pie">Ganadores estudiantiles</figcaption>
+          </figure>
+
+          <figure class="galeria__item">
+            <img src="../assets/img/galeria-1.jpg" alt="Actividad cultural con participación estudiantil" loading="lazy" />
+            <figcaption class="galeria__pie">Actividad cultural</figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox para ver imágenes en grande -->
+  <div class="lightbox" id="lightboxGaleria" aria-hidden="true">
+    <button class="lightbox__cerrar" id="cerrarLightbox" type="button" aria-label="Cerrar imagen">×</button>
+
+    <div class="lightbox__contenido">
+      <img id="lightboxImagen" src="" alt="" />
+      <p id="lightboxTitulo"></p>
+    </div>
+  </div>
+
+  <!-- El pie de página se inserta con JavaScript (main.js) -->
+  <div id="pie"></div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

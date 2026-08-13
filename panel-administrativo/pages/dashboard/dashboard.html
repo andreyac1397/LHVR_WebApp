@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Panel administrativo del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Dashboard | Panel administrativo LHVR
+  </title>
+
+  <!-- Variables compartidas del panel -->
+  <link
+    rel="stylesheet"
+    href="../../css/variables-admin.css"
+  >
+
+  <!-- Estilos generales del layout -->
+  <link
+    rel="stylesheet"
+    href="../../css/estilos-admin.css"
+  >
+
+  <!-- Estilos del menú lateral -->
+  <link
+    rel="stylesheet"
+    href="../../css/barra-lateral.css"
+  >
+
+  <!-- Estilos exclusivos del dashboard -->
+  <link
+    rel="stylesheet"
+    href="../../css/dashboard.css"
+  >
+
+  <!-- Adaptación para tablet y celular -->
+  <link
+    rel="stylesheet"
+    href="../../css/responsive-admin.css"
+  >
+</head>
+
+<body
+  class="pagina-dashboard"
+  data-titulo-pagina="Dashboard"
+>
+  <!-- ======================================================
+       CARGADOR DE PROTECCIÓN
+       Se muestra mientras se comprueba la sesión.
+       ====================================================== -->
+
+  <div
+    id="cargadorProteccion"
+    class="cargador-proteccion"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="cargador-proteccion__contenido">
+      <span
+        class="cargador-proteccion__indicador"
+        aria-hidden="true"
+      ></span>
+
+      <div>
+        <p class="cargador-proteccion__titulo">
+          Comprobando sesión
+        </p>
+
+        <p class="cargador-proteccion__texto">
+          Espere un momento mientras validamos su acceso.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       CONTENIDO PARTICULAR DE LA PÁGINA
+
+       layout-admin.js toma este elemento y lo coloca dentro
+       del layout compartido junto al menú y al encabezado.
+       ====================================================== -->
+
+  <main
+    id="contenidoPagina"
+    data-titulo="Dashboard"
+  >
+    <div
+      id="contenidoDashboard"
+      class="dashboard"
+      hidden
+    >
+      <!-- ================================================
+           ENCABEZADO INTERNO DE LA PÁGINA
+           ================================================ -->
+
+      <section class="admin-pagina__encabezado">
+        <div class="admin-pagina__titulo-contenedor">
+          <span class="admin-pagina__etiqueta">
+            Resumen general
+          </span>
+
+          <h1 class="admin-pagina__titulo">
+            Dashboard
+          </h1>
+
+          <p class="admin-pagina__descripcion">
+            Consulte un resumen del contenido institucional y acceda rápidamente a los principales módulos del panel.
+          </p>
+        </div>
+
+        <div class="admin-pagina__acciones">
+          <span class="dashboard__modo-demostracion">
+            Vista de demostración
+          </span>
+        </div>
+      </section>
+
+      <!-- ================================================
+           BIENVENIDA
+           ================================================ -->
+
+      <section
+        class="dashboard__bienvenida"
+        aria-labelledby="tituloBienvenida"
+      >
+        <div class="dashboard__bienvenida-contenido">
+          <span class="dashboard__bienvenida-etiqueta">
+            Sesión administrativa activa
+          </span>
+
+          <h2
+            id="tituloBienvenida"
+            class="dashboard__bienvenida-titulo"
+          >
+            Bienvenido,
+            <span id="nombreAdministrador">
+              Administrador
+            </span>
+          </h2>
+
+          <p class="dashboard__bienvenida-texto">
+            Desde este espacio puede administrar el contenido publicado en el sitio web del Liceo Hernán Vargas Ramírez.
+          </p>
+
+          <div class="dashboard__datos-sesion">
+            <div class="dashboard__dato-sesion">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="14"
+                  rx="2"
+                ></rect>
+
+                <path d="M3 7l9 6 9-6"></path>
+              </svg>
+
+              <div>
+                <span class="dashboard__dato-etiqueta">
+                  Correo
+                </span>
+
+                <span
+                  id="correoAdministrador"
+                  class="dashboard__dato-valor"
+                >
+                  Cargando...
+                </span>
+              </div>
+            </div>
+
+            <div class="dashboard__dato-sesion">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                ></path>
+
+                <path d="M9 12l2 2 4-4"></path>
+              </svg>
+
+              <div>
+                <span class="dashboard__dato-etiqueta">
+                  Estado
+                </span>
+
+                <span
+                  id="estadoAdministrador"
+                  class="dashboard__dato-valor"
+                >
+                  Cargando...
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="dashboard__bienvenida-decoracion"
+          aria-hidden="true"
+        >
+          <div class="dashboard__escudo">
+            <img
+              src="../../assets/logos/logo-liceo.jpg"
+              alt=""
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================
+           INDICADORES DE DEMOSTRACIÓN
+           ================================================ -->
+
+      <section
+        class="dashboard__seccion"
+        aria-labelledby="tituloIndicadores"
+      >
+        <div class="dashboard__seccion-encabezado">
+          <div>
+            <h2
+              id="tituloIndicadores"
+              class="dashboard__seccion-titulo"
+            >
+              Resumen institucional
+            </h2>
+
+            <p class="dashboard__seccion-descripcion">
+              Valores de demostración para visualizar la estructura del dashboard.
+            </p>
+          </div>
+        </div>
+
+        <div class="dashboard__indicadores">
+          <article class="dashboard__indicador">
+            <div
+              class="dashboard__indicador-icono dashboard__indicador-icono--verde"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 5h16v14H4z"></path>
+                <path d="M8 9h8"></path>
+                <path d="M8 13h8"></path>
+                <path d="M8 17h5"></path>
+              </svg>
+            </div>
+
+            <div class="dashboard__indicador-contenido">
+              <span class="dashboard__indicador-etiqueta">
+                Boletines publicados
+              </span>
+
+              <strong class="dashboard__indicador-valor">
+                12
+              </strong>
+
+              <span class="dashboard__indicador-detalle">
+                3 publicados este mes
+              </span>
+            </div>
+          </article>
+
+          <article class="dashboard__indicador">
+            <div
+              class="dashboard__indicador-icono dashboard__indicador-icono--dorado"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect
+                  x="3"
+                  y="5"
+                  width="18"
+                  height="16"
+                  rx="2"
+                ></rect>
+
+                <path d="M16 3v4"></path>
+                <path d="M8 3v4"></path>
+                <path d="M3 10h18"></path>
+              </svg>
+            </div>
+
+            <div class="dashboard__indicador-contenido">
+              <span class="dashboard__indicador-etiqueta">
+                Eventos próximos
+              </span>
+
+              <strong class="dashboard__indicador-valor">
+                6
+              </strong>
+
+              <span class="dashboard__indicador-detalle">
+                Durante los próximos 30 días
+              </span>
+            </div>
+          </article>
+
+          <article class="dashboard__indicador">
+            <div
+              class="dashboard__indicador-icono dashboard__indicador-icono--azul"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"
+                ></path>
+
+                <path
+                  d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                ></path>
+              </svg>
+            </div>
+
+            <div class="dashboard__indicador-contenido">
+              <span class="dashboard__indicador-etiqueta">
+                Solicitudes BiblioCRA
+              </span>
+
+              <strong class="dashboard__indicador-valor">
+                4
+              </strong>
+
+              <span class="dashboard__indicador-detalle">
+                Pendientes de revisión
+              </span>
+            </div>
+          </article>
+
+          <article class="dashboard__indicador">
+            <div
+              class="dashboard__indicador-icono dashboard__indicador-icono--vino"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="7"
+                  r="4"
+                ></circle>
+
+                <path
+                  d="M5.5 21a6.5 6.5 0 0 1 13 0"
+                ></path>
+              </svg>
+            </div>
+
+            <div class="dashboard__indicador-contenido">
+              <span class="dashboard__indicador-etiqueta">
+                Docentes registrados
+              </span>
+
+              <strong class="dashboard__indicador-valor">
+                37
+              </strong>
+
+              <span class="dashboard__indicador-detalle">
+                35 perfiles activos
+              </span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================================================
+           CONTENIDO INFERIOR
+           ================================================ -->
+
+      <section class="dashboard__cuadricula-principal">
+        <!-- Accesos rápidos -->
+
+        <article
+          class="admin-panel dashboard__panel-accesos"
+          aria-labelledby="tituloAccesosRapidos"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloAccesosRapidos"
+                class="admin-panel__titulo"
+              >
+                Accesos rápidos
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Ingrese directamente a las funciones más utilizadas.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <div class="dashboard__accesos">
+              <a
+                class="dashboard__acceso"
+                href="../boletines/lista-boletines.html"
+              >
+                <span class="dashboard__acceso-icono">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 5h16v14H4z"></path>
+                    <path d="M8 9h8"></path>
+                    <path d="M8 13h8"></path>
+                    <path d="M8 17h5"></path>
+                  </svg>
+                </span>
+
+                <span class="dashboard__acceso-contenido">
+                  <strong>Gestionar boletines</strong>
+                  <small>
+                    Crear, editar y publicar información.
+                  </small>
+                </span>
+
+                <svg
+                  class="dashboard__acceso-flecha"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 18l6-6-6-6"></path>
+                </svg>
+              </a>
+
+              <a
+                class="dashboard__acceso"
+                href="../calendario/lista-eventos.html"
+              >
+                <span class="dashboard__acceso-icono">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="3"
+                      y="5"
+                      width="18"
+                      height="16"
+                      rx="2"
+                    ></rect>
+
+                    <path d="M16 3v4"></path>
+                    <path d="M8 3v4"></path>
+                    <path d="M3 10h18"></path>
+                  </svg>
+                </span>
+
+                <span class="dashboard__acceso-contenido">
+                  <strong>Gestionar calendario</strong>
+                  <small>
+                    Administrar actividades institucionales.
+                  </small>
+                </span>
+
+                <svg
+                  class="dashboard__acceso-flecha"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 18l6-6-6-6"></path>
+                </svg>
+              </a>
+
+              <a
+                class="dashboard__acceso"
+                href="../docentes/lista-docentes.html"
+              >
+                <span class="dashboard__acceso-icono">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="12"
+                      cy="7"
+                      r="4"
+                    ></circle>
+
+                    <path
+                      d="M5.5 21a6.5 6.5 0 0 1 13 0"
+                    ></path>
+                  </svg>
+                </span>
+
+                <span class="dashboard__acceso-contenido">
+                  <strong>Gestionar docentes</strong>
+                  <small>
+                    Consultar y actualizar el directorio.
+                  </small>
+                </span>
+
+                <svg
+                  class="dashboard__acceso-flecha"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 18l6-6-6-6"></path>
+                </svg>
+              </a>
+
+              <a
+                class="dashboard__acceso"
+                href="../galeria/lista-imagenes.html"
+              >
+                <span class="dashboard__acceso-icono">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect
+                      x="3"
+                      y="4"
+                      width="18"
+                      height="16"
+                      rx="2"
+                    ></rect>
+
+                    <circle
+                      cx="8.5"
+                      cy="9"
+                      r="1.5"
+                    ></circle>
+
+                    <path d="M21 15l-5-5L5 20"></path>
+                  </svg>
+                </span>
+
+                <span class="dashboard__acceso-contenido">
+                  <strong>Gestionar galería</strong>
+                  <small>
+                    Organizar las imágenes institucionales.
+                  </small>
+                </span>
+
+                <svg
+                  class="dashboard__acceso-flecha"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 18l6-6-6-6"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Actividad reciente ficticia -->
+
+        <article
+          class="admin-panel dashboard__panel-actividad"
+          aria-labelledby="tituloActividadReciente"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloActividadReciente"
+                class="admin-panel__titulo"
+              >
+                Actividad reciente
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Ejemplo de los últimos cambios realizados.
+              </p>
+            </div>
+
+            <a
+              class="admin-boton admin-boton--texto admin-boton--pequeno"
+              href="../auditoria/historial-auditoria.html"
+            >
+              Ver auditoría
+            </a>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <ul class="dashboard__actividad-lista">
+              <li class="dashboard__actividad">
+                <span
+                  class="dashboard__actividad-indicador dashboard__actividad-indicador--verde"
+                  aria-hidden="true"
+                ></span>
+
+                <div class="dashboard__actividad-contenido">
+                  <strong>
+                    Se publicó un nuevo boletín
+                  </strong>
+
+                  <span>
+                    Información sobre el inicio del curso lectivo.
+                  </span>
+
+                  <time datetime="2026-07-30T10:20">
+                    Hoy, 10:20 a. m.
+                  </time>
+                </div>
+              </li>
+
+              <li class="dashboard__actividad">
+                <span
+                  class="dashboard__actividad-indicador dashboard__actividad-indicador--dorado"
+                  aria-hidden="true"
+                ></span>
+
+                <div class="dashboard__actividad-contenido">
+                  <strong>
+                    Se actualizó el calendario
+                  </strong>
+
+                  <span>
+                    Se agregó una nueva reunión institucional.
+                  </span>
+
+                  <time datetime="2026-07-29T14:35">
+                    Ayer, 2:35 p. m.
+                  </time>
+                </div>
+              </li>
+
+              <li class="dashboard__actividad">
+                <span
+                  class="dashboard__actividad-indicador dashboard__actividad-indicador--azul"
+                  aria-hidden="true"
+                ></span>
+
+                <div class="dashboard__actividad-contenido">
+                  <strong>
+                    Nueva solicitud BiblioCRA
+                  </strong>
+
+                  <span>
+                    Una solicitud está pendiente de revisión.
+                  </span>
+
+                  <time datetime="2026-07-29T09:15">
+                    Ayer, 9:15 a. m.
+                  </time>
+                </div>
+              </li>
+
+              <li class="dashboard__actividad">
+                <span
+                  class="dashboard__actividad-indicador dashboard__actividad-indicador--vino"
+                  aria-hidden="true"
+                ></span>
+
+                <div class="dashboard__actividad-contenido">
+                  <strong>
+                    Perfil docente actualizado
+                  </strong>
+
+                  <span>
+                    Se modificaron los datos de contacto.
+                  </span>
+
+                  <time datetime="2026-07-28T16:40">
+                    28 de julio, 4:40 p. m.
+                  </time>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <!-- ================================================
+           PRÓXIMOS EVENTOS
+           ================================================ -->
+
+      <section
+        class="admin-panel dashboard__eventos"
+        aria-labelledby="tituloProximosEventos"
+      >
+        <header class="admin-panel__encabezado">
+          <div>
+            <h2
+              id="tituloProximosEventos"
+              class="admin-panel__titulo"
+            >
+              Próximos eventos
+            </h2>
+
+            <p class="admin-panel__descripcion">
+              Ejemplo de actividades próximas del calendario institucional.
+            </p>
+          </div>
+
+          <a
+            class="admin-boton admin-boton--secundario admin-boton--pequeno"
+            href="../calendario/lista-eventos.html"
+          >
+            Ver calendario
+          </a>
+        </header>
+
+        <div class="admin-panel__contenido">
+          <div class="dashboard__eventos-lista">
+            <article class="dashboard__evento">
+              <div class="dashboard__evento-fecha">
+                <strong>05</strong>
+                <span>AGO</span>
+              </div>
+
+              <div class="dashboard__evento-informacion">
+                <h3>
+                  Reunión de personal docente
+                </h3>
+
+                <p>
+                  Sala de reuniones · 2:00 p. m.
+                </p>
+              </div>
+
+              <span class="admin-etiqueta admin-etiqueta--informacion">
+                Reunión
+              </span>
+            </article>
+
+            <article class="dashboard__evento">
+              <div class="dashboard__evento-fecha">
+                <strong>12</strong>
+                <span>AGO</span>
+              </div>
+
+              <div class="dashboard__evento-informacion">
+                <h3>
+                  Entrega de informes académicos
+                </h3>
+
+                <p>
+                  Área administrativa · Todo el día
+                </p>
+              </div>
+
+              <span class="admin-etiqueta admin-etiqueta--advertencia">
+                Académico
+              </span>
+            </article>
+
+            <article class="dashboard__evento">
+              <div class="dashboard__evento-fecha">
+                <strong>19</strong>
+                <span>AGO</span>
+              </div>
+
+              <div class="dashboard__evento-informacion">
+                <h3>
+                  Actividad cultural institucional
+                </h3>
+
+                <p>
+                  Gimnasio del liceo · 9:00 a. m.
+                </p>
+              </div>
+
+              <span class="admin-etiqueta admin-etiqueta--exito">
+                Actividad
+              </span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mensajes generales del dashboard -->
+
+      <div
+        id="mensajeDashboard"
+        class="dashboard__mensaje"
+        role="alert"
+        aria-live="polite"
+        hidden
+      ></div>
+
+      <footer class="dashboard__pie">
+        <p>
+          © 2026 Liceo Hernán Vargas Ramírez
+        </p>
+
+        <span>
+          Panel administrativo institucional
+        </span>
+      </footer>
+    </div>
+  </main>
+
+   <!-- ======================================================
+       LÓGICA EXCLUSIVA DEL DASHBOARD
+       ====================================================== -->
+
+  <script
+    src="../../js/modules/dashboard.js"
+    defer
+  ></script>
+
+  <!-- ======================================================
+       LAYOUT COMPARTIDO
+
+       Este archivo carga automáticamente:
+       - Configuración de la API
+       - Cliente HTTP
+       - Autenticación
+       - Sesión administrativa
+       - Protección de rutas
+       - Barra lateral
+       - Encabezado
+       ====================================================== -->
+
+  <script
+    src="../../js/components/layout-admin.js"
+    defer
+  ></script>
+</body>
+</html>

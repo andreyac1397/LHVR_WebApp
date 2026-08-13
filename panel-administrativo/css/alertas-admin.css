@@ -1,0 +1,422 @@
+/**
+ * ============================================================
+ * ALERTAS ADMINISTRATIVAS
+ * ------------------------------------------------------------
+ * Estilos del componente reutilizable alertas-admin.js.
+ *
+ * Tipos disponibles:
+ * - exito
+ * - error
+ * - advertencia
+ * - informacion
+ * ============================================================
+ */
+
+/* ============================================================
+   1. CONTENEDOR GLOBAL
+   ============================================================ */
+
+.contenedor-alertas-admin {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 10000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+
+  width: min(26rem, calc(100vw - 2.5rem));
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   2. TARJETA DE ALERTA
+   ============================================================ */
+
+.alerta-admin {
+  --alerta-color: #2563eb;
+  --alerta-fondo-icono: #eff6ff;
+  --alerta-borde: #bfdbfe;
+
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) 2rem;
+  align-items: start;
+  gap: 0.85rem;
+
+  width: 100%;
+  min-height: 5.25rem;
+  padding: 1rem;
+
+  overflow: hidden;
+
+  background-color: #ffffff;
+  border: 1px solid var(--alerta-borde);
+  border-left: 0.3rem solid var(--alerta-color);
+  border-radius: 0.9rem;
+
+  box-shadow:
+    0 1.2rem 2.5rem rgba(15, 23, 42, 0.16),
+    0 0.25rem 0.75rem rgba(15, 23, 42, 0.08);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateX(2rem) scale(0.98);
+
+  transition:
+    opacity 220ms ease,
+    visibility 220ms ease,
+    transform 220ms ease,
+    box-shadow 180ms ease;
+
+  pointer-events: auto;
+}
+
+.alerta-admin::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  height: 0.2rem;
+
+  background-color: var(--alerta-color);
+
+  opacity: 0.18;
+}
+
+.alerta-admin:hover {
+  box-shadow:
+    0 1.4rem 3rem rgba(15, 23, 42, 0.2),
+    0 0.3rem 0.9rem rgba(15, 23, 42, 0.1);
+}
+
+
+/* ============================================================
+   3. ESTADOS DE ANIMACIÓN
+   ============================================================ */
+
+.alerta-admin--visible {
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateX(0) scale(1);
+}
+
+.alerta-admin--saliendo {
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateX(2rem) scale(0.97);
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   4. TIPOS DE ALERTA
+   ============================================================ */
+
+.alerta-admin--exito {
+  --alerta-color: #15803d;
+  --alerta-fondo-icono: #ecfdf3;
+  --alerta-borde: #bbf7d0;
+}
+
+.alerta-admin--error {
+  --alerta-color: #b42318;
+  --alerta-fondo-icono: #fff1f0;
+  --alerta-borde: #fecaca;
+}
+
+.alerta-admin--advertencia {
+  --alerta-color: #b54708;
+  --alerta-fondo-icono: #fffaeb;
+  --alerta-borde: #fde68a;
+}
+
+.alerta-admin--informacion {
+  --alerta-color: #175cd3;
+  --alerta-fondo-icono: #eff8ff;
+  --alerta-borde: #bfdbfe;
+}
+
+
+/* ============================================================
+   5. ICONO
+   ============================================================ */
+
+.alerta-admin__icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.75rem;
+  height: 2.75rem;
+
+  color: var(--alerta-color);
+  background-color: var(--alerta-fondo-icono);
+
+  border-radius: 50%;
+
+  flex-shrink: 0;
+}
+
+.alerta-admin__icono svg {
+  width: 1.45rem;
+  height: 1.45rem;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   6. CONTENIDO
+   ============================================================ */
+
+.alerta-admin__contenido {
+  min-width: 0;
+  padding-top: 0.1rem;
+}
+
+.alerta-admin__titulo {
+  display: block;
+
+  margin: 0;
+
+  color: #182230;
+
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.35;
+
+  overflow-wrap: anywhere;
+}
+
+.alerta-admin__mensaje {
+  margin: 0.3rem 0 0;
+
+  color: #475467;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   7. BOTÓN CERRAR
+   ============================================================ */
+
+.alerta-admin__cerrar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+
+  color: #667085;
+  background-color: transparent;
+
+  border: 0;
+  border-radius: 0.5rem;
+
+  cursor: pointer;
+
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.alerta-admin__cerrar:hover {
+  color: #101828;
+  background-color: #f2f4f7;
+}
+
+.alerta-admin__cerrar:active {
+  transform: scale(0.94);
+}
+
+.alerta-admin__cerrar:focus-visible {
+  outline: 0.18rem solid rgba(23, 92, 211, 0.28);
+  outline-offset: 0.12rem;
+}
+
+.alerta-admin__cerrar svg {
+  width: 1.15rem;
+  height: 1.15rem;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   8. CONTRASTE SEGÚN EL TIPO
+   ============================================================ */
+
+.alerta-admin--exito .alerta-admin__titulo {
+  color: #14532d;
+}
+
+.alerta-admin--error .alerta-admin__titulo {
+  color: #7f1d1d;
+}
+
+.alerta-admin--advertencia .alerta-admin__titulo {
+  color: #78350f;
+}
+
+.alerta-admin--informacion .alerta-admin__titulo {
+  color: #1e3a8a;
+}
+
+
+/* ============================================================
+   9. TEMA OSCURO OPCIONAL
+   ============================================================ */
+
+body.tema-oscuro .alerta-admin,
+html[data-tema="oscuro"] .alerta-admin {
+  background-color: #182230;
+
+  box-shadow:
+    0 1.2rem 2.5rem rgba(0, 0, 0, 0.38),
+    0 0.25rem 0.75rem rgba(0, 0, 0, 0.24);
+}
+
+body.tema-oscuro .alerta-admin__titulo,
+html[data-tema="oscuro"] .alerta-admin__titulo {
+  color: #f9fafb;
+}
+
+body.tema-oscuro .alerta-admin__mensaje,
+html[data-tema="oscuro"] .alerta-admin__mensaje {
+  color: #d0d5dd;
+}
+
+body.tema-oscuro .alerta-admin__cerrar,
+html[data-tema="oscuro"] .alerta-admin__cerrar {
+  color: #d0d5dd;
+}
+
+body.tema-oscuro .alerta-admin__cerrar:hover,
+html[data-tema="oscuro"] .alerta-admin__cerrar:hover {
+  color: #ffffff;
+  background-color: #344054;
+}
+
+
+/* ============================================================
+   10. TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .contenedor-alertas-admin {
+    top: 1rem;
+    right: 1rem;
+
+    width: min(24rem, calc(100vw - 2rem));
+  }
+
+  .alerta-admin {
+    grid-template-columns: 2.5rem minmax(0, 1fr) 1.85rem;
+
+    gap: 0.7rem;
+
+    min-height: 4.8rem;
+    padding: 0.9rem;
+  }
+
+  .alerta-admin__icono {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .alerta-admin__icono svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+}
+
+
+/* ============================================================
+   11. CELULAR
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .contenedor-alertas-admin {
+    top: 0.75rem;
+    right: 0.75rem;
+    left: 0.75rem;
+
+    width: auto;
+  }
+
+  .alerta-admin {
+    grid-template-columns: 2.35rem minmax(0, 1fr) 1.8rem;
+
+    gap: 0.65rem;
+
+    padding: 0.8rem;
+
+    border-radius: 0.75rem;
+  }
+
+  .alerta-admin__icono {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .alerta-admin__titulo {
+    font-size: 0.92rem;
+  }
+
+  .alerta-admin__mensaje {
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  .alerta-admin__cerrar {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+
+/* ============================================================
+   12. ACCESIBILIDAD: REDUCIR MOVIMIENTO
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .alerta-admin,
+  .alerta-admin__cerrar {
+    transition: none;
+  }
+
+  .alerta-admin {
+    transform: none;
+  }
+
+  .alerta-admin--visible {
+    transform: none;
+  }
+
+  .alerta-admin--saliendo {
+    transform: none;
+  }
+}

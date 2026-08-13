@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Horarios y trámites | Liceo Hernán Vargas Ramírez</title>
+
+  <meta name="description"
+    content="Consulta horarios por sección, trámites y documentos importantes del Liceo Hernán Vargas Ramírez." />
+  <meta name="theme-color" content="#2b563a" />
+
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/horarios.css" />
+  <link rel="icon" href="../assets/logos/logo-liceo.jpg" />
+</head>
+
+<body data-pagina="documentos">
+  <div id="encabezado"></div>
+
+  <main>
+    <section class="banda">
+      <div class="contenedor">
+        <p class="migas"><a href="../index.html">Inicio</a> / Horarios y trámites</p>
+        <h1>Horarios y trámites</h1>
+        <p>Consulta los horarios por sección y revisa documentos importantes del liceo.</p>
+      </div>
+    </section>
+
+    <!-- Horarios por sección -->
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="encabezado-seccion texto-centrado">
+          <h2 class="titulo-seccion">Horarios por sección</h2>
+          <p class="subtitulo-seccion" style="margin: 0 auto">
+            Selecciona el nivel y luego la sección para consultar el horario correspondiente.
+          </p>
+        </div>
+
+        <!-- Filtros de nivel -->
+        <div class="filtros" id="filtrosNivelHorario">
+          <p class="estado">Cargando niveles...</p>
+        </div>
+
+        <!-- Filtros de sección -->
+        <div class="filtros" id="filtrosSeccionHorario">
+        </div>
+
+        <!-- Resultado del horario -->
+        <div id="resultadoHorario">
+          <div class="tarjeta">
+            <p class="estado">Seleccione un nivel y una sección para consultar el horario correspondiente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trámites y documentos importantes -->
+    <section class="seccion seccion--suave">
+      <div class="contenedor">
+        <div class="encabezado-seccion texto-centrado">
+          <h2 class="titulo-seccion">Trámites y documentos importantes</h2>
+          <p class="subtitulo-seccion" style="margin: 0 auto">
+            Consulta trámites internos, documentos informativos y guías de beneficios estudiantiles disponibles.
+          </p>
+        </div>
+
+        <!-- Filtros por tipo de documento -->
+        <div class="filtros" id="filtrosDocumentos">
+          <button class="filtro activo" data-filtro="todos" type="button">Todos</button>
+          <button class="filtro" data-filtro="matricula" type="button">Matrícula</button>
+          <button class="filtro" data-filtro="solicitud" type="button">Solicitudes</button>
+          <button class="filtro" data-filtro="beneficio" type="button">Beneficios</button>
+        </div>
+
+        <!-- Tarjetas cargadas desde data/documentos.json -->
+        <div class="cuadricula cuadricula--3" id="listaDocumentos">
+          <p class="estado">Cargando documentos...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="pie"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/filtros.js"></script>
+  <script src="../js/horarios.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      await renderDocumentos("listaDocumentos");
+      activarFiltros("filtrosDocumentos", "listaDocumentos");
+    });
+  </script>
+</body>
+
+</html>

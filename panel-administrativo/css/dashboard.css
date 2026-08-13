@@ -1,0 +1,1400 @@
+/* ============================================================
+   DASHBOARD DEL PANEL ADMINISTRATIVO
+   Liceo Hernán Vargas Ramírez
+   ------------------------------------------------------------
+   Contiene:
+   1. Protección y carga inicial
+   2. Estructura del dashboard
+   3. Bienvenida
+   4. Datos de sesión
+   5. Indicadores
+   6. Accesos rápidos
+   7. Actividad reciente
+   8. Próximos eventos
+   9. Mensajes y pie
+   10. Adaptación responsive
+   ============================================================ */
+
+
+/* ============================================================
+   1. PROTECCIÓN Y CARGA INICIAL
+   ============================================================ */
+
+.cargador-proteccion {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(129, 161, 106, 0.18),
+      transparent 28rem
+    ),
+    linear-gradient(
+      145deg,
+      #f8faf8,
+      #edf3ee
+    );
+}
+
+.cargador-proteccion__contenido {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+  max-width: 390px;
+  padding: 22px 24px;
+
+  background-color:
+    rgba(255, 255, 255, 0.94);
+
+  border:
+    1px solid rgba(84, 120, 70, 0.18);
+
+  border-radius:
+    var(--admin-radio-lg);
+
+  box-shadow:
+    var(--admin-sombra-media);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.cargador-proteccion__indicador {
+  flex: 0 0 auto;
+
+  width: 40px;
+  height: 40px;
+
+  border:
+    4px solid rgba(84, 120, 70, 0.18);
+
+  border-top-color:
+    var(--admin-verde-oscuro);
+
+  border-radius: 50%;
+
+  animation:
+    girarCargadorDashboard
+    0.8s linear infinite;
+}
+
+@keyframes girarCargadorDashboard {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cargador-proteccion__titulo {
+  margin-bottom: 3px;
+
+  color: var(--admin-verde-oscuro);
+
+  font-family:
+    var(--admin-fuente-titulos);
+
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.cargador-proteccion__texto {
+  margin: 0;
+
+  color: var(--admin-texto-secundario);
+
+  font-size: 0.84rem;
+}
+
+
+/* ============================================================
+   2. ESTRUCTURA DEL DASHBOARD
+   ============================================================ */
+
+.dashboard {
+  display: grid;
+  gap: 26px;
+
+  width: 100%;
+
+  animation:
+    aparecerDashboard
+    0.35s ease both;
+}
+
+.dashboard[hidden] {
+  display: none;
+}
+
+@keyframes aparecerDashboard {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard__modo-demostracion {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 7px 12px;
+
+  color: var(--admin-marron-oscuro);
+  background-color:
+    var(--admin-dorado-suave);
+
+  border:
+    1px solid rgba(174, 132, 75, 0.3);
+
+  border-radius:
+    var(--admin-radio-redondo);
+
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.dashboard__modo-demostracion::before {
+  width: 8px;
+  height: 8px;
+
+  background-color:
+    var(--admin-dorado);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(174, 132, 75, 0.13);
+
+  content: "";
+}
+
+
+/* ============================================================
+   3. BIENVENIDA
+   ============================================================ */
+
+.dashboard__bienvenida {
+  position: relative;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    230px;
+  align-items: center;
+  gap: 32px;
+
+  min-height: 270px;
+  padding: 34px 38px;
+
+  overflow: hidden;
+
+  color: var(--admin-blanco);
+
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(174, 132, 75, 0.24),
+      transparent 18rem
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(129, 161, 106, 0.22),
+      transparent 20rem
+    ),
+    linear-gradient(
+      135deg,
+      var(--admin-verde-oscuro),
+      var(--admin-verde-profundo)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius:
+    var(--admin-radio-xl);
+
+  box-shadow:
+    0 18px 42px
+    rgba(31, 66, 44, 0.22);
+}
+
+.dashboard__bienvenida::before {
+  position: absolute;
+  top: -80px;
+  right: 120px;
+
+  width: 220px;
+  height: 220px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 50%;
+
+  content: "";
+}
+
+.dashboard__bienvenida::after {
+  position: absolute;
+  right: -70px;
+  bottom: -100px;
+
+  width: 270px;
+  height: 270px;
+
+  background-color:
+    rgba(255, 255, 255, 0.035);
+
+  border-radius: 50%;
+
+  content: "";
+}
+
+.dashboard__bienvenida-contenido {
+  position: relative;
+  z-index: 2;
+
+  min-width: 0;
+}
+
+.dashboard__bienvenida-etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 12px;
+  padding: 6px 11px;
+
+  color:
+    rgba(255, 255, 255, 0.9);
+
+  background-color:
+    rgba(255, 255, 255, 0.1);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius:
+    var(--admin-radio-redondo);
+
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dashboard__bienvenida-etiqueta::before {
+  width: 7px;
+  height: 7px;
+
+  background-color:
+    var(--admin-verde-claro);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(129, 161, 106, 0.14);
+
+  content: "";
+}
+
+.dashboard__bienvenida-titulo {
+  margin-bottom: 11px;
+
+  color: var(--admin-blanco);
+
+  font-family:
+    var(--admin-fuente-titulos);
+
+  font-size:
+    clamp(1.85rem, 3vw, 2.5rem);
+
+  font-weight: 700;
+  line-height: 1.16;
+}
+
+.dashboard__bienvenida-titulo span {
+  color: #d7e3cf;
+}
+
+.dashboard__bienvenida-texto {
+  max-width: 710px;
+  margin-bottom: 24px;
+
+  color:
+    rgba(255, 255, 255, 0.76);
+
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+
+/* ============================================================
+   4. DATOS DE SESIÓN
+   ============================================================ */
+
+.dashboard__datos-sesion {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.dashboard__dato-sesion {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  min-width: 210px;
+  max-width: 320px;
+  padding: 11px 14px;
+
+  background-color:
+    rgba(255, 255, 255, 0.08);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.11);
+
+  border-radius:
+    var(--admin-radio-md);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.dashboard__dato-sesion svg {
+  flex: 0 0 auto;
+
+  width: 21px;
+  height: 21px;
+
+  color: var(--admin-dorado);
+}
+
+.dashboard__dato-sesion > div {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.dashboard__dato-etiqueta {
+  margin-bottom: 2px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dashboard__dato-valor {
+  overflow: hidden;
+
+  color: var(--admin-blanco);
+
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard__bienvenida-decoracion {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.dashboard__escudo {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 176px;
+  height: 176px;
+  padding: 18px;
+
+  background-color:
+    rgba(255, 255, 255, 0.94);
+
+  border:
+    5px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.24);
+}
+
+.dashboard__escudo::before {
+  position: absolute;
+  inset: -13px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.16);
+
+  border-radius: 50%;
+
+  content: "";
+}
+
+.dashboard__escudo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  border-radius: 50%;
+}
+
+
+/* ============================================================
+   5. SECCIONES E INDICADORES
+   ============================================================ */
+
+.dashboard__seccion {
+  display: grid;
+  gap: 17px;
+}
+
+.dashboard__seccion-encabezado {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.dashboard__seccion-titulo {
+  margin-bottom: 4px;
+
+  color: var(--admin-verde-oscuro);
+
+  font-family:
+    var(--admin-fuente-titulos);
+
+  font-size: 1.34rem;
+  line-height: 1.3;
+}
+
+.dashboard__seccion-descripcion {
+  margin: 0;
+
+  color: var(--admin-texto-secundario);
+
+  font-size: 0.87rem;
+}
+
+.dashboard__indicadores {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.dashboard__indicador {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  min-width: 0;
+  min-height: 132px;
+  padding: 20px;
+
+  overflow: hidden;
+
+  background-color:
+    var(--admin-superficie);
+
+  border:
+    1px solid var(--admin-borde);
+
+  border-radius:
+    var(--admin-radio-lg);
+
+  box-shadow:
+    var(--admin-sombra-suave);
+
+  transition:
+    transform var(--admin-transicion),
+    border-color var(--admin-transicion),
+    box-shadow var(--admin-transicion);
+}
+
+.dashboard__indicador::after {
+  position: absolute;
+  right: -28px;
+  bottom: -38px;
+
+  width: 100px;
+  height: 100px;
+
+  background-color:
+    rgba(84, 120, 70, 0.035);
+
+  border-radius: 50%;
+
+  content: "";
+}
+
+.dashboard__indicador:hover {
+  border-color:
+    rgba(84, 120, 70, 0.3);
+
+  box-shadow:
+    var(--admin-sombra);
+
+  transform: translateY(-3px);
+}
+
+.dashboard__indicador-icono {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 51px;
+  height: 51px;
+
+  border-radius:
+    15px;
+}
+
+.dashboard__indicador-icono svg {
+  width: 24px;
+  height: 24px;
+}
+
+.dashboard__indicador-icono--verde {
+  color: var(--admin-verde-oscuro);
+  background-color:
+    var(--admin-verde-suave);
+}
+
+.dashboard__indicador-icono--dorado {
+  color: var(--admin-marron-oscuro);
+  background-color:
+    var(--admin-dorado-suave);
+}
+
+.dashboard__indicador-icono--azul {
+  color: var(--admin-informacion);
+  background-color:
+    var(--admin-informacion-fondo);
+}
+
+.dashboard__indicador-icono--vino {
+  color: var(--admin-rojo-vino);
+  background-color:
+    var(--admin-rojo-suave);
+}
+
+.dashboard__indicador-contenido {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.dashboard__indicador-etiqueta {
+  overflow: hidden;
+
+  margin-bottom: 3px;
+
+  color: var(--admin-texto-secundario);
+
+  font-size: 0.77rem;
+  font-weight: 700;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard__indicador-valor {
+  margin-bottom: 2px;
+
+  color: var(--admin-verde-oscuro);
+
+  font-family:
+    var(--admin-fuente-titulos);
+
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+
+.dashboard__indicador-detalle {
+  color: var(--admin-texto-suave);
+
+  font-size: 0.72rem;
+}
+
+
+/* ============================================================
+   6. CUADRÍCULA PRINCIPAL
+   ============================================================ */
+
+.dashboard__cuadricula-principal {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(340px, 0.85fr);
+  gap: 20px;
+
+  align-items: stretch;
+}
+
+.dashboard__panel-accesos,
+.dashboard__panel-actividad {
+  min-width: 0;
+  height: 100%;
+}
+
+
+/* ============================================================
+   7. ACCESOS RÁPIDOS
+   ============================================================ */
+
+.dashboard__accesos {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.dashboard__acceso {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+  min-height: 88px;
+  padding: 14px;
+
+  color: var(--admin-texto);
+
+  background-color:
+    var(--admin-superficie-suave);
+
+  border:
+    1px solid var(--admin-borde);
+
+  border-radius:
+    var(--admin-radio-md);
+
+  transition:
+    color var(--admin-transicion-rapida),
+    background-color var(--admin-transicion-rapida),
+    border-color var(--admin-transicion-rapida),
+    box-shadow var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida);
+}
+
+.dashboard__acceso:hover {
+  color: var(--admin-texto);
+
+  background-color:
+    var(--admin-verde-suave);
+
+  border-color:
+    rgba(84, 120, 70, 0.3);
+
+  box-shadow:
+    var(--admin-sombra-suave);
+
+  transform:
+    translateY(-2px);
+}
+
+.dashboard__acceso-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 42px;
+  height: 42px;
+
+  color: var(--admin-verde-oscuro);
+  background-color:
+    var(--admin-blanco);
+
+  border:
+    1px solid rgba(84, 120, 70, 0.18);
+
+  border-radius:
+    var(--admin-radio-md);
+
+  transition:
+    color var(--admin-transicion-rapida),
+    background-color var(--admin-transicion-rapida);
+}
+
+.dashboard__acceso:hover
+.dashboard__acceso-icono {
+  color: var(--admin-blanco);
+  background-color:
+    var(--admin-verde-oscuro);
+}
+
+.dashboard__acceso-icono svg {
+  width: 21px;
+  height: 21px;
+}
+
+.dashboard__acceso-contenido {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.dashboard__acceso-contenido strong {
+  overflow: hidden;
+
+  margin-bottom: 3px;
+
+  color: var(--admin-verde-oscuro);
+
+  font-size: 0.84rem;
+  line-height: 1.25;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard__acceso-contenido small {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  color: var(--admin-texto-secundario);
+
+  font-size: 0.72rem;
+  line-height: 1.35;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.dashboard__acceso-flecha {
+  flex: 0 0 auto;
+
+  width: 18px;
+  height: 18px;
+
+  color: var(--admin-texto-suave);
+
+  transition:
+    color var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida);
+}
+
+.dashboard__acceso:hover
+.dashboard__acceso-flecha {
+  color: var(--admin-verde-oscuro);
+
+  transform:
+    translateX(3px);
+}
+
+
+/* ============================================================
+   8. ACTIVIDAD RECIENTE
+   ============================================================ */
+
+.dashboard__actividad-lista {
+  display: grid;
+}
+
+.dashboard__actividad {
+  display: grid;
+  grid-template-columns:
+    12px minmax(0, 1fr);
+  gap: 12px;
+
+  padding: 14px 0;
+
+  border-bottom:
+    1px solid var(--admin-borde);
+}
+
+.dashboard__actividad:first-child {
+  padding-top: 2px;
+}
+
+.dashboard__actividad:last-child {
+  padding-bottom: 2px;
+  border-bottom: 0;
+}
+
+.dashboard__actividad-indicador {
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+
+  border-radius: 50%;
+}
+
+.dashboard__actividad-indicador--verde {
+  background-color:
+    var(--admin-verde-medio);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(84, 120, 70, 0.12);
+}
+
+.dashboard__actividad-indicador--dorado {
+  background-color:
+    var(--admin-dorado);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(174, 132, 75, 0.12);
+}
+
+.dashboard__actividad-indicador--azul {
+  background-color:
+    var(--admin-azul-verdoso);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(132, 161, 159, 0.14);
+}
+
+.dashboard__actividad-indicador--vino {
+  background-color:
+    var(--admin-rojo-vino);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(156, 68, 60, 0.11);
+}
+
+.dashboard__actividad-contenido {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.dashboard__actividad-contenido strong {
+  margin-bottom: 3px;
+
+  color: var(--admin-texto);
+
+  font-size: 0.83rem;
+  line-height: 1.3;
+}
+
+.dashboard__actividad-contenido span {
+  margin-bottom: 5px;
+
+  color: var(--admin-texto-secundario);
+
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.dashboard__actividad-contenido time {
+  color: var(--admin-texto-suave);
+
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   9. PRÓXIMOS EVENTOS
+   ============================================================ */
+
+.dashboard__eventos {
+  width: 100%;
+}
+
+.dashboard__eventos-lista {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.dashboard__evento {
+  display: grid;
+  grid-template-columns:
+    58px minmax(0, 1fr);
+  gap: 13px;
+
+  align-items: center;
+
+  min-width: 0;
+  padding: 15px;
+
+  background-color:
+    var(--admin-superficie-suave);
+
+  border:
+    1px solid var(--admin-borde);
+
+  border-radius:
+    var(--admin-radio-md);
+
+  transition:
+    background-color var(--admin-transicion-rapida),
+    border-color var(--admin-transicion-rapida),
+    box-shadow var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida);
+}
+
+.dashboard__evento:hover {
+  background-color:
+    var(--admin-blanco);
+
+  border-color:
+    rgba(84, 120, 70, 0.28);
+
+  box-shadow:
+    var(--admin-sombra-suave);
+
+  transform:
+    translateY(-2px);
+}
+
+.dashboard__evento-fecha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 58px;
+  height: 62px;
+
+  color: var(--admin-blanco);
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--admin-verde-medio),
+      var(--admin-verde-oscuro)
+    );
+
+  border-radius:
+    var(--admin-radio-md);
+
+  box-shadow:
+    0 8px 18px
+    rgba(43, 86, 58, 0.18);
+}
+
+.dashboard__evento-fecha strong {
+  font-family:
+    var(--admin-fuente-titulos);
+
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.dashboard__evento-fecha span {
+  margin-top: 4px;
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  font-size: 0.63rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.dashboard__evento-informacion {
+  min-width: 0;
+}
+
+.dashboard__evento-informacion h3 {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  margin-bottom: 5px;
+
+  color: var(--admin-verde-oscuro);
+
+  font-family:
+    var(--admin-fuente-titulos);
+
+  font-size: 0.9rem;
+  line-height: 1.3;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.dashboard__evento-informacion p {
+  margin: 0;
+
+  color: var(--admin-texto-secundario);
+
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.dashboard__evento
+.admin-etiqueta {
+  grid-column: 1 / -1;
+
+  justify-self: flex-start;
+}
+
+
+/* ============================================================
+   10. MENSAJES Y PIE
+   ============================================================ */
+
+.dashboard__mensaje {
+  padding: 14px 16px;
+
+  color: var(--admin-error);
+  background-color:
+    var(--admin-error-fondo);
+
+  border:
+    1px solid rgba(156, 68, 60, 0.2);
+
+  border-radius:
+    var(--admin-radio-md);
+
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.dashboard__mensaje--exito {
+  color: var(--admin-exito);
+  background-color:
+    var(--admin-exito-fondo);
+
+  border-color:
+    rgba(52, 113, 74, 0.2);
+}
+
+.dashboard__pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  padding: 8px 3px 2px;
+
+  color: var(--admin-texto-suave);
+
+  font-size: 0.73rem;
+}
+
+.dashboard__pie p {
+  margin: 0;
+}
+
+.dashboard__pie span {
+  text-align: right;
+}
+
+
+/* ============================================================
+   11. PANTALLAS MENORES A 1300 PX
+   ============================================================ */
+
+@media (max-width: 1300px) {
+  .dashboard__indicadores {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard__eventos-lista {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard__evento:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* ============================================================
+   12. PORTÁTILES Y TABLET HORIZONTAL
+   ============================================================ */
+
+@media (max-width: 1100px) {
+  .dashboard__bienvenida {
+    grid-template-columns:
+      minmax(0, 1fr)
+      180px;
+
+    padding: 30px;
+  }
+
+  .dashboard__escudo {
+    width: 145px;
+    height: 145px;
+  }
+
+  .dashboard__cuadricula-principal {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__actividad-lista {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+  }
+
+  .dashboard__actividad:nth-child(3) {
+    border-bottom: 0;
+  }
+}
+
+
+/* ============================================================
+   13. TABLET VERTICAL
+   ============================================================ */
+
+@media (max-width: 760px) {
+  .dashboard {
+    gap: 21px;
+  }
+
+  .dashboard__bienvenida {
+    grid-template-columns: 1fr;
+
+    min-height: auto;
+    padding: 27px 24px;
+  }
+
+  .dashboard__bienvenida-decoracion {
+    display: none;
+  }
+
+  .dashboard__bienvenida::before,
+  .dashboard__bienvenida::after {
+    opacity: 0.65;
+  }
+
+  .dashboard__bienvenida-titulo {
+    font-size: 1.8rem;
+  }
+
+  .dashboard__datos-sesion {
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard__dato-sesion {
+    min-width: 0;
+    max-width: none;
+  }
+
+  .dashboard__indicadores {
+    gap: 13px;
+  }
+
+  .dashboard__indicador {
+    min-height: 118px;
+    padding: 17px;
+  }
+
+  .dashboard__accesos {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__actividad-lista {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__actividad:nth-child(3) {
+    border-bottom:
+      1px solid var(--admin-borde);
+  }
+
+  .dashboard__eventos-lista {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__evento:last-child {
+    grid-column: auto;
+  }
+}
+
+
+/* ============================================================
+   14. CELULARES
+   ============================================================ */
+
+@media (max-width: 540px) {
+  .cargador-proteccion {
+    padding: 16px;
+  }
+
+  .cargador-proteccion__contenido {
+    align-items: flex-start;
+
+    padding: 19px;
+  }
+
+  .cargador-proteccion__indicador {
+    width: 34px;
+    height: 34px;
+  }
+
+  .dashboard {
+    gap: 18px;
+  }
+
+  .dashboard__modo-demostracion {
+    font-size: 0.68rem;
+  }
+
+  .dashboard__bienvenida {
+    padding: 24px 19px;
+
+    border-radius:
+      var(--admin-radio-lg);
+  }
+
+  .dashboard__bienvenida-etiqueta {
+    font-size: 0.64rem;
+  }
+
+  .dashboard__bienvenida-titulo {
+    font-size: 1.55rem;
+  }
+
+  .dashboard__bienvenida-texto {
+    margin-bottom: 19px;
+
+    font-size: 0.87rem;
+  }
+
+  .dashboard__datos-sesion {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__dato-sesion {
+    width: 100%;
+  }
+
+  .dashboard__indicadores {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__indicador {
+    min-height: 108px;
+  }
+
+  .dashboard__seccion-titulo {
+    font-size: 1.18rem;
+  }
+
+  .dashboard__acceso {
+    min-height: 82px;
+    padding: 12px;
+  }
+
+  .dashboard__evento {
+    grid-template-columns:
+      52px minmax(0, 1fr);
+    padding: 13px;
+  }
+
+  .dashboard__evento-fecha {
+    width: 52px;
+    height: 58px;
+  }
+
+  .dashboard__pie {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .dashboard__pie span {
+    text-align: left;
+  }
+}
+
+
+/* ============================================================
+   15. CELULARES PEQUEÑOS
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .dashboard__bienvenida {
+    padding: 21px 16px;
+  }
+
+  .dashboard__bienvenida-titulo {
+    font-size: 1.42rem;
+  }
+
+  .dashboard__indicador {
+    padding: 15px;
+  }
+
+  .dashboard__indicador-icono {
+    width: 46px;
+    height: 46px;
+  }
+
+  .dashboard__acceso-flecha {
+    display: none;
+  }
+}
+
+
+/* ============================================================
+   16. REDUCCIÓN DE MOVIMIENTO
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard,
+  .cargador-proteccion__indicador {
+    animation: none;
+  }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Formulario de préstamo BiblioCRA | Liceo Hernán Vargas Ramírez</title>
+
+  <meta name="description"
+    content="Formulario digital para solicitud de préstamo de materiales de la Biblioteca BiblioCRA del Liceo Hernán Vargas Ramírez." />
+
+  <meta name="theme-color" content="#2b563a" />
+
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/formulario-bibliocra.css" />
+  <link rel="icon" href="../assets/logos/logo-liceo.jpg" />
+</head>
+
+<body data-pagina="biblioteca">
+  <div id="encabezado"></div>
+
+  <main>
+    <section class="banda">
+      <div class="contenedor">
+        <p class="migas">
+          <a href="../index.html">Inicio</a> / 
+          <a href="biblioteca-recursos.html">Biblioteca</a> / 
+          Formulario de préstamo
+        </p>
+
+        <h1>Formulario de préstamo BiblioCRA</h1>
+
+        <p>
+          Complete la información solicitada para registrar la boleta digital de préstamo de materiales.
+          Este formulario queda preparado para una segunda versión con conexión a base de datos.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion seccion--suave">
+      <div class="contenedor">
+        <article class="formulario-bibliocra">
+          <div class="formulario-bibliocra__encabezado">
+            <div class="formulario-bibliocra__logo">
+              <img src="../assets/img/08-Biblioteca-Logo.png" alt="Logo BiblioCRA LHVR" />
+            </div>
+
+            <div>
+              <span class="etiqueta etiqueta--formulario">Boleta digital</span>
+              <h2>Solicitud de préstamo de materiales</h2>
+              <p>
+                Ingrese los datos del material y de la persona usuaria para completar la solicitud.
+              </p>
+            </div>
+          </div>
+
+          <form class="formulario-bibliocra__form" action="#" method="post">
+            <fieldset>
+              <legend>Datos del material</legend>
+
+              <div class="formulario-bibliocra__grid">
+                <div class="campo">
+                  <label for="signatura">Signatura</label>
+                  <input type="text" id="signatura" name="signatura" placeholder="Ejemplo: 813.6 M450p" required />
+                </div>
+
+                <div class="campo">
+                  <label for="fecha">Fecha de solicitud</label>
+                  <input type="date" id="fecha" name="fecha" required />
+                </div>
+
+                <div class="campo campo--completo">
+                  <label for="autor">Autor</label>
+                  <input type="text" id="autor" name="autor" placeholder="Nombre del autor del libro" required />
+                </div>
+
+                <div class="campo campo--completo">
+                  <label for="titulo">Título</label>
+                  <input type="text" id="titulo" name="titulo" placeholder="Título del material solicitado" required />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Datos del usuario</legend>
+
+              <div class="formulario-bibliocra__grid">
+                <div class="campo campo--completo">
+                  <label for="nombreUsuario">Nombre del usuario</label>
+                  <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre completo" required />
+                </div>
+
+                <div class="campo">
+                  <label for="cedula">N° de carné o cédula</label>
+                  <input type="text" id="cedula" name="cedula" placeholder="Ejemplo: 3-0123-0456" required />
+                </div>
+
+                <div class="campo">
+                  <label for="seccion">Sección</label>
+                  <input type="text" id="seccion" name="seccion" placeholder="Ejemplo: 8-3" required />
+                </div>
+
+                <div class="campo">
+                  <label for="telefono">Teléfono</label>
+                  <input type="tel" id="telefono" name="telefono" placeholder="Ejemplo: 8888-8888" required />
+                </div>
+
+                <div class="campo">
+                  <label for="fechaDevolucion">Fecha de devolución</label>
+                  <input type="date" id="fechaDevolucion" name="fechaDevolucion" required />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Tipo de préstamo y usuario</legend>
+
+              <div class="formulario-bibliocra__grid">
+                <div class="campo">
+                  <label for="tipoPrestamo">Tipo de préstamo</label>
+                  <select id="tipoPrestamo" name="tipoPrestamo" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="sala">Sala</option>
+                    <option value="aula">Aula</option>
+                    <option value="hogar">Hogar</option>
+                  </select>
+                </div>
+
+                <div class="campo">
+                  <label for="tipoUsuario">Tipo de usuario</label>
+                  <select id="tipoUsuario" name="tipoUsuario" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="estudiante">Estudiante</option>
+                    <option value="docente">Docente</option>
+                    <option value="administrativo">Administrativo</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="formulario-bibliocra__confirmacion">
+              <label>
+                <input type="checkbox" name="confirmacion" required />
+                <span>
+                  Confirmo que los datos ingresados son correctos y acepto las condiciones del préstamo.
+                </span>
+              </label>
+            </div>
+
+            <div class="formulario-bibliocra__acciones">
+              <a class="boton boton--secundario" href="biblioteca-recursos.html">
+                Volver a Biblioteca
+              </a>
+
+              <button class="boton boton--primario" type="submit">
+                Enviar solicitud
+              </button>
+            </div>
+
+            <p class="formulario-bibliocra__nota">
+              Nota: en esta versión el formulario queda preparado visualmente. El envío y almacenamiento se integrarán en la segunda versión del sistema. :D
+            </p>
+          </form>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div id="pie"></div>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

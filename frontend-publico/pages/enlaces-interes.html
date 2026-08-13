@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Recursos digitales | Liceo Hernán Vargas Ramírez</title>
+
+  <meta name="description"
+    content="Recursos digitales gratuitos y plataformas educativas para estudiantes, docentes y comunidad educativa del Liceo Hernán Vargas Ramírez." />
+
+  <meta name="theme-color" content="#2b563a" />
+
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="../assets/logos/logo-liceo.jpg" />
+</head>
+
+<body data-pagina="enlaces">
+  <div id="encabezado"></div>
+
+  <main>
+    <section class="banda">
+      <div class="contenedor">
+        <p class="migas"><a href="../index.html">Inicio</a> / Recursos digitales</p>
+
+        <h1>Recursos digitales</h1>
+
+        <p>
+          Herramientas gratuitas y plataformas educativas para reforzar el aprendizaje,
+          crear trabajos, practicar idiomas y desarrollar habilidades digitales.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="encabezado-seccion">
+          <h2 class="titulo-seccion">Recursos para aprender y crear</h2>
+          <p class="subtitulo-seccion">
+            Selecciona una categoría para ver recursos útiles de tecnología, matemática,
+            ciencias, idiomas y herramientas para trabajos escolares.
+          </p>
+        </div>
+
+        <!-- Filtros por categoría -->
+        <div class="filtros" id="filtrosEnlaces">
+          <button class="filtro activo" data-filtro="todos">Todos</button>
+          <button class="filtro" data-filtro="Tecnología y certificaciones">Tecnología y certificaciones</button>
+          <button class="filtro" data-filtro="Matemática y ciencias">Matemática y ciencias</button>
+          <button class="filtro" data-filtro="Idiomas">Idiomas</button>
+          <button class="filtro" data-filtro="Herramientas para trabajos y clases">Trabajos y clases</button>
+        </div>
+
+        <!-- Tarjetas cargadas desde data/enlaces.json -->
+        <div class="cuadricula cuadricula--3" id="listaEnlaces">
+          <p class="estado">Cargando recursos digitales...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="pie"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/filtros.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      await renderEnlaces("listaEnlaces");
+      activarFiltros("filtrosEnlaces", "listaEnlaces");
+    });
+  </script>
+</body>
+
+</html>

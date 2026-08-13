@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Calendario institucional | Liceo Hernán Vargas Ramírez</title>
+
+  <meta name="description"
+    content="Calendario institucional con fechas importantes, actividades, feriados y eventos del curso lectivo del Liceo Hernán Vargas Ramírez." />
+  <meta name="theme-color" content="#2b563a" />
+
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/calendario.css" />
+  <link rel="icon" href="../assets/logos/logo-liceo.jpg" />
+</head>
+
+<body data-pagina="calendario">
+  <div id="encabezado"></div>
+
+  <main>
+    <!-- Banda principal -->
+    <section class="banda">
+      <div class="contenedor">
+        <p class="migas"><a href="../index.html">Inicio</a> / Calendario</p>
+        <h1>Calendario institucional</h1>
+        <p>Consulta las fechas importantes, actividades, feriados y eventos del curso lectivo.</p>
+      </div>
+    </section>
+
+    <!-- Calendario -->
+    <section class="seccion">
+      <div class="contenedor">
+
+        <div class="encabezado-seccion texto-centrado">
+          <h2 class="titulo-seccion">Calendario 2026</h2>
+          <p class="calendario-subtitulo">
+            Selecciona un día para consultar sus eventos. Los eventos de varios días se muestran en el detalle del día seleccionado.
+          </p>
+        </div>
+
+        <!-- Controles del calendario -->
+        <div class="calendario-controles">
+          <button class="boton boton--secundario boton--pequeno" id="btnHoy" type="button">
+            Hoy
+          </button>
+
+          <div class="calendario-navegacion">
+            <button class="boton boton--secundario boton--pequeno" id="btnMesAnterior" type="button"
+              aria-label="Mes anterior">
+              ‹
+            </button>
+
+            <h3 id="tituloMesCalendario">Cargando...</h3>
+
+            <button class="boton boton--secundario boton--pequeno" id="btnMesSiguiente" type="button"
+              aria-label="Mes siguiente">
+              ›
+            </button>
+          </div>
+        </div>
+
+        <!-- Filtros por categoría -->
+        <div class="calendario-filtros" id="filtrosCalendario">
+          <button class="filtro activo" data-filtro="todos" type="button">Todos</button>
+          <button class="filtro" data-filtro="Periodos Lectivos" type="button">Periodos lectivos</button>
+          <button class="filtro" data-filtro="Periodo de Matrícula" type="button">Matrícula</button>
+          <button class="filtro" data-filtro="Pruebas de Educación Formal" type="button">Pruebas</button>
+          <button class="filtro" data-filtro="Pruebas de Ampliación" type="button">Ampliación</button>
+          <button class="filtro" data-filtro="Participación Estudiantil" type="button">Participación</button>
+          <button class="filtro" data-filtro="Efemérides y otras celebraciones" type="button">Efemérides</button>
+          <button class="filtro" data-filtro="Administrativo y docente" type="button">Administrativo</button>
+          <button class="filtro" data-filtro="Orientación Educativa" type="button">Orientación</button>
+          <button class="filtro" data-filtro="Educación Abierta" type="button">Educación abierta</button>
+        </div>
+
+        <!-- Leyenda de colores -->
+        <div class="calendario-leyenda">
+          <span><i class="leyenda-color leyenda--periodos"></i> Periodos lectivos</span>
+          <span><i class="leyenda-color leyenda--matricula"></i> Matrícula</span>
+          <span><i class="leyenda-color leyenda--pruebas"></i> Pruebas</span>
+          <span><i class="leyenda-color leyenda--participacion"></i> Participación</span>
+          <span><i class="leyenda-color leyenda--efemerides"></i> Efemérides</span>
+          <span><i class="leyenda-color leyenda--administrativo"></i> Administrativo</span>
+          <span><i class="leyenda-color leyenda--orientacion"></i> Orientación</span>
+        </div>
+
+        <!-- Calendario y panel de detalle -->
+        <div class="calendario-layout">
+
+          <!-- Vista mensual -->
+          <div class="calendario-panel">
+            <div class="calendario-dias-semana">
+              <span>Lun</span>
+              <span>Mar</span>
+              <span>Mié</span>
+              <span>Jue</span>
+              <span>Vie</span>
+              <span>Sáb</span>
+              <span>Dom</span>
+            </div>
+
+            <div class="calendario-grid" id="calendarioGrid">
+              <p class="estado">Cargando calendario...</p>
+            </div>
+          </div>
+
+          <!-- Detalle del día seleccionado -->
+          <aside class="calendario-detalle">
+            <div class="calendario-detalle__encabezado">
+              <p class="etiqueta-fecha">Día seleccionado</p>
+              <h3 id="tituloDiaSeleccionado">Seleccione una fecha</h3>
+            </div>
+
+            <div id="eventosDiaSeleccionado">
+              <p class="estado">Seleccione un día del calendario para ver los eventos.</p>
+            </div>
+          </aside>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div id="pie"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/calendario.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+/* ============================================================
+   DOCENTES.CSS - Liceo Hernán Vargas Ramírez
+   ------------------------------------------------------------
+   Estilos específicos para el directorio docente.
+   ============================================================ */
+
+/* Contenedor general del directorio */
+body[data-pagina="directorio"] .seccion,
+body[data-pagina="docentes"] .seccion {
+  background:
+    radial-gradient(circle at top left, rgba(43, 86, 58, 0.08), transparent 34%),
+    linear-gradient(180deg, #ffffff 0%, #f6f7f5 100%);
+}
+
+/* Tarjetas del directorio docente */
+.docente {
+  position: relative;
+  overflow: hidden;
+  padding: 28px 24px;
+  border-radius: 22px;
+  border: 1px solid rgba(43, 86, 58, 0.12);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 34px rgba(25, 20, 18, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.docente::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 7px;
+  background: linear-gradient(90deg, var(--verde-oscuro), var(--verde-claro), var(--dorado));
+}
+
+.docente:hover {
+  transform: translateY(-6px);
+  border-color: rgba(43, 86, 58, 0.24);
+  box-shadow: 0 20px 44px rgba(25, 20, 18, 0.13);
+}
+
+/* Círculo con inicial */
+.docente__avatar {
+  width: 74px;
+  height: 74px;
+  margin: 4px auto 18px;
+  border-radius: 50%;
+  background:
+    linear-gradient(135deg, rgba(43, 86, 58, 0.95), rgba(84, 120, 70, 0.9));
+  color: #ffffff;
+  font-family: var(--fuente-titulos);
+  font-size: 1.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 22px rgba(43, 86, 58, 0.22);
+}
+
+/* Nombre del docente */
+.docente__nombre {
+  font-family: var(--fuente-titulos);
+  color: var(--verde-oscuro);
+  font-size: 1.18rem;
+  line-height: 1.25;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Materia o área */
+.docente__area {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 14px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background-color: rgba(43, 86, 58, 0.1);
+  color: var(--verde-oscuro);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* Correo */
+.docente__correo {
+  display: block;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(43, 86, 58, 0.1);
+  color: var(--texto-suave);
+  font-size: 0.88rem;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* Cuando el correo está por definir */
+.docente__correo[href="#"],
+.docente__correo:not([href]) {
+  color: #7a746c;
+}
+
+/* Mejora visual de la cuadrícula en esta página */
+body[data-pagina="directorio"] .cuadricula,
+body[data-pagina="docentes"] .cuadricula {
+  gap: 26px;
+}
+
+/* Tarjetas pendientes de confirmar */
+.docente:has(.docente__nombre) .docente__nombre {
+  min-height: 2.6em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .docente {
+    padding: 24px 20px;
+  }
+
+  .docente__avatar {
+    width: 68px;
+    height: 68px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .docente {
+    border-radius: 18px;
+  }
+
+  .docente__nombre {
+    font-size: 1.08rem;
+  }
+
+  .docente__area {
+    font-size: 0.74rem;
+  }
+}

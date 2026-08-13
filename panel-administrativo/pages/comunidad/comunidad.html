@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Administración de la página Comunidad del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Comunidad | Panel administrativo LHVR
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="../../css/variables-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/estilos-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/barra-lateral.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/formularios-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/alertas-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/modales-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="../../css/responsive-admin.css"
+  >
+</head>
+
+<body
+  class="pagina-contenido"
+  data-titulo-pagina="Comunidad"
+  data-pagina-slug="comunidad"
+>
+
+  <!-- ======================================================
+       PROTECCIÓN DE RUTA
+       ====================================================== -->
+
+  <div
+    id="cargadorProteccion"
+    class="cargador-proteccion"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="cargador-proteccion__contenido">
+
+      <span
+        class="cargador-proteccion__indicador"
+        aria-hidden="true"
+      ></span>
+
+      <div>
+
+        <p class="cargador-proteccion__titulo">
+          Comprobando sesión
+        </p>
+
+        <p class="cargador-proteccion__texto">
+          Espere un momento mientras validamos su acceso.
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ======================================================
+       CONTENIDO PRINCIPAL
+       ====================================================== -->
+
+  <main
+    id="contenidoPagina"
+    data-titulo="Comunidad"
+  >
+
+    <div
+      id="contenidoPaginasContenido"
+      class="admin-pagina pagina-contenido-admin"
+      hidden
+    >
+
+      <!-- ==================================================
+           ENCABEZADO GENERAL
+           ================================================== -->
+
+      <section class="admin-pagina__encabezado">
+
+        <div class="admin-pagina__titulo-contenedor">
+
+          <span class="admin-pagina__etiqueta">
+            Gestión de páginas
+          </span>
+
+          <h1
+            id="tituloEditorPagina"
+            class="admin-pagina__titulo"
+          >
+            Comunidad
+          </h1>
+
+          <p
+            id="descripcionEditorPagina"
+            class="admin-pagina__descripcion"
+          >
+            Administre las secciones, imágenes y contenido de la página Comunidad.
+          </p>
+
+        </div>
+
+
+        <div class="admin-pagina__acciones">
+
+          <button
+            id="botonRecargarContenido"
+            class="admin-boton admin-boton--secundario"
+            type="button"
+          >
+            Recargar contenido
+          </button>
+
+          <a
+            id="enlacePaginaPublica"
+            class="admin-boton admin-boton--primario"
+            href="../../../frontend-publico/pages/comunidad.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver página pública
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           INFORMACIÓN GENERAL
+           ================================================== -->
+
+      <section
+        class="admin-panel pagina-contenido-admin__resumen"
+        aria-labelledby="tituloResumenPagina"
+      >
+
+        <header class="admin-panel__encabezado">
+
+          <div>
+
+            <h2
+              id="tituloResumenPagina"
+              class="admin-panel__titulo"
+            >
+              Información de la página
+            </h2>
+
+            <p
+              id="descripcionResumenPagina"
+              class="admin-panel__descripcion"
+            >
+              Datos generales de la página Comunidad.
+            </p>
+
+          </div>
+
+        </header>
+
+
+        <div class="admin-panel__contenido">
+
+          <dl class="pagina-contenido-admin__datos">
+
+            <div class="pagina-contenido-admin__dato">
+
+              <dt>
+                Nombre
+              </dt>
+
+              <dd id="nombrePagina">
+                Cargando...
+              </dd>
+
+            </div>
+
+
+            <div class="pagina-contenido-admin__dato">
+
+              <dt>
+                Dirección
+              </dt>
+
+              <dd id="rutaPagina">
+                Cargando...
+              </dd>
+
+            </div>
+
+
+            <div class="pagina-contenido-admin__dato">
+
+              <dt>
+                Estado
+              </dt>
+
+              <dd>
+
+                <span
+                  id="estadoPagina"
+                  class="admin-etiqueta"
+                >
+                  Cargando...
+                </span>
+
+              </dd>
+
+            </div>
+
+
+            <div class="pagina-contenido-admin__dato">
+
+              <dt>
+                Última actualización
+              </dt>
+
+              <dd id="fechaActualizacionPagina">
+                Cargando...
+              </dd>
+
+            </div>
+
+          </dl>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           MENSAJES
+           ================================================== -->
+
+      <div
+        id="mensajePaginaContenido"
+        class="alerta-admin"
+        role="alert"
+        aria-live="polite"
+        hidden
+      ></div>
+
+
+      <!-- ==================================================
+           INTRODUCCIÓN DE COMUNIDAD
+           ================================================== -->
+
+      <section
+        class="admin-panel comunidad-admin__seccion-fija"
+        aria-labelledby="tituloIntroduccionComunidad"
+      >
+
+        <header class="admin-panel__encabezado">
+
+          <div>
+
+            <h2
+              id="tituloIntroduccionComunidad"
+              class="admin-panel__titulo"
+            >
+              Introducción de Comunidad
+            </h2>
+
+            <p class="admin-panel__descripcion">
+              Configure el texto introductorio que aparece antes de las tarjetas de Comunidad.
+            </p>
+
+          </div>
+
+        </header>
+
+
+        <div class="admin-panel__contenido">
+
+          <div
+            id="formularioIntroComunidad"
+            class="formulario-admin"
+          >
+
+            <!-- Datos internos -->
+
+            <input
+              id="introComunidadId"
+              type="hidden"
+            >
+
+            <input
+              id="introComunidadClave"
+              type="hidden"
+              value="INTRO_COMUNIDAD"
+            >
+
+
+            <!-- TÍTULO Y ETIQUETA -->
+
+            <div class="formulario-admin__cuadricula">
+
+              <div class="formulario-admin__grupo">
+
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="introComunidadTitulo"
+                >
+                  Título
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <input
+                  id="introComunidadTitulo"
+                  class="formulario-admin__control"
+                  type="text"
+                  maxlength="250"
+                  autocomplete="off"
+                  required
+                >
+
+              </div>
+
+
+              <div class="formulario-admin__grupo">
+
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="introComunidadSubtitulo"
+                >
+                  Etiqueta
+                </label>
+
+                <input
+                  id="introComunidadSubtitulo"
+                  class="formulario-admin__control"
+                  type="text"
+                  maxlength="250"
+                  autocomplete="off"
+                  placeholder="Ej. Vida institucional"
+                >
+
+              </div>
+
+            </div>
+
+
+            <!-- CONTENIDO -->
+
+            <div class="formulario-admin__grupo">
+
+              <label
+                class="formulario-admin__etiqueta"
+                for="introComunidadContenido"
+              >
+                Contenido
+                <span aria-hidden="true">*</span>
+              </label>
+
+              <textarea
+                id="introComunidadContenido"
+                class="formulario-admin__control formulario-admin__control--textarea"
+                maxlength="2000"
+                rows="5"
+                required
+              ></textarea>
+
+            </div>
+
+
+            <!-- ESTADO -->
+
+            <div class="formulario-admin__cuadricula">
+
+              <div class="formulario-admin__grupo">
+
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="introComunidadEstado"
+                >
+                  Estado de publicación
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <select
+                  id="introComunidadEstado"
+                  class="formulario-admin__control"
+                  required
+                >
+
+                  <option value="">
+                    Seleccione un estado
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <!-- ACCIONES -->
+
+            <div class="formulario-admin__acciones">
+
+              <button
+                id="botonGuardarIntroComunidad"
+                class="admin-boton admin-boton--primario"
+                type="button"
+              >
+
+                <span>
+                  Guardar introducción
+                </span>
+
+                <span
+                  id="cargadorIntroComunidad"
+                  class="admin-boton__cargador"
+                  aria-hidden="true"
+                  hidden
+                ></span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           TARJETAS DE COMUNIDAD
+           ================================================== -->
+
+      <section
+        class="admin-panel comunidad-admin"
+        aria-labelledby="tituloSeccionesComunidad"
+      >
+
+        <header class="admin-panel__encabezado">
+
+          <div>
+
+            <h2
+              id="tituloSeccionesComunidad"
+              class="admin-panel__titulo"
+            >
+              Contenido de Comunidad
+            </h2>
+
+            <p class="admin-panel__descripcion">
+              Administre las tarjetas que aparecen entre la introducción y el cierre de la página.
+            </p>
+
+          </div>
+
+
+          <div class="admin-panel__acciones">
+
+            <span
+              id="contadorSeccionesComunidad"
+              class="comunidad-admin__contador"
+            >
+              0 de 10
+            </span>
+
+            <button
+              id="botonAgregarSeccionComunidad"
+              class="admin-boton admin-boton--primario"
+              type="button"
+            >
+              Nueva tarjeta
+            </button>
+
+          </div>
+
+        </header>
+
+
+        <div class="admin-panel__contenido">
+
+          <div
+            id="listaSeccionesComunidad"
+            class="comunidad-admin__tarjetas"
+            aria-live="polite"
+          >
+
+            <div
+              id="estadoVacioComunidad"
+              class="admin-estado-vacio"
+            >
+
+              <h3>
+                Cargando contenido
+              </h3>
+
+              <p>
+                Espere mientras se cargan las tarjetas de Comunidad.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           CIERRE DE COMUNIDAD
+           ================================================== -->
+
+      <section
+        class="admin-panel comunidad-admin__seccion-fija"
+        aria-labelledby="tituloCierreComunidad"
+      >
+
+        <header class="admin-panel__encabezado">
+
+          <div>
+
+            <h2
+              id="tituloCierreComunidad"
+              class="admin-panel__titulo"
+            >
+              Cierre de Comunidad
+            </h2>
+
+            <p class="admin-panel__descripcion">
+              Configure el texto y el botón que aparecen después de las tarjetas de Comunidad.
+            </p>
+
+          </div>
+
+        </header>
+
+
+        <div class="admin-panel__contenido">
+
+          <div
+            id="formularioCierreComunidad"
+            class="formulario-admin"
+          >
+
+            <!-- Datos internos -->
+
+            <input
+              id="cierreComunidadId"
+              type="hidden"
+            >
+
+            <input
+              id="cierreComunidadClave"
+              type="hidden"
+              value="CIERRE_COMUNIDAD"
+            >
+
+
+            <!-- TÍTULO -->
+
+            <div class="formulario-admin__cuadricula">
+
+              <div class="formulario-admin__grupo">
+
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="cierreComunidadTitulo"
+                >
+                  Título
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <input
+                  id="cierreComunidadTitulo"
+                  class="formulario-admin__control"
+                  type="text"
+                  maxlength="250"
+                  autocomplete="off"
+                  required
+                >
+
+              </div>
+
+
+              <div class="formulario-admin__grupo">
+
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="cierreComunidadEstado"
+                >
+                  Estado de publicación
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <select
+                  id="cierreComunidadEstado"
+                  class="formulario-admin__control"
+                  required
+                >
+
+                  <option value="">
+                    Seleccione un estado
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            <!-- CONTENIDO -->
+
+            <div class="formulario-admin__grupo">
+
+              <label
+                class="formulario-admin__etiqueta"
+                for="cierreComunidadContenido"
+              >
+                Contenido
+                <span aria-hidden="true">*</span>
+              </label>
+
+              <textarea
+                id="cierreComunidadContenido"
+                class="formulario-admin__control formulario-admin__control--textarea"
+                maxlength="2000"
+                rows="5"
+                required
+              ></textarea>
+
+            </div>
+
+
+            <!-- ENLACE -->
+
+            <fieldset class="formulario-admin__seccion">
+
+              <legend class="formulario-admin__leyenda">
+                Botón
+              </legend>
+
+
+              <div class="formulario-admin__cuadricula">
+
+                <div class="formulario-admin__grupo">
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="cierreComunidadTipoEnlace"
+                  >
+                    Tipo de enlace
+                  </label>
+
+                  <select
+                    id="cierreComunidadTipoEnlace"
+                    class="formulario-admin__control"
+                  >
+
+                    <option value="NINGUNO">
+                      Sin enlace
+                    </option>
+
+                    <option value="INTERNO">
+                      Página interna
+                    </option>
+
+                    <option value="EXTERNO">
+                      Sitio externo
+                    </option>
+
+                    <option value="ARCHIVO">
+                      Archivo
+                    </option>
+
+                  </select>
+
+                </div>
+
+
+                <div class="formulario-admin__grupo">
+
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="cierreComunidadTextoBoton"
+                  >
+                    Texto del botón
+                  </label>
+
+                  <input
+                    id="cierreComunidadTextoBoton"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="120"
+                    autocomplete="off"
+                    placeholder="Ej. Ver galería institucional"
+                  >
+
+                </div>
+
+              </div>
+
+
+              <div class="formulario-admin__grupo">
+
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="cierreComunidadUrlBoton"
+                >
+                  Dirección
+                </label>
+
+                <input
+                  id="cierreComunidadUrlBoton"
+                  class="formulario-admin__control"
+                  type="text"
+                  maxlength="1000"
+                  autocomplete="off"
+                  placeholder="Ej. galeria.html o https://..."
+                >
+
+              </div>
+
+            </fieldset>
+
+
+            <!-- ACCIONES -->
+
+            <div class="formulario-admin__acciones">
+
+              <button
+                id="botonGuardarCierreComunidad"
+                class="admin-boton admin-boton--primario"
+                type="button"
+              >
+
+                <span>
+                  Guardar cierre
+                </span>
+
+                <span
+                  id="cargadorCierreComunidad"
+                  class="admin-boton__cargador"
+                  aria-hidden="true"
+                  hidden
+                ></span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
+           PIE
+           ================================================== -->
+
+      <footer class="pagina-contenido-admin__pie">
+
+        <p>
+          © 2026 Liceo Hernán Vargas Ramírez
+        </p>
+
+        <span id="textoPieGestion">
+          Gestión de la página Comunidad
+        </span>
+
+      </footer>
+
+    </div>
+
+  </main>
+
+
+  <!-- ======================================================
+       MODAL - NUEVA TARJETA DE COMUNIDAD
+       ====================================================== -->
+
+  <dialog
+    id="modalNuevaSeccionComunidad"
+    class="comunidad-modal"
+  >
+
+    <div class="comunidad-modal__contenedor">
+
+      <header class="comunidad-modal__encabezado">
+
+        <div>
+
+          <span class="admin-pagina__etiqueta">
+            Comunidad
+          </span>
+
+          <h2 class="comunidad-modal__titulo">
+            Nueva tarjeta
+          </h2>
+
+          <p class="comunidad-modal__descripcion">
+            Complete la información de la nueva sección.
+          </p>
+
+        </div>
+
+
+        <button
+          id="botonCerrarModalComunidad"
+          class="comunidad-modal__cerrar"
+          type="button"
+          aria-label="Cerrar"
+          title="Cerrar"
+        >
+          ×
+        </button>
+
+      </header>
+
+
+      <div
+        id="contenidoModalNuevaSeccionComunidad"
+        class="comunidad-modal__contenido"
+      ></div>
+
+    </div>
+
+  </dialog>
+
+
+  <!-- ======================================================
+       PLANTILLA DE TARJETA
+       ====================================================== -->
+
+  <template id="plantillaSeccionComunidad">
+
+    <article class="comunidad-admin__tarjeta">
+
+      <!-- Datos internos -->
+
+      <input
+        class="comunidad-seccion__id"
+        type="hidden"
+      >
+
+      <input
+        class="comunidad-seccion__clave"
+        type="hidden"
+      >
+
+      <input
+        class="comunidad-seccion__id-archivo"
+        type="hidden"
+      >
+
+
+      <!-- ==================================================
+           VISTA COMPACTA
+           ================================================== -->
+
+      <div class="comunidad-admin__vista">
+
+        <div class="comunidad-admin__imagen">
+
+          <img
+            class="comunidad-seccion__imagen-visual"
+            alt=""
+            hidden
+          >
+
+        </div>
+
+
+        <div class="comunidad-admin__vista-contenido">
+
+          <div class="comunidad-admin__vista-superior">
+
+            <div class="comunidad-admin__vista-titulos">
+
+              <span class="comunidad-seccion__etiqueta">
+                Sección
+              </span>
+
+              <h3 class="comunidad-seccion__titulo-visual">
+                Cargando...
+              </h3>
+
+            </div>
+
+
+            <button
+              class="admin-boton admin-boton--texto comunidad-seccion__retirar comunidad-seccion__retirar--compacto"
+              type="button"
+              title="Retirar tarjeta"
+              aria-label="Retirar tarjeta"
+              hidden
+            >
+              Retirar
+            </button>
+
+          </div>
+
+
+          <p class="comunidad-seccion__subtitulo-visual">
+          </p>
+
+          <p class="comunidad-seccion__contenido-visual">
+          </p>
+
+          <span
+            class="comunidad-seccion__estado-visual admin-etiqueta"
+          >
+            Publicado
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           EDITOR
+           ================================================== -->
+
+      <details class="comunidad-admin__desplegable">
+
+        <summary class="comunidad-admin__editar">
+          Editar sección
+        </summary>
+
+
+        <div class="comunidad-admin__editor">
+
+          <button
+            class="comunidad-admin__cerrar-superior comunidad-seccion__cerrar"
+            type="button"
+            title="Cerrar edición"
+            aria-label="Cerrar edición"
+          >
+
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m18 15-6-6-6 6"></path>
+            </svg>
+
+          </button>
+
+
+          <!-- TÍTULO Y SUBTÍTULO -->
+
+          <div class="formulario-admin__cuadricula">
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Título
+                <span aria-hidden="true">*</span>
+              </label>
+
+              <input
+                class="formulario-admin__control comunidad-seccion__titulo"
+                type="text"
+                maxlength="250"
+                autocomplete="off"
+                required
+              >
+
+            </div>
+
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Subtítulo
+              </label>
+
+              <input
+                class="formulario-admin__control comunidad-seccion__subtitulo"
+                type="text"
+                maxlength="250"
+                autocomplete="off"
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- CONTENIDO -->
+
+          <div class="formulario-admin__grupo">
+
+            <label class="formulario-admin__etiqueta">
+              Contenido
+              <span aria-hidden="true">*</span>
+            </label>
+
+            <textarea
+              class="formulario-admin__control formulario-admin__control--textarea comunidad-seccion__contenido"
+              maxlength="2000"
+              rows="5"
+              required
+            ></textarea>
+
+          </div>
+
+
+          <!-- IMAGEN -->
+
+          <fieldset class="formulario-admin__seccion">
+
+            <legend class="formulario-admin__leyenda">
+              Imagen
+            </legend>
+
+
+            <div class="formulario-admin__archivo">
+
+              <div class="formulario-admin__archivo-vista">
+
+                <img
+                  class="comunidad-seccion__imagen-previa"
+                  alt=""
+                  hidden
+                >
+
+              </div>
+
+
+              <div class="formulario-admin__archivo-informacion">
+
+                <strong class="comunidad-seccion__nombre-imagen">
+                  Sin archivo vinculado
+                </strong>
+
+                <span class="comunidad-seccion__detalle-imagen">
+                  Formatos permitidos: JPG, PNG o WEBP. Máximo 5 MB.
+                </span>
+
+
+                <input
+                  class="comunidad-seccion__input-imagen"
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                  hidden
+                >
+
+
+                <div class="formulario-admin__acciones">
+
+                  <button
+                    class="admin-boton admin-boton--secundario comunidad-seccion__seleccionar-imagen"
+                    type="button"
+                  >
+                    Seleccionar imagen
+                  </button>
+
+                  <button
+                    class="admin-boton admin-boton--texto comunidad-seccion__quitar-imagen"
+                    type="button"
+                  >
+                    Quitar imagen
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Texto alternativo
+              </label>
+
+              <input
+                class="formulario-admin__control comunidad-seccion__texto-alternativo"
+                type="text"
+                maxlength="300"
+                autocomplete="off"
+                placeholder="Descripción breve de la imagen"
+              >
+
+            </div>
+
+          </fieldset>
+
+
+          <!-- ENLACE -->
+
+          <fieldset class="formulario-admin__seccion">
+
+            <legend class="formulario-admin__leyenda">
+              Enlace
+            </legend>
+
+
+            <div class="formulario-admin__cuadricula">
+
+              <div class="formulario-admin__grupo">
+
+                <label class="formulario-admin__etiqueta">
+                  Tipo de enlace
+                </label>
+
+                <select
+                  class="formulario-admin__control comunidad-seccion__tipo-enlace"
+                >
+
+                  <option value="NINGUNO">
+                    Sin enlace
+                  </option>
+
+                  <option value="INTERNO">
+                    Página interna
+                  </option>
+
+                  <option value="EXTERNO">
+                    Sitio externo
+                  </option>
+
+                  <option value="ARCHIVO">
+                    Archivo
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="formulario-admin__grupo">
+
+                <label class="formulario-admin__etiqueta">
+                  Texto del botón
+                </label>
+
+                <input
+                  class="formulario-admin__control comunidad-seccion__texto-boton"
+                  type="text"
+                  maxlength="120"
+                  autocomplete="off"
+                  placeholder="Ej. Ver más"
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Dirección
+              </label>
+
+              <input
+                class="formulario-admin__control comunidad-seccion__url-boton"
+                type="text"
+                maxlength="1000"
+                autocomplete="off"
+                placeholder="Ej. galeria.html o https://..."
+              >
+
+            </div>
+
+          </fieldset>
+
+
+          <!-- ORDEN Y ESTADO -->
+
+          <div class="formulario-admin__cuadricula">
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Orden
+              </label>
+
+              <input
+                class="formulario-admin__control comunidad-seccion__orden"
+                type="number"
+                min="1"
+                max="10"
+                step="1"
+                required
+              >
+
+            </div>
+
+
+            <div class="formulario-admin__grupo">
+
+              <label class="formulario-admin__etiqueta">
+                Estado
+                <span aria-hidden="true">*</span>
+              </label>
+
+              <select
+                class="formulario-admin__control comunidad-seccion__estado"
+                required
+              >
+
+                <option value="">
+                  Seleccione un estado
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <!-- ACCIONES -->
+
+          <div class="formulario-admin__acciones">
+
+            <button
+              class="admin-boton admin-boton--secundario comunidad-seccion__retirar"
+              type="button"
+              title="Retirar tarjeta"
+              aria-label="Retirar tarjeta"
+              hidden
+            >
+              Retirar tarjeta
+            </button>
+
+
+            <button
+              class="admin-boton admin-boton--secundario comunidad-seccion__cerrar"
+              type="button"
+              title="Cerrar edición"
+              aria-label="Cerrar edición"
+            >
+
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m18 15-6-6-6 6"></path>
+              </svg>
+
+              Cerrar edición
+
+            </button>
+
+
+            <button
+              class="admin-boton admin-boton--primario comunidad-seccion__guardar"
+              type="button"
+            >
+
+              <span>
+                Guardar cambios
+              </span>
+
+              <span
+                class="admin-boton__cargador comunidad-seccion__cargador"
+                aria-hidden="true"
+                hidden
+              ></span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </details>
+
+    </article>
+
+  </template>
+
+
+  <!-- ======================================================
+       CONFIGURACIÓN, SESIÓN Y PROTECCIÓN
+       ====================================================== -->
+
+  <script
+    src="../../js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/sesion-administrador.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/autenticacion.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/proteccion-rutas.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/alertas-admin.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/modal-admin.js"
+    defer
+  ></script>
+
+
+  <!-- Lógica compartida de páginas -->
+
+  <script
+    src="../../js/modules/paginas-contenido.js"
+    defer
+  ></script>
+
+
+  <!-- Lógica específica de Comunidad -->
+
+  <script
+    src="../../js/modules/comunidad.js"
+    defer
+  ></script>
+
+
+  <!-- Layout administrativo -->
+
+  <script
+    src="../../js/components/layout-admin.js"
+    defer
+  ></script>
+
+</body>
+
+</html>

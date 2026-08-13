@@ -1,0 +1,889 @@
+/* ============================================================
+   BARRA LATERAL DEL PANEL ADMINISTRATIVO
+   Liceo Hernán Vargas Ramírez
+   ------------------------------------------------------------
+   Contiene:
+   1. Estructura general
+   2. Identidad institucional
+   3. Navegación principal
+   4. Opciones del menú
+   5. Submenús
+   6. Estado activo
+   7. Pie de la barra lateral
+   8. Botón de cerrar sesión
+   9. Menú contraído en escritorio
+
+   Los estilos responsive se encuentran en:
+   css/responsive-admin.css
+   ============================================================ */
+
+
+/* ============================================================
+   1. ESTRUCTURA GENERAL
+   ============================================================ */
+
+.admin-barra-lateral,
+.barra-lateral-admin {
+  position: sticky;
+  top: 0;
+  z-index: var(--admin-z-barra);
+
+  grid-column: 1;
+  grid-row: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+  height: 100vh;
+
+  overflow: hidden;
+
+  color: var(--admin-blanco);
+
+  background:
+    radial-gradient(
+      circle at 15% 5%,
+      rgba(129, 161, 106, 0.24),
+      transparent 18rem
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(174, 132, 75, 0.16),
+      transparent 16rem
+    ),
+    linear-gradient(
+      165deg,
+      var(--admin-verde-oscuro) 0%,
+      var(--admin-verde-profundo) 60%,
+      #183623 100%
+    );
+
+  border-right:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    8px 0 28px rgba(25, 20, 18, 0.12);
+
+  transition:
+    width var(--admin-transicion),
+    transform var(--admin-transicion),
+    box-shadow var(--admin-transicion);
+}
+
+.barra-lateral-admin::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 4px;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--admin-dorado),
+      var(--admin-verde-claro),
+      transparent 85%
+    );
+
+  content: "";
+  pointer-events: none;
+}
+
+.barra-lateral-admin__contenido {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  min-height: 0;
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   2. IDENTIDAD INSTITUCIONAL
+   ============================================================ */
+
+.barra-lateral-admin__marca {
+  flex: 0 0 auto;
+
+  padding: 20px 18px 18px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.1);
+}
+
+.barra-lateral-admin__marca-enlace {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-width: 0;
+  padding: 9px;
+
+  color: var(--admin-blanco);
+
+  border:
+    1px solid transparent;
+
+  border-radius:
+    var(--admin-radio-lg);
+
+  transition:
+    background-color var(--admin-transicion-rapida),
+    border-color var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida);
+}
+
+.barra-lateral-admin__marca-enlace:hover {
+  color: var(--admin-blanco);
+
+  background-color:
+    rgba(255, 255, 255, 0.08);
+
+  border-color:
+    rgba(255, 255, 255, 0.09);
+
+  transform: translateY(-1px);
+}
+
+.barra-lateral-admin__logo {
+  flex: 0 0 auto;
+
+  width: 49px;
+  height: 49px;
+  padding: 4px;
+
+  object-fit: contain;
+
+  background-color: var(--admin-blanco);
+
+  border:
+    2px solid rgba(255, 255, 255, 0.78);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.barra-lateral-admin__identidad {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  transition:
+    opacity var(--admin-transicion),
+    transform var(--admin-transicion);
+}
+
+.barra-lateral-admin__siglas {
+  overflow: hidden;
+
+  color: var(--admin-blanco);
+
+  font-family:
+    var(--admin-fuente-titulos);
+
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barra-lateral-admin__nombre {
+  overflow: hidden;
+
+  margin-top: 3px;
+
+  color:
+    rgba(255, 255, 255, 0.7);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   3. NAVEGACIÓN PRINCIPAL
+   ============================================================ */
+
+.barra-lateral-admin__navegacion {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  min-height: 0;
+  padding: 17px 13px 18px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  overscroll-behavior: contain;
+}
+
+.barra-lateral-admin__titulo-menu {
+  flex: 0 0 auto;
+
+  margin: 0 10px 10px;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  transition:
+    opacity var(--admin-transicion),
+    transform var(--admin-transicion);
+}
+
+.menu-admin {
+  display: grid;
+  gap: 5px;
+
+  width: 100%;
+}
+
+.menu-admin__elemento {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   4. OPCIONES DEL MENÚ
+   ============================================================ */
+
+.menu-admin__enlace,
+.menu-admin__boton {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 12px;
+
+  overflow: hidden;
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
+  background-color: transparent;
+
+  border:
+    1px solid transparent;
+
+  border-radius:
+    var(--admin-radio-md);
+
+  cursor: pointer;
+
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+
+  transition:
+    color var(--admin-transicion-rapida),
+    background-color var(--admin-transicion-rapida),
+    border-color var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida),
+    box-shadow var(--admin-transicion-rapida);
+}
+
+.menu-admin__enlace::before,
+.menu-admin__boton::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+
+  width: 3px;
+  height: 0;
+
+  background-color:
+    var(--admin-dorado);
+
+  border-radius:
+    0 var(--admin-radio-redondo)
+    var(--admin-radio-redondo) 0;
+
+  content: "";
+
+  transform: translateY(-50%);
+
+  transition:
+    height var(--admin-transicion-rapida);
+}
+
+.menu-admin__enlace:hover,
+.menu-admin__boton:hover {
+  color: var(--admin-blanco);
+
+  background-color:
+    rgba(255, 255, 255, 0.085);
+
+  border-color:
+    rgba(255, 255, 255, 0.06);
+
+  transform: translateX(2px);
+}
+
+.menu-admin__enlace:hover::before,
+.menu-admin__boton:hover::before {
+  height: 22px;
+}
+
+.menu-admin__enlace:active,
+.menu-admin__boton:active {
+  transform: translateX(1px);
+}
+
+.menu-admin__icono {
+  flex: 0 0 auto;
+
+  width: 21px;
+  height: 21px;
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  transition:
+    color var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida);
+}
+
+.menu-admin__enlace:hover
+.menu-admin__icono,
+.menu-admin__boton:hover
+.menu-admin__icono {
+  color: var(--admin-verde-claro);
+  transform: scale(1.04);
+}
+
+.menu-admin__texto {
+  flex: 1;
+
+  min-width: 0;
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  transition:
+    opacity var(--admin-transicion),
+    transform var(--admin-transicion);
+}
+
+.menu-admin__flecha {
+  flex: 0 0 auto;
+
+  width: 17px;
+  height: 17px;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
+  transition:
+    color var(--admin-transicion-rapida),
+    transform var(--admin-transicion);
+}
+
+.menu-admin__boton:hover
+.menu-admin__flecha {
+  color: var(--admin-blanco);
+}
+
+.menu-admin__boton--abierto
+.menu-admin__flecha {
+  transform: rotate(90deg);
+}
+
+
+/* ============================================================
+   5. OPCIÓN ACTIVA
+   ============================================================ */
+
+.menu-admin__enlace--activo,
+.menu-admin__boton--activo {
+  color: var(--admin-blanco);
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(129, 161, 106, 0.24),
+      rgba(255, 255, 255, 0.09)
+    );
+
+  border-color:
+    rgba(129, 161, 106, 0.25);
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(255, 255, 255, 0.02);
+}
+
+.menu-admin__enlace--activo::before,
+.menu-admin__boton--activo::before {
+  height: 26px;
+}
+
+.menu-admin__enlace--activo
+.menu-admin__icono,
+.menu-admin__boton--activo
+.menu-admin__icono {
+  color: var(--admin-dorado);
+}
+
+.menu-admin__enlace--activo
+.menu-admin__texto,
+.menu-admin__boton--activo
+.menu-admin__texto {
+  font-weight: 700;
+}
+
+.menu-admin__enlace--activo:hover,
+.menu-admin__boton--activo:hover {
+  background:
+    linear-gradient(
+      100deg,
+      rgba(129, 161, 106, 0.31),
+      rgba(255, 255, 255, 0.12)
+    );
+}
+
+
+/* ============================================================
+   6. SUBMENÚS
+   ============================================================ */
+
+.submenu-admin {
+  position: relative;
+
+  display: grid;
+  gap: 3px;
+
+  margin: 5px 0 4px 18px;
+  padding: 4px 0 4px 15px;
+
+  border-left:
+    1px solid rgba(255, 255, 255, 0.13);
+
+  animation:
+    mostrarSubmenuAdmin
+    0.2s ease both;
+}
+
+@keyframes mostrarSubmenuAdmin {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.submenu-admin__elemento {
+  width: 100%;
+  min-width: 0;
+}
+
+.submenu-admin__enlace {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  padding: 8px 10px;
+
+  overflow: hidden;
+
+  color:
+    rgba(255, 255, 255, 0.65);
+
+  background-color: transparent;
+
+  border:
+    1px solid transparent;
+
+  border-radius:
+    var(--admin-radio-sm);
+
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.3;
+
+  transition:
+    color var(--admin-transicion-rapida),
+    background-color var(--admin-transicion-rapida),
+    border-color var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida);
+}
+
+.submenu-admin__enlace:hover {
+  color: var(--admin-blanco);
+
+  background-color:
+    rgba(255, 255, 255, 0.07);
+
+  border-color:
+    rgba(255, 255, 255, 0.05);
+
+  transform: translateX(2px);
+}
+
+.submenu-admin__indicador {
+  flex: 0 0 auto;
+
+  width: 6px;
+  height: 6px;
+
+  background-color:
+    rgba(255, 255, 255, 0.33);
+
+  border-radius: 50%;
+
+  transition:
+    background-color var(--admin-transicion-rapida),
+    box-shadow var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida);
+}
+
+.submenu-admin__texto {
+  min-width: 0;
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.submenu-admin__enlace:hover
+.submenu-admin__indicador {
+  background-color:
+    var(--admin-verde-claro);
+
+  transform: scale(1.15);
+}
+
+.submenu-admin__enlace--activo {
+  color: var(--admin-blanco);
+
+  background-color:
+    rgba(174, 132, 75, 0.14);
+
+  border-color:
+    rgba(174, 132, 75, 0.2);
+
+  font-weight: 700;
+}
+
+.submenu-admin__enlace--activo
+.submenu-admin__indicador {
+  background-color:
+    var(--admin-dorado);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(174, 132, 75, 0.12);
+}
+
+
+/* ============================================================
+   7. PIE DE LA BARRA LATERAL
+   ============================================================ */
+
+.barra-lateral-admin__pie {
+  flex: 0 0 auto;
+
+  padding: 14px 13px 16px;
+
+  background-color:
+    rgba(10, 27, 17, 0.22);
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.barra-lateral-admin__institucion {
+  margin: 11px 6px 0;
+
+  overflow: hidden;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+
+  font-size: 0.66rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  transition:
+    opacity var(--admin-transicion),
+    transform var(--admin-transicion);
+}
+
+
+/* ============================================================
+   8. BOTÓN CERRAR SESIÓN
+   ============================================================ */
+
+.barra-lateral-admin__cerrar-sesion {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 11px;
+
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+
+  color:
+    rgba(255, 255, 255, 0.82);
+
+  background-color:
+    rgba(156, 68, 60, 0.12);
+
+  border:
+    1px solid rgba(156, 68, 60, 0.28);
+
+  border-radius:
+    var(--admin-radio-md);
+
+  cursor: pointer;
+
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.2;
+
+  transition:
+    color var(--admin-transicion-rapida),
+    background-color var(--admin-transicion-rapida),
+    border-color var(--admin-transicion-rapida),
+    box-shadow var(--admin-transicion-rapida),
+    transform var(--admin-transicion-rapida);
+}
+
+.barra-lateral-admin__cerrar-sesion:hover {
+  color: var(--admin-blanco);
+  background-color: var(--admin-rojo-vino);
+
+  border-color:
+    rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 8px 18px
+    rgba(80, 28, 24, 0.22);
+
+  transform: translateY(-1px);
+}
+
+.barra-lateral-admin__cerrar-sesion:active {
+  transform: translateY(0);
+}
+
+.barra-lateral-admin__cerrar-icono {
+  flex: 0 0 auto;
+
+  width: 20px;
+  height: 20px;
+}
+
+
+/* ============================================================
+   9. MENÚ CONTRAÍDO EN ESCRITORIO
+   ============================================================ */
+
+.admin-menu-contraido
+.barra-lateral-admin__marca {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.admin-menu-contraido
+.barra-lateral-admin__marca-enlace {
+  justify-content: center;
+  padding: 7px;
+}
+
+.admin-menu-contraido
+.barra-lateral-admin__logo {
+  width: 45px;
+  height: 45px;
+}
+
+.admin-menu-contraido
+.barra-lateral-admin__identidad,
+.admin-menu-contraido
+.barra-lateral-admin__titulo-menu,
+.admin-menu-contraido
+.menu-admin__texto,
+.admin-menu-contraido
+.menu-admin__flecha,
+.admin-menu-contraido
+.barra-lateral-admin__institucion,
+.admin-menu-contraido
+.barra-lateral-admin__cerrar-sesion span {
+  width: 0;
+  max-width: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateX(-8px);
+}
+
+.admin-menu-contraido
+.barra-lateral-admin__navegacion {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.admin-menu-contraido
+.menu-admin {
+  gap: 6px;
+}
+
+.admin-menu-contraido
+.menu-admin__enlace,
+.admin-menu-contraido
+.menu-admin__boton {
+  justify-content: center;
+
+  min-height: 46px;
+  padding: 10px;
+}
+
+.admin-menu-contraido
+.menu-admin__enlace:hover,
+.admin-menu-contraido
+.menu-admin__boton:hover {
+  transform: translateY(-1px);
+}
+
+.admin-menu-contraido
+.menu-admin__enlace::before,
+.admin-menu-contraido
+.menu-admin__boton::before {
+  top: auto;
+  bottom: 3px;
+  left: 50%;
+
+  width: 18px;
+  height: 2px;
+
+  border-radius:
+    var(--admin-radio-redondo);
+
+  transform: translateX(-50%);
+}
+
+.admin-menu-contraido
+.menu-admin__enlace--activo::before,
+.admin-menu-contraido
+.menu-admin__boton--activo::before {
+  width: 24px;
+  height: 2px;
+}
+
+.admin-menu-contraido
+.menu-admin__icono {
+  width: 22px;
+  height: 22px;
+}
+
+.admin-menu-contraido
+.submenu-admin {
+  display: none;
+}
+
+.admin-menu-contraido
+.barra-lateral-admin__pie {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.admin-menu-contraido
+.barra-lateral-admin__cerrar-sesion {
+  justify-content: center;
+  padding: 10px;
+}
+
+
+/* ============================================================
+   10. SCROLLBAR INTERNA
+   ============================================================ */
+
+.barra-lateral-admin__navegacion {
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(255, 255, 255, 0.2)
+    transparent;
+}
+
+.barra-lateral-admin__navegacion::-webkit-scrollbar {
+  width: 6px;
+}
+
+.barra-lateral-admin__navegacion::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.barra-lateral-admin__navegacion::-webkit-scrollbar-thumb {
+  background-color:
+    rgba(255, 255, 255, 0.18);
+
+  border-radius:
+    var(--admin-radio-redondo);
+}
+
+.barra-lateral-admin__navegacion::-webkit-scrollbar-thumb:hover {
+  background-color:
+    rgba(255, 255, 255, 0.3);
+}
+
+
+/* ============================================================
+   11. REDUCCIÓN DE MOVIMIENTO
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .submenu-admin {
+    animation: none;
+  }
+}

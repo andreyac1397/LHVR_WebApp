@@ -1,0 +1,828 @@
+/* ============================================================
+   DISEÑO RESPONSIVE DEL PANEL ADMINISTRATIVO
+   Liceo Hernán Vargas Ramírez
+   ------------------------------------------------------------
+   Puntos de adaptación:
+   1. Pantallas grandes menores a 1400 px
+   2. Portátiles y tablet horizontal
+   3. Menú móvil desde 900 px
+   4. Tablet vertical
+   5. Celulares
+   6. Celulares pequeños
+
+   Este archivo complementa:
+   - estilos-admin.css
+   - barra-lateral.css
+   ============================================================ */
+
+
+/* ============================================================
+   1. PANTALLAS GRANDES MENORES A 1400 PX
+   ============================================================ */
+
+@media (max-width: 1400px) {
+  :root {
+    --admin-ancho-barra: 268px;
+    --admin-ancho-contenido: 1280px;
+  }
+
+  .admin-contenido-principal {
+    padding: 26px;
+  }
+
+  .admin-cuadricula--4 {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .encabezado-admin__informacion-usuario {
+    max-width: 180px;
+  }
+}
+
+
+/* ============================================================
+   2. PORTÁTILES Y TABLET HORIZONTAL
+   ============================================================ */
+
+@media (max-width: 1180px) {
+  :root {
+    --admin-ancho-barra: 250px;
+  }
+
+  .admin-encabezado,
+  .encabezado-admin {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .admin-contenido-principal {
+    padding: 24px;
+  }
+
+  .admin-cuadricula--4,
+  .admin-cuadricula--3 {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-pagina__encabezado {
+    align-items: flex-start;
+  }
+
+  .encabezado-admin__rol-usuario {
+    display: none;
+  }
+
+  .encabezado-admin__informacion-usuario {
+    max-width: 150px;
+  }
+
+  .admin-panel__encabezado,
+  .admin-panel__contenido,
+  .admin-panel__pie {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+
+/* ============================================================
+   3. MENÚ MÓVIL DESDE 900 PX
+   ============================================================ */
+
+@media (max-width: 900px) {
+  :root {
+    --admin-alto-encabezado: 70px;
+    --admin-ancho-barra: 286px;
+  }
+
+  body.admin-menu-contraido {
+    overflow-x: hidden;
+  }
+
+  /*
+   * El layout deja de reservar una columna para la barra.
+   * La barra lateral pasa a mostrarse sobre el contenido.
+   */
+  .admin-layout,
+  .admin-menu-contraido .admin-layout {
+    display: block;
+    min-height: 100vh;
+  }
+
+  .admin-contenedor-principal {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  /*
+   * Barra lateral oculta fuera de la pantalla.
+   */
+  .admin-barra-lateral,
+  .barra-lateral-admin {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    z-index: calc(
+      var(--admin-z-fondo-movil) + 1
+    );
+
+    width: min(
+      var(--admin-ancho-barra),
+      calc(100vw - 52px)
+    );
+
+    max-width: 320px;
+    height: 100dvh;
+
+    transform: translateX(-105%);
+
+    box-shadow:
+      18px 0 46px rgba(18, 28, 21, 0.24);
+
+    visibility: hidden;
+
+    transition:
+      transform var(--admin-transicion),
+      visibility var(--admin-transicion);
+  }
+
+  .barra-lateral-admin--abierta {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  /*
+   * Se anulan los estilos de barra contraída porque
+   * en móvil siempre debe mostrarse completa.
+   */
+  .admin-menu-contraido
+  .barra-lateral-admin__marca {
+    padding: 20px 18px 18px;
+  }
+
+  .admin-menu-contraido
+  .barra-lateral-admin__marca-enlace {
+    justify-content: flex-start;
+    padding: 9px;
+  }
+
+  .admin-menu-contraido
+  .barra-lateral-admin__logo {
+    width: 49px;
+    height: 49px;
+  }
+
+  .admin-menu-contraido
+  .barra-lateral-admin__identidad,
+  .admin-menu-contraido
+  .barra-lateral-admin__titulo-menu,
+  .admin-menu-contraido
+  .menu-admin__texto,
+  .admin-menu-contraido
+  .menu-admin__flecha,
+  .admin-menu-contraido
+  .barra-lateral-admin__institucion,
+  .admin-menu-contraido
+  .barra-lateral-admin__cerrar-sesion span {
+    width: auto;
+    max-width: none;
+
+    overflow: visible;
+
+    opacity: 1;
+    pointer-events: auto;
+
+    transform: none;
+  }
+
+  .admin-menu-contraido
+  .barra-lateral-admin__navegacion {
+    padding: 17px 13px 18px;
+  }
+
+  .admin-menu-contraido
+  .menu-admin {
+    gap: 5px;
+  }
+
+  .admin-menu-contraido
+  .menu-admin__enlace,
+  .admin-menu-contraido
+  .menu-admin__boton {
+    justify-content: flex-start;
+
+    min-height: 46px;
+    padding: 10px 12px;
+  }
+
+  .admin-menu-contraido
+  .menu-admin__enlace:hover,
+  .admin-menu-contraido
+  .menu-admin__boton:hover {
+    transform: translateX(2px);
+  }
+
+  .admin-menu-contraido
+  .menu-admin__enlace::before,
+  .admin-menu-contraido
+  .menu-admin__boton::before {
+    top: 50%;
+    bottom: auto;
+    left: 0;
+
+    width: 3px;
+    height: 0;
+
+    transform: translateY(-50%);
+  }
+
+  .admin-menu-contraido
+  .menu-admin__enlace:hover::before,
+  .admin-menu-contraido
+  .menu-admin__boton:hover::before {
+    width: 3px;
+    height: 22px;
+  }
+
+  .admin-menu-contraido
+  .menu-admin__enlace--activo::before,
+  .admin-menu-contraido
+  .menu-admin__boton--activo::before {
+    width: 3px;
+    height: 26px;
+  }
+
+  .admin-menu-contraido
+  .submenu-admin {
+    display: grid;
+  }
+
+  .admin-menu-contraido
+  .barra-lateral-admin__pie {
+    padding: 14px 13px 16px;
+  }
+
+  .admin-menu-contraido
+  .barra-lateral-admin__cerrar-sesion {
+    justify-content: flex-start;
+    padding: 10px 12px;
+  }
+
+  /*
+   * Encabezado móvil.
+   */
+  .admin-encabezado,
+  .encabezado-admin {
+    min-height: var(--admin-alto-encabezado);
+    padding: 10px 18px;
+  }
+
+  .encabezado-admin__icono-menu--movil {
+    display: inline-flex;
+  }
+
+  .encabezado-admin__icono-menu--escritorio {
+    display: none;
+  }
+
+  .encabezado-admin__boton-menu {
+    width: 42px;
+    height: 42px;
+  }
+
+  .encabezado-admin__etiqueta {
+    font-size: 0.66rem;
+  }
+
+  .encabezado-admin__titulo {
+    max-width: 440px;
+    font-size: 1.2rem;
+  }
+
+  .encabezado-admin__informacion-usuario {
+    display: none;
+  }
+
+  .encabezado-admin__zona-usuario {
+    padding: 5px;
+
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  .encabezado-admin__zona-usuario:hover {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .encabezado-admin__avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  /*
+   * Contenido.
+   */
+  .admin-contenido-principal {
+    padding: 22px;
+  }
+
+  .admin-pagina__encabezado {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .admin-pagina__acciones {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .admin-formulario__fila {
+    grid-template-columns: 1fr;
+  }
+
+  /*
+   * Fondo que cubre la página cuando el menú está abierto.
+   */
+  .admin-fondo-menu-movil {
+    display: block;
+  }
+}
+
+
+/* ============================================================
+   4. TABLET VERTICAL
+   ============================================================ */
+
+@media (max-width: 720px) {
+  .admin-encabezado,
+  .encabezado-admin {
+    gap: 12px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .encabezado-admin__zona-izquierda {
+    flex: 1;
+    gap: 12px;
+  }
+
+  .encabezado-admin__titulo {
+    max-width: calc(100vw - 160px);
+    font-size: 1.08rem;
+  }
+
+  .encabezado-admin__etiqueta {
+    display: none;
+  }
+
+  .encabezado-admin__avatar {
+    width: 38px;
+    height: 38px;
+
+    font-size: 0.72rem;
+  }
+
+  .admin-contenido-principal {
+    padding: 20px 16px 28px;
+  }
+
+  .admin-pagina__encabezado {
+    margin-bottom: 22px;
+  }
+
+  .admin-pagina__titulo {
+    font-size: 1.65rem;
+  }
+
+  .admin-pagina__descripcion {
+    font-size: 0.9rem;
+  }
+
+  .admin-cuadricula--4,
+  .admin-cuadricula--3,
+  .admin-cuadricula--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-cuadricula {
+    gap: 16px;
+  }
+
+  .admin-tarjeta {
+    padding: 20px;
+  }
+
+  .admin-panel {
+    border-radius: var(--admin-radio-md);
+  }
+
+  .admin-panel__encabezado {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .admin-panel__contenido {
+    padding: 18px;
+  }
+
+  .admin-panel__pie {
+    padding: 15px 18px;
+  }
+
+  .admin-filtros {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .admin-filtros__campo,
+  .admin-buscador {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .admin-formulario {
+    gap: 17px;
+  }
+
+  .admin-formulario__acciones {
+    justify-content: stretch;
+  }
+
+  .admin-formulario__acciones
+  .admin-boton {
+    flex: 1 1 150px;
+  }
+
+  .admin-tabla-contenedor {
+    border-radius: var(--admin-radio-md);
+  }
+
+  .admin-tabla th,
+  .admin-tabla td {
+    padding: 12px 14px;
+  }
+
+  .admin-paginacion {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .admin-paginacion__controles {
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .admin-modal {
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .admin-modal__contenido {
+    max-width: none;
+    max-height: calc(100dvh - 24px);
+
+    border-radius:
+      var(--admin-radio-lg)
+      var(--admin-radio-lg)
+      var(--admin-radio-md)
+      var(--admin-radio-md);
+  }
+}
+
+
+/* ============================================================
+   5. CELULARES
+   ============================================================ */
+
+@media (max-width: 540px) {
+  :root {
+    --admin-alto-encabezado: 64px;
+  }
+
+  .admin-encabezado,
+  .encabezado-admin {
+    min-height: var(--admin-alto-encabezado);
+    padding: 9px 12px;
+  }
+
+  .encabezado-admin__zona-izquierda {
+    gap: 9px;
+  }
+
+  .encabezado-admin__boton-menu {
+    width: 40px;
+    height: 40px;
+
+    border-radius:
+      var(--admin-radio-sm);
+  }
+
+  .encabezado-admin__icono {
+    width: 21px;
+    height: 21px;
+  }
+
+  .encabezado-admin__titulo {
+    max-width: calc(100vw - 142px);
+    font-size: 1rem;
+  }
+
+  .encabezado-admin__avatar {
+    width: 37px;
+    height: 37px;
+  }
+
+  .admin-contenido-principal {
+    padding: 18px 12px 26px;
+  }
+
+  .admin-pagina__etiqueta {
+    margin-bottom: 6px;
+    padding: 4px 9px;
+
+    font-size: 0.66rem;
+  }
+
+  .admin-pagina__titulo {
+    margin-bottom: 5px;
+
+    font-size: 1.45rem;
+  }
+
+  .admin-pagina__descripcion {
+    font-size: 0.86rem;
+  }
+
+  .admin-pagina__acciones {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .admin-pagina__acciones
+  .admin-boton {
+    width: 100%;
+  }
+
+  .admin-tarjeta {
+    padding: 18px;
+
+    border-radius:
+      var(--admin-radio-md);
+  }
+
+  .admin-tarjeta__icono {
+    width: 43px;
+    height: 43px;
+    margin-bottom: 14px;
+  }
+
+  .admin-panel__titulo {
+    font-size: 1.08rem;
+  }
+
+  .admin-panel__descripcion {
+    font-size: 0.82rem;
+  }
+
+  .admin-boton {
+    min-height: 43px;
+  }
+
+  .admin-formulario__acciones {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .admin-formulario__acciones
+  .admin-boton {
+    width: 100%;
+  }
+
+  .admin-alerta {
+    padding: 14px;
+  }
+
+  .admin-estado-vacio {
+    min-height: 230px;
+    padding: 28px 16px;
+  }
+
+  .admin-estado-vacio__icono {
+    width: 58px;
+    height: 58px;
+  }
+
+  .admin-paginacion__informacion {
+    width: 100%;
+  }
+
+  .admin-modal {
+    padding: 8px;
+  }
+
+  .admin-modal__contenido {
+    max-height: calc(100dvh - 16px);
+  }
+
+  .admin-modal__encabezado,
+  .admin-modal__cuerpo,
+  .admin-modal__acciones {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
+  .admin-modal__acciones {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .admin-modal__acciones
+  .admin-boton {
+    width: 100%;
+  }
+}
+
+
+/* ============================================================
+   6. CELULARES PEQUEÑOS
+   ============================================================ */
+
+@media (max-width: 390px) {
+  .admin-barra-lateral,
+  .barra-lateral-admin {
+    width: calc(100vw - 30px);
+  }
+
+  .encabezado-admin__titulo {
+    max-width: calc(100vw - 132px);
+    font-size: 0.94rem;
+  }
+
+  .encabezado-admin__avatar {
+    width: 35px;
+    height: 35px;
+
+    font-size: 0.68rem;
+  }
+
+  .admin-contenido-principal {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .admin-pagina__titulo {
+    font-size: 1.35rem;
+  }
+
+  .admin-tarjeta,
+  .admin-panel__contenido {
+    padding: 16px;
+  }
+
+  .admin-panel__encabezado,
+  .admin-panel__pie {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .admin-filtros {
+    padding: 14px;
+  }
+}
+
+
+/* ============================================================
+   7. DISPOSITIVOS CON POCA ALTURA
+   ============================================================ */
+
+@media (max-height: 650px) and (max-width: 900px) {
+  .barra-lateral-admin__marca {
+    padding-top: 12px;
+    padding-bottom: 11px;
+  }
+
+  .barra-lateral-admin__logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .barra-lateral-admin__navegacion {
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+
+  .barra-lateral-admin__pie {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .barra-lateral-admin__institucion {
+    display: none;
+  }
+}
+
+
+/* ============================================================
+   8. ORIENTACIÓN HORIZONTAL EN CELULAR
+   ============================================================ */
+
+@media (
+  max-width: 900px
+) and (
+  orientation: landscape
+) and (
+  max-height: 520px
+) {
+  .admin-barra-lateral,
+  .barra-lateral-admin {
+    max-width: 300px;
+  }
+
+  .barra-lateral-admin__marca {
+    padding: 9px 13px;
+  }
+
+  .barra-lateral-admin__marca-enlace {
+    padding: 5px 8px;
+  }
+
+  .barra-lateral-admin__logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .barra-lateral-admin__navegacion {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .menu-admin__enlace,
+  .menu-admin__boton {
+    min-height: 40px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+
+  .barra-lateral-admin__pie {
+    padding: 8px 12px;
+  }
+
+  .barra-lateral-admin__institucion {
+    display: none;
+  }
+}
+
+
+/* ============================================================
+   9. IMPRESIÓN
+   ============================================================ */
+
+@media print {
+  body {
+    background: var(--admin-blanco);
+  }
+
+  .admin-barra-lateral,
+  .barra-lateral-admin,
+  .admin-encabezado,
+  .encabezado-admin,
+  .admin-fondo-menu-movil,
+  .admin-pagina__acciones,
+  .admin-filtros,
+  .admin-paginacion,
+  .admin-boton {
+    display: none !important;
+  }
+
+  .admin-layout,
+  .admin-menu-contraido .admin-layout {
+    display: block;
+  }
+
+  .admin-contenedor-principal {
+    display: block;
+  }
+
+  .admin-contenido-principal {
+    padding: 0;
+  }
+
+  #contenidoPagina {
+    max-width: none;
+  }
+
+  .admin-panel,
+  .admin-tarjeta,
+  .admin-tabla-contenedor {
+    box-shadow: none;
+  }
+}

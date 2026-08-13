@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto y ubicación · Liceo Hernán Vargas Ramírez</title>
+  <meta name="description" content="Datos de contacto, horario de atención y ubicación del Liceo Hernán Vargas Ramírez." />
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body data-pagina="contacto">
+  <!-- El encabezado se inserta con JavaScript (main.js) -->
+  <div id="encabezado"></div>
+
+  <main>
+    <!-- Banda / encabezado de la página -->
+    <section class="banda">
+      <div class="contenedor">
+        <p class="migas">
+          <a href="../index.html">Inicio</a>
+          /
+          Contacto y ubicación
+        </p>
+
+        <h1 id="tituloEncabezadoContacto">
+          Contacto y ubicación
+        </h1>
+
+        <p id="descripcionEncabezadoContacto">
+          Estamos para atenderte. Utiliza el formulario o nuestros datos de contacto directo.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div
+        class="contenedor cuadricula cuadricula--2"
+        style="align-items: start"
+      >
+        <!-- ==================================================
+            COLUMNA DE DATOS DE CONTACTO
+            ================================================== -->
+
+        <div
+          id="bloqueDatosContactoPublico"
+          class="bloque-texto"
+        >
+          <h2
+            id="tituloDatosContactoPublico"
+            class="titulo-seccion"
+          >
+            Datos de contacto
+          </h2>
+
+          <ul class="info-contacto">
+            <!-- Dirección -->
+            <li>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+
+              <span>
+                <strong>Dirección</strong>
+
+                <span data-dato="direccion">
+                  Calle 3, Juan Viñas, Jiménez, Cartago, Costa Rica.
+                </span>
+              </span>
+            </li>
+
+            <!-- Teléfono -->
+            <li>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+
+              <span>
+                <strong>Teléfono</strong>
+
+                <span data-dato="telefono">
+                  2532-2274 / 8644-6240
+                </span>
+              </span>
+            </li>
+
+            <!-- Correo -->
+            <li>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect
+                  x="2"
+                  y="4"
+                  width="20"
+                  height="16"
+                  rx="2"
+                ></rect>
+
+                <path d="m22 7-10 5L2 7"></path>
+              </svg>
+
+              <span>
+                <strong>Correo</strong>
+
+                <a
+                  class="info-contacto__enlace"
+                  data-dato="correo"
+                  href="mailto:lic.hernanvargasramirez@mep.go.cr"
+                >
+                  lic.hernanvargasramirez@mep.go.cr
+                </a>
+              </span>
+            </li>
+
+            <!-- Facebook -->
+            <li>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                ></circle>
+
+                <path d="M14.5 8H13a2 2 0 0 0-2 2v2H9.5v3H11v5h3v-5h2l.5-3H14v-1.5c0-.4.2-.5.6-.5h1.4V8z"></path>
+              </svg>
+
+              <span>
+                <strong>Facebook</strong>
+
+                <a
+                  class="info-contacto__enlace"
+                  data-dato-link="facebook"
+                  href="https://www.facebook.com/liceohernanvargasramirez/?locale=es_LA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Facebook oficial del liceo
+                </a>
+              </span>
+            </li>
+
+            <!-- Horario -->
+            <li>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                ></circle>
+
+                <path d="M12 7v5l3 2"></path>
+              </svg>
+
+              <span>
+                <strong>Horario</strong>
+
+                <span data-dato="horario">
+                  Lunes a viernes, 7:00 a.m. - 4:10 p.m.
+                </span>
+              </span>
+            </li>
+          </ul>
+
+          <!-- ==================================================
+              UBICACIÓN
+              ================================================== -->
+
+          <div id="bloqueUbicacionContactoPublico">
+            <h3
+              id="tituloUbicacionContactoPublico"
+              style="
+                font-family: var(--fuente-titulos);
+                color: var(--verde-oscuro);
+                margin: 24px 0 12px;
+              "
+            >
+              Mapa
+            </h3>
+
+            <div class="mapa-marco">
+              <iframe
+                id="mapaContactoPublico"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1909.2982729432772!2d-83.74451198525446!3d9.893096704741707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0d7480f10385f%3A0x66bd6446e8a5ae36!2sLiceo%20Hern%C3%A1n%20Vargas%20Ramirez!5e0!3m2!1ses-419!2scr!4v1782915220776!5m2!1ses-419!2scr"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                title="Ubicación del Liceo Hernán Vargas Ramírez"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================
+            COLUMNA DEL FORMULARIO
+            ================================================== -->
+
+        <div id="bloqueFormularioContactoPublico">
+          <h2
+            id="tituloFormularioContactoPublico"
+            class="titulo-seccion"
+          >
+            Escríbenos
+          </h2>
+
+          <p
+            id="descripcionFormularioContactoPublico"
+            class="subtitulo-seccion"
+          >
+            Estamos para atenderte. Envíanos tu consulta por medio del siguiente formulario.
+          </p>
+
+          <form
+            id="formContacto"
+            class="formulario"
+            novalidate
+          >
+            <div class="campo">
+              <label for="nombre">
+                Nombre completo
+              </label>
+
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                autocomplete="name"
+              >
+            </div>
+
+            <div class="campo">
+              <label for="email">
+                Correo electrónico
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+              >
+            </div>
+
+            <div class="campo">
+              <label for="asunto">
+                Asunto
+              </label>
+
+              <input
+                type="text"
+                id="asunto"
+                name="asunto"
+                required
+              >
+            </div>
+
+            <div class="campo">
+              <label for="mensaje">
+                Mensaje
+              </label>
+
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="boton boton--primario"
+            >
+              Enviar mensaje
+            </button>
+
+            <p
+              class="formulario__estado"
+              id="estadoForm"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- El pie de página se inserta con JavaScript (main.js) -->
+  <div id="pie"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/contacto.js"></script>
+</body>
+</html>

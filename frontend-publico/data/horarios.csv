@@ -1,0 +1,341 @@
+﻿seccion,profesor_guia,lec,horas,lunes,martes,miercoles,jueves,viernes
+7-1,Xinia Pérez Romero,1,07:00-07:40,Hogar/Indus.,Música (03),Ciencias (10),Francés (09),Tut Ing (B)
+7-1,Xinia Pérez Romero,2,07:40-08:20,Hogar/Indus.,Música (03),Ciencias (10),Tut Ciencias (B),Guía (02)
+7-1,Xinia Pérez Romero,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+7-1,Xinia Pérez Romero,3,08:35-09:15,Hogar/Indus.,Ciencias (10),Tut Fran (B),Cívica (12),Matemática (07)
+7-1,Xinia Pérez Romero,4,09:15-09:55,Hogar/Indus.,Ciencias (10),Club (09),Cívica (12),Matemática (07)
+7-1,Xinia Pérez Romero,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+7-1,Xinia Pérez Romero,5,10:00-10:40,Hogar/Indus.,Matemática (07),Inglés (12),Educación,Inglés (02)
+7-1,Xinia Pérez Romero,6,10:40-11:20,Hogar/Indus.,Matemática (07),Inglés (12),Física,Español (15)
+7-1,Xinia Pérez Romero,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+7-1,Xinia Pérez Romero,7,12:00-12:40,Estudios,Ref Fran/Tut Mat (B),Form Tec,Estudios,Religión (09)
+7-1,Xinia Pérez Romero,8,12:40-01:20,Sociales (13),Ciencias (10),Form Tec,Sociales (13),Ref Ing (B)
+7-1,Xinia Pérez Romero,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+7-1,Xinia Pérez Romero,9,01:30-02:10,Español (04),Español (04),Francés (09),Tut Est Soc/Ref Mat,Artes
+7-1,Xinia Pérez Romero,10,02:10-02:50,Español (04),Español (04),Frances(09),Libre,Plásticas (05)
+7-1,Xinia Pérez Romero,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+7-1,Xinia Pérez Romero,11,02:55-03:35,Matemática (07),Orientación (03),Forta Mate (B),Tut Esp (10),Ref Est Soc (07)
+7-1,Xinia Pérez Romero,12,03:35-04:15,Libre,Libre,Libre,Libre,Libre
+7-2,Jorge Solano González,1,07:00-07:40,Música (03),Matemática (07),Español (12),Guía (Jorge),Matemática (07)
+7-2,Jorge Solano González,2,07:40-08:20,Música (03),Matemática (07),Español (12),Tut Cien (B),Matemática (07)
+7-2,Jorge Solano González,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+7-2,Jorge Solano González,3,08:35-09:15,Francés (09),Form Tec,Tut Fran (B),Estudios,Español (15)
+7-2,Jorge Solano González,4,09:15-09:55,Francés (09),Form Tec,Forta (B),Sociales (13),Religión (09)
+7-2,Jorge Solano González,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+7-2,Jorge Solano González,5,10:00-10:40,Educación,Ciencias (10),Orientación (04),Cívica (12),Tut Ing (B)
+7-2,Jorge Solano González,6,10:40-11:20,Física,Ciencias (10),Club (Wag),Cívica (12),Inglés (02)
+7-2,Jorge Solano González,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+7-2,Jorge Solano González,7,12:00-12:40,Hogar/Indus.,Ref Fra/Tut Mat (B),Inglés (08),Español (10),Ciencias (10)
+7-2,Jorge Solano González,8,12:40-01:20,Hogar/Indus.,Francés (09),Inglés (08),Español (10),Matemática (07)
+7-2,Jorge Solano González,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+7-2,Jorge Solano González,9,01:30-02:10,Hogar/Indus.,Artes,Ciencias (10),Tut Est Soc/Ref Mat,Ref Inglés
+7-2,Jorge Solano González,10,02:10-02:50,Hogar/Indus.,Plásticas (05),Ciencias (10),Libre,Ref Est Soc (07)
+7-2,Jorge Solano González,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+7-2,Jorge Solano González,11,02:55-03:35,Hogar/Indus.,Estudios,Libre,Tut Esp (10),Libre
+7-2,Jorge Solano González,12,03:35-04:15,Hogar/Indus.,Sociales (13),Libre,Libre,Libre
+7-3,Xinia Pérez Romero,1,07:00-07:40,Form Tec,Ciencias (10),Hogar/Indus.,Cívica (12),Tut Ing (B)
+7-3,Xinia Pérez Romero,2,07:40-08:20,Form Tec,Ciencias (10),Hogar/Indus.,Cívica (12),Club (17)
+7-3,Xinia Pérez Romero,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+7-3,Xinia Pérez Romero,3,08:35-09:15,Educación,Matemática (07),Hogar/Indus.,Música (03),Religión (09)
+7-3,Xinia Pérez Romero,4,09:15-09:55,Física,Matemática (07),Hogar/Indus.,Música (03),Español (15)
+7-3,Xinia Pérez Romero,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+7-3,Xinia Pérez Romero,5,10:00-10:40,Orientación (B),Español (04),Hogar/Indus.,Francés (09),Matemática (07)
+7-3,Xinia Pérez Romero,6,10:40-11:20,Libre,Español (04),Hogar/Indus.,Forta Mate (08),Matemática (07)
+7-3,Xinia Pérez Romero,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+7-3,Xinia Pérez Romero,7,12:00-12:40,Artes,Ciencias (10),Tut Fran(B),Tut Cien (B),Inglés (08)
+7-3,Xinia Pérez Romero,8,12:40-01:20,Plásticas (05),Tut Fra (B),Matemática (12),Tut Est Soc (B),Guía (02)
+7-3,Xinia Pérez Romero,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+7-3,Xinia Pérez Romero,9,01:30-02:10,Estudios,Estudios,Inglés (08),Español (10),Ref ing(B)
+7-3,Xinia Pérez Romero,10,02:10-02:50,Sociales (13),Sociales (13),Inglés (08),Español (10),Ref Est Soc (07)
+7-3,Xinia Pérez Romero,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+7-3,Xinia Pérez Romero,11,02:55-03:35,Libre,Francés (09),Ciencias (10),Ref Mate (B)/Tut Esp (10),Libre
+7-3,Xinia Pérez Romero,12,03:35-04:15,Libre,Francés (09),Ciencias (10),Libre,Libre
+7-4,Óscar Ovares Hernández,1,07:00-07:40,Edufi,Artes,Libre,Español (10),Español (15)
+7-4,Óscar Ovares Hernández,2,07:40-08:20,Edufi,Plásticas (05),Club (03),Francés (09),Español (15)
+7-4,Óscar Ovares Hernández,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+7-4,Óscar Ovares Hernández,3,08:35-09:15,Matemática (07),Español (04),Tut Fra (B),Libre,Inglés (02)
+7-4,Óscar Ovares Hernández,4,09:15-09:55,Matemática (07),Español (04),Inglés (Lab),Forta Mate (09),Inglés (02)
+7-4,Óscar Ovares Hernández,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+7-4,Óscar Ovares Hernández,5,10:00-10:40,Estudios,Libre,Ciencias (10),Música (03),Tut Ing (B)
+7-4,Óscar Ovares Hernández,6,10:40-11:20,Sociales (13),Libre,Tut Esp (B),Música (03),Religión (09)
+7-4,Óscar Ovares Hernández,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+7-4,Óscar Ovares Hernández,7,12:00-12:40,Francés (09),Orientación (16),Hogar/Indus.,Tut Ciencia (B),Matemática (07)
+7-4,Óscar Ovares Hernández,8,12:40-01:20,Francés (09),Tut Mat/Ref Fra (B),Hogar/Indus.,Tut Est Soc (B),Ref Ing (B)
+7-4,Óscar Ovares Hernández,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+7-4,Óscar Ovares Hernández,9,01:30-02:10,Cívica (12),Ciencias (10),Hogar/Indus.,Estudios,Ciencias (10)
+7-4,Óscar Ovares Hernández,10,02:10-02:50,Cívica (12),Ciencias (10),Hogar/Indus.,Sociales (13),Ciencias (10)
+7-4,Óscar Ovares Hernández,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+7-4,Óscar Ovares Hernández,11,02:55-03:35,Form Tec,Matemática (07),Hogar/Indus.,Ref Mat,Ref Est Soc (B)
+7-4,Óscar Ovares Hernández,12,03:35-04:15,Form Tec,Matemática (07),Hogar/Indus.,Guía (12),Libre
+8-1,Wagner Coto Monge,1,07:00-07:40,Matemática (04),Hogar/Indus,Matemática (04),Estudios (14),Música (03)
+8-1,Wagner Coto Monge,2,07:40-08:20,Matemática (04),Hogar/Indus,Matemática (04),Sociales (14),Música (03)
+8-1,Wagner Coto Monge,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+8-1,Wagner Coto Monge,3,08:35-09:15,Estudios (14),Hogar/Indus,Ciencias (10),Francés (09),Edufi
+8-1,Wagner Coto Monge,4,09:15-09:55,Sociales (14),Hogar/Indus,Ciencias (10),Español (10),Edufi
+8-1,Wagner Coto Monge,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+8-1,Wagner Coto Monge,5,10:00-10:40,Form Tec,Hogar/Indus,Guía (Lab),Español (10),Ciencias (10)
+8-1,Wagner Coto Monge,6,10:40-11:20,Form Tec,Hogar/Indus,Ciencias (10),Español (10),Ciencias (10)
+8-1,Wagner Coto Monge,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+8-1,Wagner Coto Monge,7,12:00-12:40,Cívica (12),Artes,Matemática (04),Tut Mat (B),Español (15)
+8-1,Wagner Coto Monge,8,12:40-01:20,Cívica (12),Plásticas (5),Ref Fra (B),Tut Cien (B),Español (15)
+8-1,Wagner Coto Monge,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+8-1,Wagner Coto Monge,9,01:30-02:10,Francés (09),Libre,Inglés (13),Inglés (07),Libre
+8-1,Wagner Coto Monge,10,02:10-02:50,Francés (09),Tut Fran,Inglés (13),Orientación (15),Religión (09)
+8-1,Wagner Coto Monge,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+8-1,Wagner Coto Monge,11,02:55-03:35,Club (14),Tut Esp (04)/Ref Est Soc (17),Tut Inglés (03),Tut Est Soc (B),Libre
+8-1,Wagner Coto Monge,12,03:35-04:15,Libre,Libre,Forta Mate (B),Tut Est Soc (B),Libre
+8-2,Oscar Obares Hernández,1,07:00-07:40,Artes,Libre,Libre,Matemática (04),Ciencias (10)
+8-2,Oscar Obares Hernández,2,07:40-08:20,Plásticas (05),Libre,Libre,Español (10),Ciencias (10)
+8-2,Oscar Obares Hernández,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+8-2,Oscar Obares Hernández,3,08:35-09:15,Matemática (04),Libre,Español (12),Estudios (19),Ciencias (10)
+8-2,Oscar Obares Hernández,4,09:15-09:55,Matemática (04),Libre,Español (12),Sociales (19),Club (17)
+8-2,Oscar Obares Hernández,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+8-2,Oscar Obares Hernández,5,10:00-10:40,Cívica (12),Libre,Ref Fran (B),Matemática (04),Edufi
+8-2,Oscar Obares Hernández,6,10:40-11:20,Cívica (12),Libre,Francés (09),Matemática (04),Edufi
+8-2,Oscar Obares Hernández,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+8-2,Oscar Obares Hernández,7,12:00-12:40,Form Tec,Hogar/Indus,Ciencias (10),Inglés (07),Orientación (16)
+8-2,Oscar Obares Hernández,8,12:40-01:20,Form Tec,Hogar/Indus,Ciencias (10),Forta Mate (B),Religión (09)
+8-2,Oscar Obares Hernández,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+8-2,Oscar Obares Hernández,9,01:30-02:10,Música (03),Hogar/Indus,Estudios (14),Francés (09),Libre
+8-2,Oscar Obares Hernández,10,02:10-02:50,Música (03),Hogar/Indus,Sociales (14),Francés (09),Ref Inglés (B)
+8-2,Oscar Obares Hernández,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+8-2,Oscar Obares Hernández,11,02:55-03:35,Español (04),Hogar/Indus,Inglés (13),Guía (12),Libre
+8-2,Oscar Obares Hernández,12,03:35-04:15,Español (04),Hogar/Indus,Inglés (13),Libre,Libre
+8-3,Luisa López Zamora,1,07:00-07:40,Ciencias (06),Form Tec,Hogar/Indus,Ciencias (07),Club (17)
+8-3,Luisa López Zamora,2,07:40-08:20,Ciencias (06),Form Tec,Hogar/Indus,Matemática (04),Libre
+8-3,Luisa López Zamora,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+8-3,Luisa López Zamora,3,08:35-09:15,Español (16),Música (03),Hogar/Indus,Ciencias (07),Ref Inglés (B)
+8-3,Luisa López Zamora,4,09:15-09:55,Español (16),Música (03),Hogar/Indus,Ciencias (07),Inglés (04)
+8-3,Luisa López Zamora,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+8-3,Luisa López Zamora,5,10:00-10:40,Matemática (04),Francés (09),Hogar/Indus,Tut Cien (B),Guía 04
+8-3,Luisa López Zamora,6,10:40-11:20,Matemática (04),Francés (09),Hogar/Indus,Francés (09),Orientación (16)
+8-3,Luisa López Zamora,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+8-3,Luisa López Zamora,7,12:00-12:40,Estudios (14),Cívica (12),Español (12),Estudios (14),Artes
+8-3,Luisa López Zamora,8,12:40-01:20,Sociales (14),Cívica (12),Ref Fran/Tut Mate (B),Sociales (14),Plásticas (05)
+8-3,Luisa López Zamora,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+8-3,Luisa López Zamora,9,01:30-02:10,Religión (06),Tut Fran (B),Matemática (04),Edufi,Español (11)
+8-3,Luisa López Zamora,10,02:10-02:50,Libre,Libre,Matemática (04),Edufi,Español (11)
+8-3,Luisa López Zamora,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+8-3,Luisa López Zamora,11,02:55-03:35,Inglés (08),Ref Est Soc(17),Forta Mate (04),Tut Est Soc (B),Tut Espa (15)
+8-3,Luisa López Zamora,12,03:35-04:15,Inglés (08),Libre,Tut Inglés (03),Tut Est Soc (B),Libre
+8-4,Laura Solano Quirós,1,07:00-07:40,Libre,Libre,Estudios (14),Forta Mate (11),Artes
+8-4,Laura Solano Quirós,2,07:40-08:20,Religión (06),Orientación (16),Sociales (14),Ciencias (07),Plásticas (05)
+8-4,Laura Solano Quirós,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+8-4,Laura Solano Quirós,3,08:35-09:15,Ciencias (17),Francés (09),Matemática (04),Matemática (04),Ref Inglés
+8-4,Laura Solano Quirós,4,09:15-09:55,Ciencias (17),Francés (09),Matemática (04),Matemática (04),Guía (08)
+8-4,Laura Solano Quirós,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+8-4,Laura Solano Quirós,5,10:00-10:40,Español (17),Form Tec,Ref Fran (B),Ciencias (07),Español (15)
+8-4,Laura Solano Quirós,6,10:40-11:20,Español (17),Form Tec,Matemática (04),Ciencias (07),Libre
+8-4,Laura Solano Quirós,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+8-4,Laura Solano Quirós,7,12:00-12:40,Música (03),Español (04),Hogar/Indus,Francés (09),Edufi
+8-4,Laura Solano Quirós,8,12:40-01:20,Música (03),Español (04),Hogar/Indus,Inglés (07),Edufi
+8-4,Laura Solano Quirós,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+8-4,Laura Solano Quirós,9,01:30-02:10,Libre,Cívica (17),Hogar/Indus,Estudios (14),Club (Jorge)
+8-4,Laura Solano Quirós,10,02:10-02:50,Libre,Cívica (17),Hogar/Indus,Sociales (14),Libre
+8-4,Laura Solano Quirós,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+8-4,Laura Solano Quirós,11,02:55-03:35,Libre,Ref Est Soc (17),Hogar/Indus,Inglés (07),Libre
+8-4,Laura Solano Quirós,12,03:35-04:15,Libre,Libre,Hogar/Indus,Inglés (07),Libre
+9-1,Vanessa Sánchez Gamboa,1,07:00-07:40,Ciencias (02),Matemáticas (B),Estudios (13),Hogar/Indus,Libre
+9-1,Vanessa Sánchez Gamboa,2,07:40-08:20,Ciencias (02),Matemáticas (B),Sociales (13),Hogar/Indus,Tut Ing (B)
+9-1,Vanessa Sánchez Gamboa,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+9-1,Vanessa Sánchez Gamboa,3,08:35-09:15,Form Tec,Matemáticas (B),Español (11),Hogar/Indus,Artes
+9-1,Vanessa Sánchez Gamboa,4,09:15-09:55,Form Tec,Tut Mat (B),Español (11),Hogar/Indus,Plásticas (05)
+9-1,Vanessa Sánchez Gamboa,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+9-1,Vanessa Sánchez Gamboa,5,10:00-10:40,Español (11),Música (03),Edufi,Hogar/Indus,Matemáticas (08)
+9-1,Vanessa Sánchez Gamboa,6,10:40-11:20,Español (11),Música (03),Edufi,Hogar/Indus,Matemáticas (08)
+9-1,Vanessa Sánchez Gamboa,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+9-1,Vanessa Sánchez Gamboa,7,12:00-12:40,Religión (16),Ciencias (02),Inglés (03),Ciencias (02),Ref Ing (B)
+9-1,Vanessa Sánchez Gamboa,8,12:40-01:20,Club (17),Tut Epa (B),Inglés (03),Ciencias (02),Libre
+9-1,Vanessa Sánchez Gamboa,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+9-1,Vanessa Sánchez Gamboa,9,01:30-02:10,Tut Ing (B),Francés (09),Forta Mate (B),Tut Cien (B),Estudios (13)
+9-1,Vanessa Sánchez Gamboa,10,02:10-02:50,Inglés (17),Español (11),Orientación (15),Tut Est Soc (B),Sociales (13)
+9-1,Vanessa Sánchez Gamboa,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+9-1,Vanessa Sánchez Gamboa,11,02:55-03:35,Francés (09),Ref Francés (B),Guía (11),Libre,Cívica (12)
+9-1,Vanessa Sánchez Gamboa,12,03:35-04:15,Francés (09),Ref Est Soc (17)/Tut Fran (B),Ref Esp (11),Libre,Cívica (12)
+9-2,Arlen Gil Castro,1,07:00-07:40,Francés (09),Edufi,Español (11),Tut Esp (11),Inglés (04)
+9-2,Arlen Gil Castro,2,07:40-08:20,Francés (09),Edufi,Español (11),Club (Jorge),Inglés (04)
+9-2,Arlen Gil Castro,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+9-2,Arlen Gil Castro,3,08:35-09:15,Ciencias (02),Cívica (12),Inglés (03),Forta Mate (10),Estudios (13)
+9-2,Arlen Gil Castro,4,09:15-09:55,Ciencias (02),Cívica (12),Tut Fran (B),Tut Cien (B),Sociales (13)
+9-2,Arlen Gil Castro,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+9-2,Arlen Gil Castro,5,10:00-10:40,Artes,Español (11),Francés (09),Ciencias (02),Libre
+9-2,Arlen Gil Castro,6,10:40-11:20,Plásticas (05),Ciencias (02),Tut Mate (B),Ciencias (02),Libre
+9-2,Arlen Gil Castro,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+9-2,Arlen Gil Castro,7,12:00-12:40,Español (11),Form Tec,Estudios (13),Hogar/Indus,Ref Ing (B)
+9-2,Arlen Gil Castro,8,12:40-01:20,Español (11),Form Tec,Sociales (13),Hogar/Indus,Tut Est Soc (07)
+9-2,Arlen Gil Castro,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+9-2,Arlen Gil Castro,9,01:30-02:10,Matemáticas (07),Matemáticas (07),Guía (02),Hogar/Indus,Libre
+9-2,Arlen Gil Castro,10,02:10-02:50,Orientación (07),Matemáticas (07),Religión (02),Hogar/Indus,Libre
+9-2,Arlen Gil Castro,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+9-2,Arlen Gil Castro,11,02:55-03:35,Música (03),Ref Fra(B)/Tut Inglés (16),Matemáticas (12),Hogar/Indus,Libre
+9-2,Arlen Gil Castro,12,03:35-04:15,Música (03),Ref Est Soc (17),Matemáticas (12),Hogar/Indus,Libre
+9-3,Heidi Sanabria Robles,1,07:00-07:40,Matemáticas (07),Español (13),Ciencias (02),Música (03),Hogar/Indus
+9-3,Heidi Sanabria Robles,2,07:40-08:20,Matemáticas (07),Español (13),Ciencias (02),Música (03),Hogar/Indus
+9-3,Heidi Sanabria Robles,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+9-3,Heidi Sanabria Robles,3,08:35-09:15,Artes,Español (13),Estudios (13),Español (11),Hogar/Indus
+9-3,Heidi Sanabria Robles,4,09:15-09:55,Plásticas (05),Inglés (16),Sociales (13),Español (11),Hogar/Indus
+9-3,Heidi Sanabria Robles,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+9-3,Heidi Sanabria Robles,5,10:00-10:40,Matemáticas (07),Ciencias (02),Inglés (03),Estudios (13),Hogar/Indus
+9-3,Heidi Sanabria Robles,6,10:40-11:20,Guía (03),Libre,Inglés (03),Sociales (13),Hogar/Indus
+9-3,Heidi Sanabria Robles,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+9-3,Heidi Sanabria Robles,7,12:00-12:40,Libre,Matemáticas (07),Francés (09),Libre,Forta Mate (08)
+9-3,Heidi Sanabria Robles,8,12:40-01:20,Orientación (04),Matemáticas (07),Francés (09),Francés (09),Libre
+9-3,Heidi Sanabria Robles,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+9-3,Heidi Sanabria Robles,9,01:30-02:10,Ciencias (02),Form Tec,Edufi,Cívica (12),Religión (16)
+9-3,Heidi Sanabria Robles,10,02:10-02:50,Ciencias (02),Form Tec,Edufi,Cívica (12),Libre
+9-3,Heidi Sanabria Robles,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+9-3,Heidi Sanabria Robles,11,02:55-03:35,Libre,Ref Fran (B),Libre,Club (02),Libre
+9-3,Heidi Sanabria Robles,12,03:35-04:15,Ref Ing (14),Ref Est Soc (17),Ref. Espa (11),Libre,Libre
+9-4,Martín Mora Torres,1,07:00-07:40,Libre,Francés (09),Libre,Estudios (13),Libre
+9-4,Martín Mora Torres,2,07:40-08:20,Libre,Francés (09),Libre,Sociales (13),Libre
+9-4,Martín Mora Torres,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+9-4,Martín Mora Torres,3,08:35-09:15,Orientación (06),Libre,Francés (09),Edufi,Cívica (12)
+9-4,Martín Mora Torres,4,09:15-09:55,Guía (13),Español (13),Inglés (03),Edufi,Cívica (12)
+9-4,Martín Mora Torres,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+9-4,Martín Mora Torres,5,10:00-10:40,Religión (16),Español (13),Ciencias (02),Español (11),Artes
+9-4,Martín Mora Torres,6,10:40-11:20,Matemáticas (07),Español (13),Ciencias (02),Español (11),Plásticas (05)
+9-4,Martín Mora Torres,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+9-4,Martín Mora Torres,7,12:00-12:40,Matemáticas (07),Estudios (13),Club (11),Música (03),Hogar/Indus
+9-4,Martín Mora Torres,8,12:40-01:20,Matemáticas (07),Sociales (13),Forta Mate (04),Música (03),Hogar/Indus
+9-4,Martín Mora Torres,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+9-4,Martín Mora Torres,9,01:30-02:10,Form Tec,Inglés (16),Matemáticas (12),Ciencias (02),Hogar/Indus
+9-4,Martín Mora Torres,10,02:10-02:50,Form Tec,Inglés (16),Matemáticas (12),Libre,Hogar/Indus
+9-4,Martín Mora Torres,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+9-4,Martín Mora Torres,11,02:55-03:35,Ciencias (02),Ref Fran (B),Libre,Libre,Hogar/Indus
+9-4,Martín Mora Torres,12,03:35-04:15,Ciencias (02),Ref Est Soc (17),Ref. Espa (11),Libre,Hogar/Indus
+10-1,Catherine Bravo Jiménez,1,07:00-07:40,Religión (16),Química (15),Libre,Inglés (08),Cívica (13)
+10-1,Catherine Bravo Jiménez,2,07:40-08:20,Español (11),Orientación (15),Libre,Inglés (08),Cívica (13)
+10-1,Catherine Bravo Jiménez,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+10-1,Catherine Bravo Jiménez,3,08:35-09:15,Est Soc (12),Español (11),Física (15),Biología (15),Ref Mate (B)
+10-1,Catherine Bravo Jiménez,4,09:15-09:55,Est Soc (12),Español (11),Física (15),Inglés (08),Ref Ing (08)
+10-1,Catherine Bravo Jiménez,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+10-1,Catherine Bravo Jiménez,5,10:00-10:40,Inglés (08),Edufi,Psicología (05),Paz y Conviv (08),Est Soc (12)
+10-1,Catherine Bravo Jiménez,6,10:40-11:20,Inglés (08),Edufi,Español (11),Matemáticas (06),Libre
+10-1,Catherine Bravo Jiménez,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+10-1,Catherine Bravo Jiménez,7,12:00-12:40,Biología (15),Física (15),Química (15),Est Soc (12),Tecnología
+10-1,Catherine Bravo Jiménez,8,12:40-01:20,Biología (15),Música (02),Química (15),Est Soc (12),Tecnología
+10-1,Catherine Bravo Jiménez,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+10-1,Catherine Bravo Jiménez,9,01:30-02:10,Matemáticas (06),Español (11),Matemáticas (06),Libre,Tecnología
+10-1,Catherine Bravo Jiménez,10,02:10-02:50,Matemáticas (06),Ref Mate (B),Matemáticas (06),Libre,Tecnología
+10-1,Catherine Bravo Jiménez,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+10-1,Catherine Bravo Jiménez,11,02:55-03:35,Artes (05),Libre,Psicología (05),Libre,Tecnología
+10-1,Catherine Bravo Jiménez,12,03:35-04:15,Guía (16),Libre,Psicología (05),Libre,Tecnología
+10-2,Alberto Ballestero Alvarado,1,07:00-07:40,Est Soc (12),Inglés (08),Física (15),Tecnología,Edufi
+10-2,Alberto Ballestero Alvarado,2,07:40-08:20,Est Soc (12),Inglés (08),Física (15),Tecnología,Edufi
+10-2,Alberto Ballestero Alvarado,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+10-2,Alberto Ballestero Alvarado,3,08:35-09:15,Religión (B),Química (06),Psicología (05),Tecnología,Orientación (03)
+10-2,Alberto Ballestero Alvarado,4,09:15-09:55,Ref. Ciencias,Artes (05),Psicología (05),Tecnología,Ref Ing (B)
+10-2,Alberto Ballestero Alvarado,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+10-2,Alberto Ballestero Alvarado,5,10:00-10:40,Biología (15),Libre,Cívica (13),Tecnología,Matemáticas (06)
+10-2,Alberto Ballestero Alvarado,6,10:40-11:20,Biología (15),Física (15),Cívica (13),Tecnología,Matemáticas (06)
+10-2,Alberto Ballestero Alvarado,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+10-2,Alberto Ballestero Alvarado,7,12:00-12:40,Inglés (08),Español (11),Química (07),Inglés (08),Est Soc (12)
+10-2,Alberto Ballestero Alvarado,8,12:40-01:20,Inglés (08),Español (11),Química (07),Paz y Conviv (08),Est Soc (12)
+10-2,Alberto Ballestero Alvarado,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+10-2,Alberto Ballestero Alvarado,9,01:30-02:10,Español (11),Est Soc (12),Español (11),Biología (15),Música (03)
+10-2,Alberto Ballestero Alvarado,10,02:10-02:50,Español (11),Ref Mate (B),Psicología (05),Matemáticas (06),Guía (06)
+10-2,Alberto Ballestero Alvarado,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+10-2,Alberto Ballestero Alvarado,11,02:55-03:35,Libre,Libre,Matemáticas (06),Libre,Libre
+10-2,Alberto Ballestero Alvarado,12,03:35-04:15,Libre,Libre,Matemáticas (06),Libre,Libre
+10-3,Arlen Gil Castro,1,07:00-07:40,Biología (13),Español (11),Psicología (05),Tecnología,Est Soc (12)
+10-3,Arlen Gil Castro,2,07:40-08:20,Biología (13),Español (11),Psicología (05),Tecnología,Est Soc (12)
+10-3,Arlen Gil Castro,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+10-3,Arlen Gil Castro,3,08:35-09:15,Biología (13),Física (02),Edufi,Tecnología,Tut Mate (B)
+10-3,Arlen Gil Castro,4,09:15-09:55,Música (03),Física (02),Edufi,Tecnología,Ref Inglés (B)
+10-3,Arlen Gil Castro,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+10-3,Arlen Gil Castro,5,10:00-10:40,Matemáticas (06),Tut Ing (03),Inglés (08),Tecnología,Cívica (13)
+10-3,Arlen Gil Castro,6,10:40-11:20,Matemáticas (06),Libre,Inglés (08),Tecnología,Cívica (13)
+10-3,Arlen Gil Castro,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+10-3,Arlen Gil Castro,7,12:00-12:40,Orientación (17),Inglés (08),Física (02),Paz y Conviv (),Matemáticas (06)
+10-3,Arlen Gil Castro,8,12:40-01:20,Ref. Ciencias,Inglés (08),Español (11),Tut Esp (B),Matemáticas (06)
+10-3,Arlen Gil Castro,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+10-3,Arlen Gil Castro,9,01:30-02:10,Inglés (08),Química (06),Psicología (05),Matemáticas (06),Tut Est Soc (7)
+10-3,Arlen Gil Castro,10,02:10-02:50,Artes (05),Química (06),Química (07),Guía (02),Est Soc (12)
+10-3,Arlen Gil Castro,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+10-3,Arlen Gil Castro,11,02:55-03:35,Español (11),Est Soc (12),Religión (02),Tut Cien (B),Libre
+10-3,Arlen Gil Castro,12,03:35-04:15,Español (11),Est Soc (12),Libre,Libre,Libre
+10-4,Vanessa Sánchez Gamboa,1,07:00-07:40,Guía (11),Est Soc (12),Inglés (03),Tecnología,Matemáticas (06)
+10-4,Vanessa Sánchez Gamboa,2,07:40-08:20,Orientación (17),Est Soc (12),Inglés (03),Tecnología,Matemáticas (06)
+10-4,Vanessa Sánchez Gamboa,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+10-4,Vanessa Sánchez Gamboa,3,08:35-09:15,Español (11),Biología (15),Física (02),Tecnología,Tut Ing (04)
+10-4,Vanessa Sánchez Gamboa,4,09:15-09:55,Español (11),Biología (15),Inglés,Tecnología,Tut Mate (08)
+10-4,Vanessa Sánchez Gamboa,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+10-4,Vanessa Sánchez Gamboa,5,10:00-10:40,Física (02),Biología (15),Química (15),Tecnología,Música (03)
+10-4,Vanessa Sánchez Gamboa,6,10:40-11:20,Física (02),Español (11),Psicología (05),Tecnología,Est Soc (12)
+10-4,Vanessa Sánchez Gamboa,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+10-4,Vanessa Sánchez Gamboa,7,12:00-12:40,Matemáticas (06),Edufi,Psicología (05),Matemáticas (06),Cívica (13)
+10-4,Vanessa Sánchez Gamboa,8,12:40-01:20,Ref. Cien (B),Edufi,Psicología (05),Matemáticas (06),Cívica (13)
+10-4,Vanessa Sánchez Gamboa,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+10-4,Vanessa Sánchez Gamboa,9,01:30-02:10,Artes (05),Inglés,Religión (07),Paz y Conviv (08),Libre
+10-4,Vanessa Sánchez Gamboa,10,02:10-02:50,Ref. Inglés(B),Inglés,Libre,Tut Cie (B)/Ref Mate (03),Libre
+10-4,Vanessa Sánchez Gamboa,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+10-4,Vanessa Sánchez Gamboa,11,02:55-03:35,Est Soc (12),Español (11),Química (15),Tut Espa (B),Libre
+10-4,Vanessa Sánchez Gamboa,12,03:35-04:15,Est Soc (12),Español (11),Química (15),Libre,Tut Est Soc (07)
+11-1,Jorge Solano González,1,07:00-07:40,Inglés (08),Libre,Química (07),Física (02),Tecnología
+11-1,Jorge Solano González,2,07:40-08:20,Inglés (08),Libre,Química (07),Física (02),Tecnología
+11-1,Jorge Solano González,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+11-1,Jorge Solano González,3,08:35-09:15,Biología (15),Inglés (08),Orientación (Laba),Inglés (08),Tecnología
+11-1,Jorge Solano González,4,09:15-09:55,Filosofía (10),Inglés (08),Física (02),Libre,Tecnología
+11-1,Jorge Solano González,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+11-1,Jorge Solano González,5,10:00-10:40,Filosofía (10),Artes (05),Est Soc,Matemáticas (06),Tecnología
+11-1,Jorge Solano González,6,10:40-11:20,Filosofía (10),Química (06),Est Soc (14),Tut Ciencias (B),Tecnología
+11-1,Jorge Solano González,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+11-1,Jorge Solano González,7,12:00-12:40,Ref Ing (B),Español (14),Matemáticas (06),Biología (15),Español (11)
+11-1,Jorge Solano González,8,12:40-01:20,Religión (16),Español (14),Matemáticas (06),Biología (15),Ref Mate (08)
+11-1,Jorge Solano González,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+11-1,Jorge Solano González,9,01:30-02:10,Est Soc (14),Edufi,Libre,Música (03),Est Soc
+11-1,Jorge Solano González,10,02:10-02:50,Libre,Edufi,Libre,Libre,Est Soc (14)
+11-1,Jorge Solano González,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+11-1,Jorge Solano González,11,02:55-03:35,Matemáticas (06),Guía (Gim),Libre,Cívica (14),Español (14)
+11-1,Jorge Solano González,12,03:35-04:15,Matemáticas (06),Ref Cien/Tut Ing,Libre,Cívica (14),Español (14)
+11-2,Heidi Sanabria Robles,1,07:00-07:40,Biología (15),Física (02),Matemáticas (06),Matemáticas (06),Español (11)
+11-2,Heidi Sanabria Robles,2,07:40-08:20,Biología (15),Física (02),Matemáticas (06),Matemáticas (06),Español (11)
+11-2,Heidi Sanabria Robles,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+11-2,Heidi Sanabria Robles,3,08:35-09:15,Inglés (08),Edufi,Inglés (08),Física (02),Est Soc
+11-2,Heidi Sanabria Robles,4,09:15-09:55,Inglés (08),Edufi,Química (07),Biología (15),Est Soc (14)
+11-2,Heidi Sanabria Robles,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+11-2,Heidi Sanabria Robles,5,10:00-10:40,Música (03),Inglés (08),Ref. Mate (B),Libre,Libre
+11-2,Heidi Sanabria Robles,6,10:40-11:20,Libre,Inglés (08),Orientación (15),Libre,Ref Ing (B)
+11-2,Heidi Sanabria Robles,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+11-2,Heidi Sanabria Robles,7,12:00-12:40,Filosofía (10),Química (06),Est Soc,Tecnología,Cívica (14)
+11-2,Heidi Sanabria Robles,8,12:40-01:20,Filosofía (10),Química (06),Est Soc (14),Tecnología,Cívica (14)
+11-2,Heidi Sanabria Robles,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+11-2,Heidi Sanabria Robles,9,01:30-02:10,Filosofía (10),Guía (03),Ref. Cienc (15),Tecnología,Matemáticas (06)
+11-2,Heidi Sanabria Robles,10,02:10-02:50,Est Soc (14),Español (14),Libre,Tecnología,Libre
+11-2,Heidi Sanabria Robles,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+11-2,Heidi Sanabria Robles,11,02:55-03:35,Religión (16),Español (14),Libre,Tecnología,Libre
+11-2,Heidi Sanabria Robles,12,03:35-04:15,Artes (05),Español (14),Libre,Tecnología,Libre
+11-3,Luisa López Zamora,1,07:00-07:40,Filosofía (10),Español (14),Edufi,Biología (15),Civica(14)
+11-3,Luisa López Zamora,2,07:40-08:20,Filosofía (10),Español (14),Edufi,Biología (15),Civica(14)
+11-3,Luisa López Zamora,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+11-3,Luisa López Zamora,3,08:35-09:15,Filosofía (10),Artes (05),Est. Soc. (14),Matemáticas (06),Español (11)
+11-3,Luisa López Zamora,4,09:15-09:55,Biología (15),Química (06),Est. Soc. (14),Matemáticas (06),Español (11)
+11-3,Luisa López Zamora,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+11-3,Luisa López Zamora,5,10:00-10:40,Est. Soc. (14),Tut Esp (14),Matemáticas (06),Est. Soc. (14),Español (11)
+11-3,Luisa López Zamora,6,10:40-11:20,Est. Soc. (14),Guía (16),Matemáticas (06),Tut Cienc (B),Música (03)
+11-3,Luisa López Zamora,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+11-3,Luisa López Zamora,7,12:00-12:40,Ref Ing (B),Inglés (16),Tut Ing (B),Tecnología,Libre
+11-3,Luisa López Zamora,8,12:40-01:20,Matemáticas (06),Inglés (16),Física (02),Tecnología,Ref Mat(08)/Tut Est Soc (B)
+11-3,Luisa López Zamora,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+11-3,Luisa López Zamora,9,01:30-02:10,Inglés (17),Física (02),Inglés (03),Tecnología,Libre
+11-3,Luisa López Zamora,10,02:10-02:50,Religión (16),Física (02),Inglés (03),Tecnología,Libre
+11-3,Luisa López Zamora,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+11-3,Luisa López Zamora,11,02:55-03:35,Orientación (17),Tut Mate (B),Química (07),Tecnología,Libre
+11-3,Luisa López Zamora,12,03:35-04:15,Libre,Ref Cien/Tut Inglés,Química (07),Tecnología,Libre
+11-4,Laura Solano Quirós,1,07:00-07:40,Est. Soc. (14),Química (06),Francés (09),Libre,Libre
+11-4,Laura Solano Quirós,2,07:40-08:20,Est. Soc. (14),Química (06),Francés (09),Tut Mate (B),Religión (09)
+11-4,Laura Solano Quirós,RECESO,08:20-08:35,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos,Receso 15 minutos
+11-4,Laura Solano Quirós,3,08:35-09:15,Música (03),Español (14),Matemáticas (06),Tut Cie (B),Matemáticas (06)
+11-4,Laura Solano Quirós,4,09:15-09:55,Matemáticas (06),Español (14),Matemáticas (06),Física (02),Matemáticas (06)
+11-4,Laura Solano Quirós,RECESO,09:55-10:00,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+11-4,Laura Solano Quirós,5,10:00-10:40,Francés (09),Orientación (B),Ref. Mate (B),Biología (15),Cívica (14)
+11-4,Laura Solano Quirós,6,10:40-11:20,Francés (09),Tut Esp (14),Química (07),Biología (15),Cívica (14)
+11-4,Laura Solano Quirós,ALMUERZO,11:20-12:00,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos,Almuerzo 40 minutos
+11-4,Laura Solano Quirós,7,12:00-12:40,Física (02),Francés (09),Edufi,Tecnología,Tut Est Soc (B)
+11-4,Laura Solano Quirós,8,12:40-01:20,Física (02),Libre,Edufi,Tecnología,Ref. Mate (08)
+11-4,Laura Solano Quirós,RECESO,01:20-01:30,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos,Receso 10 minutos
+11-4,Laura Solano Quirós,9,01:30-02:10,Biología (15),Español (14),Tut Fra (B),Tecnología,Español (11)
+11-4,Laura Solano Quirós,10,02:10-02:50,Filosofía (10),Guía (09),Tut Fra (B),Tecnología,Español (11)
+11-4,Laura Solano Quirós,RECESO,02:50-02:55,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos,Receso 5 minutos
+11-4,Laura Solano Quirós,11,02:55-03:35,Filosofía (10),Artes (05),Est. Soc. (14),Tecnología,Est. Soc. (14)
+11-4,Laura Solano Quirós,12,03:35-04:15,Filosofía (10),Ref Cien (15),Est. Soc. (14),Tecnología,Libre

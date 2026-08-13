@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    Liceo Hernán Vargas Ramírez | Inicio
+  </title>
+
+  <meta
+    name="description"
+    content="Sitio web institucional del Liceo Hernán Vargas Ramírez. Información, boletines, calendario, documentos y contacto."
+  />
+
+  <meta
+    name="theme-color"
+    content="#2b563a"
+  />
+
+  <!-- Hojas de estilo principales -->
+  <link
+    rel="stylesheet"
+    href="css/estilos.css"
+  />
+
+  <!-- Ajustes para tablet y celular -->
+  <link
+    rel="stylesheet"
+    href="css/responsive.css"
+  />
+
+  <link
+    rel="icon"
+    href="assets/logos/logo-liceo.jpg"
+  />
+</head>
+
+<body data-pagina="inicio">
+  <!-- El encabezado se genera desde js/main.js -->
+  <div id="encabezado"></div>
+
+  <main>
+    <!-- =====================================================
+         HERO / PORTADA
+         ===================================================== -->
+
+    <section
+      id="heroInicio"
+      class="hero"
+      aria-labelledby="tituloHeroInicio"
+    >
+      <div class="contenedor hero__grid">
+        <div class="hero__logo-marco">
+          <img
+            id="imagenHeroInicio"
+            class="hero__logo"
+            src="assets/logos/logo-liceo.jpg"
+            alt="Logo del Liceo Hernán Vargas Ramírez"
+          />
+        </div>
+
+        <div>
+          <h1
+            id="tituloHeroInicio"
+            class="hero__nombre"
+            data-dato="nombre"
+          >
+            Liceo Hernán Vargas Ramírez
+          </h1>
+
+          <p
+            id="subtituloHeroInicio"
+            class="hero__lema"
+            data-dato="lema"
+          >
+            Formación integral con valores, conocimiento y comunidad.
+          </p>
+
+          <div
+            id="accionesHeroInicio"
+            class="hero__acciones"
+          >
+            <a
+              id="botonConoceInicio"
+              class="boton boton--primario"
+              href="pages/nosotros.html"
+            >
+              Conoce el liceo
+            </a>
+
+            <a
+              id="botonContactoInicio"
+              class="boton boton--secundario"
+              href="pages/contacto-ubicacion.html"
+            >
+              Contáctanos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         ACCESOS RÁPIDOS
+         ===================================================== -->
+
+    <section
+      id="seccionAccesosInicio"
+      class="seccion"
+      aria-labelledby="tituloAccesosInicio"
+    >
+      <div class="contenedor">
+        <div class="encabezado-seccion texto-centrado">
+          <h2
+            id="tituloAccesosInicio"
+            class="titulo-seccion"
+          >
+            Accesos rápidos
+          </h2>
+
+          <p
+            id="descripcionAccesosInicio"
+            class="subtitulo-seccion"
+            style="margin: 0 auto"
+          >
+            Encuentra fácilmente lo más importante para nuestra comunidad.
+          </p>
+        </div>
+
+        <div
+          id="accesosRapidosInicio"
+          class="cuadricula cuadricula--4"
+          aria-live="polite"
+        >
+          <a
+            class="tarjeta acceso"
+            href="pages/boletines.html"
+            data-clave-acceso="ACCESO_RAPIDO_BOLETINES"
+          >
+            <span
+              class="tarjeta__icono"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 4h16v16H4z" />
+                <path d="M8 9h8M8 13h8M8 17h5" />
+              </svg>
+            </span>
+
+            <h3 class="tarjeta__titulo">
+              Boletines
+            </h3>
+
+            <p class="tarjeta__texto">
+              Comunicados y avisos importantes del liceo.
+            </p>
+          </a>
+
+          <a
+            class="tarjeta acceso"
+            href="pages/calendario.html"
+            data-clave-acceso="ACCESO_RAPIDO_CALENDARIO"
+          >
+            <span
+              class="tarjeta__icono"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect
+                  x="3"
+                  y="4"
+                  width="18"
+                  height="17"
+                  rx="2"
+                />
+
+                <path d="M3 9h18M8 2v4M16 2v4" />
+              </svg>
+            </span>
+
+            <h3 class="tarjeta__titulo">
+              Calendario
+            </h3>
+
+            <p class="tarjeta__texto">
+              Actividades y fechas institucionales.
+            </p>
+          </a>
+
+          <a
+            class="tarjeta acceso"
+            href="pages/documentos-importantes.html"
+            data-clave-acceso="ACCESO_RAPIDO_DOCUMENTOS"
+          >
+            <span
+              class="tarjeta__icono"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"
+                />
+
+                <path d="M14 3v6h6" />
+              </svg>
+            </span>
+
+            <h3 class="tarjeta__titulo">
+              Documentos
+            </h3>
+
+            <p class="tarjeta__texto">
+              Circulares, reglamentos y formularios.
+            </p>
+          </a>
+
+          <a
+            class="tarjeta acceso"
+            href="pages/contacto-ubicacion.html"
+            data-clave-acceso="ACCESO_RAPIDO_CONTACTO"
+          >
+            <span
+              class="tarjeta__icono"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"
+                />
+
+                <circle
+                  cx="12"
+                  cy="10"
+                  r="3"
+                />
+              </svg>
+            </span>
+
+            <h3 class="tarjeta__titulo">
+              Contacto
+            </h3>
+
+            <p class="tarjeta__texto">
+              Ubicación, horarios y datos de contacto.
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         ÚLTIMAS PUBLICACIONES
+         ===================================================== -->
+
+    <section class="seccion seccion--suave">
+      <div class="contenedor">
+        <div class="encabezado-seccion">
+          <h2 class="titulo-seccion">
+            Últimas publicaciones
+          </h2>
+
+          <p class="subtitulo-seccion">
+            Comunicados y boletines más recientes.
+          </p>
+        </div>
+
+        <!-- Las tarjetas se cargan desde data/boletines.json -->
+        <div
+          id="boletinesInicio"
+          class="cuadricula cuadricula--3"
+        >
+          <p class="estado">
+            Cargando publicaciones...
+          </p>
+        </div>
+
+        <div class="texto-centrado espacio-superior">
+          <a
+            class="boton boton--primario"
+            href="pages/boletines.html"
+          >
+            Ver todos los boletines
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         PRÓXIMAS ACTIVIDADES
+         ===================================================== -->
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="encabezado-seccion">
+          <h2 class="titulo-seccion">
+            Próximas actividades
+          </h2>
+
+          <p class="subtitulo-seccion">
+            Eventos y fechas destacadas del calendario.
+          </p>
+        </div>
+
+        <!-- Las actividades se cargan desde data/calendario.json -->
+        <div
+          id="calendarioInicio"
+          class="lista-actividades"
+        >
+          <p class="estado">
+            Cargando actividades...
+          </p>
+        </div>
+
+        <div class="texto-centrado espacio-superior">
+          <a
+            class="boton boton--secundario"
+            href="pages/calendario.html"
+          >
+            Ver calendario completo
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- El pie se genera desde js/main.js -->
+  <div id="pie"></div>
+
+  <!-- Componentes generales del sitio -->
+  <script src="js/main.js"></script>
+
+  <!-- Utilidades para cargar archivos JSON -->
+  <script src="js/filtros.js"></script>
+
+  <!-- Módulos de contenido automático -->
+  <script src="js/boletines.js"></script>
+  <script src="js/calendario.js"></script>
+
+  <!-- Contenido dinámico específico de Inicio -->
+  <script src="js/inicio.js"></script>
+</body>
+
+</html>

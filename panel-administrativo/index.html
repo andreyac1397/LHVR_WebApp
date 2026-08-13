@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Acceso al panel administrativo del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Panel administrativo | LHVR
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="css/variables-admin.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/estilos-admin.css"
+  >
+</head>
+
+<body>
+  <main>
+    <section
+      id="estadoInicialPanel"
+      aria-live="polite"
+    >
+      <h1>
+        Panel administrativo
+      </h1>
+
+      <p id="mensajeEstadoInicial">
+        Comprobando la sesión administrativa...
+      </p>
+    </section>
+  </main>
+
+  <noscript>
+    <p>
+      Debe habilitar JavaScript para acceder al panel administrativo.
+    </p>
+  </noscript>
+
+  <script
+    src="js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="js/modules/autenticacion.js"
+    defer
+  ></script>
+
+  <script>
+    window.addEventListener(
+      "DOMContentLoaded",
+      async () => {
+        const mensaje =
+          document.getElementById(
+            "mensajeEstadoInicial"
+          );
+
+        const rutaLogin =
+          "pages/autenticacion/iniciar-sesion.html";
+
+        const rutaDashboard =
+          "pages/dashboard/dashboard.html";
+
+        try {
+          if (
+            !window.AUTENTICACION_ADMIN ||
+            typeof window
+              .AUTENTICACION_ADMIN
+              .obtenerSesion !== "function"
+          ) {
+            throw new Error(
+              "No se pudo cargar el sistema de autenticación."
+            );
+          }
+
+          const respuesta =
+            await window
+              .AUTENTICACION_ADMIN
+              .obtenerSesion();
+
+          if (
+            respuesta?.datos?.autenticado
+          ) {
+            if (mensaje) {
+              mensaje.textContent =
+                "Sesión activa. Ingresando al panel...";
+            }
+
+            window.location.replace(
+              rutaDashboard
+            );
+
+            return;
+          }
+
+          window.location.replace(
+            rutaLogin
+          );
+        } catch (error) {
+          if (
+            error.statusCode === 401 ||
+            error.statusCode === 403
+          ) {
+            window.location.replace(
+              rutaLogin
+            );
+
+            return;
+          }
+
+          if (mensaje) {
+            mensaje.textContent =
+              error.statusCode === 0
+                ? "No fue posible conectar con el servidor. Verifique que el backend esté encendido."
+                : "No fue posible comprobar la sesión administrativa.";
+          }
+
+          console.error(
+            "Error al iniciar el panel:",
+            error
+          );
+        }
+      }
+    );
+  </script>
+</body>
+</html>

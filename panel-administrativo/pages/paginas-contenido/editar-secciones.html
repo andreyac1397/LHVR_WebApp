@@ -1,0 +1,2972 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Administración del contenido de las páginas públicas del Liceo Hernán Vargas Ramírez"
+  >
+
+  <title>
+    Editar página | Panel administrativo LHVR
+  </title>
+
+  <!-- Variables compartidas del panel -->
+  <link
+    rel="stylesheet"
+    href="../../css/variables-admin.css"
+  >
+
+  <!-- Estilos generales del layout -->
+  <link
+    rel="stylesheet"
+    href="../../css/estilos-admin.css"
+  >
+
+  <!-- Estilos del menú lateral -->
+  <link
+    rel="stylesheet"
+    href="../../css/barra-lateral.css"
+  >
+
+  <!-- Estilos generales de formularios -->
+  <link
+    rel="stylesheet"
+    href="../../css/formularios-admin.css"
+  >
+
+  <!-- Estilos de alertas -->
+  <link
+    rel="stylesheet"
+    href="../../css/alertas-admin.css"
+  >
+
+  <!-- Estilos de modales -->
+  <link
+    rel="stylesheet"
+    href="../../css/modales-admin.css"
+  >
+
+  <!-- Adaptación para tablet y celular -->
+  <link
+    rel="stylesheet"
+    href="../../css/responsive-admin.css"
+  >
+</head>
+
+<body
+  class="pagina-contenido"
+  data-titulo-pagina="Editar página"
+  data-pagina-slug="inicio"
+  data-parametro-pagina="pagina"
+>
+  <!-- ======================================================
+       CARGADOR DE PROTECCIÓN
+       ====================================================== -->
+
+  <div
+    id="cargadorProteccion"
+    class="cargador-proteccion"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="cargador-proteccion__contenido">
+      <span
+        class="cargador-proteccion__indicador"
+        aria-hidden="true"
+      ></span>
+
+      <div>
+        <p class="cargador-proteccion__titulo">
+          Comprobando sesión
+        </p>
+
+        <p class="cargador-proteccion__texto">
+          Espere un momento mientras validamos su acceso.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================
+       CONTENIDO PARTICULAR DE LA PÁGINA
+       ====================================================== -->
+
+  <main
+    id="contenidoPagina"
+    data-titulo="Editar página"
+  >
+    <div
+      id="contenidoPaginasContenido"
+      class="admin-pagina pagina-contenido-admin"
+      hidden
+    >
+      <!-- ================================================
+           ENCABEZADO INTERNO GENERAL
+           ================================================ -->
+
+      <section class="admin-pagina__encabezado">
+        <div class="admin-pagina__titulo-contenedor">
+          <span class="admin-pagina__etiqueta">
+            Gestión de páginas
+          </span>
+
+          <h1
+            id="tituloEditorPagina"
+            class="admin-pagina__titulo"
+          >
+            Editar página Inicio
+          </h1>
+
+          <p
+            id="descripcionEditorPagina"
+            class="admin-pagina__descripcion"
+          >
+            Modifique la sección principal, los botones y los accesos rápidos que aparecen en la portada pública.
+          </p>
+        </div>
+
+        <div class="admin-pagina__acciones">
+          <button
+            id="botonRecargarContenido"
+            class="admin-boton admin-boton--secundario"
+            type="button"
+          >
+            Recargar contenido
+          </button>
+
+          <a
+            id="enlacePaginaPublica"
+            class="admin-boton admin-boton--primario"
+            href="../../../frontend-publico/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver página pública
+          </a>
+        </div>
+      </section>
+
+      <!-- ================================================
+           INFORMACIÓN GENERAL DE LA PÁGINA
+           ================================================ -->
+
+      <section
+        class="admin-panel pagina-contenido-admin__resumen"
+        aria-labelledby="tituloResumenPagina"
+      >
+        <header class="admin-panel__encabezado">
+          <div>
+            <h2
+              id="tituloResumenPagina"
+              class="admin-panel__titulo"
+            >
+              Información de la página
+            </h2>
+
+            <p
+              id="descripcionResumenPagina"
+              class="admin-panel__descripcion"
+            >
+              Datos generales obtenidos desde el registro de la página.
+            </p>
+          </div>
+        </header>
+
+        <div class="admin-panel__contenido">
+          <dl class="pagina-contenido-admin__datos">
+            <div class="pagina-contenido-admin__dato">
+              <dt>
+                Nombre
+              </dt>
+
+              <dd id="nombrePagina">
+                Cargando...
+              </dd>
+            </div>
+
+            <div class="pagina-contenido-admin__dato">
+              <dt>
+                Dirección
+              </dt>
+
+              <dd id="rutaPagina">
+                Cargando...
+              </dd>
+            </div>
+
+            <div class="pagina-contenido-admin__dato">
+              <dt>
+                Estado
+              </dt>
+
+              <dd>
+                <span
+                  id="estadoPagina"
+                  class="admin-etiqueta"
+                >
+                  Cargando...
+                </span>
+              </dd>
+            </div>
+
+            <div class="pagina-contenido-admin__dato">
+              <dt>
+                Última actualización
+              </dt>
+
+              <dd id="fechaActualizacionPagina">
+                Cargando...
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ================================================
+           MENSAJE DE RESPALDO
+           ================================================ -->
+
+      <div
+        id="mensajePaginaContenido"
+        class="alerta-admin"
+        role="alert"
+        aria-live="polite"
+        hidden
+      ></div>
+
+      <!-- ==================================================
+           EDITOR DE LA PÁGINA INICIO
+           ================================================== -->
+
+      <div
+        id="editorPaginaInicio"
+        data-editor-pagina="inicio"
+      >
+        <!-- ================================================
+             SECCIÓN PRINCIPAL
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloSeccionPrincipal"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloSeccionPrincipal"
+                class="admin-panel__titulo"
+              >
+                Sección principal
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Corresponde al bloque principal con el nombre del liceo, el lema y la imagen institucional.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioHeroInicio"
+              class="formulario-admin"
+              novalidate
+            >
+              <input
+                id="idSeccionHero"
+                name="idSeccionHero"
+                type="hidden"
+              >
+
+              <input
+                id="idPaginaHero"
+                name="idPaginaHero"
+                type="hidden"
+              >
+
+              <input
+                id="claveHero"
+                name="claveHero"
+                type="hidden"
+                value="HERO_INICIO"
+              >
+
+              <input
+                id="idArchivoHero"
+                name="idArchivoHero"
+                type="hidden"
+              >
+
+              <div class="formulario-admin__cuadricula">
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="tituloHero"
+                  >
+                    Título principal
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="tituloHero"
+                    class="formulario-admin__control"
+                    name="tituloHero"
+                    type="text"
+                    maxlength="250"
+                    autocomplete="off"
+                    required
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Ejemplo: Liceo Hernán Vargas Ramírez.
+                  </small>
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="subtituloHero"
+                  >
+                    Lema o texto introductorio
+                  </label>
+
+                  <textarea
+                    id="subtituloHero"
+                    class="formulario-admin__control formulario-admin__control--textarea"
+                    name="subtituloHero"
+                    maxlength="300"
+                    rows="4"
+                  ></textarea>
+
+                  <small class="formulario-admin__ayuda">
+                    Texto que aparece debajo del nombre del liceo.
+                  </small>
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="textoAlternativoHero"
+                  >
+                    Texto alternativo de la imagen
+                  </label>
+
+                  <input
+                    id="textoAlternativoHero"
+                    class="formulario-admin__control"
+                    name="textoAlternativoHero"
+                    type="text"
+                    maxlength="300"
+                    autocomplete="off"
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Describe brevemente la imagen para mejorar la accesibilidad.
+                  </small>
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="estadoHero"
+                  >
+                    Estado de publicación
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <select
+                    id="estadoHero"
+                    class="formulario-admin__control"
+                    name="estadoHero"
+                    required
+                  >
+                    <option value="">
+                      Seleccione un estado
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Imagen principal
+                </legend>
+
+                <div class="formulario-admin__archivo">
+                  <div class="formulario-admin__archivo-vista">
+                    <img
+                      id="vistaPreviaImagenHero"
+                      src="../../assets/logos/logo-liceo.jpg"
+                      data-imagen-predeterminada="../../assets/logos/logo-liceo.jpg"
+                      alt=""
+                    >
+                  </div>
+
+                  <div class="formulario-admin__archivo-informacion">
+                    <strong id="nombreImagenHero">
+                      Imagen institucional actual
+                    </strong>
+
+                    <span id="detalleImagenHero">
+                      Formatos permitidos: JPG, PNG o WEBP. Máximo 5 MB.
+                    </span>
+
+                    <input
+                      id="inputImagenHero"
+                      name="imagen"
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                      hidden
+                    >
+
+                    <div class="formulario-admin__acciones">
+                      <button
+                        id="botonSeleccionarImagenHero"
+                        class="admin-boton admin-boton--secundario"
+                        type="button"
+                      >
+                        Seleccionar imagen
+                      </button>
+
+                      <button
+                        id="botonQuitarImagenHero"
+                        class="admin-boton admin-boton--texto"
+                        type="button"
+                      >
+                        Quitar imagen
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarHero"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar sección principal
+                  </span>
+
+                  <span
+                    id="cargadorGuardarHero"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
+             BOTONES PRINCIPALES
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloBotonesPrincipales"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloBotonesPrincipales"
+                class="admin-panel__titulo"
+              >
+                Botones principales
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Configure los botones Conoce el liceo y Contáctanos que aparecen en la portada.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioBotonesInicio"
+              class="formulario-admin"
+              novalidate
+            >
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Botón Conoce el liceo
+                </legend>
+
+                <input
+                  id="idSeccionBotonConoce"
+                  name="idSeccionBotonConoce"
+                  type="hidden"
+                >
+
+                <input
+                  id="claveBotonConoce"
+                  name="claveBotonConoce"
+                  type="hidden"
+                  value="BOTON_CONOCE_LICEO"
+                >
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="textoBotonConoce"
+                    >
+                      Texto del botón
+                    </label>
+
+                    <input
+                      id="textoBotonConoce"
+                      class="formulario-admin__control"
+                      name="textoBotonConoce"
+                      type="text"
+                      maxlength="120"
+                      autocomplete="off"
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="urlBotonConoce"
+                    >
+                      Página o enlace de destino
+                    </label>
+
+                    <input
+                      id="urlBotonConoce"
+                      class="formulario-admin__control"
+                      name="urlBotonConoce"
+                      type="text"
+                      maxlength="1000"
+                      autocomplete="off"
+                      placeholder="pages/nosotros.html"
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tipoEnlaceBotonConoce"
+                    >
+                      Tipo de enlace
+                    </label>
+
+                    <select
+                      id="tipoEnlaceBotonConoce"
+                      class="formulario-admin__control"
+                      name="tipoEnlaceBotonConoce"
+                    >
+                      <option value="INTERNO">
+                        Página interna
+                      </option>
+
+                      <option value="EXTERNO">
+                        Sitio externo
+                      </option>
+
+                      <option value="ARCHIVO">
+                        Archivo
+                      </option>
+
+                      <option value="NINGUNO">
+                        Sin enlace
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoBotonConoce"
+                    >
+                      Estado
+                    </label>
+
+                    <select
+                      id="estadoBotonConoce"
+                      class="formulario-admin__control"
+                      name="estadoBotonConoce"
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Botón Contáctanos
+                </legend>
+
+                <input
+                  id="idSeccionBotonContacto"
+                  name="idSeccionBotonContacto"
+                  type="hidden"
+                >
+
+                <input
+                  id="claveBotonContacto"
+                  name="claveBotonContacto"
+                  type="hidden"
+                  value="BOTON_CONTACTO"
+                >
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="textoBotonContacto"
+                    >
+                      Texto del botón
+                    </label>
+
+                    <input
+                      id="textoBotonContacto"
+                      class="formulario-admin__control"
+                      name="textoBotonContacto"
+                      type="text"
+                      maxlength="120"
+                      autocomplete="off"
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="urlBotonContacto"
+                    >
+                      Página o enlace de destino
+                    </label>
+
+                    <input
+                      id="urlBotonContacto"
+                      class="formulario-admin__control"
+                      name="urlBotonContacto"
+                      type="text"
+                      maxlength="1000"
+                      autocomplete="off"
+                      placeholder="pages/contacto-ubicacion.html"
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tipoEnlaceBotonContacto"
+                    >
+                      Tipo de enlace
+                    </label>
+
+                    <select
+                      id="tipoEnlaceBotonContacto"
+                      class="formulario-admin__control"
+                      name="tipoEnlaceBotonContacto"
+                    >
+                      <option value="INTERNO">
+                        Página interna
+                      </option>
+
+                      <option value="EXTERNO">
+                        Sitio externo
+                      </option>
+
+                      <option value="ARCHIVO">
+                        Archivo
+                      </option>
+
+                      <option value="NINGUNO">
+                        Sin enlace
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoBotonContacto"
+                    >
+                      Estado
+                    </label>
+
+                    <select
+                      id="estadoBotonContacto"
+                      class="formulario-admin__control"
+                      name="estadoBotonContacto"
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarBotones"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar botones
+                  </span>
+
+                  <span
+                    id="cargadorGuardarBotones"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
+             ACCESOS RÁPIDOS
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloAdministrarAccesos"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloAdministrarAccesos"
+                class="admin-panel__titulo"
+              >
+                Accesos rápidos
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Seleccione cuáles accesos aparecen, modifique sus textos y cambie el orden de presentación.
+              </p>
+            </div>
+
+            <button
+              id="botonAgregarAcceso"
+              class="admin-boton admin-boton--secundario"
+              type="button"
+            >
+              Agregar acceso
+            </button>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioEncabezadoAccesos"
+              class="formulario-admin"
+              novalidate
+            >
+              <input
+                id="idSeccionEncabezadoAccesos"
+                name="idSeccionEncabezadoAccesos"
+                type="hidden"
+              >
+
+              <input
+                id="claveEncabezadoAccesos"
+                name="claveEncabezadoAccesos"
+                type="hidden"
+                value="ENCABEZADO_ACCESOS_RAPIDOS"
+              >
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Encabezado de la sección
+                </legend>
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tituloAccesos"
+                    >
+                      Título
+                    </label>
+
+                    <input
+                      id="tituloAccesos"
+                      class="formulario-admin__control"
+                      name="tituloAccesos"
+                      type="text"
+                      maxlength="250"
+                      autocomplete="off"
+                      value="Accesos rápidos"
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="descripcionAccesos"
+                    >
+                      Texto introductorio
+                    </label>
+
+                    <textarea
+                      id="descripcionAccesos"
+                      class="formulario-admin__control formulario-admin__control--textarea"
+                      name="descripcionAccesos"
+                      maxlength="300"
+                      rows="3"
+                    ></textarea>
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoEncabezadoAccesos"
+                    >
+                      Estado
+                    </label>
+
+                    <select
+                      id="estadoEncabezadoAccesos"
+                      class="formulario-admin__control"
+                      name="estadoEncabezadoAccesos"
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="formulario-admin__acciones">
+                  <button
+                    id="botonGuardarEncabezadoAccesos"
+                    class="admin-boton admin-boton--primario"
+                    type="submit"
+                  >
+                    Guardar encabezado
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+
+            <div
+              id="listaAccesosRapidos"
+              class="pagina-contenido-admin__accesos"
+              aria-live="polite"
+            >
+              <div
+                id="estadoVacioAccesos"
+                class="admin-estado-vacio"
+              >
+                <h3>
+                  No hay accesos rápidos cargados
+                </h3>
+
+                <p>
+                  Presione Agregar acceso para crear el primero.
+                </p>
+              </div>
+            </div>
+
+            <div class="formulario-admin__acciones">
+              <button
+                id="botonGuardarAccesos"
+                class="admin-boton admin-boton--primario"
+                type="button"
+              >
+                <span>
+                  Guardar accesos rápidos
+                </span>
+
+                <span
+                  id="cargadorGuardarAccesos"
+                  class="admin-boton__cargador"
+                  aria-hidden="true"
+                  hidden
+                ></span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================
+             CONTENIDO AUTOMÁTICO DE INICIO
+             ================================================ -->
+
+        <section
+          class="admin-panel pagina-contenido-admin__automatico"
+          aria-labelledby="tituloContenidoAutomatico"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloContenidoAutomatico"
+                class="admin-panel__titulo"
+              >
+                Contenido automático
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Estas secciones no se editan desde Inicio para evitar duplicar información.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <div class="pagina-contenido-admin__automaticos">
+              <article class="pagina-contenido-admin__automatico-item">
+                <h3>
+                  Últimas publicaciones
+                </h3>
+
+                <p>
+                  Se cargarán automáticamente desde los boletines publicados.
+                </p>
+
+                <a
+                  class="admin-boton admin-boton--texto"
+                  href="../boletines/lista-boletines.html"
+                >
+                  Ir a Boletines
+                </a>
+              </article>
+
+              <article class="pagina-contenido-admin__automatico-item">
+                <h3>
+                  Próximas actividades
+                </h3>
+
+                <p>
+                  Se cargarán automáticamente desde los eventos publicados del calendario.
+                </p>
+
+                <a
+                  class="admin-boton admin-boton--texto"
+                  href="../calendario/lista-eventos.html"
+                >
+                  Ir a Calendario
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================================================
+           EDITOR DE LA PÁGINA NOSOTROS
+           ================================================== -->
+
+      <div
+        id="editorPaginaNosotros"
+        data-editor-pagina="nosotros"
+        hidden
+      >
+        <!-- ================================================
+             ENCABEZADO DE NOSOTROS
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelEncabezadoNosotros"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelEncabezadoNosotros"
+                class="admin-panel__titulo"
+              >
+                Encabezado de Nosotros
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Configure el título y la descripción que aparecen al inicio de la página Nosotros.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioEncabezadoNosotros"
+              class="formulario-admin"
+              novalidate
+            >
+              <input
+                id="idSeccionEncabezadoNosotros"
+                type="hidden"
+              >
+
+              <input
+                id="claveEncabezadoNosotros"
+                type="hidden"
+                value="ENCABEZADO_NOSOTROS"
+              >
+
+              <div class="formulario-admin__cuadricula">
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="tituloEncabezadoNosotros"
+                  >
+                    Título
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="tituloEncabezadoNosotros"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="250"
+                    autocomplete="off"
+                    required
+                  >
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="descripcionEncabezadoNosotros"
+                  >
+                    Descripción
+                  </label>
+
+                  <textarea
+                    id="descripcionEncabezadoNosotros"
+                    class="formulario-admin__control formulario-admin__control--textarea"
+                    maxlength="300"
+                    rows="4"
+                  ></textarea>
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="estadoEncabezadoNosotros"
+                  >
+                    Estado de publicación
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <select
+                    id="estadoEncabezadoNosotros"
+                    class="formulario-admin__control"
+                    required
+                  >
+                    <option value="">
+                      Seleccione un estado
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarEncabezadoNosotros"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar encabezado
+                  </span>
+
+                  <span
+                    id="cargadorGuardarEncabezadoNosotros"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
+             HISTORIA INSTITUCIONAL
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelHistoriaNosotros"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelHistoriaNosotros"
+                class="admin-panel__titulo"
+              >
+                Historia institucional
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Modifique el título, el contenido histórico y la imagen de la fachada.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioHistoriaNosotros"
+              class="formulario-admin"
+              novalidate
+            >
+              <input
+                id="idSeccionHistoriaNosotros"
+                type="hidden"
+              >
+
+              <input
+                id="claveHistoriaNosotros"
+                type="hidden"
+                value="HISTORIA_NOSOTROS"
+              >
+
+              <input
+                id="idArchivoHistoriaNosotros"
+                type="hidden"
+              >
+
+              <div class="formulario-admin__cuadricula">
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="tituloHistoriaNosotros"
+                  >
+                    Título
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="tituloHistoriaNosotros"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="250"
+                    autocomplete="off"
+                    required
+                  >
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="subtituloHistoriaNosotros"
+                  >
+                    Subtítulo
+                  </label>
+
+                  <input
+                    id="subtituloHistoriaNosotros"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="300"
+                    autocomplete="off"
+                  >
+                </div>
+
+                <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="contenidoHistoriaNosotros"
+                  >
+                    Historia
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <textarea
+                    id="contenidoHistoriaNosotros"
+                    class="formulario-admin__control formulario-admin__control--textarea"
+                    rows="12"
+                    required
+                  ></textarea>
+
+                  <small class="formulario-admin__ayuda">
+                    Separe los párrafos utilizando una línea en blanco.
+                  </small>
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="textoAlternativoHistoriaNosotros"
+                  >
+                    Texto alternativo de la imagen
+                  </label>
+
+                  <input
+                    id="textoAlternativoHistoriaNosotros"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="300"
+                    autocomplete="off"
+                  >
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="estadoHistoriaNosotros"
+                  >
+                    Estado de publicación
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <select
+                    id="estadoHistoriaNosotros"
+                    class="formulario-admin__control"
+                    required
+                  >
+                    <option value="">
+                      Seleccione un estado
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Imagen de la historia
+                </legend>
+
+                <div class="formulario-admin__archivo">
+                  <div class="formulario-admin__archivo-vista">
+                    <img
+                      id="vistaPreviaImagenHistoriaNosotros"
+                      src="../../../frontend-publico/assets/img/fachada-colegio.jpg"
+                      data-imagen-predeterminada="../../../frontend-publico/assets/img/fachada-colegio.jpg"
+                      alt=""
+                    >
+                  </div>
+
+                  <div class="formulario-admin__archivo-informacion">
+                    <strong id="nombreImagenHistoriaNosotros">
+                      Fachada institucional actual
+                    </strong>
+
+                    <span id="detalleImagenHistoriaNosotros">
+                      Formatos permitidos: JPG, PNG o WEBP. Máximo 5 MB.
+                    </span>
+
+                    <input
+                      id="inputImagenHistoriaNosotros"
+                      name="imagenHistoriaNosotros"
+                      type="file"
+                      accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                      hidden
+                    >
+
+                    <div class="formulario-admin__acciones">
+                      <button
+                        id="botonSeleccionarImagenHistoriaNosotros"
+                        class="admin-boton admin-boton--secundario"
+                        type="button"
+                      >
+                        Seleccionar imagen
+                      </button>
+
+                      <button
+                        id="botonQuitarImagenHistoriaNosotros"
+                        class="admin-boton admin-boton--texto"
+                        type="button"
+                      >
+                        Quitar imagen
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarHistoriaNosotros"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar historia
+                  </span>
+
+                  <span
+                    id="cargadorGuardarHistoriaNosotros"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
+             MISIÓN Y VISIÓN
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelPrincipiosNosotros"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelPrincipiosNosotros"
+                class="admin-panel__titulo"
+              >
+                Misión y visión
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Actualice los principios institucionales que aparecen en las dos tarjetas de la página pública.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioPrincipiosNosotros"
+              class="formulario-admin"
+              novalidate
+            >
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Misión
+                </legend>
+
+                <input
+                  id="idSeccionMisionNosotros"
+                  type="hidden"
+                >
+
+                <input
+                  id="claveMisionNosotros"
+                  type="hidden"
+                  value="MISION_NOSOTROS"
+                >
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tituloMisionNosotros"
+                    >
+                      Título
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                      id="tituloMisionNosotros"
+                      class="formulario-admin__control"
+                      type="text"
+                      maxlength="250"
+                      autocomplete="off"
+                      required
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="contenidoMisionNosotros"
+                    >
+                      Descripción
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <textarea
+                      id="contenidoMisionNosotros"
+                      class="formulario-admin__control formulario-admin__control--textarea"
+                      rows="5"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoMisionNosotros"
+                    >
+                      Estado
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="estadoMisionNosotros"
+                      class="formulario-admin__control"
+                      required
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Visión
+                </legend>
+
+                <input
+                  id="idSeccionVisionNosotros"
+                  type="hidden"
+                >
+
+                <input
+                  id="claveVisionNosotros"
+                  type="hidden"
+                  value="VISION_NOSOTROS"
+                >
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tituloVisionNosotros"
+                    >
+                      Título
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                      id="tituloVisionNosotros"
+                      class="formulario-admin__control"
+                      type="text"
+                      maxlength="250"
+                      autocomplete="off"
+                      required
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="contenidoVisionNosotros"
+                    >
+                      Descripción
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <textarea
+                      id="contenidoVisionNosotros"
+                      class="formulario-admin__control formulario-admin__control--textarea"
+                      rows="5"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoVisionNosotros"
+                    >
+                      Estado
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="estadoVisionNosotros"
+                      class="formulario-admin__control"
+                      required
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarPrincipiosNosotros"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar misión y visión
+                  </span>
+
+                  <span
+                    id="cargadorGuardarPrincipiosNosotros"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
+             NORMATIVA INSTITUCIONAL
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelNormativaNosotros"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelNormativaNosotros"
+                class="admin-panel__titulo"
+              >
+                Normativa institucional
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Configure el encabezado y las tarjetas de documentos o normas institucionales.
+              </p>
+            </div>
+
+            <button
+              id="botonAgregarNormativa"
+              class="admin-boton admin-boton--secundario"
+              type="button"
+            >
+              Agregar tarjeta
+            </button>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioEncabezadoNormativa"
+              class="formulario-admin"
+              novalidate
+            >
+              <input
+                id="idSeccionEncabezadoNormativa"
+                type="hidden"
+              >
+
+              <input
+                id="claveEncabezadoNormativa"
+                type="hidden"
+                value="ENCABEZADO_NORMATIVA"
+              >
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Encabezado de la sección
+                </legend>
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tituloEncabezadoNormativa"
+                    >
+                      Título
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                      id="tituloEncabezadoNormativa"
+                      class="formulario-admin__control"
+                      type="text"
+                      maxlength="250"
+                      autocomplete="off"
+                      required
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="descripcionEncabezadoNormativa"
+                    >
+                      Descripción
+                    </label>
+
+                    <textarea
+                      id="descripcionEncabezadoNormativa"
+                      class="formulario-admin__control formulario-admin__control--textarea"
+                      maxlength="300"
+                      rows="4"
+                    ></textarea>
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoEncabezadoNormativa"
+                    >
+                      Estado
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="estadoEncabezadoNormativa"
+                      class="formulario-admin__control"
+                      required
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="formulario-admin__acciones">
+                  <button
+                    id="botonGuardarEncabezadoNormativa"
+                    class="admin-boton admin-boton--primario"
+                    type="submit"
+                  >
+                    <span>
+                      Guardar encabezado
+                    </span>
+
+                    <span
+                      id="cargadorGuardarEncabezadoNormativa"
+                      class="admin-boton__cargador"
+                      aria-hidden="true"
+                      hidden
+                    ></span>
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+
+            <div
+              id="listaTarjetasNormativa"
+              class="pagina-contenido-admin__accesos"
+              aria-live="polite"
+            >
+              <div
+                id="estadoVacioNormativa"
+                class="admin-estado-vacio"
+              >
+                <h3>
+                  No hay tarjetas de normativa
+                </h3>
+
+                <p>
+                  Presione Agregar tarjeta para crear la primera.
+                </p>
+              </div>
+            </div>
+
+            <div class="formulario-admin__acciones">
+              <button
+                id="botonGuardarNormativas"
+                class="admin-boton admin-boton--primario"
+                type="button"
+              >
+                <span>
+                  Guardar tarjetas de normativa
+                </span>
+
+                <span
+                  id="cargadorGuardarNormativas"
+                  class="admin-boton__cargador"
+                  aria-hidden="true"
+                  hidden
+                ></span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================
+             DATOS INSTITUCIONALES AUTOMÁTICOS
+             ================================================ -->
+
+        <section
+          class="admin-panel pagina-contenido-admin__automatico"
+          aria-labelledby="tituloDatosInstitucionalesAutomaticos"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloDatosInstitucionalesAutomaticos"
+                class="admin-panel__titulo"
+              >
+                Datos institucionales
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Esta información se administra de manera centralizada para mantener los mismos datos en Nosotros, Contacto y el pie de página.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <div class="pagina-contenido-admin__automaticos">
+              <article class="pagina-contenido-admin__automatico-item">
+                <h3>
+                  Información general del liceo
+                </h3>
+
+                <p>
+                  Nombre, jornada, niveles, modalidad, correo, teléfonos, dirección y ubicación no se editan desde esta página.
+                </p>
+
+                <a
+                  class="admin-boton admin-boton--texto"
+                  href="../configuracion-sitio/configuracion-sitio.html"
+                >
+                  Ir a Configuración del sitio
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ==================================================
+           EDITOR DE LA PÁGINA CONTACTO
+           ================================================== -->
+
+      <div
+        id="editorPaginaContacto"
+        data-editor-pagina="contacto"
+        hidden
+      >
+
+              <!-- ================================================
+             INFORMACIÓN INSTITUCIONAL
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelInformacionInstitucionalContacto"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelInformacionInstitucionalContacto"
+                class="admin-panel__titulo"
+              >
+                Información institucional
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Administre la información general del liceo desde un único lugar. Estos datos se reutilizan en las páginas públicas donde corresponda.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioInformacionInstitucionalContacto"
+              class="formulario-admin"
+              novalidate
+            >
+              <div class="formulario-admin__cuadricula">
+
+                <!-- Nombre -->
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="nombreInstitucionContacto"
+                  >
+                    Nombre del liceo
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="nombreInstitucionContacto"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="250"
+                    autocomplete="off"
+                    required
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Nombre oficial de la institución.
+                  </small>
+                </div>
+
+                <!-- Sigla -->
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="siglaInstitucionContacto"
+                  >
+                    Sigla
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="siglaInstitucionContacto"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="50"
+                    autocomplete="off"
+                    required
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Ejemplo: LHVR.
+                  </small>
+                </div>
+
+                <!-- Lema -->
+                <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="lemaInstitucionalContacto"
+                  >
+                    Lema institucional
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <textarea
+                    id="lemaInstitucionalContacto"
+                    class="formulario-admin__control formulario-admin__control--textarea"
+                    maxlength="500"
+                    rows="3"
+                    required
+                  ></textarea>
+
+                  <small class="formulario-admin__ayuda">
+                    Lema o frase institucional utilizada en el sitio.
+                  </small>
+                </div>
+
+                <!-- Modalidad -->
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="modalidadInstitucionalContacto"
+                  >
+                    Modalidad
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="modalidadInstitucionalContacto"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="250"
+                    autocomplete="off"
+                    required
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Modalidad educativa de la institución.
+                  </small>
+                </div>
+
+                <!-- Jornada -->
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="jornadaInstitucionalContacto"
+                  >
+                    Jornada
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="jornadaInstitucionalContacto"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="250"
+                    autocomplete="off"
+                    required
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Jornada en la que funciona el liceo.
+                  </small>
+                </div>
+
+                <!-- Niveles -->
+                <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="nivelesInstitucionalesContacto"
+                  >
+                    Niveles educativos
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="nivelesInstitucionalesContacto"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="500"
+                    autocomplete="off"
+                    placeholder="Ejemplo: Sétimo a undécimo"
+                    required
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Indique los niveles educativos que imparte la institución.
+                  </small>
+                </div>
+
+              </div>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarInformacionInstitucional"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar información institucional
+                  </span>
+
+                  <span
+                    id="cargadorGuardarInformacionInstitucional"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+        <!-- ================================================
+             DATOS DE CONTACTO
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelDatosContacto"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelDatosContacto"
+                class="admin-panel__titulo"
+              >
+                Datos de contacto
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Actualice los datos institucionales mostrados en Contacto. Los datos compartidos también se reflejarán en Nosotros y en el pie de página donde corresponda.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioDatosContacto"
+              class="formulario-admin"
+              novalidate
+            >
+              <div class="formulario-admin__cuadricula">
+
+                <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="direccionInstitucionalContacto"
+                  >
+                    Dirección institucional
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <textarea
+                    id="direccionInstitucionalContacto"
+                    class="formulario-admin__control formulario-admin__control--textarea"
+                    rows="3"
+                    maxlength="1000"
+                    required
+                  ></textarea>
+
+                  <small class="formulario-admin__ayuda">
+                    Esta misma dirección podrá utilizarse en Contacto, Nosotros y el pie de página.
+                  </small>
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="telefonosInstitucionalesContacto"
+                  >
+                    Teléfonos
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="telefonosInstitucionalesContacto"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="300"
+                    autocomplete="off"
+                    placeholder="2532-2274 / 8644-6240"
+                    required
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Puede incluir más de un número separado por /.
+                  </small>
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="correoInstitucionalContacto"
+                  >
+                    Correo institucional
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="correoInstitucionalContacto"
+                    class="formulario-admin__control"
+                    type="email"
+                    maxlength="320"
+                    autocomplete="off"
+                    required
+                  >
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="horarioAtencionContacto"
+                  >
+                    Horario de atención
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="horarioAtencionContacto"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="300"
+                    autocomplete="off"
+                    placeholder="Lunes a viernes, 7:00 a.m. - 4:10 p.m."
+                    required
+                  >
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="facebookContacto"
+                  >
+                    Facebook oficial
+                  </label>
+
+                  <input
+                    id="facebookContacto"
+                    class="formulario-admin__control"
+                    type="url"
+                    maxlength="1000"
+                    autocomplete="off"
+                    placeholder="https://www.facebook.com/..."
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Puede dejarse vacío mientras no exista un enlace oficial definido.
+                  </small>
+                </div>
+
+              </div>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarDatosContacto"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar datos de contacto
+                  </span>
+
+                  <span
+                    id="cargadorGuardarDatosContacto"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
+             UBICACIÓN
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelUbicacionContacto"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelUbicacionContacto"
+                class="admin-panel__titulo"
+              >
+                Ubicación
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Configure el enlace de Google Maps utilizado para localizar el liceo.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioUbicacionContacto"
+              class="formulario-admin"
+              novalidate
+            >
+              <div class="formulario-admin__cuadricula">
+                <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="googleMapsUrlContacto"
+                  >
+                    Enlace de Google Maps
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="googleMapsUrlContacto"
+                    class="formulario-admin__control"
+                    type="url"
+                    maxlength="2000"
+                    autocomplete="off"
+                    placeholder="https://www.google.com/maps/..."
+                    required
+                  >
+
+                  <small class="formulario-admin__ayuda">
+                    Este enlace se utiliza para abrir la ubicación institucional desde el sitio público.
+                  </small>
+                </div>
+              </div>
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Vista previa de la ubicación
+                </legend>
+
+                <div
+                  id="contenedorVistaMapaContacto"
+                  class="pagina-contenido-admin__automaticos"
+                >
+                  <article class="pagina-contenido-admin__automatico-item">
+                    <h3>
+                      Ubicación institucional
+                    </h3>
+
+                    <p id="textoVistaMapaContacto">
+                      La vista previa se actualizará con la dirección registrada.
+                    </p>
+
+                    <a
+                      id="enlaceAbrirMapaContacto"
+                      class="admin-boton admin-boton--texto"
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Abrir en Google Maps
+                    </a>
+                  </article>
+                </div>
+              </fieldset>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarUbicacionContacto"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar ubicación
+                  </span>
+
+                  <span
+                    id="cargadorGuardarUbicacionContacto"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
+             CONTENIDO DE LA PÁGINA
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelContenidoContacto"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelContenidoContacto"
+                class="admin-panel__titulo"
+              >
+                Contenido de la página
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Configure los títulos y textos que acompañan los datos de contacto, la ubicación y el formulario público.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioContenidoContacto"
+              class="formulario-admin"
+              novalidate
+            >
+              <!-- ==========================================
+                   DATOS_CONTACTO
+                   ========================================== -->
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Sección de datos de contacto
+                </legend>
+
+                <input
+                  id="idSeccionDatosContacto"
+                  type="hidden"
+                >
+
+                <input
+                  id="claveSeccionDatosContacto"
+                  type="hidden"
+                  value="DATOS_CONTACTO"
+                >
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tituloSeccionDatosContacto"
+                    >
+                      Título
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                      id="tituloSeccionDatosContacto"
+                      class="formulario-admin__control"
+                      type="text"
+                      maxlength="250"
+                      autocomplete="off"
+                      required
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoSeccionDatosContacto"
+                    >
+                      Estado
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="estadoSeccionDatosContacto"
+                      class="formulario-admin__control"
+                      required
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- ==========================================
+                   UBICACION_CONTACTO
+                   ========================================== -->
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Sección del mapa
+                </legend>
+
+                <input
+                  id="idSeccionUbicacionContacto"
+                  type="hidden"
+                >
+
+                <input
+                  id="claveSeccionUbicacionContacto"
+                  type="hidden"
+                  value="UBICACION_CONTACTO"
+                >
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tituloSeccionUbicacionContacto"
+                    >
+                      Título
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                      id="tituloSeccionUbicacionContacto"
+                      class="formulario-admin__control"
+                      type="text"
+                      maxlength="250"
+                      autocomplete="off"
+                      required
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoSeccionUbicacionContacto"
+                    >
+                      Estado
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="estadoSeccionUbicacionContacto"
+                      class="formulario-admin__control"
+                      required
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- ==========================================
+                   FORMULARIO_CONTACTO
+                   ========================================== -->
+
+              <fieldset class="formulario-admin__seccion">
+                <legend class="formulario-admin__leyenda">
+                  Formulario de contacto
+                </legend>
+
+                <input
+                  id="idSeccionFormularioContacto"
+                  type="hidden"
+                >
+
+                <input
+                  id="claveSeccionFormularioContacto"
+                  type="hidden"
+                  value="FORMULARIO_CONTACTO"
+                >
+
+                <div class="formulario-admin__cuadricula">
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="tituloSeccionFormularioContacto"
+                    >
+                      Título
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                      id="tituloSeccionFormularioContacto"
+                      class="formulario-admin__control"
+                      type="text"
+                      maxlength="250"
+                      autocomplete="off"
+                      required
+                    >
+                  </div>
+
+                  <div class="formulario-admin__grupo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="estadoSeccionFormularioContacto"
+                    >
+                      Estado
+                      <span aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                      id="estadoSeccionFormularioContacto"
+                      class="formulario-admin__control"
+                      required
+                    >
+                      <option value="">
+                        Seleccione un estado
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+                    <label
+                      class="formulario-admin__etiqueta"
+                      for="descripcionSeccionFormularioContacto"
+                    >
+                      Texto introductorio
+                    </label>
+
+                    <textarea
+                      id="descripcionSeccionFormularioContacto"
+                      class="formulario-admin__control formulario-admin__control--textarea"
+                      maxlength="1000"
+                      rows="4"
+                    ></textarea>
+
+                    <small class="formulario-admin__ayuda">
+                      Texto mostrado antes del formulario para orientar a la persona visitante.
+                    </small>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarContenidoContacto"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span>
+                    Guardar contenido de la página
+                  </span>
+
+                  <span
+                    id="cargadorGuardarContenidoContacto"
+                    class="admin-boton__cargador"
+                    aria-hidden="true"
+                    hidden
+                  ></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
+             MENSAJES RECIBIDOS
+             ================================================ -->
+
+        <section
+          class="admin-panel pagina-contenido-admin__automatico"
+          aria-labelledby="tituloMensajesContacto"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloMensajesContacto"
+                class="admin-panel__titulo"
+              >
+                Mensajes recibidos
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Los mensajes enviados desde el formulario público se administran en el módulo de Contacto y no forman parte del contenido editable de esta página.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <div class="pagina-contenido-admin__automaticos">
+              <article class="pagina-contenido-admin__automatico-item">
+                <h3>
+                  Formulario público
+                </h3>
+
+                <p>
+                  Los mensajes enviados desde el formulario de contacto se reciben y administran en el módulo de Contacto. Los campos del formulario forman parte del funcionamiento de la página pública y no requieren configuración
+                </p>
+
+                <a
+                  class="admin-boton admin-boton--texto"
+                  href="../contacto/lista-mensajes.html"
+                >
+                  Ver mensajes recibidos
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================================================
+           PIE DEL EDITOR
+           ================================================ -->
+
+      <footer class="pagina-contenido-admin__pie">
+        <p>
+          © 2026 Liceo Hernán Vargas Ramírez
+        </p>
+
+        <span id="textoPieGestion">
+          Gestión de la página Inicio
+        </span>
+      </footer>
+    </div>
+  </main>
+
+  <!-- ======================================================
+       PLANTILLA DE ACCESO RÁPIDO DE INICIO
+       ====================================================== -->
+
+  <template id="plantillaAccesoRapido">
+    <article class="pagina-contenido-admin__acceso">
+      <input
+        class="acceso-rapido__id"
+        type="hidden"
+      >
+
+      <input
+        class="acceso-rapido__clave"
+        type="hidden"
+      >
+
+      <header class="pagina-contenido-admin__acceso-encabezado">
+        <div>
+          <span class="pagina-contenido-admin__acceso-numero">
+            Acceso rápido
+          </span>
+
+          <h3 class="pagina-contenido-admin__acceso-titulo">
+            Nuevo acceso
+          </h3>
+        </div>
+
+        <button
+          class="admin-boton admin-boton--texto acceso-rapido__quitar"
+          type="button"
+        >
+          Quitar
+        </button>
+      </header>
+
+      <div class="formulario-admin__cuadricula">
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Título
+          </label>
+
+          <input
+            class="formulario-admin__control acceso-rapido__titulo"
+            type="text"
+            maxlength="250"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Descripción
+          </label>
+
+          <textarea
+            class="formulario-admin__control formulario-admin__control--textarea acceso-rapido__descripcion"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Icono
+          </label>
+
+          <select
+            class="formulario-admin__control acceso-rapido__icono"
+          >
+            <option value="ACCESO_BOLETINES">
+              Boletines
+            </option>
+
+            <option value="ACCESO_CALENDARIO">
+              Calendario
+            </option>
+
+            <option value="ACCESO_DOCUMENTOS">
+              Documentos
+            </option>
+
+            <option value="ACCESO_CONTACTO">
+              Contacto
+            </option>
+
+            <option value="ACCESO_BIBLIOTECA">
+              Biblioteca
+            </option>
+
+            <option value="ACCESO_DOCENTES">
+              Docentes
+            </option>
+
+            <option value="ACCESO_GALERIA">
+              Galería
+            </option>
+
+            <option value="ACCESO_RECURSOS">
+              Recursos
+            </option>
+          </select>
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Enlace
+          </label>
+
+          <input
+            class="formulario-admin__control acceso-rapido__url"
+            type="text"
+            maxlength="1000"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Tipo de enlace
+          </label>
+
+          <select
+            class="formulario-admin__control acceso-rapido__tipo-enlace"
+          >
+            <option value="INTERNO">
+              Página interna
+            </option>
+
+            <option value="EXTERNO">
+              Sitio externo
+            </option>
+
+            <option value="ARCHIVO">
+              Archivo
+            </option>
+
+            <option value="NINGUNO">
+              Sin enlace
+            </option>
+          </select>
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Orden
+          </label>
+
+          <input
+            class="formulario-admin__control acceso-rapido__orden"
+            type="number"
+            min="0"
+            step="1"
+            value="0"
+          >
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Estado
+          </label>
+
+          <select
+            class="formulario-admin__control acceso-rapido__estado"
+          >
+            <option value="">
+              Seleccione un estado
+            </option>
+          </select>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <!-- ======================================================
+       PLANTILLA DE TARJETA DE NORMATIVA
+       ====================================================== -->
+
+  <template id="plantillaTarjetaNormativa">
+    <article class="pagina-contenido-admin__acceso tarjeta-normativa-admin">
+      <input
+        class="normativa__id"
+        type="hidden"
+      >
+
+      <input
+        class="normativa__clave"
+        type="hidden"
+      >
+
+      <header class="pagina-contenido-admin__acceso-encabezado">
+        <div>
+          <span class="pagina-contenido-admin__acceso-numero normativa__numero">
+            Tarjeta normativa
+          </span>
+
+          <h3 class="pagina-contenido-admin__acceso-titulo normativa__titulo-visual">
+            Nueva tarjeta
+          </h3>
+        </div>
+
+        <button
+          class="admin-boton admin-boton--texto normativa__quitar"
+          type="button"
+        >
+          Quitar
+        </button>
+      </header>
+
+      <div class="formulario-admin__cuadricula">
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Etiqueta
+          </label>
+
+          <input
+            class="formulario-admin__control normativa__etiqueta"
+            type="text"
+            maxlength="120"
+            autocomplete="off"
+            placeholder="Ejemplo: Reglamento"
+          >
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Título
+            <span aria-hidden="true">*</span>
+          </label>
+
+          <input
+            class="formulario-admin__control normativa__titulo"
+            type="text"
+            maxlength="250"
+            autocomplete="off"
+            required
+          >
+        </div>
+
+        <div class="formulario-admin__grupo formulario-admin__grupo--completo">
+          <label class="formulario-admin__etiqueta">
+            Descripción
+          </label>
+
+          <textarea
+            class="formulario-admin__control formulario-admin__control--textarea normativa__descripcion"
+            rows="4"
+          ></textarea>
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Categoría o icono
+          </label>
+
+          <select
+            class="formulario-admin__control normativa__categoria"
+          >
+            <option value="REGLAMENTO">
+              Reglamento
+            </option>
+
+            <option value="CONVIVENCIA">
+              Convivencia
+            </option>
+
+            <option value="PROTOCOLO">
+              Protocolo
+            </option>
+
+            <option value="EVALUACION">
+              Evaluación
+            </option>
+
+            <option value="UNIFORME">
+              Uniforme
+            </option>
+
+            <option value="EMERGENCIA">
+              Emergencia
+            </option>
+
+            <option value="DOCUMENTO">
+              Documento general
+            </option>
+          </select>
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Texto del botón
+          </label>
+
+          <input
+            class="formulario-admin__control normativa__texto-boton"
+            type="text"
+            maxlength="120"
+            autocomplete="off"
+            placeholder="Ejemplo: Ver documento"
+          >
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Tipo de enlace
+          </label>
+
+          <select
+            class="formulario-admin__control normativa__tipo-enlace"
+          >
+            <option value="NINGUNO">
+              Sin botón
+            </option>
+
+            <option value="INTERNO">
+              Página interna
+            </option>
+
+            <option value="EXTERNO">
+              Sitio externo
+            </option>
+
+            <option value="ARCHIVO">
+              Archivo
+            </option>
+          </select>
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            URL o ruta del archivo
+          </label>
+
+          <input
+            class="formulario-admin__control normativa__url"
+            type="text"
+            maxlength="1000"
+            autocomplete="off"
+            placeholder="https://... o /uploads/documentos/archivo.pdf"
+          >
+
+          <small class="formulario-admin__ayuda">
+            Se deja vacío cuando el tipo de enlace es Sin botón.
+          </small>
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Orden
+          </label>
+
+          <input
+            class="formulario-admin__control normativa__orden"
+            type="number"
+            min="0"
+            step="1"
+            value="0"
+          >
+        </div>
+
+        <div class="formulario-admin__grupo">
+          <label class="formulario-admin__etiqueta">
+            Estado
+            <span aria-hidden="true">*</span>
+          </label>
+
+          <select
+            class="formulario-admin__control normativa__estado"
+            required
+          >
+            <option value="">
+              Seleccione un estado
+            </option>
+          </select>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <!-- ======================================================
+       CONFIGURACIÓN, SESIÓN Y PROTECCIÓN
+       ====================================================== -->
+
+  <script
+    src="../../js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/sesion-administrador.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/autenticacion.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/proteccion-rutas.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/alertas-admin.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/modal-admin.js"
+    defer
+  ></script>
+
+  <!-- Lógica compartida de páginas y contenido -->
+  <script
+    src="../../js/modules/paginas-contenido.js"
+    defer
+  ></script>
+
+  <!-- Lógica específica de la página Inicio -->
+  <script
+    src="../../js/modules/paginas-inicio.js"
+    defer
+  ></script>
+
+  <!-- Lógica específica de la página Nosotros -->
+  <script
+    src="../../js/modules/paginas-nosotros.js"
+    defer
+  ></script>
+
+  <!-- Lógica específica de la página Contacto -->
+  <script
+    src="../../js/modules/paginas-contacto.js"
+    defer
+  ></script>
+
+  <!-- Layout único compartido -->
+  <script
+    src="../../js/components/layout-admin.js"
+    defer
+  ></script>
+</body>
+
+</html>

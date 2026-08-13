@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Directorio docente | Liceo Hernán Vargas Ramírez</title>
+  <meta name="description" content="Directorio de docentes del Liceo Hernán Vargas Ramírez por área académica." />
+  <meta name="theme-color" content="#2b563a" />
+
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/docentes.css" />
+  <link rel="icon" href="../assets/logos/logo-liceo.jpg" />
+</head>
+
+<body data-pagina="docentes">
+  <div id="encabezado"></div>
+
+  <main>
+    <section class="banda">
+      <div class="contenedor">
+        <p class="migas"><a href="../index.html">Inicio</a> / Directorio docente</p>
+        <h1>Directorio docente</h1>
+        <p>
+          Información del equipo docente del Liceo Hernán Vargas Ramírez organizada por área académica.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="contenedor">
+        <div class="encabezado-seccion">
+          <h2 class="titulo-seccion">Equipo docente</h2>
+          <p class="subtitulo-seccion">
+            Conozca las áreas y docentes asociados al proceso educativo institucional.
+            Algunos datos pueden estar pendientes de confirmación o actualización.
+          </p>
+        </div>
+
+        <!-- Tarjetas cargadas desde data/docentes.json -->
+        <div class="cuadricula cuadricula--4" id="listaDocentes">
+          <p class="estado">Cargando directorio...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="pie"></div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/filtros.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      renderDocentes("listaDocentes");
+    });
+  </script>
+</body>
+
+</html>
