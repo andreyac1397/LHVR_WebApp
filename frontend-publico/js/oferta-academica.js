@@ -16,8 +16,10 @@
 (function () {
   "use strict";
 
-  const URL_API =
-    "http://127.0.0.1:3001/api";
+  const URL_API = String(
+    window.API_PUBLICA_URL ||
+    "http://127.0.0.1:3001/api"
+  ).replace(/\/+$/, "");
 
   const ENDPOINT =
     "/oferta-academica/publica";

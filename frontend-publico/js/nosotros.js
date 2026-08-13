@@ -86,6 +86,41 @@
     return String(valor).trim();
   }
 
+  function esUrlEnlacePermitida(valor, tipoEnlace) {
+    const url = texto(valor);
+
+    if (
+      !url ||
+      /[\u0000-\u001F\u007F]/.test(url) ||
+      url.startsWith("//")
+    ) {
+      return false;
+    }
+
+    const protocolo = url.match(
+      /^([a-z][a-z0-9+.-]*):/i
+    )?.[1]?.toLowerCase();
+
+    if (
+      protocolo &&
+      !["http", "https"].includes(protocolo)
+    ) {
+      return false;
+    }
+
+    if (protocolo) {
+      try {
+        new URL(url);
+      } catch (_error) {
+        return false;
+      }
+    }
+
+    return tipoEnlace === "EXTERNO"
+      ? Boolean(protocolo)
+      : true;
+  }
+
   /**
    * Normaliza claves y categorías.
    *
@@ -312,7 +347,10 @@
           ?.ruta
       );
 
-    if (!ruta) {
+    if (
+      !ruta ||
+      !esUrlEnlacePermitida(ruta, "ARCHIVO")
+    ) {
       return "";
     }
 
@@ -812,6 +850,10 @@
         construirUrlArchivo(
           seccion
         );
+    }
+
+    if (!esUrlEnlacePermitida(url, tipoEnlace)) {
+      url = "";
     }
 
     const mostrarEnlace =

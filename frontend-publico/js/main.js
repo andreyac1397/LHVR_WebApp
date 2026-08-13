@@ -23,6 +23,15 @@
    1. DATOS ESTÁTICOS DE RESPALDO
    ============================================================ */
 
+/*
+ * Punto unico de configuracion para todos los modulos publicos.
+ * En produccion puede definirse window.API_PUBLICA_URL antes de
+ * cargar main.js; en desarrollo se conserva la API local.
+ */
+window.API_PUBLICA_URL = String(
+  window.API_PUBLICA_URL || "http://127.0.0.1:3001/api"
+).replace(/\/+$/, "");
+
 const DATOS_COLEGIO = {
   nombre:
     "Liceo Hernán Vargas Ramírez",

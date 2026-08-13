@@ -187,10 +187,23 @@ class AutenticacionController {
           }
         );
 
+      if (resultado.tokenSesion) {
+        res.cookie(
+          NOMBRE_COOKIE_SESION,
+          resultado.tokenSesion,
+          this.obtenerOpcionesCookieSesion()
+        );
+      }
+
+      const {
+        tokenSesion,
+        ...resultadoSeguro
+      } = resultado;
+
       return res.status(200).json({
         exito: true,
-        mensaje: resultado.mensaje,
-        datos: resultado
+        mensaje: resultadoSeguro.mensaje,
+        datos: resultadoSeguro
       });
     } catch (error) {
       return next(error);

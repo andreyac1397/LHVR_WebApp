@@ -15,12 +15,21 @@
      1. CONFIGURACIÓN
      ========================================================== */
 
-  const ORIGEN_BACKEND =
-    global.LHVR_CONFIG_PUBLICA?.origenBackend ||
-    "http://localhost:3001";
+  const API_BASE_URL = String(
+    global.API_PUBLICA_URL ||
+    "http://127.0.0.1:3001/api"
+  ).replace(/\/+$/, "");
+
+  const ORIGEN_BACKEND = (() => {
+    try {
+      return new URL(API_BASE_URL).origin;
+    } catch (_error) {
+      return "http://127.0.0.1:3001";
+    }
+  })();
 
   const ENDPOINT_INICIO =
-    `${ORIGEN_BACKEND}/api/paginas/publicas/inicio`;
+    `${API_BASE_URL}/paginas/publicas/inicio`;
 
   const TIEMPO_ESPERA_MS = 10000;
 
@@ -265,7 +274,10 @@
           ?.ruta
       );
 
-    if (!ruta) {
+    if (
+      !ruta ||
+      !esUrlPermitida(ruta, "ARCHIVO")
+    ) {
       return "";
     }
 
@@ -291,7 +303,7 @@
     }
   }
 
-  function esUrlPermitida(url) {
+  function esUrlPermitida(url, tipoEnlace) {
     const valor =
       texto(url);
 
@@ -299,21 +311,32 @@
       return false;
     }
 
-    const valorNormalizado =
-      valor.toLowerCase();
+    if (
+      /[\u0000-\u001F\u007F]/.test(valor) ||
+      valor.startsWith("//")
+    ) {
+      return false;
+    }
 
-    const protocolosProhibidos = [
-      "javascript:",
-      "data:",
-      "vbscript:"
-    ];
+    const protocolo =
+      valor.match(/^([a-z][a-z0-9+.-]*):/i)?.[1]
+        ?.toLowerCase();
 
-    return !protocolosProhibidos.some(
-      (protocolo) =>
-        valorNormalizado.startsWith(
-          protocolo
-        )
-    );
+    if (protocolo) {
+      if (!["http", "https"].includes(protocolo)) {
+        return false;
+      }
+
+      try {
+        new URL(valor);
+      } catch (_error) {
+        return false;
+      }
+    }
+
+    return tipoEnlace === "EXTERNO"
+      ? Boolean(protocolo)
+      : true;
   }
 
   function configurarEnlace(
@@ -337,7 +360,7 @@
 
     if (
       tipoEnlace === "NINGUNO" ||
-      !esUrlPermitida(url)
+      !esUrlPermitida(url, tipoEnlace)
     ) {
       enlace.hidden = true;
       enlace.removeAttribute(

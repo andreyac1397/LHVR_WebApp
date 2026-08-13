@@ -78,3 +78,41 @@ test("el layout revela el contenedor raíz después de construir el panel", () =
     "El layout debe mostrar el contenedor raíz al terminar de construirse."
   );
 });
+
+test("los frontends permiten configurar la URL de la API sin editar cada módulo", () => {
+  const archivosPublicos = [
+    "frontend-publico/js/main.js",
+    "frontend-publico/js/inicio.js",
+    "frontend-publico/js/oferta-academica.js",
+    "frontend-publico/js/nosotros.js",
+    "frontend-publico/js/comunidad.js",
+    "frontend-publico/js/calendario.js",
+    "frontend-publico/js/horarios.js",
+    "frontend-publico/js/contacto.js",
+    "frontend-publico/js/solicitud-bibliocra.js",
+    "frontend-publico/js/contenido-modulos-publico.js"
+  ];
+
+  for (const relativo of archivosPublicos) {
+    const codigo = fs.readFileSync(path.join(raiz, relativo), "utf8");
+    assert.match(
+      codigo,
+      /API_PUBLICA_URL/,
+      `${relativo} debe respetar la URL pública compartida.`
+    );
+  }
+
+  const configuracionAdmin = fs.readFileSync(
+    path.join(
+      raiz,
+      "panel-administrativo/js/config/api-admin.config.js"
+    ),
+    "utf8"
+  );
+
+  assert.match(
+    configuracionAdmin,
+    /global\.API_ADMIN_URL/,
+    "El panel debe permitir configurar la URL administrativa antes de cargar sus módulos."
+  );
+});

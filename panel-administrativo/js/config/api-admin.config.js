@@ -22,8 +22,10 @@
    * Cuando el backend sea publicado, esta dirección
    * deberá cambiarse por la URL de producción.
    */
-  const URL_BASE_DESARROLLO =
-    "http://127.0.0.1:3001/api";
+  const URL_BASE_DESARROLLO = String(
+    global.API_ADMIN_URL ||
+    "http://127.0.0.1:3001/api"
+  ).replace(/\/+$/, "");
 
   /*
    * Tiempo máximo permitido para una solicitud.

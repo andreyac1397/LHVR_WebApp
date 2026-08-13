@@ -503,7 +503,7 @@ class SeccionPaginaService {
 
     if (
       urlBoton &&
-      /^javascript:/i.test(urlBoton)
+      /[\u0000-\u001F\u007F]/.test(urlBoton)
     ) {
       throw this.crearError(
         "La dirección del botón no es segura.",
@@ -512,9 +512,41 @@ class SeccionPaginaService {
       );
     }
 
+    if (urlBoton) {
+      const protocolo = urlBoton.match(
+        /^([a-z][a-z0-9+.-]*):/i
+      )?.[1]?.toLowerCase();
+
+      if (
+        urlBoton.startsWith("//") ||
+        (
+          protocolo &&
+          !["http", "https"].includes(protocolo)
+        )
+      ) {
+        throw this.crearError(
+          "La direccion del boton no es segura.",
+          400,
+          "URL_BOTON_INVALIDA"
+        );
+      }
+
+      if (
+        tipoEnlace === "INTERNO" &&
+        protocolo
+      ) {
+        throw this.crearError(
+          "El enlace interno debe usar una ruta del sitio.",
+          400,
+          "URL_INTERNA_INVALIDA"
+        );
+      }
+    }
+
     if (
       urlBoton &&
-      tipoEnlace === "EXTERNO"
+      ["EXTERNO", "ARCHIVO"].includes(tipoEnlace) &&
+      /^https?:/i.test(urlBoton)
     ) {
       let url;
 
@@ -539,6 +571,18 @@ class SeccionPaginaService {
           "PROTOCOLO_URL_INVALIDO"
         );
       }
+    }
+
+    if (
+      urlBoton &&
+      tipoEnlace === "EXTERNO" &&
+      !/^https?:/i.test(urlBoton)
+    ) {
+      throw this.crearError(
+        "El enlace externo debe utilizar HTTP o HTTPS.",
+        400,
+        "PROTOCOLO_URL_INVALIDO"
+      );
     }
   }
 

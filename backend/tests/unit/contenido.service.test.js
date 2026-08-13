@@ -109,8 +109,31 @@ test("rechaza registros duplicados dentro de una importación", async () => {
 
 test("bloquea protocolos inseguros en enlaces de contenido", () => {
   const servicio = new ContenidoService("BOLETINES", crearRepositorio());
-  assert.throws(
-    () => servicio.normalizarElemento({ titulo: "Prueba", url: "javascript:alert(1)" }),
-    (error) => error.codigo === "URL_CONTENIDO_INVALIDA"
-  );
+  [
+    "javascript:alert(1)",
+    "data:text/html,prueba",
+    "file:///etc/passwd",
+    "//servidor.example/recurso"
+  ].forEach((url) => {
+    assert.throws(
+      () => servicio.normalizarElemento({ titulo: "Prueba", url }),
+      (error) => error.codigo === "URL_CONTENIDO_INVALIDA"
+    );
+  });
+});
+
+test("acepta enlaces web y rutas locales de contenido", () => {
+  const servicio = new ContenidoService("BOLETINES", crearRepositorio());
+
+  [
+    "https://www.mep.go.cr/documento.pdf",
+    "/archivos/documento.pdf",
+    "../assets/documento.pdf",
+    "mailto:persona@mep.go.cr"
+  ].forEach((url) => {
+    assert.equal(
+      servicio.normalizarElemento({ titulo: "Prueba", url }).url,
+      url
+    );
+  });
 });

@@ -76,7 +76,12 @@
 
     try {
       const elementos = await obtenerElementos("galeria");
-      const imagenes = elementos.filter((item) => texto(item.url));
+      const imagenes = elementos
+        .map((item) => ({
+          ...item,
+          urlResuelta: resolverUrl(item.url)
+        }))
+        .filter((item) => item.urlResuelta);
 
       if (imagenes.length === 0) {
         return;
@@ -85,7 +90,7 @@
       contenedor.innerHTML = imagenes.map((item) => `
         <figure class="galeria__item">
           <img
-            src="${escapar(resolverUrl(item.url))}"
+            src="${escapar(item.urlResuelta)}"
             alt="${escapar(item.descripcion || item.titulo)}"
             loading="lazy"
           >
@@ -142,25 +147,28 @@
             </p>
           </div>
           <div class="cuadricula cuadricula--3">
-            ${elementos.map((item) => `
+            ${elementos.map((item) => {
+              const urlResuelta = resolverUrl(item.url);
+
+              return `
               <article class="tarjeta">
                 <span class="etiqueta etiqueta--circular">
                   ${escapar(item.datos?.tipo || "BiblioCRA")}
                 </span>
                 <h3 class="tarjeta__titulo">${escapar(item.titulo)}</h3>
                 <p class="tarjeta__texto">${escapar(item.descripcion)}</p>
-                ${texto(item.url) ? `
+                ${urlResuelta ? `
                   <div class="tarjeta__pie">
                     <a
                       class="boton boton--secundario boton--pequeno"
-                      href="${escapar(resolverUrl(item.url))}"
+                      href="${escapar(urlResuelta)}"
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener noreferrer"
                     >Abrir recurso</a>
                   </div>
                 ` : ""}
-              </article>
-            `).join("")}
+              </article>`;
+            }).join("")}
           </div>
         </div>
       `;

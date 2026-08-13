@@ -462,6 +462,16 @@ class AutenticacionService {
         );
     }
 
+    const sesionCreada =
+      await this.servicioVerificacion
+        .crearSesionAdministrador(
+          administrador,
+          {
+            direccionIp,
+            userAgent
+          }
+        );
+
     /*
      * Flujo temporal del administrador inicial.
      *
@@ -530,6 +540,12 @@ class AutenticacionService {
 
       mensaje:
         "Las credenciales fueron verificadas correctamente.",
+
+      tokenSesion:
+        sesionCreada.tokenSesion,
+
+      fechaExpiracion:
+        sesionCreada.fechaExpiracion,
 
       administrador:
         this.obtenerAdministradorSeguro(

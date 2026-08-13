@@ -194,6 +194,66 @@ class VerificacionAdministradorService {
   }
 
   /**
+   * Crea una sesión administrativa definitiva.
+   *
+   * Se reutiliza tanto después de validar el segundo factor
+   * como para las cuentas que no lo requieren.
+   *
+   * @param {object} administrador
+   * @param {object} contexto
+   * @returns {Promise<object>}
+   */
+  async crearSesionAdministrador(
+    administrador,
+    contexto = {}
+  ) {
+    const idAdministrador = Number(
+      administrador?.idAdministrador
+    );
+
+    if (
+      !Number.isInteger(idAdministrador) ||
+      idAdministrador <= 0
+    ) {
+      throw this.crearError(
+        "No fue posible identificar al administrador para crear la sesión.",
+        401,
+        "ADMINISTRADOR_SESION_INVALIDO"
+      );
+    }
+
+    const tokenSesion =
+      this.generarToken();
+
+    const tokenSesionHash =
+      this.generarHashToken(
+        tokenSesion
+      );
+
+    const sesionCreada =
+      await this.repositorio
+        .crearTokenAdministrador({
+          idAdministrador,
+          tipoToken:
+            TIPO_TOKEN_SESION,
+          tokenHash:
+            tokenSesionHash,
+          minutosVigencia:
+            VIGENCIA_TOKEN_SESION_MINUTOS,
+          direccionIp:
+            contexto.direccionIp ?? null,
+          userAgent:
+            contexto.userAgent ?? null
+        });
+
+    return {
+      tokenSesion,
+      fechaExpiracion:
+        sesionCreada.fechaExpiracion
+    };
+  }
+
+  /**
    * Oculta una parte del correo para mostrarlo
    * de manera segura en el panel.
    *
@@ -706,31 +766,14 @@ if (!codigoGuardado) {
     /*
      * Crear el token definitivo de sesión.
      */
-    const tokenSesion =
-      this.generarToken();
-
-    const tokenSesionHash =
-      this.generarHashToken(
-        tokenSesion
-      );
-
     const sesionCreada =
-      await this.repositorio
-        .crearTokenAdministrador({
-          idAdministrador,
-
-          tipoToken:
-            TIPO_TOKEN_SESION,
-
-          tokenHash:
-            tokenSesionHash,
-
-          minutosVigencia:
-            VIGENCIA_TOKEN_SESION_MINUTOS,
-
+      await this.crearSesionAdministrador(
+        verificacion,
+        {
           direccionIp,
           userAgent
-        });
+        }
+      );
 
     /*
      * Registrar el acceso exitoso.
@@ -829,7 +872,8 @@ if (!codigoGuardado) {
       mensaje:
         "Inicio de sesión realizado correctamente.",
 
-      tokenSesion,
+      tokenSesion:
+        sesionCreada.tokenSesion,
 
       fechaExpiracion:
         sesionCreada.fechaExpiracion,

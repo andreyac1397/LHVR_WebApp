@@ -83,11 +83,39 @@ class ContenidoService {
       return null;
     }
 
-    if (/^(javascript|data|vbscript):/i.test(enlace)) {
+    if (
+      /[\u0000-\u001F\u007F]/.test(enlace) ||
+      enlace.startsWith("//")
+    ) {
       throw this.crearError(
         "El enlace indicado utiliza un protocolo no permitido.",
         "URL_CONTENIDO_INVALIDA"
       );
+    }
+
+    const protocolo = enlace.match(
+      /^([a-z][a-z0-9+.-]*):/i
+    )?.[1]?.toLowerCase();
+
+    if (
+      protocolo &&
+      !["http", "https", "mailto", "tel"].includes(protocolo)
+    ) {
+      throw this.crearError(
+        "El enlace indicado utiliza un protocolo no permitido.",
+        "URL_CONTENIDO_INVALIDA"
+      );
+    }
+
+    if (["http", "https"].includes(protocolo)) {
+      try {
+        new URL(enlace);
+      } catch (_error) {
+        throw this.crearError(
+          "El enlace indicado no tiene un formato valido.",
+          "URL_CONTENIDO_INVALIDA"
+        );
+      }
     }
 
     return enlace;
