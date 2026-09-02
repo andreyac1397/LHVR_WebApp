@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Administración de trámites institucionales del LHVR">
+  <title>Trámites | Panel administrativo LHVR</title>
+  <link rel="stylesheet" href="../../css/variables-admin.css">
+  <link rel="stylesheet" href="../../css/estilos-admin.css">
+  <link rel="stylesheet" href="../../css/barra-lateral.css">
+  <link rel="stylesheet" href="../../css/formularios-admin.css">
+  <link rel="stylesheet" href="../../css/alertas-admin.css">
+  <link rel="stylesheet" href="../../css/modales-admin.css">
+  <link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+  <link rel="stylesheet" href="../../css/tramites-admin.css?v=20260815-2">
+  <link rel="stylesheet" href="../../css/responsive-admin.css">
+</head>
+<body class="pagina-contenido" data-titulo-pagina="Trámites" data-pagina-slug="tramites">
+  <div id="cargadorProteccion" class="cargador-proteccion" role="status" aria-live="polite">
+    <div class="cargador-proteccion__contenido">
+      <span class="cargador-proteccion__indicador" aria-hidden="true"></span>
+      <div><p class="cargador-proteccion__titulo">Comprobando sesión</p><p class="cargador-proteccion__texto">Espere un momento mientras validamos su acceso.</p></div>
+    </div>
+  </div>
+
+  <main id="contenidoPagina" data-titulo="Trámites" hidden>
+    <div id="contenidoTramitesAdmin" class="admin-pagina pagina-contenido-admin tramites-admin" hidden>
+      <section class="admin-pagina__encabezado">
+        <div class="admin-pagina__titulo-contenedor">
+          <span class="admin-pagina__etiqueta">Gestión de páginas</span>
+          <h1 class="admin-pagina__titulo">Trámites</h1>
+          <p class="admin-pagina__descripcion">Administre el encabezado y las tarjetas de trámites que aparecen en la página pública.</p>
+        </div>
+        <div class="admin-pagina__acciones">
+          <button id="botonRecargarTramites" class="admin-boton admin-boton--secundario" type="button">Recargar contenido</button>
+          <a class="admin-boton admin-boton--primario" href="../../../frontend-publico/pages/documentos-importantes.html" target="_blank" rel="noopener noreferrer">Ver página pública</a>
+        </div>
+      </section>
+
+      <section class="admin-panel pagina-contenido-admin__resumen" aria-labelledby="tituloResumenPaginaTramites">
+        <header class="admin-panel__encabezado">
+          <div>
+            <h2 id="tituloResumenPaginaTramites" class="admin-panel__titulo">Información de la página</h2>
+            <p class="admin-panel__descripcion">Datos generales de la página Trámites.</p>
+          </div>
+        </header>
+        <div class="admin-panel__contenido">
+          <dl class="pagina-contenido-admin__datos">
+            <div class="pagina-contenido-admin__dato">
+              <dt>Nombre</dt>
+              <dd id="nombrePaginaTramites">Cargando...</dd>
+            </div>
+            <div class="pagina-contenido-admin__dato">
+              <dt>Dirección</dt>
+              <dd id="rutaPaginaTramites">Cargando...</dd>
+            </div>
+            <div class="pagina-contenido-admin__dato">
+              <dt>Estado</dt>
+              <dd><span id="estadoPaginaTramites" class="admin-etiqueta">Cargando...</span></dd>
+            </div>
+            <div class="pagina-contenido-admin__dato">
+              <dt>Última actualización</dt>
+              <dd id="fechaActualizacionPaginaTramites">Cargando...</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <div id="mensajeTramites" class="alerta-admin" role="alert" aria-live="polite" hidden></div>
+
+      <section class="admin-panel tramites-admin__encabezado-publico" aria-labelledby="tituloEditorEncabezadoTramites">
+        <header class="admin-panel__encabezado">
+          <div>
+            <h2 id="tituloEditorEncabezadoTramites" class="admin-panel__titulo">Encabezado de la página</h2>
+            <p class="admin-panel__descripcion">Edite el título, la descripción y el estado del encabezado de Horarios y trámites.</p>
+          </div>
+        </header>
+        <div class="admin-panel__contenido">
+          <form id="formularioEncabezadoTramites" class="formulario-admin">
+            <input id="idPaginaTramites" type="hidden">
+            <div class="formulario-admin__cuadricula">
+              <div class="formulario-admin__grupo">
+                <label class="formulario-admin__etiqueta" for="tituloEncabezadoTramites">Título de la página <span aria-hidden="true">*</span></label>
+                <input id="tituloEncabezadoTramites" class="formulario-admin__control" type="text" maxlength="200" autocomplete="off" required>
+              </div>
+              <div class="formulario-admin__grupo">
+                <label class="formulario-admin__etiqueta" for="estadoEncabezadoTramites">Estado del encabezado <span aria-hidden="true">*</span></label>
+                <select id="estadoEncabezadoTramites" class="formulario-admin__control" required><option value="">Seleccione un estado</option></select>
+              </div>
+            </div>
+            <div class="formulario-admin__grupo">
+              <label class="formulario-admin__etiqueta" for="descripcionEncabezadoTramites">Descripción</label>
+              <textarea id="descripcionEncabezadoTramites" class="formulario-admin__control formulario-admin__control--textarea" maxlength="500" rows="3"></textarea>
+            </div>
+            <div class="formulario-admin__acciones">
+              <button id="botonGuardarEncabezadoTramites" class="admin-boton admin-boton--primario" type="submit">Guardar encabezado</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-panel">
+        <header class="admin-panel__encabezado tramites-admin__barra-tarjetas">
+          <div>
+            <h2 class="admin-panel__titulo">Contenido de Trámites</h2>
+            <p class="admin-panel__descripcion">Administre las tarjetas que aparecen en la página pública. Puede configurar hasta 12.</p>
+          </div>
+          <div class="tramites-admin__controles-version">
+            <label class="formulario-admin__grupo" for="selectorColeccionTramites">
+              <span class="formulario-admin__etiqueta">Versión</span>
+              <select id="selectorColeccionTramites" class="formulario-admin__control"></select>
+            </label>
+            <button id="botonPublicarTramites" class="admin-boton admin-boton--dorado" type="button">Publicar versión</button>
+            <button id="botonAgregarTramite" class="admin-boton admin-boton--primario" type="button">Agregar trámite</button>
+          </div>
+        </header>
+        <div class="admin-panel__contenido">
+          <div class="tramites-admin__resumen">
+            <span><strong id="contadorTramites">0</strong> de 12 tarjetas</span>
+            <span id="estadoColeccionTramites" class="admin-etiqueta">Sin versión</span>
+          </div>
+          <div id="listaTramitesAdmin" class="comunidad-admin__tarjetas tramites-admin__tarjetas"></div>
+          <div id="estadoVacioTramites" class="admin-estado-vacio">
+            <h3>No hay tarjetas en esta versión</h3>
+            <p>Agregue una tarjeta cuando exista una versión de trámites en la base de datos.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="pagina-contenido-admin__pie">
+        <p>© 2026 Liceo Hernán Vargas Ramírez</p>
+        <span>Gestión de la página Trámites</span>
+      </footer>
+    </div>
+  </main>
+
+  <script src="../../js/config/api-admin.config.js" defer></script>
+  <script src="../../js/core/api-client.js" defer></script>
+  <script src="../../js/core/sesion-administrador.js" defer></script>
+  <script src="../../js/modules/autenticacion.js" defer></script>
+  <script src="../../js/core/proteccion-rutas.js" defer></script>
+  <script src="../../js/components/alertas-admin.js" defer></script>
+  <script src="../../js/components/modal-admin.js" defer></script>
+  <script src="../../js/modules/tramites.js" defer></script>
+  <script src="../../js/components/layout-admin.js" defer></script>
+</body>
+</html>

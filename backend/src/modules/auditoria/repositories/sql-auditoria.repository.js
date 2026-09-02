@@ -281,13 +281,23 @@ class SqlAuditoriaRepository
   }
 
   async listarAuditoria(filtros = {}) {
+    const pagina = Number.isInteger(Number(filtros.pagina)) &&
+      Number(filtros.pagina) > 0
+      ? Number(filtros.pagina)
+      : 1;
+    const limite = Number.isInteger(Number(filtros.limite)) &&
+      Number(filtros.limite) > 0
+      ? Math.min(100, Number(filtros.limite))
+      : 20;
     const conexion = await obtenerConexion();
     const resultado = await conexion.request()
       .input("modulo", sql.NVarChar(60), filtros.modulo ?? null)
       .input("accion", sql.NVarChar(50), filtros.accion ?? null)
       .input("busqueda", sql.NVarChar(250), filtros.busqueda ?? null)
+      .input("offset", sql.Int, (pagina - 1) * limite)
+      .input("limite", sql.Int, limite)
       .query(`
-        SELECT TOP 500
+        SELECT
           a.id_auditoria,
           a.id_administrador,
           adm.nombre_completo AS administrador,
@@ -315,11 +325,35 @@ class SqlAuditoriaRepository
             adm.nombre_completo LIKE N'%' + @busqueda + N'%' OR
             a.tabla_afectada LIKE N'%' + @busqueda + N'%'
           )
-        ORDER BY a.fecha_accion DESC, a.id_auditoria DESC;
+        ORDER BY a.fecha_accion DESC, a.id_auditoria DESC
+        OFFSET @offset ROWS
+        FETCH NEXT @limite ROWS ONLY;
 
         SELECT codigo, nombre FROM dbo.modulos_sistema WHERE activo = 1 ORDER BY orden, nombre;
         SELECT codigo, nombre FROM dbo.acciones_auditoria WHERE activo = 1 ORDER BY nombre;
+
+        SELECT COUNT(*) AS total_registros
+        FROM dbo.auditoria AS a
+        INNER JOIN dbo.acciones_auditoria AS acc
+          ON acc.id_accion_auditoria = a.id_accion_auditoria
+        INNER JOIN dbo.modulos_sistema AS mod
+          ON mod.id_modulo_sistema = a.id_modulo_sistema
+        LEFT JOIN dbo.administradores AS adm
+          ON adm.id_administrador = a.id_administrador
+        WHERE (@modulo IS NULL OR mod.codigo = @modulo)
+          AND (@accion IS NULL OR acc.codigo = @accion)
+          AND (
+            @busqueda IS NULL OR
+            a.descripcion LIKE N'%' + @busqueda + N'%' OR
+            adm.nombre_completo LIKE N'%' + @busqueda + N'%' OR
+            a.tabla_afectada LIKE N'%' + @busqueda + N'%'
+          );
       `);
+
+    const totalRegistros = Number(
+      resultado.recordsets[3][0]?.total_registros || 0
+    );
+    const totalPaginas = Math.max(1, Math.ceil(totalRegistros / limite));
 
     return {
       registros: resultado.recordsets[0].map((fila) => ({
@@ -337,7 +371,13 @@ class SqlAuditoriaRepository
         fechaAccion: fila.fecha_accion
       })),
       modulos: resultado.recordsets[1],
-      acciones: resultado.recordsets[2]
+      acciones: resultado.recordsets[2],
+      paginaActual: pagina,
+      limite,
+      totalRegistros,
+      totalPaginas,
+      tieneAnterior: pagina > 1,
+      tieneSiguiente: pagina < totalPaginas
     };
   }
 }

@@ -1113,3 +1113,48 @@ body[data-pagina="nosotros"] .datos-institucionales .datos {
     transform: none;
   }
 }
+/* ============================================================
+   ACCESO AL PANEL ADMINISTRATIVO
+   ============================================================ */
+
+.menu__item-admin {
+  display: flex;
+  align-items: center;
+}
+
+.menu__enlace--admin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+
+  padding: 0.45rem 0.6rem;
+
+  color: #2b563a;
+  background: transparent;
+
+  border: 1px solid #cbd8cf;
+  border-radius: 8px;
+
+  font-size: 0.88rem;
+  font-weight: 600;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.menu__enlace--admin:hover,
+.menu__enlace--admin:focus-visible {
+  color: #21452f;
+  background-color: #edf3ef;
+  border-color: #9fb7a7;
+}
+
+.menu__icono-admin {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}

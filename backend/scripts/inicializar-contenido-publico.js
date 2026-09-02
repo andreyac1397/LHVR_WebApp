@@ -1,14 +1,19 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
 
-const {
-  boletinService,
-  calendarioService,
-  docenteService,
-  horarioService,
-  tramiteService,
-  recursoApoyoService
-} = require("../src/container/dependency-container");
+const { contenidoServices } = require(
+  "../src/container/dependency-container"
+);
+const boletinService = contenidoServices.boletines;
+const calendarioService = contenidoServices.calendario;
+const docenteService = contenidoServices.docentes;
+const horarioService = contenidoServices.horarios;
+const tramiteService = contenidoServices.tramites;
+const recursoApoyoService = contenidoServices["recursos-apoyo"];
+const galeriaService = contenidoServices.galeria;
+const migrarImagenesGaleria = require(
+  "./migrar-imagenes-galeria"
+);
 
 const {
   cerrarConexion
@@ -20,6 +25,21 @@ const DIRECTORIO_DATOS = path.join(
   "frontend-publico",
   "data"
 );
+const MODULOS_SOLICITADOS = new Set(
+  String(process.env.LHVR_CONTENIDO_MODULOS || "")
+    .split(",")
+    .map((item) => item.trim().toLowerCase())
+    .filter(Boolean)
+);
+const CLAVES_MODULO = {
+  Boletines: "boletines",
+  Calendario: "calendario",
+  Docentes: "docentes",
+  Horarios: "horarios",
+  "Trámites": "tramites",
+  "Recursos de apoyo": "recursos-apoyo",
+  "Galería": "galeria"
+};
 
 function texto(valor) {
   return valor === null || valor === undefined
@@ -87,6 +107,14 @@ async function importarSiEstaVacio(
   servicio,
   datos
 ) {
+  const claveModulo = CLAVES_MODULO[nombre];
+  if (
+    MODULOS_SOLICITADOS.size > 0 &&
+    !MODULOS_SOLICITADOS.has(claveModulo)
+  ) {
+    return;
+  }
+
   const administracion = await servicio.obtenerAdministracion();
 
   if (administracion.colecciones.length > 0) {
@@ -117,6 +145,21 @@ async function inicializar() {
   const tramites = await leerJson("documentos.json");
   const recursos = await leerJson("enlaces.json");
   const horarios = await leerCsv("horarios.csv");
+  const galeria = [
+    ["galeria-0.jpg", "Instalaciones del liceo", "Entrada e instalaciones del Liceo Hernán Vargas Ramírez"],
+    ["galeria-2.jpg", "Actividades estudiantiles", "Actividad estudiantil en espacio techado del liceo"],
+    ["galeria-3.jpg", "Representación deportiva", "Estudiantes representantes en actividades deportivas"],
+    ["galeria-4.jpg", "Participación deportiva", "Estudiantes participando en actividades deportivas del liceo"],
+    ["galeria-5.jpg", "Discurso de la directora", "Participación cultural y académica en la institución"],
+    ["galeria-6.jpg", "Actividad institucional", "Actividad institucional realizada en las instalaciones del liceo"],
+    ["galeria-7.jpg", "Exposiciones", "Exposición de proyectos y materiales elaborados por estudiantes"],
+    ["galeria-8.jpg", "Vida escolar", "Grupo de estudiantes y personal durante actividad educativa"],
+    ["galeria-9.jpg", "Valores institucionales", "Escaleras decoradas con valores institucionales"],
+    ["galeria-10.jpg", "Acto cívico", "Estudiantes reunidos en actividad de convivencia escolar"],
+    ["galeria-11.jpg", "Actividad artística", "Actividad artística y educativa dentro del liceo"],
+    ["galeria-12.jpg", "Ganadores estudiantiles", "Estudiantes representando a la comunidad educativa del liceo"],
+    ["galeria-1.jpg", "Actividad cultural", "Actividad cultural con participación estudiantil"]
+  ];
 
   await importarSiEstaVacio(
     "Boletines",
@@ -190,13 +233,16 @@ async function inicializar() {
         claveExterna: `docente-${indice + 1}`,
         titulo: item.nombre,
         subtitulo: item.area,
-        descripcion: item.correo,
+        descripcion: null,
         estado: "PUBLICADO",
         orden: indice,
         datos: {
           nombre: item.nombre,
           area: item.area,
-          correo: item.correo
+          departamento: item.area,
+          correo: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(item.correo)
+            ? item.correo
+            : ""
         }
       }))
     }
@@ -273,6 +319,48 @@ async function inicializar() {
       }))
     }
   );
+
+  await importarSiEstaVacio(
+    "Galería",
+    galeriaService,
+    {
+      nombre: "Galería institucional inicial",
+      anio: 2026,
+      publicar: true,
+      reemplazar: true,
+      tipoOrigen: "HTML",
+      nombreOrigen: "galeria.html",
+      elementos: galeria.map(([archivo, titulo, descripcion], indice) => ({
+        claveExterna: `galeria-${indice + 1}`,
+        titulo,
+        descripcion,
+        url: `../assets/img/${archivo}`,
+        estado: "PUBLICADO",
+        orden: indice,
+        datos: {
+          categoria: titulo.includes("deport") || titulo.includes("Representación")
+            ? "Deporte"
+            : titulo.includes("cultural") || titulo.includes("artística")
+              ? "Cultura y arte"
+              : titulo.includes("Instalaciones") || titulo.includes("Valores")
+                ? "Instalaciones"
+                : titulo.includes("Exposiciones")
+                  ? "Proyectos académicos"
+                  : "Vida institucional"
+        }
+      }))
+    }
+  );
+
+  if (
+    MODULOS_SOLICITADOS.size === 0 ||
+    MODULOS_SOLICITADOS.has("galeria")
+  ) {
+    const resultadoMigracion = await migrarImagenesGaleria();
+    console.log(
+      `[galería] ${resultadoMigracion.migradas} imágenes iniciales asociadas por id_archivo.`
+    );
+  }
 }
 
 if (require.main === module) {

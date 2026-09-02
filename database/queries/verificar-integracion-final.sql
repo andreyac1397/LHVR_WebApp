@@ -14,6 +14,7 @@ FROM (VALUES
   (N'cms_importaciones'), (N'solicitudes_contacto'),
   (N'estados_solicitud_contacto'), (N'solicitudes_bibliocra'),
   (N'detalle_solicitud_bibliocra'), (N'estados_solicitud'),
+  (N'destinatarios_bibliocra'),
   (N'administradores'), (N'estados_administrador'), (N'auditoria')
 ) AS t(name)
 ORDER BY t.name;

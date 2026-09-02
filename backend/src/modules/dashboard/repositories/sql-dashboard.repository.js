@@ -27,7 +27,7 @@ class SqlDashboardRepository {
           SELECT COUNT_BIG(*)
           FROM dbo.solicitudes_bibliocra AS s
           INNER JOIN dbo.estados_solicitud AS e ON e.id_estado_solicitud = s.id_estado_solicitud
-          WHERE e.nombre = N'Pendiente'
+          WHERE e.nombre IN (N'Nueva', N'En revisión')
         ) AS solicitudes_bibliocra_pendientes,
         (
           SELECT COUNT_BIG(*)

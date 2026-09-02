@@ -187,6 +187,87 @@ class PaginaController {
   }
 
   /**
+   * Obtiene secciones públicas conservando estados independientes
+   * para el encabezado y el resto del contenido.
+   *
+   * GET /api/paginas/publicas-parciales/:slug
+   */
+  async obtenerContenidoPublicoParcial(
+    req,
+    res,
+    next
+  ) {
+    try {
+      const slug =
+        this.paginaValidator
+          .validarSlug(
+            req.params?.slug
+          );
+
+      const resultado =
+        await this.paginaService
+          .obtenerContenidoPublicoParcial(
+            slug
+          );
+
+      return res.status(200).json({
+        exito: true,
+        mensaje:
+          "El contenido público parcial fue obtenido correctamente.",
+        datos: {
+          pagina: resultado.pagina,
+          secciones: resultado.secciones
+        }
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  /**
+   * Actualiza el encabezado y estado general de una página.
+   * PUT /api/paginas/administracion/:idPagina
+   */
+  async guardarPagina(
+    req,
+    res,
+    next
+  ) {
+    try {
+      const dto =
+        this.paginaValidator
+          .crearGuardarPaginaDto(
+            req.params?.idPagina,
+            req.body
+          );
+
+      const resultado =
+        await this.paginaService
+          .guardarPagina(
+            dto.toObject(),
+            req.sesionAdministrador,
+            {
+              direccionIp:
+                this.obtenerDireccionIp(req),
+              userAgent:
+                this.obtenerUserAgent(req)
+            }
+          );
+
+      return res.status(200).json({
+        exito: true,
+        mensaje: resultado.mensaje,
+        datos: {
+          guardado: resultado.guardado,
+          pagina: resultado.pagina
+        }
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  /**
    * Lista los estados de publicación activos.
    *
    * Requiere una sesión administrativa válida.

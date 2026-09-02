@@ -73,6 +73,8 @@ BEGIN
             contrasena_hash =
                 @contrasena_hash_nueva,
 
+            requiere_cambio_contrasena = 0,
+
             fecha_actualizacion =
                 @ahora
         WHERE id_administrador =

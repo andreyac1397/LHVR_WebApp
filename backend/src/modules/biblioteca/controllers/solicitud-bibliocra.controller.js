@@ -32,6 +32,52 @@ class SolicitudBibliocraController {
     }
   }
 
+  async listarDestinatarios(req, res, next) {
+    try {
+      const datos = await solicitudBibliocraService.listarDestinatarios();
+      return respuestaExitosa(
+        res,
+        "Destinatarios BiblioCRA obtenidos.",
+        datos
+      );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  async agregarDestinatario(req, res, next) {
+    try {
+      const datos = await solicitudBibliocraService.agregarDestinatario(
+        req.body,
+        contexto(req)
+      );
+      return respuestaExitosa(
+        res,
+        "El destinatario recibirá las nuevas solicitudes BiblioCRA.",
+        datos,
+        201
+      );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  async eliminarDestinatario(req, res, next) {
+    try {
+      const datos = await solicitudBibliocraService.eliminarDestinatario(
+        req.params.idDestinatario,
+        contexto(req)
+      );
+      return respuestaExitosa(
+        res,
+        "El destinatario fue eliminado.",
+        datos
+      );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
   async actualizar(req, res, next) {
     try {
       const datos = await solicitudBibliocraService.actualizar(

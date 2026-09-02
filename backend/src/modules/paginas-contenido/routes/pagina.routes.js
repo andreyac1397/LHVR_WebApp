@@ -57,6 +57,25 @@ router.get(
       )
 );
 
+/**
+ * Devuelve las secciones publicadas aunque el encabezado tenga
+ * un estado no visible. No requiere sesión administrativa.
+ */
+router.get(
+  "/publicas-parciales/:slug",
+  (
+    req,
+    res,
+    next
+  ) =>
+    paginaController
+      .obtenerContenidoPublicoParcial(
+        req,
+        res,
+        next
+      )
+);
+
 
 /*
  * ============================================================
@@ -121,6 +140,27 @@ router.get(
   ) =>
     paginaController
       .obtenerContenidoAdministrativo(
+        req,
+        res,
+        next
+      )
+);
+
+/**
+ * Actualiza el encabezado y el estado general de la fila
+ * existente de una página.
+ *
+ * PUT /api/paginas/administracion/:idPagina
+ */
+router.put(
+  "/administracion/:idPagina",
+  (
+    req,
+    res,
+    next
+  ) =>
+    paginaController
+      .guardarPagina(
         req,
         res,
         next

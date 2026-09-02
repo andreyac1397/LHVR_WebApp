@@ -91,6 +91,9 @@
       cambiarContrasena:
         "/autenticacion/cambiar-contrasena",
 
+      cambiarContrasenaObligatoria:
+        "/autenticacion/cambiar-contrasena-obligatoria",
+
       cerrarSesion:
         "/autenticacion/cerrar-sesion"
     });
@@ -155,7 +158,20 @@
        * Requiere la cookie HttpOnly sesion_admin.
        */
       guardarSeccion:
-        "/paginas/secciones"
+        "/paginas/secciones",
+
+
+      /*
+       * PUT /api/paginas/administracion/:idPagina
+       *
+       * Actualiza el encabezado y el estado general.
+       */
+      guardarPagina(idPagina) {
+        return (
+          "/paginas/administracion/" +
+          encodeURIComponent(idPagina)
+        );
+      }
     });
 
 

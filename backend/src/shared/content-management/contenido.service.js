@@ -8,6 +8,12 @@ const ESTADOS = new Set([
   "INACTIVO",
   "ARCHIVADO"
 ]);
+const MODULOS_ORDEN_UNICO = new Set([
+  "BOLETINES",
+  "DOCENTES",
+  "RECURSOS_APOYO",
+  "GALERIA"
+]);
 
 class ContenidoService {
   constructor(
@@ -319,6 +325,26 @@ class ContenidoService {
       );
     }
 
+    if (MODULOS_ORDEN_UNICO.has(this.modulo)) {
+      const existentes = await this.repositorio.listarElementos({
+        modulo: this.modulo,
+        idColeccion: normalizado.idColeccion,
+        soloPublicados: false
+      });
+      const ocupado = existentes.find((elemento) =>
+        Number(elemento.idElemento) !== Number(normalizado.idElemento) &&
+        Number(elemento.orden) === Number(normalizado.orden) &&
+        elemento.estado !== "ARCHIVADO"
+      );
+      if (ocupado) {
+        throw this.crearError(
+          `El orden ${normalizado.orden} ya está ocupado por “${ocupado.titulo}”.`,
+          "ORDEN_CONTENIDO_OCUPADO",
+          409
+        );
+      }
+    }
+
     const resultado = await this.repositorio.guardarElemento({
       ...normalizado,
       modulo: this.modulo,
@@ -373,6 +399,81 @@ class ContenidoService {
     return {
       idElemento: id,
       archivado: true
+    };
+  }
+
+  async eliminarElemento(idElemento, contexto = {}) {
+    const id = this.numero(idElemento);
+
+    if (!id) {
+      throw this.crearError(
+        "El identificador del elemento no es válido.",
+        "ID_ELEMENTO_INVALIDO"
+      );
+    }
+
+    const eliminado = await this.repositorio.eliminarElemento(
+      this.modulo,
+      id
+    );
+
+    if (!eliminado) {
+      throw this.crearError(
+        "No se encontró el elemento indicado.",
+        "ELEMENTO_NO_ENCONTRADO",
+        404
+      );
+    }
+
+    await this.registrarAuditoria(
+      "ELIMINAR",
+      id,
+      null,
+      { eliminado: true },
+      contexto
+    );
+
+    return {
+      idElemento: id,
+      eliminado: true
+    };
+  }
+
+  async eliminarColeccion(idColeccion, contexto = {}) {
+    const id = this.numero(idColeccion);
+
+    if (!id) {
+      throw this.crearError(
+        "El identificador de la colección no es válido.",
+        "ID_COLECCION_INVALIDO"
+      );
+    }
+
+    const resultado = await this.repositorio.eliminarColeccion(
+      this.modulo,
+      id
+    );
+
+    if (!resultado.eliminada) {
+      throw this.crearError(
+        "No se encontró la colección indicada.",
+        "COLECCION_NO_ENCONTRADA",
+        404
+      );
+    }
+
+    await this.registrarAuditoria(
+      "ELIMINAR_VERSION",
+      id,
+      null,
+      resultado,
+      contexto
+    );
+
+    return {
+      idColeccion: id,
+      eliminada: true,
+      eraPublicada: resultado.publicada
     };
   }
 

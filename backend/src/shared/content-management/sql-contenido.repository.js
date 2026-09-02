@@ -209,41 +209,50 @@ class SqlContenidoRepository {
       .input("solo_publicados", sql.Bit, soloPublicados)
       .query(`
         SELECT
-          id_elemento,
-          id_coleccion,
-          modulo,
-          clave_externa,
-          titulo,
-          subtitulo,
-          descripcion,
-          fecha_inicio,
-          fecha_fin,
-          orden,
-          estado,
-          destacado,
-          url,
-          url_secundaria,
-          id_archivo,
-          datos_json,
-          id_administrador_ultima_modificacion,
-          fecha_creacion,
-          fecha_actualizacion
-        FROM dbo.cms_elementos
-        WHERE modulo = @modulo
+          e.id_elemento,
+          e.id_coleccion,
+          e.modulo,
+          e.clave_externa,
+          e.titulo,
+          e.subtitulo,
+          e.descripcion,
+          e.fecha_inicio,
+          e.fecha_fin,
+          e.orden,
+          e.estado,
+          e.destacado,
+          COALESCE(a.ruta_relativa, e.url) AS url,
+          e.url_secundaria,
+          e.id_archivo,
+          e.datos_json,
+          e.id_administrador_ultima_modificacion,
+          e.fecha_creacion,
+          e.fecha_actualizacion
+        FROM dbo.cms_elementos AS e
+        LEFT JOIN dbo.archivos AS a
+          ON a.id_archivo = e.id_archivo
+          AND a.activo = 1
+        WHERE e.modulo = @modulo
           AND (
             @id_coleccion IS NULL OR
-            id_coleccion = @id_coleccion
+            e.id_coleccion = @id_coleccion
           )
           AND (
             @solo_publicados = 0 OR
-            estado = N'PUBLICADO'
+            e.estado = N'PUBLICADO'
           )
-          AND estado <> N'ARCHIVADO'
+          AND (
+            e.estado <> N'ARCHIVADO' OR
+            (
+              @solo_publicados = 0 AND
+              @modulo IN (N'HORARIOS', N'BIBLIOTECA')
+            )
+          )
         ORDER BY
-          orden,
-          fecha_inicio,
-          titulo,
-          id_elemento;
+          e.orden,
+          e.fecha_inicio,
+          e.titulo,
+          e.id_elemento;
       `);
 
     return resultado.recordset.map(
@@ -590,6 +599,468 @@ class SqlContenidoRepository {
     ) > 0;
   }
 
+  async eliminarElemento(modulo, idElemento) {
+    const conexion = await obtenerConexion();
+
+    const resultado = await conexion
+      .request()
+      .input("modulo", sql.NVarChar(60), modulo)
+      .input("id_elemento", sql.Int, idElemento)
+      .query(`
+        DELETE FROM dbo.cms_elementos
+        WHERE id_elemento = @id_elemento
+          AND modulo = @modulo;
+
+        SELECT @@ROWCOUNT AS filas_afectadas;
+      `);
+
+    return Number(
+      resultado.recordset[0]?.filas_afectadas || 0
+    ) > 0;
+  }
+
+  async eliminarColeccion(modulo, idColeccion) {
+    const conexion = await obtenerConexion();
+    const transaccion = new sql.Transaction(conexion);
+
+    await transaccion.begin();
+
+    try {
+      const resultado = await new sql.Request(transaccion)
+        .input("modulo", sql.NVarChar(60), modulo)
+        .input("id_coleccion", sql.Int, idColeccion)
+        .query(`
+          DECLARE @publicada BIT;
+
+          SELECT @publicada = publicada
+          FROM dbo.cms_colecciones
+          WHERE id_coleccion = @id_coleccion
+            AND modulo = @modulo;
+
+          IF @publicada IS NULL
+          BEGIN
+            SELECT
+              CAST(0 AS BIT) AS eliminada,
+              CAST(0 AS BIT) AS publicada;
+            RETURN;
+          END;
+
+          DELETE FROM dbo.cms_importaciones
+          WHERE id_coleccion = @id_coleccion
+            AND modulo = @modulo;
+
+          DELETE FROM dbo.cms_elementos
+          WHERE id_coleccion = @id_coleccion
+            AND modulo = @modulo;
+
+          DELETE FROM dbo.cms_colecciones
+          WHERE id_coleccion = @id_coleccion
+            AND modulo = @modulo;
+
+          SELECT
+            CAST(1 AS BIT) AS eliminada,
+            @publicada AS publicada;
+        `);
+
+      await transaccion.commit();
+
+      return {
+        eliminada: Boolean(resultado.recordset[0]?.eliminada),
+        publicada: Boolean(resultado.recordset[0]?.publicada)
+      };
+    } catch (error) {
+      await transaccion.rollback();
+      throw error;
+    }
+  }
+
+  async guardarCambiosHorario(datos) {
+    const conexion = await obtenerConexion();
+    const transaccion = new sql.Transaction(conexion);
+
+    await transaccion.begin();
+
+    try {
+      const resultado = await new sql.Request(transaccion)
+        .input("modulo", sql.NVarChar(60), datos.modulo)
+        .input("id_coleccion", sql.Int, datos.idColeccion)
+        .input(
+          "elementos_json",
+          sql.NVarChar(sql.MAX),
+          JSON.stringify(datos.elementos)
+        )
+        .input(
+          "id_administrador",
+          sql.Int,
+          datos.idAdministrador ?? null
+        )
+        .query(`
+          IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.cms_colecciones
+            WHERE id_coleccion = @id_coleccion
+              AND modulo = @modulo
+          )
+          BEGIN
+            THROW 51010, N'No se encontró la versión indicada.', 1;
+          END;
+
+          DECLARE @elementos TABLE (
+            indice INT NOT NULL,
+            id_elemento INT NULL,
+            clave_externa NVARCHAR(180) NULL,
+            titulo NVARCHAR(500) NOT NULL,
+            subtitulo NVARCHAR(500) NULL,
+            descripcion NVARCHAR(MAX) NULL,
+            fecha_inicio DATETIME2(0) NULL,
+            fecha_fin DATETIME2(0) NULL,
+            orden INT NOT NULL,
+            estado NVARCHAR(20) NOT NULL,
+            destacado BIT NOT NULL,
+            url NVARCHAR(2048) NULL,
+            url_secundaria NVARCHAR(2048) NULL,
+            id_archivo INT NULL,
+            datos_json NVARCHAR(MAX) NOT NULL
+          );
+
+          INSERT INTO @elementos (
+            indice,
+            id_elemento,
+            clave_externa,
+            titulo,
+            subtitulo,
+            descripcion,
+            fecha_inicio,
+            fecha_fin,
+            orden,
+            estado,
+            destacado,
+            url,
+            url_secundaria,
+            id_archivo,
+            datos_json
+          )
+          SELECT
+            TRY_CONVERT(INT, fuente.[key]),
+            TRY_CONVERT(
+              INT,
+              JSON_VALUE(fuente.[value], '$.idElemento')
+            ),
+            JSON_VALUE(fuente.[value], '$.claveExterna'),
+            JSON_VALUE(fuente.[value], '$.titulo'),
+            JSON_VALUE(fuente.[value], '$.subtitulo'),
+            JSON_VALUE(fuente.[value], '$.descripcion'),
+            TRY_CONVERT(
+              DATETIME2(0),
+              JSON_VALUE(fuente.[value], '$.fechaInicio')
+            ),
+            TRY_CONVERT(
+              DATETIME2(0),
+              JSON_VALUE(fuente.[value], '$.fechaFin')
+            ),
+            COALESCE(
+              TRY_CONVERT(
+                INT,
+                JSON_VALUE(fuente.[value], '$.orden')
+              ),
+              0
+            ),
+            COALESCE(
+              JSON_VALUE(fuente.[value], '$.estado'),
+              N'PUBLICADO'
+            ),
+            CASE LOWER(
+              COALESCE(
+                JSON_VALUE(fuente.[value], '$.destacado'),
+                N'false'
+              )
+            )
+              WHEN N'true' THEN 1
+              WHEN N'1' THEN 1
+              ELSE 0
+            END,
+            JSON_VALUE(fuente.[value], '$.url'),
+            JSON_VALUE(fuente.[value], '$.urlSecundaria'),
+            TRY_CONVERT(
+              INT,
+              JSON_VALUE(fuente.[value], '$.idArchivo')
+            ),
+            COALESCE(
+              JSON_QUERY(fuente.[value], '$.datos'),
+              N'{}'
+            )
+          FROM OPENJSON(@elementos_json) AS fuente;
+
+          IF EXISTS (
+            SELECT 1
+            FROM @elementos AS elemento
+            WHERE elemento.id_elemento > 0
+              AND NOT EXISTS (
+                SELECT 1
+                FROM dbo.cms_elementos AS actual
+                WHERE actual.id_elemento = elemento.id_elemento
+                  AND actual.id_coleccion = @id_coleccion
+                  AND actual.modulo = @modulo
+              )
+          )
+          BEGIN
+            THROW 51012,
+              N'Una de las filas ya no pertenece a esta versión.',
+              1;
+          END;
+
+          DELETE actual
+          FROM dbo.cms_elementos AS actual
+          WHERE actual.id_coleccion = @id_coleccion
+            AND actual.modulo = @modulo
+            AND NOT EXISTS (
+              SELECT 1
+              FROM @elementos AS elemento
+              WHERE elemento.id_elemento = actual.id_elemento
+                AND elemento.id_elemento > 0
+            );
+
+          DECLARE @filas_eliminadas INT = @@ROWCOUNT;
+
+          UPDATE actual
+          SET
+            clave_externa = elemento.clave_externa,
+            titulo = elemento.titulo,
+            subtitulo = elemento.subtitulo,
+            descripcion = elemento.descripcion,
+            fecha_inicio = elemento.fecha_inicio,
+            fecha_fin = elemento.fecha_fin,
+            orden = elemento.orden,
+            estado = elemento.estado,
+            destacado = elemento.destacado,
+            url = elemento.url,
+            url_secundaria = elemento.url_secundaria,
+            id_archivo = elemento.id_archivo,
+            datos_json = elemento.datos_json,
+            id_administrador_ultima_modificacion =
+              @id_administrador,
+            fecha_actualizacion = SYSUTCDATETIME()
+          FROM dbo.cms_elementos AS actual
+          INNER JOIN @elementos AS elemento
+            ON elemento.id_elemento = actual.id_elemento
+          WHERE actual.id_coleccion = @id_coleccion
+            AND actual.modulo = @modulo
+            AND elemento.id_elemento > 0;
+
+          DECLARE @filas_actualizadas INT = @@ROWCOUNT;
+
+          INSERT INTO dbo.cms_elementos (
+            id_coleccion,
+            modulo,
+            clave_externa,
+            titulo,
+            subtitulo,
+            descripcion,
+            fecha_inicio,
+            fecha_fin,
+            orden,
+            estado,
+            destacado,
+            url,
+            url_secundaria,
+            id_archivo,
+            datos_json,
+            id_administrador_ultima_modificacion,
+            fecha_creacion,
+            fecha_actualizacion
+          )
+          SELECT
+            @id_coleccion,
+            @modulo,
+            elemento.clave_externa,
+            elemento.titulo,
+            elemento.subtitulo,
+            elemento.descripcion,
+            elemento.fecha_inicio,
+            elemento.fecha_fin,
+            elemento.orden,
+            elemento.estado,
+            elemento.destacado,
+            elemento.url,
+            elemento.url_secundaria,
+            elemento.id_archivo,
+            elemento.datos_json,
+            @id_administrador,
+            SYSUTCDATETIME(),
+            SYSUTCDATETIME()
+          FROM @elementos AS elemento
+          WHERE elemento.id_elemento IS NULL
+            OR elemento.id_elemento <= 0;
+
+          DECLARE @filas_creadas INT = @@ROWCOUNT;
+
+          UPDATE dbo.cms_colecciones
+          SET
+            id_administrador_ultima_modificacion = @id_administrador,
+            fecha_actualizacion = SYSUTCDATETIME()
+          WHERE id_coleccion = @id_coleccion
+            AND modulo = @modulo;
+
+          SELECT
+            @filas_creadas AS filas_creadas,
+            @filas_actualizadas AS filas_actualizadas,
+            @filas_eliminadas AS filas_eliminadas;
+        `);
+
+      await transaccion.commit();
+
+      return {
+        filasCreadas: Number(
+          resultado.recordset[0]?.filas_creadas || 0
+        ),
+        filasActualizadas: Number(
+          resultado.recordset[0]?.filas_actualizadas || 0
+        ),
+        filasEliminadas: Number(
+          resultado.recordset[0]?.filas_eliminadas || 0
+        )
+      };
+    } catch (error) {
+      await transaccion.rollback();
+      throw error;
+    }
+  }
+
+  async crearSeccionHorario(datos) {
+    const conexion = await obtenerConexion();
+    const transaccion = new sql.Transaction(conexion);
+
+    await transaccion.begin();
+
+    try {
+      const resultado = await new sql.Request(transaccion)
+        .input("modulo", sql.NVarChar(60), datos.modulo)
+        .input("id_coleccion", sql.Int, datos.idColeccion)
+        .input("seccion", sql.NVarChar(60), datos.seccion)
+        .input(
+          "elementos_json",
+          sql.NVarChar(sql.MAX),
+          JSON.stringify(datos.elementos)
+        )
+        .input(
+          "id_administrador",
+          sql.Int,
+          datos.idAdministrador ?? null
+        )
+        .query(`
+          IF NOT EXISTS (
+            SELECT 1
+            FROM dbo.cms_colecciones
+            WHERE id_coleccion = @id_coleccion
+              AND modulo = @modulo
+          )
+          BEGIN
+            THROW 51010, N'No se encontró la versión indicada.', 1;
+          END;
+
+          IF EXISTS (
+            SELECT 1
+            FROM dbo.cms_elementos
+            WHERE id_coleccion = @id_coleccion
+              AND modulo = @modulo
+              AND JSON_VALUE(datos_json, '$.seccion') = @seccion
+          )
+          BEGIN
+            THROW 51011, N'La sección indicada ya existe en esta versión.', 1;
+          END;
+
+          INSERT INTO dbo.cms_elementos (
+            id_coleccion,
+            modulo,
+            clave_externa,
+            titulo,
+            descripcion,
+            orden,
+            estado,
+            destacado,
+            datos_json,
+            id_administrador_ultima_modificacion,
+            fecha_creacion,
+            fecha_actualizacion
+          )
+          SELECT
+            @id_coleccion,
+            @modulo,
+            elemento.clave_externa,
+            elemento.titulo,
+            elemento.descripcion,
+            elemento.orden,
+            elemento.estado,
+            0,
+            elemento.datos_json,
+            @id_administrador,
+            SYSUTCDATETIME(),
+            SYSUTCDATETIME()
+          FROM OPENJSON(@elementos_json)
+          WITH (
+            clave_externa NVARCHAR(180) '$.claveExterna',
+            titulo NVARCHAR(500) '$.titulo',
+            descripcion NVARCHAR(MAX) '$.descripcion',
+            orden INT '$.orden',
+            estado NVARCHAR(20) '$.estado',
+            datos_json NVARCHAR(MAX) '$.datos' AS JSON
+          ) AS elemento;
+
+          DECLARE @filas_creadas INT = @@ROWCOUNT;
+
+          UPDATE dbo.cms_colecciones
+          SET
+            id_administrador_ultima_modificacion = @id_administrador,
+            fecha_actualizacion = SYSUTCDATETIME()
+          WHERE id_coleccion = @id_coleccion
+            AND modulo = @modulo;
+
+          SELECT @filas_creadas AS filas_creadas;
+        `);
+
+      await transaccion.commit();
+
+      return Number(
+        resultado.recordset[0]?.filas_creadas || 0
+      );
+    } catch (error) {
+      await transaccion.rollback();
+      throw error;
+    }
+  }
+
+  async eliminarSeccionHorario(modulo, idColeccion, seccion) {
+    const conexion = await obtenerConexion();
+
+    const resultado = await conexion
+      .request()
+      .input("modulo", sql.NVarChar(60), modulo)
+      .input("id_coleccion", sql.Int, idColeccion)
+      .input("seccion", sql.NVarChar(60), seccion)
+      .query(`
+        DELETE FROM dbo.cms_elementos
+        WHERE id_coleccion = @id_coleccion
+          AND modulo = @modulo
+          AND JSON_VALUE(datos_json, '$.seccion') = @seccion;
+
+        DECLARE @filas_afectadas INT = @@ROWCOUNT;
+
+        IF @filas_afectadas > 0
+        BEGIN
+          UPDATE dbo.cms_colecciones
+          SET fecha_actualizacion = SYSUTCDATETIME()
+          WHERE id_coleccion = @id_coleccion
+            AND modulo = @modulo;
+        END;
+
+        SELECT @filas_afectadas AS filas_afectadas;
+      `);
+
+    return Number(
+      resultado.recordset[0]?.filas_afectadas || 0
+    );
+  }
+
   async publicarColeccion(
     modulo,
     idColeccion,
@@ -769,47 +1240,76 @@ class SqlContenidoRepository {
           `);
       }
 
-      const tabla = new sql.Table("dbo.cms_elementos");
-      tabla.create = false;
-      tabla.columns.add("id_coleccion", sql.Int, { nullable: true });
-      tabla.columns.add("modulo", sql.NVarChar(60), { nullable: false });
-      tabla.columns.add("clave_externa", sql.NVarChar(180), { nullable: true });
-      tabla.columns.add("titulo", sql.NVarChar(500), { nullable: true });
-      tabla.columns.add("subtitulo", sql.NVarChar(500), { nullable: true });
-      tabla.columns.add("descripcion", sql.NVarChar(sql.MAX), { nullable: true });
-      tabla.columns.add("fecha_inicio", sql.DateTime2, { nullable: true });
-      tabla.columns.add("fecha_fin", sql.DateTime2, { nullable: true });
-      tabla.columns.add("orden", sql.Int, { nullable: false });
-      tabla.columns.add("estado", sql.NVarChar(20), { nullable: false });
-      tabla.columns.add("destacado", sql.Bit, { nullable: false });
-      tabla.columns.add("url", sql.NVarChar(2048), { nullable: true });
-      tabla.columns.add("url_secundaria", sql.NVarChar(2048), { nullable: true });
-      tabla.columns.add("id_archivo", sql.Int, { nullable: true });
-      tabla.columns.add("datos_json", sql.NVarChar(sql.MAX), { nullable: true });
-      tabla.columns.add("id_administrador_ultima_modificacion", sql.Int, { nullable: true });
-
-      datos.elementos.forEach((elemento) => {
-        tabla.rows.add(
-          idColeccion,
-          datos.modulo,
-          elemento.claveExterna ?? null,
-          elemento.titulo ?? null,
-          elemento.subtitulo ?? null,
-          elemento.descripcion ?? null,
-          elemento.fechaInicio ?? null,
-          elemento.fechaFin ?? null,
-          elemento.orden ?? 0,
-          elemento.estado,
-          elemento.destacado,
-          elemento.url ?? null,
-          elemento.urlSecundaria ?? null,
-          elemento.idArchivo ?? null,
-          this.convertirJson(elemento.datos),
+      await new sql.Request(transaccion)
+        .input("id_coleccion", sql.Int, idColeccion)
+        .input("modulo", sql.NVarChar(60), datos.modulo)
+        .input(
+          "elementos_json",
+          sql.NVarChar(sql.MAX),
+          JSON.stringify(datos.elementos)
+        )
+        .input(
+          "id_administrador",
+          sql.Int,
           datos.idAdministrador ?? null
-        );
-      });
-
-      await new sql.Request(transaccion).bulk(tabla);
+        )
+        .query(`
+          INSERT INTO dbo.cms_elementos (
+            id_coleccion,
+            modulo,
+            clave_externa,
+            titulo,
+            subtitulo,
+            descripcion,
+            fecha_inicio,
+            fecha_fin,
+            orden,
+            estado,
+            destacado,
+            url,
+            url_secundaria,
+            id_archivo,
+            datos_json,
+            id_administrador_ultima_modificacion,
+            fecha_creacion,
+            fecha_actualizacion
+          )
+          SELECT
+            @id_coleccion,
+            @modulo,
+            elemento.clave_externa,
+            elemento.titulo,
+            elemento.subtitulo,
+            elemento.descripcion,
+            elemento.fecha_inicio,
+            elemento.fecha_fin,
+            elemento.orden,
+            elemento.estado,
+            elemento.destacado,
+            elemento.url,
+            elemento.url_secundaria,
+            elemento.id_archivo,
+            elemento.datos_json,
+            @id_administrador,
+            SYSUTCDATETIME(),
+            SYSUTCDATETIME()
+          FROM OPENJSON(@elementos_json)
+          WITH (
+            clave_externa NVARCHAR(180) '$.claveExterna',
+            titulo NVARCHAR(500) '$.titulo',
+            subtitulo NVARCHAR(500) '$.subtitulo',
+            descripcion NVARCHAR(MAX) '$.descripcion',
+            fecha_inicio DATETIME2(0) '$.fechaInicio',
+            fecha_fin DATETIME2(0) '$.fechaFin',
+            orden INT '$.orden',
+            estado NVARCHAR(20) '$.estado',
+            destacado BIT '$.destacado',
+            url NVARCHAR(2048) '$.url',
+            url_secundaria NVARCHAR(2048) '$.urlSecundaria',
+            id_archivo INT '$.idArchivo',
+            datos_json NVARCHAR(MAX) '$.datos' AS JSON
+          ) AS elemento;
+        `);
 
       await new sql.Request(transaccion)
         .input("id_coleccion", sql.Int, idColeccion)

@@ -42,6 +42,11 @@
    */
 
   const elementos = {
+    encabezadoOferta:
+      document.getElementById(
+        "encabezadoOferta"
+      ),
+
     tituloOferta:
       document.getElementById(
         "tituloOferta"
@@ -50,6 +55,11 @@
     descripcionOferta:
       document.getElementById(
         "descripcionOferta"
+      ),
+
+    encabezadoProgramas:
+      document.getElementById(
+        "encabezadoProgramasOferta"
       ),
 
     tituloProgramas:
@@ -128,6 +138,36 @@
           ) === claveBuscada
       ) ||
       null
+    );
+  }
+
+  function establecerVisibilidad(
+    elemento,
+    visible
+  ) {
+    if (!elemento) {
+      return;
+    }
+
+    elemento.hidden = !visible;
+    elemento.setAttribute(
+      "aria-hidden",
+      visible
+        ? "false"
+        : "true"
+    );
+
+    if (visible) {
+      elemento.style.removeProperty(
+        "display"
+      );
+
+      return;
+    }
+
+    elemento.style.setProperty(
+      "display",
+      "none"
     );
   }
 
@@ -366,6 +406,21 @@
         secciones,
         CLAVES.NOTA
       );
+
+    establecerVisibilidad(
+      elementos.encabezadoOferta,
+      Boolean(encabezado)
+    );
+
+    establecerVisibilidad(
+      elementos.encabezadoProgramas,
+      Boolean(programas)
+    );
+
+    establecerVisibilidad(
+      elementos.nota,
+      Boolean(nota)
+    );
 
     if (
       encabezado &&

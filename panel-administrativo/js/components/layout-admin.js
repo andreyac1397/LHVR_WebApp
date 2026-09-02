@@ -90,6 +90,7 @@
     "css/barra-lateral.css",
     "css/alertas-admin.css",
     "css/modales-admin.css",
+    "css/chat-flotante-admin.css",
     "css/responsive-admin.css"
   ];
 
@@ -222,6 +223,20 @@
           typeof global
             .renderizarEncabezadoAdmin ===
           "function"
+        );
+      }
+    },
+
+    {
+      archivo:
+        "chat-flotante-admin.js",
+
+      nombre:
+        "Notificaciones y chats flotantes",
+
+      comprobar() {
+        return Boolean(
+          global.ChatNotificacionesAdmin
         );
       }
     }

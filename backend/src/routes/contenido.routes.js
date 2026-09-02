@@ -1,111 +1,43 @@
 const express = require("express");
 
-const {
-  contenidoServices
-} = require("../container/dependency-container");
-
-const ContenidoController = require(
-  "../shared/content-management/contenido.controller"
+const boletinRoutes = require(
+  "../modules/boletines/routes/boletin.routes"
+);
+const calendarioRoutes = require(
+  "../modules/calendario/routes/calendario.routes"
+);
+const bibliotecaRoutes = require(
+  "../modules/biblioteca/routes/biblioteca.routes"
+);
+const docenteRoutes = require(
+  "../modules/docentes/routes/docente.routes"
+);
+const horarioRoutes = require(
+  "../modules/horarios/routes/horario.routes"
+);
+const tramiteRoutes = require(
+  "../modules/tramites/routes/tramite.routes"
+);
+const recursoApoyoRoutes = require(
+  "../modules/recursos-apoyo/routes/recurso-apoyo.routes"
+);
+const galeriaRoutes = require(
+  "../modules/galeria/routes/galeria.routes"
 );
 
-const crearContenidoRoutes = require(
-  "../shared/content-management/crear-contenido.routes"
-);
-
-const ExcelReaderService = require(
-  "../integrations/excel/excel-reader.service"
-);
-
-const ExcelWriterService = require(
-  "../integrations/excel/excel-writer.service"
-);
-
-const {
-  respuestaExitosa
-} = require("../shared/utils/response.util");
-
+/*
+ * Agregador de rutas: cada módulo conserva su controlador, servicio,
+ * repositorio y archivo de rutas; aquí solamente se montan bajo /api.
+ */
 const router = express.Router();
-const lectorExcel = new ExcelReaderService();
-const escritorExcel = new ExcelWriterService();
 
-const ENCABEZADOS_HORARIO = [
-  "Sección",
-  "Profesor guía",
-  "Lección",
-  "Horario",
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Jueves",
-  "Viernes"
-];
-
-function descargarPlantillaHorarios(_req, res, next) {
-  try {
-    const archivo = escritorExcel.crear([
-      ENCABEZADOS_HORARIO,
-      [
-        "7-1",
-        "Nombre del profesor guía",
-        "1",
-        "07:00-07:40",
-        "Matemática",
-        "Español",
-        "Ciencias",
-        "Estudios Sociales",
-        "Inglés"
-      ]
-    ]);
-
-    res.setHeader(
-      "Content-Type",
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    );
-    res.setHeader(
-      "Content-Disposition",
-      'attachment; filename="plantilla-horarios-lhvr.xlsx"'
-    );
-    res.setHeader("Content-Length", archivo.length);
-    return res.status(200).send(archivo);
-  } catch (error) {
-    return next(error);
-  }
-}
-
-function analizarArchivoHorarios(req, res, next) {
-  try {
-    if (!req.file?.buffer) {
-      const error = new Error("Debe seleccionar un archivo XLSX.");
-      error.statusCode = 400;
-      error.codigo = "ARCHIVO_EXCEL_REQUERIDO";
-      throw error;
-    }
-
-    const datos = lectorExcel.leer(req.file.buffer);
-
-    return respuestaExitosa(
-      res,
-      "El archivo fue leído correctamente. Revise la vista previa antes de guardarlo.",
-      datos
-    );
-  } catch (error) {
-    return next(error);
-  }
-}
-
-Object.entries(contenidoServices).forEach(([ruta, servicio]) => {
-  const controlador = new ContenidoController(servicio);
-  const opciones = ruta === "horarios"
-    ? {
-      descargarPlantilla: descargarPlantillaHorarios,
-      analizarArchivo: analizarArchivoHorarios
-    }
-    : {};
-
-  router.use(
-    `/${ruta}`,
-    crearContenidoRoutes(controlador, opciones)
-  );
-});
+router.use("/boletines", boletinRoutes);
+router.use("/calendario", calendarioRoutes);
+router.use("/biblioteca", bibliotecaRoutes);
+router.use("/docentes", docenteRoutes);
+router.use("/horarios", horarioRoutes);
+router.use("/tramites", tramiteRoutes);
+router.use("/recursos-apoyo", recursoApoyoRoutes);
+router.use("/galeria", galeriaRoutes);
 
 module.exports = router;

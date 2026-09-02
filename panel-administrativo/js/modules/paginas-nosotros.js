@@ -804,9 +804,11 @@
             ) ===
               "TARJETA_NORMATIVA";
 
+          // Las normativas inactivas permanecen editables.
+          // Solo las retiradas dejan de aparecer en la lista.
           return (
             esNormativa &&
-            comun.esSeccionVisible(
+            !comun.esSeccionArchivada(
               seccion
             )
           );
@@ -1907,15 +1909,6 @@
     return datos;
   }
 
-  function crearDatosOcultamientoNormativa(
-    seccion
-  ) {
-    return comun.crearDatosOcultamiento(
-      seccion,
-      "No existe un estado no visible para quitar la tarjeta normativa."
-    );
-  }
-
   /*
    * ==========================================================
    * 18. GUARDAR ENCABEZADO DE NOSOTROS
@@ -2166,10 +2159,8 @@
           const normativa
           of normativasPendientesOcultar
         ) {
-          await comun.guardarSeccion(
-            crearDatosOcultamientoNormativa(
-              normativa
-            )
+          await comun.retirarSeccion(
+            normativa.idSeccionPagina
           );
         }
 

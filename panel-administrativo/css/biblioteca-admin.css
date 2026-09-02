@@ -1,0 +1,463 @@
+.biblioteca-admin {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.biblioteca-admin .pagina-contenido-admin__resumen {
+  margin-bottom: 0;
+}
+
+.biblioteca-admin__barra,
+.biblioteca-admin__version {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.biblioteca-admin__version .formulario-admin__grupo {
+  min-width: 220px;
+  margin: 0;
+}
+
+.biblioteca-admin__secciones {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.biblioteca-admin__grupo {
+  padding-top: 1rem;
+  border-top: 2px solid #18251d;
+}
+
+.biblioteca-admin__grupo:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.biblioteca-admin__grupo-cabecera {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .85rem;
+}
+
+.biblioteca-admin__grupo-cabecera h3 {
+  margin: 0;
+  color: #245437;
+  font-family: Georgia, serif;
+}
+
+.biblioteca-admin__grupo-cabecera p {
+  margin: .25rem 0 0;
+  color: #666;
+}
+
+.biblioteca-admin__tarjetas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.biblioteca-admin__tarjetas--dos {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.biblioteca-admin__tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  min-width: 0;
+  height: auto;
+}
+
+.biblioteca-admin__tarjeta--vacia {
+  border-style: dashed;
+  background: #fbfcfb;
+}
+
+.biblioteca-admin__tarjeta .comunidad-admin__vista {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.biblioteca-admin__tarjeta .comunidad-admin__vista-contenido {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.biblioteca-admin__tarjeta--inactiva {
+  border-color: #c4cbc5;
+  background: #f3f5f3;
+}
+
+.biblioteca-admin__tarjeta--inactiva .comunidad-admin__vista {
+  opacity: .78;
+}
+
+.biblioteca-admin__imagen {
+  width: 100%;
+  margin-bottom: .75rem;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: .65rem;
+  background: #eef2ee;
+}
+
+.biblioteca-admin__enlace {
+  overflow: hidden;
+  color: #657067;
+  font-size: .78rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.biblioteca-admin__contador {
+  color: #687069;
+  font-size: .8rem;
+}
+
+.biblioteca-admin__texto-fijo {
+  margin-bottom: .9rem;
+  padding: 1rem;
+  border: 1px solid #d8dfd9;
+  border-radius: .75rem;
+  background: #f7f9f7;
+}
+
+.biblioteca-admin__texto-fijo h4 {
+  margin: 0 0 .35rem;
+  color: #244f34;
+}
+
+.biblioteca-admin__texto-fijo p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.biblioteca-admin__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.biblioteca-admin__acciones--tarjeta {
+  position: relative;
+  z-index: 1;
+  display: flex !important;
+  flex: 0 0 auto;
+  margin-top: auto;
+  padding: .85rem 1rem;
+  border-top: 1px solid #dde4de;
+  background: #f8faf8;
+}
+
+.biblioteca-admin__acciones--tarjeta .admin-boton {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.biblioteca-admin__vacio {
+  padding: 1.2rem;
+  border: 1px dashed #b8c4ba;
+  border-radius: .75rem;
+  color: #687069;
+  text-align: center;
+}
+
+.biblioteca-admin__prestamo-informacion {
+  display: grid;
+  gap: .65rem;
+  margin-top: .9rem;
+  padding: 1rem;
+  border: 1px solid #d8dfd9;
+  border-radius: .75rem;
+  background: #f7f9f7;
+}
+
+.biblioteca-admin__prestamo-informacion > h4 {
+  margin: 0;
+  color: #244f34;
+}
+
+.biblioteca-admin__prestamo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .8rem;
+  border: 1px solid #dde4de;
+  border-radius: .65rem;
+  background: #fff;
+}
+
+.biblioteca-admin__prestamo-item h4,
+.biblioteca-admin__prestamo-item p {
+  margin: .2rem 0 0;
+}
+
+.biblioteca-admin__prestamo-item--inactivo > div:first-child {
+  opacity: .65;
+}
+
+.biblioteca-admin__tabla-contenedor {
+  overflow-x: auto;
+  border: 1px solid #d8dfd9;
+  border-radius: .75rem;
+}
+
+.biblioteca-admin__tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.biblioteca-admin__tabla th,
+.biblioteca-admin__tabla td {
+  padding: .8rem 1rem;
+  border-bottom: 1px solid #e1e6e2;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.biblioteca-admin__tabla th {
+  color: #244f34;
+  background: #edf3ee;
+  font-size: .78rem;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.biblioteca-admin__tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.biblioteca-admin__tabla td strong,
+.biblioteca-admin__tabla td small {
+  display: block;
+}
+
+.biblioteca-admin__tabla td small {
+  margin-top: .2rem;
+  color: #687069;
+}
+
+.biblioteca-admin__tabla td:last-child {
+  text-align: right;
+}
+
+#modalTarjetaBiblioteca .gestion-contenido__modal-contenido {
+  width: min(760px, calc(100vw - 2rem));
+}
+
+.biblioteca-admin__selector-imagen {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: .85rem;
+  border: 1px solid #d8dfd9;
+  border-radius: .75rem;
+  background: #f7f9f7;
+}
+
+.biblioteca-admin__vista-imagen {
+  display: grid;
+  min-height: 150px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px dashed #aebbb1;
+  border-radius: .65rem;
+  color: #687069;
+  background: #fff;
+  text-align: center;
+}
+
+.biblioteca-admin__vista-imagen img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+}
+
+.biblioteca-admin__selector-acciones {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.biblioteca-admin__miniaturas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: .65rem;
+  margin-bottom: .75rem;
+}
+
+.biblioteca-admin__miniatura {
+  position: relative;
+  min-height: 120px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #d8dfd9;
+  border-radius: .65rem;
+  background: #fff;
+}
+
+.biblioteca-admin__miniatura img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+}
+
+.biblioteca-admin__miniatura button {
+  position: absolute;
+  top: .35rem;
+  right: .35rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  background: #8f2929;
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.biblioteca-solicitudes__filtros {
+  grid-template-columns: minmax(240px, 1fr) minmax(180px, 260px);
+}
+
+.biblioteca-solicitudes__cabecera-correos,
+.biblioteca-solicitudes__acciones-correos {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.biblioteca-solicitudes__cabecera-correos {
+  justify-content: space-between;
+}
+
+.biblioteca-solicitudes__acciones-correos {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.biblioteca-solicitudes__tabla-correos {
+  min-width: 720px;
+}
+
+.biblioteca-solicitudes__tabla-solicitudes {
+  min-width: 1120px;
+}
+
+.biblioteca-solicitudes__tabla-correos td:last-child,
+.biblioteca-solicitudes__tabla-correos th:last-child {
+  text-align: right;
+}
+
+.biblioteca-solicitudes__modal-destinatario {
+  width: min(520px, calc(100vw - 2rem));
+}
+
+.biblioteca-solicitudes__modal-gestion {
+  width: min(760px, calc(100vw - 2rem));
+}
+
+.biblioteca-solicitudes__detalle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem 1rem;
+  padding: 1rem;
+  border: 1px solid #d8dfd9;
+  border-radius: .75rem;
+  background: #f7f9f7;
+}
+
+.biblioteca-solicitudes__detalle-item {
+  min-width: 0;
+}
+
+.biblioteca-solicitudes__detalle-item--completo {
+  grid-column: 1 / -1;
+}
+
+.biblioteca-solicitudes__detalle-item strong,
+.biblioteca-solicitudes__detalle-item span {
+  display: block;
+}
+
+.biblioteca-solicitudes__detalle-item strong {
+  margin-bottom: .2rem;
+  color: #244f34;
+  font-size: .78rem;
+  text-transform: uppercase;
+}
+
+.biblioteca-solicitudes__detalle-item span {
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+@media (max-width: 1100px) {
+  .biblioteca-admin__tarjetas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .biblioteca-admin__selector-imagen {
+    grid-template-columns: 1fr;
+  }
+
+  .biblioteca-admin__tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .biblioteca-admin__grupo-cabecera,
+  .biblioteca-admin__version,
+  .biblioteca-admin__version > * {
+    width: 100%;
+  }
+
+  .biblioteca-admin__grupo-cabecera {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .biblioteca-admin__prestamo-item {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .biblioteca-solicitudes__filtros {
+    grid-template-columns: 1fr;
+  }
+
+  .biblioteca-solicitudes__cabecera-correos {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .biblioteca-solicitudes__acciones-correos {
+    justify-content: space-between;
+  }
+
+  .biblioteca-solicitudes__detalle {
+    grid-template-columns: 1fr;
+  }
+
+  .biblioteca-solicitudes__detalle-item--completo {
+    grid-column: auto;
+  }
+
+  .biblioteca-admin__tabla th,
+  .biblioteca-admin__tabla td {
+    padding: .7rem;
+  }
+}

@@ -29,6 +29,7 @@ BEGIN
         a.correo,
         a.correo_verificado,
         a.requiere_verificacion,
+        a.requiere_cambio_contrasena,
         a.id_estado_administrador,
 
         ea.nombre AS nombre_estado,

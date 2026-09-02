@@ -30,6 +30,27 @@ body[data-pagina="biblioteca"] .banda .tarjeta__pie {
   margin-bottom: 0.75rem;
 }
 
+.biblioteca-destacado__logo {
+  width: 100%;
+  min-height: 250px;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.biblioteca-destacado__logo img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 340px);
+  height: auto;
+  max-height: 250px;
+  object-fit: contain;
+}
+
 /* ===== HISTORIA ===== */
 .biblioteca-historia {
   max-width: 980px;
@@ -153,6 +174,15 @@ body[data-pagina="biblioteca"] .tarjeta__pie {
 }
 
 @media (max-width: 600px) {
+  .biblioteca-destacado__logo {
+    min-height: 200px;
+  }
+
+  .biblioteca-destacado__logo img {
+    max-width: min(100%, 260px);
+    max-height: 200px;
+  }
+
   body[data-pagina="biblioteca"] .banda .tarjeta__pie {
     flex-direction: column;
     align-items: stretch;
@@ -328,6 +358,7 @@ body[data-pagina="biblioteca"] .biblioteca-documento {
 .biblioteca-reglamento-card {
   display: flex;
   flex-direction: column;
+  align-self: start;
 }
 
 .biblioteca-reglamento-card .tarjeta__texto {
@@ -370,4 +401,56 @@ body[data-pagina="biblioteca"] .biblioteca-documento {
 /* Espacio del botón para llenar la boleta de préstamo */
 .biblioteca-formulario-accion {
   margin-top: 1rem;
+}
+
+[data-biblioteca-grupo="materiales"] .tarjeta__pie {
+  margin-top: auto;
+}
+
+.biblioteca-prestamo__informacion {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.biblioteca-prestamo__dato {
+  padding: .9rem;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--blanco);
+}
+
+.biblioteca-prestamo__dato h4 {
+  margin: .55rem 0;
+}
+
+.biblioteca-galeria__accion {
+  padding: .75rem;
+  background: #fff;
+}
+
+.biblioteca-area-card {
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--sombra);
+}
+
+body[data-pagina="biblioteca"] .biblioteca-area-card .galeria__item {
+  min-height: 220px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.biblioteca-area-card .biblioteca-galeria__accion {
+  display: flex;
+  justify-content: flex-start;
+  border-top: 1px solid rgba(43, 86, 58, .12);
+}
+
+@media (max-width: 650px) {
+  .biblioteca-prestamo__informacion {
+    grid-template-columns: 1fr;
+  }
 }

@@ -12,9 +12,12 @@
   <!-- El encabezado se inserta con JavaScript (main.js) -->
   <div id="encabezado"></div>
 
-  <main>
+  <main id="contenidoContactoPublico">
     <!-- Banda / encabezado de la página -->
-    <section class="banda">
+    <section
+      id="encabezadoContactoPublico"
+      class="banda"
+    >
       <div class="contenedor">
         <p class="migas">
           <a href="../index.html">Inicio</a>
@@ -32,7 +35,10 @@
       </div>
     </section>
 
-    <section class="seccion">
+    <section
+      id="seccionesContactoPublico"
+      class="seccion"
+    >
       <div
         class="contenedor cuadricula cuadricula--2"
         style="align-items: start"
@@ -42,15 +48,16 @@
             ================================================== -->
 
         <div
-          id="bloqueDatosContactoPublico"
+          id="columnaDatosContactoPublico"
           class="bloque-texto"
         >
-          <h2
-            id="tituloDatosContactoPublico"
-            class="titulo-seccion"
-          >
-            Datos de contacto
-          </h2>
+          <div id="bloqueDatosContactoPublico">
+            <h2
+              id="tituloDatosContactoPublico"
+              class="titulo-seccion"
+            >
+              Datos de contacto
+            </h2>
 
           <ul class="info-contacto">
             <!-- Dirección -->
@@ -198,7 +205,8 @@
                 </span>
               </span>
             </li>
-          </ul>
+            </ul>
+          </div>
 
           <!-- ==================================================
               UBICACIÓN

@@ -26,6 +26,49 @@ class AdministradorController {
     }
   }
 
+  async actualizar(req, res, next) {
+    try {
+      const datos = await administradorService.actualizar(
+        req.params.idAdministrador,
+        req.body,
+        contexto(req)
+      );
+      return respuestaExitosa(res, "Administrador actualizado correctamente.", datos);
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  async reenviarAcceso(req, res, next) {
+    try {
+      const datos = await administradorService.reenviarAcceso(
+        req.params.idAdministrador,
+        contexto(req)
+      );
+      return respuestaExitosa(
+        res,
+        datos.correoAccesoEnviado
+          ? "Se generó y envió un nuevo acceso temporal."
+          : datos.advertencia,
+        datos
+      );
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  async enviarRecuperacion(req, res, next) {
+    try {
+      const datos = await administradorService.enviarRecuperacion(
+        req.params.idAdministrador,
+        contexto(req)
+      );
+      return respuestaExitosa(res, "El proceso de recuperación fue enviado.", datos);
+    } catch (error) {
+      return next(error);
+    }
+  }
+
   async cambiarEstado(req, res, next) {
     try {
       const datos = await administradorService.cambiarEstado(

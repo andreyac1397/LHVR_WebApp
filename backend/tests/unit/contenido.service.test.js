@@ -137,3 +137,69 @@ test("acepta enlaces web y rutas locales de contenido", () => {
     );
   });
 });
+
+test("conserva Recordatorio en los datos persistidos de Boletines", async () => {
+  const repositorio = crearRepositorio();
+  repositorio.listarElementos = async () => [];
+  repositorio.guardarElemento = async (datos) => datos;
+  const servicio = new ContenidoService("BOLETINES", repositorio);
+
+  const resultado = await servicio.guardarElemento({
+    idColeccion: 1,
+    titulo: "Recordatorio de matrícula",
+    estado: "PUBLICADO",
+    datos: { categoria: "recordatorio" }
+  });
+
+  assert.equal(resultado.datos.categoria, "recordatorio");
+});
+
+test("elimina definitivamente un elemento existente", async () => {
+  const repositorio = crearRepositorio();
+  repositorio.eliminarElemento = async (modulo, idElemento) => {
+    assert.equal(modulo, "HORARIOS");
+    assert.equal(idElemento, 15);
+    return true;
+  };
+  const servicio = new ContenidoService("HORARIOS", repositorio);
+
+  const resultado = await servicio.eliminarElemento(15);
+
+  assert.deepEqual(resultado, { idElemento: 15, eliminado: true });
+});
+
+test("elimina una version y comunica si era la publicada", async () => {
+  const repositorio = crearRepositorio();
+  repositorio.eliminarColeccion = async () => ({
+    eliminada: true,
+    publicada: true
+  });
+  const servicio = new ContenidoService("HORARIOS", repositorio);
+
+  const resultado = await servicio.eliminarColeccion(4);
+
+  assert.equal(resultado.idColeccion, 4);
+  assert.equal(resultado.eliminada, true);
+  assert.equal(resultado.eraPublicada, true);
+});
+
+test("rechaza un orden ocupado en los módulos de tarjetas", async () => {
+  const repositorio = crearRepositorio();
+  repositorio.listarElementos = async () => ([
+    { idElemento: 8, titulo: "Circular existente", orden: 2, estado: "PUBLICADO" }
+  ]);
+  repositorio.guardarElemento = async () => {
+    throw new Error("No debe guardar cuando el orden está ocupado.");
+  };
+  const servicio = new ContenidoService("BOLETINES", repositorio);
+
+  await assert.rejects(
+    servicio.guardarElemento({
+      idColeccion: 1,
+      titulo: "Nuevo boletín",
+      orden: 2,
+      estado: "PUBLICADO"
+    }),
+    (error) => error.codigo === "ORDEN_CONTENIDO_OCUPADO" && error.statusCode === 409
+  );
+});

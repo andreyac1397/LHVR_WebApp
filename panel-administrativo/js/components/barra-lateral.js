@@ -29,6 +29,14 @@
     },
 
     {
+      id: "chat",
+      texto: "Chat",
+      icono: "chat",
+      ruta: "pages/chat/chat.html",
+      carpetaActiva: "pages/chat/"
+    },
+
+    {
       id: "paginas",
       texto: "Gestión de páginas",
       icono: "paginas",
@@ -107,9 +115,9 @@
           id: "biblioteca-contenido",
           texto: "Gestión de biblioteca",
           ruta:
-            "pages/gestion-contenido/gestionar.html?modulo=biblioteca",
+            "pages/biblioteca/contenido-biblioteca.html",
           rutasActivas: [
-            "pages/gestion-contenido/gestionar.html?modulo=biblioteca"
+            "pages/biblioteca/contenido-biblioteca.html"
           ]
         },
         {
@@ -147,7 +155,7 @@
           id: "tramites",
           texto: "Trámites",
           ruta:
-            "pages/gestion-contenido/gestionar.html?modulo=tramites"
+            "pages/tramites/lista-tramites.html"
         }
       ]
     },
@@ -176,6 +184,14 @@
         "pages/administradores/lista-administradores.html",
       carpetaActiva:
         "pages/administradores/"
+    },
+
+    {
+      id: "mi-cuenta",
+      texto: "Mi cuenta y contraseña",
+      icono: "administradores",
+      ruta:
+        "pages/autenticacion/cambiar-contrasena.html"
     },
 
     {
@@ -208,6 +224,12 @@
       <rect x="14" y="3" width="7" height="7" rx="1"></rect>
       <rect x="3" y="14" width="7" height="7" rx="1"></rect>
       <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+    `,
+
+    chat: `
+      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+      <path d="M8 9h8"></path>
+      <path d="M8 13h5"></path>
     `,
 
     paginas: `

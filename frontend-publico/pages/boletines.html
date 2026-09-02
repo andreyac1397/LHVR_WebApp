@@ -16,7 +16,7 @@
   <div id="encabezado"></div>
 
   <main>
-    <section class="banda">
+    <section class="banda" hidden>
       <div class="contenedor">
         <p class="migas"><a href="../index.html">Inicio</a> / Boletines</p>
         <h1>Boletines y comunicados</h1>
@@ -34,9 +34,10 @@
           <button class="filtro" type="button" data-filtro="noticia">Noticias</button>
           <button class="filtro" type="button" data-filtro="actividad">Actividades</button>
           <button class="filtro" type="button" data-filtro="recordatorio">Recordatorios</button>
+          <button class="filtro" type="button" data-filtro="boletin">Boletines</button>
         </div>
 
-        <!-- Tarjetas cargadas desde data/boletines.json -->
+        <!-- Tarjetas cargadas exclusivamente desde la API pública -->
         <div class="cuadricula cuadricula--3" id="listaBoletines">
           <p class="estado">Cargando publicaciones...</p>
         </div>
@@ -46,6 +47,7 @@
 
   <div id="pie"></div>
   <script src="../js/main.js"></script>
+  <script src="../js/encabezado-contenido-publico.js"></script>
   <script src="../js/filtros.js"></script>
   <script src="../js/boletines.js"></script>
   <script>

@@ -5,7 +5,7 @@
    la API y conserva el diseño visual original del sitio.
 
    Endpoint:
-   GET /api/comunidad/publica
+   GET /api/paginas/publicas-parciales/comunidad
 
    Renderiza:
    - Introducción.
@@ -107,6 +107,94 @@
       ) ||
       null
     );
+  }
+
+
+  function extraerPagina(
+    respuesta
+  ) {
+    return (
+      respuesta?.datos?.pagina ||
+      respuesta?.pagina ||
+      null
+    );
+  }
+
+
+  function renderizarEncabezado(
+    pagina
+  ) {
+    const encabezado =
+      document.getElementById(
+        "encabezadoComunidadPublico"
+      );
+
+    const visible =
+      pagina?.encabezadoVisible !==
+        false;
+
+    if (encabezado) {
+      encabezado.hidden =
+        !visible;
+
+      encabezado.setAttribute(
+        "aria-hidden",
+        visible ? "false" : "true"
+      );
+
+      if (visible) {
+        encabezado.style
+          .removeProperty("display");
+      } else {
+        encabezado.style
+          .setProperty(
+            "display",
+            "none",
+            "important"
+          );
+      }
+    }
+
+    if (!pagina || !visible) {
+      return;
+    }
+
+    const titulo =
+      texto(
+        pagina.titulo ||
+        pagina.nombre
+      );
+
+    const descripcion =
+      texto(
+        pagina.descripcion
+      );
+
+    const tituloHtml =
+      document.getElementById(
+        "tituloEncabezadoComunidad"
+      );
+
+    const descripcionHtml =
+      document.getElementById(
+        "descripcionEncabezadoComunidad"
+      );
+
+    if (titulo && tituloHtml) {
+      tituloHtml.textContent =
+        titulo;
+
+      document.title =
+        `${titulo} · Liceo Hernán Vargas Ramírez`;
+    }
+
+    if (descripcionHtml) {
+      descripcionHtml.textContent =
+        descripcion;
+
+      descripcionHtml.hidden =
+        !descripcion;
+    }
   }
 
 
@@ -888,8 +976,13 @@
      ========================================================== */
 
   function renderizar(
+    pagina,
     seccionesRecibidas
   ) {
+    renderizarEncabezado(
+      pagina
+    );
+
     const secciones =
       ordenarSecciones(
         seccionesRecibidas
@@ -989,6 +1082,40 @@
   }
 
 
+  function establecerPaginaVisible(
+    visible
+  ) {
+    const contenidoPagina =
+      document.getElementById(
+        "contenidoComunidadPublico"
+      );
+
+    if (!contenidoPagina) {
+      return;
+    }
+
+    contenidoPagina.hidden =
+      !visible;
+
+    contenidoPagina.setAttribute(
+      "aria-hidden",
+      visible ? "false" : "true"
+    );
+
+    if (visible) {
+      contenidoPagina.style
+        .removeProperty("display");
+    } else {
+      contenidoPagina.style
+        .setProperty(
+          "display",
+          "none",
+          "important"
+        );
+    }
+  }
+
+
   /* ==========================================================
      17. CARGAR DESDE LA API
      ========================================================== */
@@ -1008,7 +1135,7 @@
 
     try {
       const endpoint =
-        `${API_BASE_URL}/comunidad/publica` +
+        `${API_BASE_URL}/paginas/publicas-parciales/comunidad` +
         `?_actualizacion=${Date.now()}`;
 
       const respuesta =
@@ -1032,9 +1159,14 @@
         );
 
       if (!respuesta.ok) {
-        throw new Error(
+        const error = new Error(
           `La API respondió con HTTP ${respuesta.status}.`
         );
+
+        error.statusCode =
+          respuesta.status;
+
+        throw error;
       }
 
       const contenido =
@@ -1045,18 +1177,29 @@
           contenido
         );
 
-      if (
-        !Array.isArray(secciones) ||
-        secciones.length === 0
-      ) {
+      const pagina =
+        extraerPagina(
+          contenido
+        );
+
+      if (!pagina) {
         throw new Error(
-          "La API no devolvió secciones públicas de Comunidad."
+          "La API no devolvió la página pública de Comunidad."
         );
       }
 
+      establecerPaginaVisible(true);
+
       renderizar(
-        secciones
+        pagina,
+        Array.isArray(secciones)
+          ? secciones
+          : []
       );
+
+      document.body.dataset
+        .contenidoDinamico =
+          "cargado";
     } catch (error) {
       console.error(
         "No fue posible cargar el contenido público de Comunidad.",
@@ -1064,6 +1207,18 @@
       );
 
       ocultarContenido();
+
+      if (error.statusCode === 404) {
+        establecerPaginaVisible(false);
+
+        document.body.dataset
+          .contenidoDinamico =
+            "no-disponible";
+      } else {
+        document.body.dataset
+          .contenidoDinamico =
+            "respaldo";
+      }
     } finally {
       global.clearTimeout(
         temporizador

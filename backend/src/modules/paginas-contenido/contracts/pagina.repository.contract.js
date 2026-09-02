@@ -37,6 +37,18 @@ class PaginaRepositoryContract {
   }
 
   /**
+   * Actualiza los datos generales y el estado de una página.
+   *
+   * @param {object} datosPagina
+   * @returns {Promise<object>}
+   */
+  async guardarPagina(datosPagina) {
+    throw new Error(
+      "El método guardarPagina debe ser implementado."
+    );
+  }
+
+  /**
    * Crea o actualiza una sección perteneciente
    * a una página pública.
    *

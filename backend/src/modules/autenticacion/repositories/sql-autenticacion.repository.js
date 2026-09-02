@@ -126,6 +126,10 @@ class SqlAutenticacionRepository
         fila.requiere_verificacion
       ),
 
+      requiereCambioContrasena: Boolean(
+        fila.requiere_cambio_contrasena
+      ),
+
       ultimoAcceso:
         fila.ultimo_acceso,
 
@@ -797,6 +801,11 @@ class SqlAutenticacionRepository
       requiereVerificacion:
         Boolean(
           fila.requiere_verificacion
+        ),
+
+      requiereCambioContrasena:
+        Boolean(
+          fila.requiere_cambio_contrasena
         ),
 
       idEstadoAdministrador:

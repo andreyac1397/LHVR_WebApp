@@ -2,6 +2,10 @@ const GuardarSeccionPaginaDto = require(
   "../dto/guardar-seccion-pagina.dto"
 );
 
+const GuardarPaginaDto = require(
+  "../dto/guardar-pagina.dto"
+);
+
 /*
  * Validador de solicitudes HTTP del módulo
  * de páginas y contenido.
@@ -298,6 +302,51 @@ class PaginaValidator {
       orden:
         body.orden ?? 0,
 
+      idEstadoPublicacion:
+        body.idEstadoPublicacion
+    });
+  }
+
+  /**
+   * Valida y crea el DTO para actualizar el encabezado y el
+   * estado general de una página existente.
+   *
+   * @param {*} idPagina
+   * @param {*} body
+   * @returns {GuardarPaginaDto}
+   */
+  crearGuardarPaginaDto(
+    idPagina,
+    body
+  ) {
+    if (!this.esObjetoValido(body)) {
+      throw this.crearError(
+        "Los datos de la página no son válidos.",
+        400,
+        "DATOS_PAGINA_INVALIDOS"
+      );
+    }
+
+    this.validarCampoObligatorio(
+      idPagina,
+      "idPagina"
+    );
+
+    this.validarCampoObligatorio(
+      body.titulo,
+      "titulo"
+    );
+
+    this.validarCampoObligatorio(
+      body.idEstadoPublicacion,
+      "idEstadoPublicacion"
+    );
+
+    return new GuardarPaginaDto({
+      idPagina,
+      titulo: body.titulo,
+      descripcion:
+        body.descripcion ?? null,
       idEstadoPublicacion:
         body.idEstadoPublicacion
     });

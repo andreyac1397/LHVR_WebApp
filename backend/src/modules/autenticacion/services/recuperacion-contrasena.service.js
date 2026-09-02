@@ -423,7 +423,8 @@ class RecuperacionContrasenaService {
    */
   async enviarCodigoRecuperacion(
     administrador,
-    codigo
+    codigo,
+    tokenRecuperacion
   ) {
     if (
       typeof this.enviarCodigo !==
@@ -456,6 +457,8 @@ class RecuperacionContrasenaService {
         administrador.nombreCompleto,
 
       codigo,
+
+      tokenRecuperacion,
 
       minutosVigencia:
         MINUTOS_CODIGO_RECUPERACION,
@@ -778,7 +781,8 @@ class RecuperacionContrasenaService {
     try {
       await this.enviarCodigoRecuperacion(
         administrador,
-        codigo
+        codigo,
+        tokenRecuperacion
       );
     } catch (error) {
       /*

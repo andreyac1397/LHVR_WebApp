@@ -1,19 +1,210 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Administración de solicitudes BiblioCRA del LHVR">
   <title>Solicitudes BiblioCRA | Panel administrativo LHVR</title>
-  <link rel="stylesheet" href="../../css/variables-admin.css"><link rel="stylesheet" href="../../css/estilos-admin.css"><link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+  <link rel="stylesheet" href="../../css/variables-admin.css">
+  <link rel="stylesheet" href="../../css/estilos-admin.css?v=20260820-1">
+  <link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+  <link rel="stylesheet" href="../../css/alertas-admin.css">
+  <link rel="stylesheet" href="../../css/modales-admin.css">
+  <link rel="stylesheet" href="../../css/biblioteca-admin.css?v=20260820-3">
 </head>
-<body data-titulo-pagina="Solicitudes BiblioCRA">
-  <div id="cargadorProteccion" class="cargador-proteccion"><div class="cargador-proteccion__contenido"><span class="cargador-proteccion__indicador"></span><p>Comprobando sesión...</p></div></div>
-  <main id="contenidoPagina" data-titulo="Solicitudes BiblioCRA" hidden><div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
-    <header class="gestion-contenido__encabezado"><div><p class="admin-pagina__etiqueta">Biblioteca</p><h1 class="gestion-contenido__titulo">Solicitudes BiblioCRA</h1><p class="gestion-contenido__descripcion">Consulte el material pedido, los datos del solicitante y el estado de atención.</p></div></header>
-    <section class="gestion-contenido__panel"><div class="gestion-contenido__panel-cuerpo">
-      <div class="gestion-contenido__filtros"><label class="gestion-contenido__campo"><span>Buscar</span><input id="busquedaBibliocra" class="gestion-contenido__control" type="search" placeholder="Persona, identificación o material"></label><label class="gestion-contenido__campo"><span>Estado</span><select id="filtroEstadoBibliocra" class="gestion-contenido__control"><option value="">Todos</option></select></label></div>
-      <p id="estadoSolicitudesBibliocra" class="gestion-contenido__mensaje">Cargando solicitudes...</p>
-      <div class="gestion-contenido__tabla-contenedor"><table class="gestion-contenido__tabla"><thead><tr><th>Material</th><th>Solicitante</th><th>Fecha</th><th>Estado</th><th>Acción</th></tr></thead><tbody id="cuerpoSolicitudesBibliocra"></tbody></table></div>
-    </div></section>
-  </div></main>
-  <script src="../../js/config/api-admin.config.js" defer></script><script src="../../js/core/api-client.js" defer></script><script src="../../js/core/sesion-administrador.js" defer></script><script src="../../js/modules/autenticacion.js" defer></script><script src="../../js/core/proteccion-rutas.js" defer></script><script src="../../js/components/alertas-admin.js" defer></script><script src="../../js/components/modal-admin.js" defer></script><script src="../../js/modules/biblioteca.js" defer></script><script src="../../js/components/layout-admin.js" defer></script>
-</body></html>
+<body class="pagina-contenido" data-titulo-pagina="Solicitudes BiblioCRA">
+  <div id="cargadorProteccion" class="cargador-proteccion" role="status">
+    <div class="cargador-proteccion__contenido">
+      <span class="cargador-proteccion__indicador"></span>
+      <p>Comprobando sesión...</p>
+    </div>
+  </div>
+
+  <main id="contenidoPagina" data-titulo="Solicitudes BiblioCRA" hidden>
+    <div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
+      <header class="gestion-contenido__encabezado">
+        <div>
+          <p class="admin-pagina__etiqueta">Biblioteca</p>
+          <h1 class="gestion-contenido__titulo">Solicitudes BiblioCRA</h1>
+          <p class="gestion-contenido__descripcion">
+            Consulte las solicitudes recibidas y configure quién recibe las notificaciones.
+          </p>
+        </div>
+      </header>
+
+      <section class="gestion-contenido__panel">
+        <header class="gestion-contenido__panel-encabezado">
+          <div>
+            <h2 class="gestion-contenido__panel-titulo">Solicitudes recibidas</h2>
+            <p class="admin-panel__descripcion">
+              Revise el material, la persona solicitante y el estado de atención.
+            </p>
+          </div>
+        </header>
+        <div class="gestion-contenido__panel-cuerpo">
+          <div class="gestion-contenido__filtros biblioteca-solicitudes__filtros">
+            <label class="gestion-contenido__campo">
+              <span>Buscar</span>
+              <input id="busquedaBibliocra" class="gestion-contenido__control" type="search" maxlength="250" placeholder="Persona, identificación o material">
+            </label>
+            <label class="gestion-contenido__campo">
+              <span>Estado</span>
+              <select id="filtroEstadoBibliocra" class="gestion-contenido__control">
+                <option value="">Todos</option>
+              </select>
+            </label>
+          </div>
+          <p id="estadoSolicitudesBibliocra" class="gestion-contenido__mensaje" role="status" aria-live="polite">
+            Cargando solicitudes...
+          </p>
+          <div class="gestion-contenido__tabla-contenedor">
+            <table class="gestion-contenido__tabla biblioteca-solicitudes__tabla-solicitudes">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Fecha</th>
+                  <th>Fecha devolución</th>
+                  <th>Solicitante</th>
+                  <th>Identificación</th>
+                  <th>Tipo</th>
+                  <th>Material</th>
+                  <th>Tipo préstamo</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="cuerpoSolicitudesBibliocra"></tbody>
+            </table>
+          </div>
+          <div class="admin-paginacion" aria-label="Paginación de solicitudes BiblioCRA">
+            <span id="resumenPaginacionBibliocra" class="admin-paginacion__informacion">Mostrando 0 de 0 registros</span>
+            <div class="admin-paginacion__controles">
+              <label for="limiteBibliocra">Mostrar</label>
+              <select id="limiteBibliocra" class="gestion-contenido__control" aria-label="Registros por página">
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+              </select>
+              <button id="anteriorBibliocra" class="admin-paginacion__boton" type="button">Anterior</button>
+              <span id="paginaBibliocra" class="admin-paginacion__informacion">Página 1 de 1</span>
+              <button id="siguienteBibliocra" class="admin-paginacion__boton" type="button">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="gestion-contenido__panel">
+        <header class="gestion-contenido__panel-encabezado biblioteca-solicitudes__cabecera-correos">
+          <div>
+            <h2 class="gestion-contenido__panel-titulo">Correos que reciben solicitudes</h2>
+            <p class="admin-panel__descripcion">
+              Puede registrar hasta tres destinatarios. Para corregir uno, elimínelo y agréguelo nuevamente.
+            </p>
+          </div>
+          <div class="biblioteca-solicitudes__acciones-correos">
+            <span id="contadorDestinatariosBibliocra" class="admin-etiqueta">0 de 3</span>
+            <button id="botonAgregarDestinatarioBibliocra" class="admin-boton admin-boton--primario" type="button">
+              Agregar destinatario
+            </button>
+          </div>
+        </header>
+        <div class="gestion-contenido__panel-cuerpo">
+          <div class="gestion-contenido__tabla-contenedor">
+            <table class="gestion-contenido__tabla biblioteca-solicitudes__tabla-correos">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Tipo</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody id="cuerpoDestinatariosBibliocra"></tbody>
+            </table>
+          </div>
+          <p id="destinatariosBibliocraVacios" class="biblioteca-admin__vacio" hidden>
+            No hay destinatarios configurados. Las solicitudes se guardarán, pero no se enviará una notificación por correo.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section id="modalDestinatarioBibliocra" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalDestinatarioBibliocra" hidden>
+    <div class="gestion-contenido__modal-contenido biblioteca-solicitudes__modal-destinatario">
+      <header class="gestion-contenido__modal-encabezado">
+        <h2 id="tituloModalDestinatarioBibliocra">Agregar destinatario</h2>
+        <button id="botonCerrarDestinatarioBibliocra" class="admin-boton admin-boton--texto" type="button" aria-label="Cerrar formulario">
+          Cerrar
+        </button>
+      </header>
+      <form id="formularioDestinatarioBibliocra">
+        <div class="gestion-contenido__modal-cuerpo">
+          <label class="gestion-contenido__campo">
+            <span>Nombre *</span>
+            <input id="nombreDestinatarioBibliocra" class="gestion-contenido__control" name="nombre" type="text" maxlength="150" autocomplete="name" required>
+          </label>
+          <label class="gestion-contenido__campo">
+            <span>Correo electrónico *</span>
+            <input id="correoDestinatarioBibliocra" class="gestion-contenido__control" name="correo" type="email" maxlength="254" autocomplete="email" required>
+          </label>
+          <label class="gestion-contenido__campo">
+            <span>Tipo *</span>
+            <select id="tipoDestinatarioBibliocra" class="gestion-contenido__control" name="tipo" required>
+              <option value="">Seleccione una opción</option>
+              <option value="DOCENTE">Docente</option>
+              <option value="ADMINISTRADOR">Administrador</option>
+              <option value="PADRE_MADRE">Padre/Madre</option>
+              <option value="ESTUDIANTE">Estudiante</option>
+              <option value="SECRETARIA">Secretaría</option>
+            </select>
+          </label>
+        </div>
+        <footer class="gestion-contenido__modal-pie">
+          <button id="botonCancelarDestinatarioBibliocra" class="admin-boton admin-boton--secundario" type="button">Cancelar</button>
+          <button id="botonGuardarDestinatarioBibliocra" class="admin-boton admin-boton--primario" type="submit">Agregar</button>
+        </footer>
+      </form>
+    </div>
+  </section>
+
+  <section id="modalGestionSolicitudBibliocra" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalGestionSolicitudBibliocra" hidden>
+    <div class="gestion-contenido__modal-contenido biblioteca-solicitudes__modal-gestion">
+      <header class="gestion-contenido__modal-encabezado">
+        <h2 id="tituloModalGestionSolicitudBibliocra">Gestionar solicitud</h2>
+        <button id="botonCerrarGestionSolicitudBibliocra" class="admin-boton admin-boton--texto" type="button" aria-label="Cerrar gestión">
+          Cerrar
+        </button>
+      </header>
+      <form id="formularioGestionSolicitudBibliocra">
+        <div class="gestion-contenido__modal-cuerpo">
+          <div id="detalleGestionSolicitudBibliocra" class="biblioteca-solicitudes__detalle"></div>
+          <label class="gestion-contenido__campo">
+            <span>Estado *</span>
+            <select id="estadoGestionSolicitudBibliocra" class="gestion-contenido__control" name="idEstadoSolicitud" required></select>
+          </label>
+          <label class="gestion-contenido__campo">
+            <span>Mensaje para la persona solicitante</span>
+            <textarea id="observacionGestionSolicitudBibliocra" class="gestion-contenido__control" name="observacionesInternas" maxlength="1500" rows="4"></textarea>
+          </label>
+          <p class="admin-panel__descripcion">Al cambiar el estado, este mensaje se incluirá en el correo enviado a la persona solicitante. Los datos originales son de solo lectura.</p>
+        </div>
+        <footer class="gestion-contenido__modal-pie">
+          <button id="botonCancelarGestionSolicitudBibliocra" class="admin-boton admin-boton--secundario" type="button">Cancelar</button>
+          <button id="botonGuardarGestionSolicitudBibliocra" class="admin-boton admin-boton--primario" type="submit">Guardar gestión</button>
+        </footer>
+      </form>
+    </div>
+  </section>
+
+  <script src="../../js/config/api-admin.config.js" defer></script>
+  <script src="../../js/core/api-client.js" defer></script>
+  <script src="../../js/core/sesion-administrador.js" defer></script>
+  <script src="../../js/modules/autenticacion.js" defer></script>
+  <script src="../../js/core/proteccion-rutas.js" defer></script>
+  <script src="../../js/components/alertas-admin.js" defer></script>
+  <script src="../../js/components/modal-admin.js" defer></script>
+  <script src="../../js/modules/biblioteca.js?v=20260820-6" defer></script>
+  <script src="../../js/components/layout-admin.js" defer></script>
+</body>
+</html>

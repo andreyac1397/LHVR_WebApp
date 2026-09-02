@@ -423,6 +423,115 @@ class SqlPaginaRepository
   }
 
   /**
+   * Actualiza la fila existente de dbo.paginas. La consulta es
+   * parametrizada y no requiere cambios en el esquema ni un SP nuevo.
+   *
+   * @param {object} datosPagina
+   * @returns {Promise<object>}
+   */
+  async guardarPagina(datosPagina) {
+    const conexion = await obtenerConexion();
+
+    const resultado = await conexion
+      .request()
+      .input(
+        "idPagina",
+        sql.Int,
+        datosPagina.idPagina
+      )
+      .input(
+        "titulo",
+        sql.NVarChar(200),
+        datosPagina.titulo
+      )
+      .input(
+        "descripcion",
+        sql.NVarChar(500),
+        datosPagina.descripcion ?? null
+      )
+      .input(
+        "idEstadoPublicacion",
+        sql.Int,
+        datosPagina.idEstadoPublicacion
+      )
+      .input(
+        "idAdministrador",
+        sql.Int,
+        datosPagina
+          .idAdministradorUltimaModificacion
+      )
+      .query(`
+        IF NOT EXISTS (
+          SELECT 1
+          FROM dbo.estados_publicacion
+          WHERE id_estado_publicacion = @idEstadoPublicacion
+            AND activo = 1
+        )
+          THROW 51040, N'El estado de publicación no existe o está inactivo.', 1;
+
+        UPDATE dbo.paginas
+        SET
+          titulo = @titulo,
+          descripcion = @descripcion,
+          id_estado_publicacion = @idEstadoPublicacion,
+          fecha_publicacion = CASE
+            WHEN EXISTS (
+              SELECT 1
+              FROM dbo.estados_publicacion
+              WHERE id_estado_publicacion = @idEstadoPublicacion
+                AND es_visible = 1
+            )
+              THEN COALESCE(fecha_publicacion, SYSUTCDATETIME())
+            ELSE fecha_publicacion
+          END,
+          fecha_actualizacion = SYSUTCDATETIME(),
+          id_administrador_ultima_modificacion = @idAdministrador
+        WHERE id_pagina = @idPagina;
+
+        IF @@ROWCOUNT = 0
+          THROW 51041, N'La página indicada no existe.', 1;
+
+        SELECT
+          p.id_pagina AS idPagina,
+          p.nombre,
+          p.slug,
+          p.titulo,
+          p.descripcion,
+          p.ruta,
+          p.orden_menu AS ordenMenu,
+          p.mostrar_menu AS mostrarMenu,
+          p.id_estado_publicacion AS idEstadoPublicacion,
+          ep.nombre AS nombreEstado,
+          ep.es_visible AS estadoVisible,
+          p.fecha_publicacion AS fechaPublicacion,
+          p.fecha_creacion AS fechaCreacion,
+          p.fecha_actualizacion AS fechaActualizacion,
+          p.id_administrador_ultima_modificacion
+            AS idAdministradorUltimaModificacion
+        FROM dbo.paginas AS p
+        INNER JOIN dbo.estados_publicacion AS ep
+          ON ep.id_estado_publicacion = p.id_estado_publicacion
+        WHERE p.id_pagina = @idPagina;
+      `);
+
+    const fila =
+      this.obtenerPrimeraFila(resultado);
+
+    if (!fila) {
+      const error = new Error(
+        "La actualización no devolvió la página guardada."
+      );
+
+      error.statusCode = 500;
+      error.codigo = "PAGINA_NO_DEVUELTA";
+
+      throw error;
+    }
+
+    return this.normalizarPagina(fila);
+  }
+
+  /**
    * Crea o actualiza una sección de página.
    *
    * Procedimiento:

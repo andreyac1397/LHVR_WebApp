@@ -67,7 +67,7 @@
               <div class="formulario-bibliocra__grid">
                 <div class="campo">
                   <label for="signatura">Signatura</label>
-                  <input type="text" id="signatura" name="signatura" placeholder="Ejemplo: 813.6 M450p" required />
+                  <input type="text" id="signatura" name="signatura" maxlength="120" placeholder="Ejemplo: 813.6 M450p" required />
                 </div>
 
                 <div class="campo">
@@ -77,12 +77,12 @@
 
                 <div class="campo campo--completo">
                   <label for="autor">Autor</label>
-                  <input type="text" id="autor" name="autor" placeholder="Nombre del autor del libro" required />
+                  <input type="text" id="autor" name="autor" maxlength="250" placeholder="Nombre del autor del libro" required />
                 </div>
 
                 <div class="campo campo--completo">
                   <label for="titulo">Título</label>
-                  <input type="text" id="titulo" name="titulo" placeholder="Título del material solicitado" required />
+                  <input type="text" id="titulo" name="titulo" maxlength="250" placeholder="Título del material solicitado" required />
                 </div>
               </div>
             </fieldset>
@@ -93,22 +93,27 @@
               <div class="formulario-bibliocra__grid">
                 <div class="campo campo--completo">
                   <label for="nombreUsuario">Nombre del usuario</label>
-                  <input type="text" id="nombreUsuario" name="nombreUsuario" placeholder="Nombre completo" required />
+                  <input type="text" id="nombreUsuario" name="nombreUsuario" maxlength="180" placeholder="Nombre completo" required />
                 </div>
 
                 <div class="campo">
                   <label for="cedula">N° de carné o cédula</label>
-                  <input type="text" id="cedula" name="cedula" placeholder="Ejemplo: 3-0123-0456" required />
+                  <input type="text" id="cedula" name="cedula" maxlength="30" placeholder="Ejemplo: 3-0123-0456" required />
                 </div>
 
                 <div class="campo">
                   <label for="seccion">Sección</label>
-                  <input type="text" id="seccion" name="seccion" placeholder="Ejemplo: 8-3" required />
+                  <input type="text" id="seccion" name="seccion" maxlength="50" placeholder="Ejemplo: 8-3" required />
                 </div>
 
                 <div class="campo">
                   <label for="telefono">Teléfono</label>
-                  <input type="tel" id="telefono" name="telefono" placeholder="Ejemplo: 8888-8888" required />
+                  <input type="tel" id="telefono" name="telefono" maxlength="30" placeholder="Ejemplo: 8888-8888" required />
+                </div>
+
+                <div class="campo">
+                  <label for="correo">Correo electrónico</label>
+                  <input type="email" id="correo" name="correo" maxlength="254" autocomplete="email" placeholder="Ejemplo: usuario@correo.com" required />
                 </div>
 
                 <div class="campo">
@@ -164,7 +169,7 @@
             </div>
 
             <p id="estadoSolicitudBibliocra" class="formulario-bibliocra__nota" role="status" aria-live="polite">
-              Revise los datos antes de enviar. La solicitud quedará pendiente de atención por BiblioCRA.
+              Revise los datos antes de enviar. La solicitud quedará registrada para atención por BiblioCRA.
             </p>
           </form>
         </article>

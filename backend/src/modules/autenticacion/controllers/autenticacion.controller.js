@@ -515,7 +515,10 @@ class AutenticacionController {
               sesion.idEstadoAdministrador,
 
             nombreEstado:
-              sesion.nombreEstado
+              sesion.nombreEstado,
+
+            requiereCambioContrasena:
+              Boolean(sesion.requiereCambioContrasena)
           },
 
           fechaEmision:
@@ -599,6 +602,49 @@ class AutenticacionController {
             resultado.codigosInvalidados,
 
           requiereNuevoInicioSesion: true
+        }
+      });
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  async cambiarContrasenaObligatoria(req, res, next) {
+    try {
+      if (!req.sesionAdministrador?.requiereCambioContrasena) {
+        throw this.crearError(
+          "La cuenta no tiene un cambio obligatorio pendiente.",
+          409,
+          "CAMBIO_CONTRASENA_NO_REQUERIDO"
+        );
+      }
+      const datosValidados = validarCambioContrasena(req.body);
+      const dto = crearCambiarContrasenaDTO(datosValidados);
+      const contexto = {
+        direccionIp: this.obtenerDireccionIp(req),
+        userAgent: this.obtenerUserAgent(req)
+      };
+      const resultado = await autenticacionService.cambiarContrasena(
+        req.sesionAdministrador,
+        dto,
+        contexto
+      );
+      const sesionCreada = await servicioVerificacion.crearSesionAdministrador(
+        req.sesionAdministrador,
+        contexto
+      );
+      res.cookie(
+        NOMBRE_COOKIE_SESION,
+        sesionCreada.tokenSesion,
+        this.obtenerOpcionesCookieSesion()
+      );
+      return res.status(200).json({
+        exito: true,
+        mensaje: "La contraseña fue actualizada correctamente.",
+        datos: {
+          contrasenaActualizada: resultado.contrasenaActualizada,
+          requiereCambioContrasena: false,
+          requiereNuevoInicioSesion: false
         }
       });
     } catch (error) {

@@ -19,7 +19,7 @@
   <div id="encabezado"></div>
 
   <main>
-    <section class="banda">
+    <section class="banda" hidden>
       <div class="contenedor">
         <p class="migas"><a href="../index.html">Inicio</a> / Directorio docente</p>
         <h1>Directorio docente</h1>
@@ -39,7 +39,7 @@
           </p>
         </div>
 
-        <!-- Tarjetas cargadas desde data/docentes.json -->
+        <!-- Tarjetas cargadas exclusivamente desde la API pública -->
         <div class="cuadricula cuadricula--4" id="listaDocentes">
           <p class="estado">Cargando directorio...</p>
         </div>
@@ -50,6 +50,7 @@
   <div id="pie"></div>
 
   <script src="../js/main.js"></script>
+  <script src="../js/encabezado-contenido-publico.js"></script>
   <script src="../js/filtros.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {

@@ -4,56 +4,794 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administradores | Panel administrativo LHVR</title>
+
   <link rel="stylesheet" href="../../css/variables-admin.css">
-  <link rel="stylesheet" href="../../css/estilos-admin.css">
+  <link rel="stylesheet" href="../../css/estilos-admin.css?v=20260820-1">
   <link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
 </head>
-<body data-titulo-pagina="Gestión de administradores">
-  <div id="cargadorProteccion" class="cargador-proteccion" role="status">
-    <div class="cargador-proteccion__contenido"><span class="cargador-proteccion__indicador"></span><p>Comprobando sesión...</p></div>
-  </div>
-  <main id="contenidoPagina" data-titulo="Gestión de administradores" hidden>
-    <div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
-      <header class="gestion-contenido__encabezado">
-        <div><p class="admin-pagina__etiqueta">Seguridad</p><h1 class="gestion-contenido__titulo">Administradores</h1><p class="gestion-contenido__descripcion">Administre cuentas sin exponer contraseñas ni datos internos de autenticación.</p></div>
-        <button id="botonMostrarNuevoAdmin" class="admin-boton admin-boton--primario" type="button">Nuevo administrador</button>
-      </header>
 
-      <section id="panelNuevoAdministrador" class="gestion-contenido__panel" hidden>
-        <header class="gestion-contenido__panel-encabezado"><div><h2>Crear cuenta</h2><p>La contraseña se almacena con hash bcrypt y nunca vuelve a mostrarse.</p></div></header>
-        <form id="formularioAdministrador" class="gestion-contenido__panel-cuerpo">
-          <div class="gestion-contenido__filtros">
-            <label class="gestion-contenido__campo"><span>Nombre completo</span><input id="nombreNuevoAdmin" class="gestion-contenido__control" maxlength="150" minlength="3" required autocomplete="name"></label>
-            <label class="gestion-contenido__campo"><span>Correo</span><input id="correoNuevoAdmin" class="gestion-contenido__control" type="email" maxlength="254" required autocomplete="email"></label>
-            <label class="gestion-contenido__campo"><span>Contraseña inicial</span><input id="contrasenaNuevoAdmin" class="gestion-contenido__control" type="password" minlength="12" required autocomplete="new-password"><small>12 caracteres o más, con mayúscula, minúscula, número y símbolo.</small></label>
-            <label class="gestion-contenido__campo"><span>Estado inicial</span><select id="estadoNuevoAdmin" class="gestion-contenido__control" required></select></label>
-          </div>
-          <div class="admin-pagina__acciones"><button class="admin-boton admin-boton--primario" type="submit">Crear cuenta</button><button id="botonCancelarNuevoAdmin" class="admin-boton admin-boton--secundario" type="button">Cancelar</button></div>
-        </form>
-      </section>
+<body data-titulo-pagina="Gestión de administradores">
+
+  <div
+    id="cargadorProteccion"
+    class="cargador-proteccion"
+    role="status"
+  >
+    <div class="cargador-proteccion__contenido">
+      <span class="cargador-proteccion__indicador"></span>
+      <p>Comprobando sesión...</p>
+    </div>
+  </div>
+
+  <main
+    id="contenidoPagina"
+    data-titulo="Gestión de administradores"
+    hidden
+  >
+    <div
+      id="contenidoDashboard"
+      class="admin-pagina gestion-contenido"
+      hidden
+    >
+
+      <header class="gestion-contenido__encabezado">
+        <div>
+          <p class="admin-pagina__etiqueta">
+            SEGURIDAD
+          </p>
+
+          <h1 class="gestion-contenido__titulo">
+            Administrar usuarios
+          </h1>
+
+          <p class="gestion-contenido__descripcion">
+            Gestione cuentas administrativas, accesos temporales
+            y procesos de recuperación sin conocer contraseñas ajenas.
+          </p>
+        </div>
+
+        <button
+          id="botonMostrarNuevoAdmin"
+          class="admin-boton admin-boton--primario"
+          type="button"
+        >
+          Nuevo administrador
+        </button>
+      </header>
 
       <section class="gestion-contenido__panel">
         <div class="gestion-contenido__panel-cuerpo">
+
           <div class="gestion-contenido__filtros">
-            <label class="gestion-contenido__campo"><span>Buscar</span><input id="busquedaAdministradores" class="gestion-contenido__control" type="search" placeholder="Nombre o correo"></label>
-            <label class="gestion-contenido__campo"><span>Estado</span><select id="filtroEstadoAdministradores" class="gestion-contenido__control"><option value="">Todos</option></select></label>
+
+            <label class="gestion-contenido__campo">
+              <span>Buscar</span>
+
+              <input
+                id="busquedaAdministradores"
+                class="gestion-contenido__control"
+                type="search"
+                placeholder="Nombre o correo"
+              >
+            </label>
+
+            <label class="gestion-contenido__campo">
+              <span>Estado</span>
+
+              <select
+                id="filtroEstadoAdministradores"
+                class="gestion-contenido__control"
+              >
+                <option value="">
+                  Todos
+                </option>
+              </select>
+            </label>
+
           </div>
-          <p id="estadoAdministradores" class="gestion-contenido__mensaje" aria-live="polite">Cargando cuentas...</p>
+
+          <p
+            id="estadoAdministradores"
+            class="gestion-contenido__mensaje"
+            aria-live="polite"
+          >
+            Cargando cuentas...
+          </p>
+
           <div class="gestion-contenido__tabla-contenedor">
-            <table class="gestion-contenido__tabla"><thead><tr><th>Administrador</th><th>Verificación</th><th>Último acceso</th><th>Estado</th><th>Acción</th></tr></thead><tbody id="cuerpoAdministradores"></tbody></table>
+
+            <table
+              class="gestion-contenido__tabla tabla-administradores"
+            >
+              <thead>
+                <tr>
+                  <th>Administrador</th>
+                  <th>Estado</th>
+                  <th>Correo / 2FA</th>
+                  <th>Contraseña</th>
+                  <th>Último acceso</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+
+              <tbody id="cuerpoAdministradores"></tbody>
+            </table>
+
           </div>
+
+          <div
+            class="admin-paginacion"
+            aria-label="Paginación de administradores"
+          >
+
+            <span
+              id="resumenPaginacionAdministradores"
+              class="admin-paginacion__informacion"
+            >
+              Mostrando 0 de 0 registros
+            </span>
+
+            <div class="admin-paginacion__controles">
+
+              <label for="limiteAdministradores">
+                Mostrar
+              </label>
+
+              <select
+                id="limiteAdministradores"
+                class="gestion-contenido__control"
+                aria-label="Registros por página"
+              >
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+              </select>
+
+              <button
+                id="anteriorAdministradores"
+                class="admin-paginacion__boton"
+                type="button"
+              >
+                Anterior
+              </button>
+
+              <span
+                id="paginaAdministradores"
+                class="admin-paginacion__informacion"
+              >
+                Página 1 de 1
+              </span>
+
+              <button
+                id="siguienteAdministradores"
+                class="admin-paginacion__boton"
+                type="button"
+              >
+                Siguiente
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
       </section>
+
     </div>
   </main>
-  <script src="../../js/config/api-admin.config.js" defer></script>
-  <script src="../../js/core/api-client.js" defer></script>
-  <script src="../../js/core/sesion-administrador.js" defer></script>
-  <script src="../../js/modules/autenticacion.js" defer></script>
-  <script src="../../js/core/proteccion-rutas.js" defer></script>
-  <script src="../../js/components/alertas-admin.js" defer></script>
-  <script src="../../js/components/modal-admin.js" defer></script>
-  <script src="../../js/modules/administradores.js" defer></script>
-  <script src="../../js/components/layout-admin.js" defer></script>
+
+
+  <!-- =====================================================
+       MODAL: NUEVO ADMINISTRADOR
+       ===================================================== -->
+
+  <div
+    id="panelNuevoAdministrador"
+    class="admin-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tituloNuevoAdministrador"
+    hidden
+  >
+
+    <div
+      class="admin-modal__contenido
+             admin-modal__contenido--administradores"
+    >
+
+      <div class="admin-modal__encabezado">
+
+        <div>
+          <h2
+            id="tituloNuevoAdministrador"
+            class="admin-modal__titulo"
+          >
+            Nuevo administrador
+          </h2>
+
+          <p class="administradores-modal__descripcion">
+            El sistema generará una contraseña temporal segura
+            y la enviará directamente al correo indicado.
+          </p>
+        </div>
+
+        <button
+          id="botonCerrarNuevoAdmin"
+          class="admin-modal__cerrar"
+          type="button"
+          aria-label="Cerrar ventana"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form
+        id="formularioAdministrador"
+        class="administradores-modal__formulario"
+      >
+
+        <div class="admin-modal__cuerpo">
+
+          <div class="administradores-modal__cuadricula">
+
+            <label class="gestion-contenido__campo">
+
+              <span>Nombre completo</span>
+
+              <input
+                id="nombreNuevoAdmin"
+                class="gestion-contenido__control"
+                maxlength="150"
+                minlength="3"
+                required
+                autocomplete="name"
+              >
+
+            </label>
+
+            <label class="gestion-contenido__campo">
+
+              <span>Correo</span>
+
+              <input
+                id="correoNuevoAdmin"
+                class="gestion-contenido__control"
+                type="email"
+                maxlength="254"
+                required
+                autocomplete="email"
+              >
+
+            </label>
+
+          </div>
+
+          <p class="gestion-contenido__mensaje">
+            La contraseña temporal no se mostrará en pantalla
+            ni quedará disponible para otros administradores.
+          </p>
+
+        </div>
+
+        <div class="admin-modal__acciones">
+
+          <button
+            id="botonCancelarNuevoAdmin"
+            class="admin-boton admin-boton--secundario"
+            type="button"
+          >
+            Cancelar
+          </button>
+
+          <button
+            class="admin-boton admin-boton--primario"
+            type="submit"
+          >
+            Crear administrador
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       MODAL: EDITAR ADMINISTRADOR
+       ===================================================== -->
+
+  <div
+    id="panelEditarAdministrador"
+    class="admin-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tituloEditarAdministrador"
+    hidden
+  >
+
+    <div
+      class="admin-modal__contenido
+             admin-modal__contenido--administradores"
+    >
+
+      <div class="admin-modal__encabezado">
+
+        <div>
+          <h2
+            id="tituloEditarAdministrador"
+            class="admin-modal__titulo"
+          >
+            Editar administrador
+          </h2>
+
+          <p class="administradores-modal__descripcion">
+            Solo se modifican los datos de identificación
+            y el estado de la cuenta.
+          </p>
+        </div>
+
+        <button
+          id="botonCerrarEditarAdmin"
+          class="admin-modal__cerrar"
+          type="button"
+          aria-label="Cerrar ventana"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form
+        id="formularioEditarAdministrador"
+        class="administradores-modal__formulario"
+      >
+
+        <input
+          id="idEditarAdmin"
+          type="hidden"
+        >
+
+        <div class="admin-modal__cuerpo">
+
+          <div class="administradores-modal__cuadricula">
+
+            <label class="gestion-contenido__campo">
+
+              <span>Nombre completo</span>
+
+              <input
+                id="nombreEditarAdmin"
+                class="gestion-contenido__control"
+                maxlength="150"
+                minlength="3"
+                required
+                autocomplete="name"
+              >
+
+            </label>
+
+            <label class="gestion-contenido__campo">
+
+              <span>Correo</span>
+
+              <input
+                id="correoEditarAdmin"
+                class="gestion-contenido__control"
+                type="email"
+                maxlength="254"
+                required
+                autocomplete="email"
+              >
+
+            </label>
+
+            <label
+              class="gestion-contenido__campo
+                     administradores-modal__campo-completo"
+            >
+
+              <span>Estado</span>
+
+              <select
+                id="estadoEditarAdmin"
+                class="gestion-contenido__control"
+                required
+              ></select>
+
+            </label>
+
+          </div>
+
+        </div>
+
+        <div class="admin-modal__acciones">
+
+          <button
+            id="botonCancelarEditarAdmin"
+            class="admin-boton admin-boton--secundario"
+            type="button"
+          >
+            Cancelar
+          </button>
+
+          <button
+            class="admin-boton admin-boton--primario"
+            type="submit"
+          >
+            Guardar cambios
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- =====================================================
+       MODAL: CAMBIAR CONTRASEÑA PROPIA
+       ===================================================== -->
+
+  <div
+    id="modalCambiarContrasena"
+    class="admin-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tituloCambiarContrasena"
+    hidden
+  >
+
+    <div
+      class="admin-modal__contenido
+             admin-modal__contenido--administradores"
+    >
+
+      <div class="admin-modal__encabezado">
+
+        <div>
+
+          <h2
+            id="tituloCambiarContrasena"
+            class="admin-modal__titulo"
+          >
+            Cambiar contraseña
+          </h2>
+
+          <p class="administradores-modal__descripcion">
+            Puede confirmar su identidad con la contraseña actual
+            o mediante un código enviado a su correo.
+          </p>
+
+        </div>
+
+        <button
+          id="botonCerrarCambioContrasena"
+          class="admin-modal__cerrar"
+          type="button"
+          aria-label="Cerrar ventana"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <form
+        id="formularioCambiarContrasena"
+        class="administradores-modal__formulario"
+        novalidate
+      >
+
+        <div
+          class="admin-modal__cuerpo
+                 administradores-cambio-contrasena"
+        >
+
+          <div
+            class="administradores-metodos-contrasena"
+            role="radiogroup"
+            aria-label="Método para cambiar la contraseña"
+          >
+
+            <label class="administradores-metodo-contrasena">
+
+              <input
+                type="radio"
+                name="metodoCambioContrasena"
+                value="actual"
+                checked
+              >
+
+              <span>
+                <strong>
+                  Contraseña actual
+                </strong>
+
+                <small>
+                  Confirme su contraseña actual
+                  y escriba la nueva.
+                </small>
+              </span>
+
+            </label>
+
+            <label class="administradores-metodo-contrasena">
+
+              <input
+                type="radio"
+                name="metodoCambioContrasena"
+                value="codigo"
+              >
+
+              <span>
+                <strong>
+                  Código por correo
+                </strong>
+
+                <small>
+                  Reciba un código de seis dígitos
+                  en su correo registrado.
+                </small>
+              </span>
+
+            </label>
+
+          </div>
+
+
+          <!-- Método: contraseña actual -->
+
+          <div
+            id="bloqueCambioContrasenaActual"
+            class="administradores-cambio-contrasena__bloque"
+          >
+
+            <label class="gestion-contenido__campo">
+
+              <span>Contraseña actual</span>
+
+              <input
+                id="contrasenaActualCambio"
+                class="gestion-contenido__control"
+                type="password"
+                maxlength="128"
+                autocomplete="current-password"
+              >
+
+            </label>
+
+            <div class="administradores-modal__cuadricula">
+
+              <label class="gestion-contenido__campo">
+
+                <span>Nueva contraseña</span>
+
+                <input
+                  id="contrasenaNuevaCambioActual"
+                  class="gestion-contenido__control"
+                  type="password"
+                  maxlength="128"
+                  autocomplete="new-password"
+                >
+
+              </label>
+
+              <label class="gestion-contenido__campo">
+
+                <span>Confirmar nueva contraseña</span>
+
+                <input
+                  id="confirmarContrasenaCambioActual"
+                  class="gestion-contenido__control"
+                  type="password"
+                  maxlength="128"
+                  autocomplete="new-password"
+                >
+
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <!-- Método: código por correo -->
+
+          <div
+            id="bloqueCambioContrasenaCodigo"
+            class="administradores-cambio-contrasena__bloque"
+            hidden
+          >
+
+            <label class="gestion-contenido__campo">
+
+              <span>Correo registrado</span>
+
+              <input
+                id="correoCambioContrasena"
+                class="gestion-contenido__control"
+                type="email"
+                readonly
+              >
+
+            </label>
+
+            <div class="administradores-codigo__acciones">
+
+              <button
+                id="botonEnviarCodigoContrasena"
+                class="admin-boton admin-boton--secundario"
+                type="button"
+              >
+                Enviar código
+              </button>
+
+              <span
+                id="estadoCodigoContrasena"
+                class="gestion-contenido__mensaje"
+                aria-live="polite"
+              ></span>
+
+            </div>
+
+
+            <div
+              id="pasoCodigoRecuperacion"
+              class="administradores-codigo__paso"
+              hidden
+            >
+
+              <label class="gestion-contenido__campo">
+
+                <span>Código recibido</span>
+
+                <input
+                  id="codigoCambioContrasena"
+                  class="gestion-contenido__control"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9]{6}"
+                  maxlength="6"
+                  autocomplete="one-time-code"
+                  placeholder="000000"
+                >
+
+              </label>
+
+              <button
+                id="botonVerificarCodigoContrasena"
+                class="admin-boton admin-boton--secundario"
+                type="button"
+              >
+                Verificar código
+              </button>
+
+            </div>
+
+
+            <div
+              id="pasoNuevaContrasenaCodigo"
+              class="administradores-codigo__paso"
+              hidden
+            >
+
+              <div class="administradores-modal__cuadricula">
+
+                <label class="gestion-contenido__campo">
+
+                  <span>Nueva contraseña</span>
+
+                  <input
+                    id="contrasenaNuevaCambioCodigo"
+                    class="gestion-contenido__control"
+                    type="password"
+                    maxlength="128"
+                    autocomplete="new-password"
+                  >
+
+                </label>
+
+                <label class="gestion-contenido__campo">
+
+                  <span>Confirmar nueva contraseña</span>
+
+                  <input
+                    id="confirmarContrasenaCambioCodigo"
+                    class="gestion-contenido__control"
+                    type="password"
+                    maxlength="128"
+                    autocomplete="new-password"
+                  >
+
+                </label>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <p class="administradores-cambio-contrasena__ayuda">
+            La contraseña nueva debe tener al menos 12 caracteres,
+            una mayúscula, una minúscula, un número y un carácter especial.
+          </p>
+
+        </div>
+
+        <div class="admin-modal__acciones">
+
+          <button
+            id="botonCancelarCambioContrasena"
+            class="admin-boton admin-boton--secundario"
+            type="button"
+          >
+            Cancelar
+          </button>
+
+          <button
+            id="botonGuardarCambioContrasena"
+            class="admin-boton admin-boton--primario"
+            type="submit"
+          >
+            Cambiar contraseña
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <script
+    src="../../js/config/api-admin.config.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/api-client.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/sesion-administrador.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/autenticacion.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/core/proteccion-rutas.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/alertas-admin.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/modal-admin.js"
+    defer
+  ></script>
+
+  <script
+    src="../../js/modules/administradores.js?v=20260820-3"
+    defer
+  ></script>
+
+  <script
+    src="../../js/components/layout-admin.js"
+    defer
+  ></script>
+
 </body>
 </html>

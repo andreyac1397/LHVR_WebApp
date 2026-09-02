@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gestión del chat institucional del LHVR">
+  <title>Chat institucional | Panel administrativo LHVR</title>
+  <link rel="stylesheet" href="../../css/variables-admin.css">
+  <link rel="stylesheet" href="../../css/estilos-admin.css">
+  <link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+  <link rel="stylesheet" href="../../css/alertas-admin.css">
+  <link rel="stylesheet" href="../../css/modales-admin.css">
+  <link rel="stylesheet" href="../../css/chat-admin.css?v=20260820-2">
+</head>
+<body class="pagina-contenido" data-titulo-pagina="Chat institucional">
+  <div id="cargadorProteccion" class="cargador-proteccion" role="status">
+    <div class="cargador-proteccion__contenido">
+      <span class="cargador-proteccion__indicador"></span>
+      <p>Comprobando sesión...</p>
+    </div>
+  </div>
+
+  <main id="contenidoPagina" data-titulo="Chat institucional" hidden>
+    <div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
+      <header class="gestion-contenido__encabezado chat-admin__encabezado">
+        <div>
+          <p class="admin-pagina__etiqueta">Atención institucional</p>
+          <h1 class="gestion-contenido__titulo">Chat</h1>
+          <p class="gestion-contenido__descripcion">
+            Atienda las consultas recibidas desde el sitio público.
+          </p>
+        </div>
+        <div class="chat-admin__resumen" aria-live="polite">
+          <strong id="totalNoLeidosChat">0</strong>
+          <span>mensajes no leídos</span>
+        </div>
+      </header>
+
+      <section class="chat-admin" aria-label="Gestión de conversaciones">
+        <aside class="gestion-contenido__panel chat-admin__lista-panel">
+          <header class="gestion-contenido__panel-encabezado">
+            <div>
+              <h2 class="gestion-contenido__panel-titulo">Conversaciones</h2>
+              <p class="admin-panel__descripcion">La actividad más reciente aparece primero.</p>
+            </div>
+          </header>
+          <div class="gestion-contenido__panel-cuerpo chat-admin__lista-cuerpo">
+            <div class="chat-admin__filtros">
+              <label class="gestion-contenido__campo">
+                <span>Buscar por nombre o cédula</span>
+                <input id="busquedaChat" class="gestion-contenido__control" type="search" maxlength="180" placeholder="Nombre o cédula">
+              </label>
+              <label class="gestion-contenido__campo">
+                <span>Estado</span>
+                <select id="filtroEstadoChat" class="gestion-contenido__control">
+                  <option value="">Todos</option>
+                </select>
+              </label>
+            </div>
+            <p id="estadoListaChat" class="gestion-contenido__mensaje" role="status" aria-live="polite">Cargando conversaciones...</p>
+            <div id="listaConversacionesChat" class="chat-admin__lista"></div>
+          </div>
+        </aside>
+
+        <article class="gestion-contenido__panel chat-admin__detalle-panel">
+          <div id="detalleChatVacio" class="chat-admin__detalle-vacio">
+            <span aria-hidden="true">💬</span>
+            <h2>Seleccione una conversación</h2>
+            <p>El historial y las acciones aparecerán aquí.</p>
+          </div>
+
+          <div id="detalleChat" class="chat-admin__detalle" hidden>
+            <header class="chat-admin__detalle-cabecera">
+              <div>
+                <h2 id="nombreConversacionChat">Conversación</h2>
+                <p id="cedulaConversacionChat"></p>
+                <p id="administradorConversacionChat"></p>
+              </div>
+              <div class="chat-admin__detalle-acciones">
+                <span id="estadoConversacionChat" class="chat-admin__estado"></span>
+                <button id="accionEstadoChat" class="admin-boton admin-boton--secundario" type="button"></button>
+                <button id="accionArchivarChat" class="admin-boton admin-boton--secundario" type="button">Archivar</button>
+                <button id="accionEliminarChat" class="admin-boton admin-boton--peligro" type="button">Eliminar</button>
+              </div>
+            </header>
+
+            <div id="mensajesConversacionChat" class="chat-admin__mensajes" role="log" aria-live="polite"></div>
+
+            <p id="conversacionChatCerrada" class="chat-admin__cerrada" hidden>
+              Esta conversación está cerrada. Reábrala para responder.
+            </p>
+            <form id="formularioRespuestaChat" class="chat-admin__respuesta">
+              <label class="chat-admin__etiqueta-oculta" for="respuestaChat">Escribir respuesta</label>
+              <textarea id="respuestaChat" class="gestion-contenido__control" name="mensaje" maxlength="4000" rows="3" placeholder="Escriba una respuesta..." required></textarea>
+              <button id="enviarRespuestaChat" class="admin-boton admin-boton--primario" type="submit">Enviar</button>
+            </form>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <script src="../../js/config/api-admin.config.js" defer></script>
+  <script src="../../js/core/api-client.js" defer></script>
+  <script src="../../js/core/sesion-administrador.js" defer></script>
+  <script src="../../js/modules/autenticacion.js" defer></script>
+  <script src="../../js/core/proteccion-rutas.js" defer></script>
+  <script src="../../js/components/alertas-admin.js" defer></script>
+  <script src="../../js/components/modal-admin.js" defer></script>
+  <script src="../../js/modules/chat.js?v=20260820-2" defer></script>
+  <script src="../../js/components/layout-admin.js" defer></script>
+</body>
+</html>

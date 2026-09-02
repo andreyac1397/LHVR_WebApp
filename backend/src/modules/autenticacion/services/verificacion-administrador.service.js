@@ -303,7 +303,10 @@ class VerificacionAdministradorService {
         ),
 
       nombreEstado:
-        administrador.nombreEstado
+        administrador.nombreEstado,
+
+      requiereCambioContrasena:
+        Boolean(administrador.requiereCambioContrasena)
     };
   }
 

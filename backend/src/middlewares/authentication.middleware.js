@@ -8,6 +8,11 @@ const {
 
 const NOMBRE_COOKIE_SESION = "sesion_admin";
 const TIPO_TOKEN_SESION = "SESION";
+const RUTAS_PERMITIDAS_CAMBIO_OBLIGATORIO = new Set([
+  "/api/autenticacion/sesion",
+  "/api/autenticacion/cambiar-contrasena-obligatoria",
+  "/api/autenticacion/cerrar-sesion"
+]);
 
 /**
  * Genera el hash SHA-256 del token recibido.
@@ -195,12 +200,28 @@ async function authenticationMiddleware(
       nombreEstado:
         sesion.nombreEstado,
 
+      requiereCambioContrasena:
+        Boolean(sesion.requiereCambioContrasena),
+
       fechaEmision:
         sesion.fechaEmision,
 
       fechaExpiracion:
         sesion.fechaExpiracion
     };
+
+    if (
+      req.sesionAdministrador.requiereCambioContrasena &&
+      !RUTAS_PERMITIDAS_CAMBIO_OBLIGATORIO.has(
+        String(req.originalUrl || "").split("?")[0]
+      )
+    ) {
+      throw crearError(
+        "Debe cambiar la contraseña temporal antes de utilizar el panel administrativo.",
+        403,
+        "CAMBIO_CONTRASENA_REQUERIDO"
+      );
+    }
 
     return next();
   } catch (error) {

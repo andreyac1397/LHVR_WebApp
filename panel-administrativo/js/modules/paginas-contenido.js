@@ -604,8 +604,24 @@
       estadosPublicacion:
         "/paginas/estados-publicacion",
 
+      guardarPagina:
+        valor === null
+          ? null
+          : (
+            "/paginas/administracion/" +
+            `${encodeURIComponent(valor)}`
+          ),
+
       guardarSeccion:
-        "/paginas/secciones"
+        "/paginas/secciones",
+
+      retirarSeccion:
+        valor === null
+          ? null
+          : (
+            "/paginas/secciones/" +
+            `${encodeURIComponent(valor)}/retirar`
+          )
     };
 
     return predeterminados[nombre];
@@ -705,6 +721,57 @@
         seccion
       );
     }
+  }
+
+  async function guardarPagina(datos) {
+    const idPagina =
+      numeroOpcional(
+        datos?.idPagina ??
+        paginaActual?.idPagina
+      );
+
+    if (!idPagina) {
+      throw new Error(
+        "El identificador de la página no es válido."
+      );
+    }
+
+    return apiClient.put(
+      construirEndpoint(
+        "guardarPagina",
+        idPagina
+      ),
+      {
+        titulo: datos?.titulo,
+        descripcion:
+          datos?.descripcion ?? null,
+        idEstadoPublicacion:
+          datos?.idEstadoPublicacion
+      }
+    );
+  }
+
+  async function retirarSeccion(
+    idSeccionPagina
+  ) {
+    const id =
+      numeroOpcional(
+        idSeccionPagina
+      );
+
+    if (!id) {
+      throw new Error(
+        "El identificador de la sección que desea retirar no es válido."
+      );
+    }
+
+    return apiClient.post(
+      construirEndpoint(
+        "retirarSeccion",
+        id
+      ),
+      {}
+    );
   }
 
   async function subirImagenPagina(
@@ -919,6 +986,31 @@
       estado.esVisible === true ||
       estado.esVisible === 1
     );
+  }
+
+  function esSeccionArchivada(
+    seccion
+  ) {
+    if (!seccion) {
+      return false;
+    }
+
+    const estado =
+      obtenerEstadoPorId(
+        seccion.idEstadoPublicacion
+      );
+
+    const nombreEstado =
+      normalizarClave(
+        seccion.estadoPublicacion ||
+        seccion.nombreEstado ||
+        seccion.estado ||
+        estado?.nombre ||
+        ""
+      );
+
+    return nombreEstado ===
+      "ARCHIVADO";
   }
 
   function llenarSelectEstados(
@@ -2138,6 +2230,8 @@
 
       esSeccionVisible,
 
+      esSeccionArchivada,
+
       llenarSelectEstados,
 
       validarEstado,
@@ -2148,9 +2242,13 @@
 
       solicitarEstados,
 
+      guardarPagina,
+
       guardarSeccion,
 
       guardarSecciones,
+
+      retirarSeccion,
 
       subirImagenPagina,
 

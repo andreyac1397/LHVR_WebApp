@@ -161,7 +161,10 @@ class AutenticacionService {
         administrador.correoVerificado,
 
       requiereVerificacion:
-        administrador.requiereVerificacion
+        administrador.requiereVerificacion,
+
+      requiereCambioContrasena:
+        Boolean(administrador.requiereCambioContrasena)
     };
   }
 

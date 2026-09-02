@@ -13,7 +13,12 @@ const inicializarContenido = require(
 const MIGRACIONES = [
   "006-gestion-contenido-pendiente.sql",
   "007-auditoria-consulta.sql",
-  "008-contenido-comunidad-contacto.sql"
+  "008-contenido-comunidad-contacto.sql",
+  "009-contenido-inicial-tramites.sql",
+  "010-contenido-inicial-biblioteca.sql",
+  "011-paginas-boletines-docentes-recursos.sql",
+  "012-destinatarios-solicitudes-bibliocra.sql",
+  "013-recordatorio-boletines.sql"
 ];
 
 function dividirLotes(contenido) {

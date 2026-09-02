@@ -1,9 +1,9 @@
 /* ============================================================
    BOLETINES.JS - Liceo Hernán Vargas Ramírez
    ------------------------------------------------------------
-   Carga los boletines, comunicados y avisos desde
-   data/boletines.json y los muestra en tarjetas.
-   Requiere las utilidades de filtros.js (cargarJSON, formatearFecha).
+   Carga los boletines, comunicados y avisos exclusivamente
+   desde la API pública y los muestra en tarjetas.
+   Requiere las utilidades de filtros.js para fecha y filtros.
    ------------------------------------------------------------
    Uso:  renderBoletines("listaBoletines", { limite: 3 })
          limite (opcional): cantidad máxima de tarjetas a mostrar.
@@ -16,7 +16,6 @@ async function renderBoletines(idContenedor, opciones = {}) {
   try {
     let boletines;
 
-    try {
       const apiBase = String(
         window.API_PUBLICA_URL || "http://127.0.0.1:3001/api"
       ).replace(/\/+$/, "");
@@ -36,14 +35,6 @@ async function renderBoletines(idContenedor, opciones = {}) {
         resumen: elemento.descripcion || elemento.subtitulo || "",
         enlace: elemento.url || "#"
       }));
-    } catch (errorApi) {
-      console.warn("Se usarán los boletines locales de respaldo.", errorApi);
-      boletines = await cargarJSON("data/boletines.json");
-    }
-
-    /* Ordenar del más reciente al más antiguo */
-    boletines.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-
     /* Limitar la cantidad si se indicó (ej. en la página de inicio) */
     if (opciones.limite) boletines = boletines.slice(0, opciones.limite);
 

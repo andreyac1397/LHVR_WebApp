@@ -19,9 +19,12 @@ class PaginaService {
    * @param {object} repositorio
    */
   constructor(
-    repositorio = new SqlPaginaRepository()
+    repositorio = new SqlPaginaRepository(),
+    auditoriaService = null
   ) {
     this.repositorio = repositorio;
+    this.auditoriaService =
+      auditoriaService;
   }
 
   /**
@@ -342,6 +345,240 @@ class PaginaService {
         slug,
         true
       );
+  }
+
+  /**
+   * Obtiene las secciones públicas aunque el estado del registro
+   * de la página oculte únicamente su encabezado. No expone el
+   * título ni la descripción mientras el encabezado esté oculto.
+   *
+   * Se utiliza en Comunidad y Contacto, donde cada bloque posee
+   * un estado independiente.
+   */
+  async obtenerContenidoPublicoParcial(
+    slug
+  ) {
+    const resultado =
+      await this
+        .obtenerContenidoPaginaPorSlug(
+          slug,
+          false
+        );
+
+    const encabezadoVisible =
+      resultado.pagina
+        ?.estadoVisible === true;
+
+    const secciones =
+      resultado.secciones.filter(
+        (seccion) =>
+          seccion?.estadoVisible === true
+      );
+
+    return {
+      pagina: {
+        ...resultado.pagina,
+        titulo:
+          encabezadoVisible
+            ? resultado.pagina.titulo
+            : null,
+        descripcion:
+          encabezadoVisible
+            ? resultado.pagina.descripcion
+            : null,
+        encabezadoVisible
+      },
+      secciones
+    };
+  }
+
+  normalizarIdPositivo(
+    valor,
+    nombreCampo
+  ) {
+    const numero = Number(valor);
+
+    if (
+      !Number.isInteger(numero) ||
+      numero <= 0
+    ) {
+      throw this.crearError(
+        `El campo ${nombreCampo} no es válido.`,
+        400,
+        "IDENTIFICADOR_INVALIDO"
+      );
+    }
+
+    return numero;
+  }
+
+  normalizarTexto(
+    valor,
+    nombreCampo,
+    longitudMaxima,
+    obligatorio = false
+  ) {
+    if (
+      valor === null ||
+      valor === undefined
+    ) {
+      if (!obligatorio) {
+        return null;
+      }
+
+      throw this.crearError(
+        `El campo ${nombreCampo} es obligatorio.`,
+        400,
+        "CAMPO_OBLIGATORIO"
+      );
+    }
+
+    if (typeof valor !== "string") {
+      throw this.crearError(
+        `El campo ${nombreCampo} no es válido.`,
+        400,
+        "TIPO_CAMPO_INVALIDO"
+      );
+    }
+
+    const texto = valor.trim();
+
+    if (obligatorio && !texto) {
+      throw this.crearError(
+        `El campo ${nombreCampo} es obligatorio.`,
+        400,
+        "CAMPO_OBLIGATORIO"
+      );
+    }
+
+    if (texto.length > longitudMaxima) {
+      throw this.crearError(
+        `El campo ${nombreCampo} supera la longitud permitida.`,
+        400,
+        "LONGITUD_CAMPO_INVALIDA"
+      );
+    }
+
+    return texto || null;
+  }
+
+  transformarErrorGuardado(error) {
+    if (error?.statusCode) {
+      return error;
+    }
+
+    const numeroError =
+      this.obtenerNumeroErrorSql(error);
+
+    if (numeroError === 51040) {
+      return this.crearError(
+        "El estado de publicación no existe o está inactivo.",
+        400,
+        "ESTADO_PUBLICACION_NO_DISPONIBLE"
+      );
+    }
+
+    if (numeroError === 51041) {
+      return this.crearError(
+        "La página indicada no existe.",
+        404,
+        "PAGINA_NO_ENCONTRADA"
+      );
+    }
+
+    return error;
+  }
+
+  /**
+   * Actualiza el encabezado y el estado general de una página.
+   */
+  async guardarPagina(
+    datos,
+    sesionAdministrador,
+    contexto = {}
+  ) {
+    const datosPreparados = {
+      idPagina:
+        this.normalizarIdPositivo(
+          datos?.idPagina,
+          "idPagina"
+        ),
+      titulo:
+        this.normalizarTexto(
+          datos?.titulo,
+          "titulo",
+          200,
+          true
+        ),
+      descripcion:
+        this.normalizarTexto(
+          datos?.descripcion,
+          "descripcion",
+          500
+        ),
+      idEstadoPublicacion:
+        this.normalizarIdPositivo(
+          datos?.idEstadoPublicacion,
+          "idEstadoPublicacion"
+        ),
+      idAdministradorUltimaModificacion:
+        this.normalizarIdPositivo(
+          sesionAdministrador
+            ?.idAdministrador,
+          "idAdministrador"
+        )
+    };
+
+    let paginaGuardada;
+
+    try {
+      paginaGuardada =
+        await this.repositorio
+          .guardarPagina(
+            datosPreparados
+          );
+    } catch (error) {
+      throw this.transformarErrorGuardado(
+        error
+      );
+    }
+
+    if (
+      !paginaGuardada ||
+      typeof paginaGuardada !== "object"
+    ) {
+      throw this.crearError(
+        "No fue posible obtener la página guardada.",
+        500,
+        "RESULTADO_PAGINA_INVALIDO"
+      );
+    }
+
+    await this.auditoriaService
+      ?.registrarSinInterrumpir({
+        idAdministrador:
+          datosPreparados
+            .idAdministradorUltimaModificacion,
+        codigoAccion: "EDITAR",
+        codigoModulo: "PAGINAS",
+        tablaAfectada: "paginas",
+        idRegistroAfectado:
+          paginaGuardada.idPagina,
+        datosNuevos: paginaGuardada,
+        descripcion:
+          `Se actualizó el encabezado y el estado de la página ${paginaGuardada.slug || paginaGuardada.idPagina}.`,
+        direccionIp:
+          contexto.direccionIp ?? null,
+        userAgent:
+          contexto.userAgent ?? null
+      });
+
+    return {
+      guardado: true,
+      mensaje:
+        "La página fue guardada correctamente.",
+      pagina: paginaGuardada
+    };
   }
 
   /**

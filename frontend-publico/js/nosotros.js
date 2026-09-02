@@ -177,6 +177,26 @@
 
     elemento.hidden =
       !visible;
+
+    elemento.setAttribute(
+      "aria-hidden",
+      visible
+        ? "false"
+        : "true"
+    );
+
+    if (visible) {
+      elemento.style.removeProperty(
+        "display"
+      );
+
+      return;
+    }
+
+    elemento.style.setProperty(
+      "display",
+      "none"
+    );
   }
 
   /**

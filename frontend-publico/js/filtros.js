@@ -1,9 +1,10 @@
 /* ============================================================
    FILTROS.JS - Liceo Hernán Vargas Ramírez
    ------------------------------------------------------------
-   Utilidades compartidas para las páginas que cargan datos
-   desde archivos JSON (boletines, documentos, recursos, docentes):
-   1. Helpers: cargar JSON, formatear fecha, ruta base
+   Utilidades compartidas para las páginas públicas. Docentes y
+   recursos consumen la API; el JSON se conserva solo para módulos
+   ajenos a esta integración que todavía lo requieren.
+   1. Helpers de API, fecha y rutas
    2. Filtros por categoría
    3. Render de documentos importantes
    4. Render de recursos digitales
@@ -53,6 +54,18 @@ function urlPublicaSegura(valor) {
   return /^(https?:\/\/|\/|\.\.\/|\.\/|#)/i.test(url) ? url : "#";
 }
 
+function resolverArchivoPublico(valor) {
+  const url = urlPublicaSegura(valor);
+  if (!url || url === "#") return "";
+  if (url.startsWith("/")) {
+    const origenApi = String(
+      window.API_PUBLICA_URL || "http://127.0.0.1:3001/api"
+    ).replace(/\/api\/?$/, "");
+    return `${origenApi}${url}`;
+  }
+  return url;
+}
+
 /* Convierte "2025-03-18" en "18 de marzo de 2025" */
 const MESES = [
   "enero", "febrero", "marzo", "abril", "mayo", "junio",
@@ -94,6 +107,19 @@ function activarFiltros(idBotones, idTarjetas) {
       tarjeta.style.display = mostrar ? "" : "none";
     });
   });
+}
+
+function crearFiltrosAutomaticos(contenedor, categorias, id) {
+  const valores = [...new Set(categorias.filter(Boolean))];
+  contenedor.parentElement?.querySelector(`#${id}`)?.remove();
+  if (valores.length < 2 || !contenedor.parentElement) return;
+  if (!contenedor.id) contenedor.id = `${id}Contenido`;
+  const filtros = document.createElement("div");
+  filtros.id = id;
+  filtros.className = "filtros";
+  filtros.innerHTML = `<button class="filtro activo" data-filtro="todos" type="button">Todos</button>${valores.map((valor) => `<button class="filtro" data-filtro="${escaparDato(valor)}" type="button">${escaparDato(valor)}</button>`).join("")}`;
+  contenedor.before(filtros);
+  activarFiltros(id, contenedor.id);
 }
 
 /* ===== 3. DOCUMENTOS IMPORTANTES ===== */
@@ -148,17 +174,17 @@ async function renderEnlaces(idContenedor) {
   try {
     let enlaces;
 
-    try {
-      const elementos = await cargarModuloPublico("recursos-apoyo");
+    const elementos = await cargarModuloPublico("recursos-apoyo");
       enlaces = elementos.map((item) => ({
         publico: item.datos?.publico || item.datos?.categoria || "Comunidad",
         titulo: item.titulo,
         descripcion: item.descripcion || item.subtitulo || "",
         url: item.url || "#"
       }));
-    } catch (errorApi) {
-      console.warn("Se usarán los enlaces locales de respaldo.", errorApi);
-      enlaces = await cargarJSON("data/enlaces.json");
+
+    if (!enlaces.length) {
+      contenedor.innerHTML = `<p class="estado">No hay recursos publicados.</p>`;
+      return;
     }
 
     contenedor.innerHTML = enlaces
@@ -192,16 +218,18 @@ async function renderDocentes(idContenedor) {
   try {
     let docentes;
 
-    try {
-      const elementos = await cargarModuloPublico("docentes");
+    const elementos = await cargarModuloPublico("docentes");
       docentes = elementos.map((item) => ({
         nombre: item.titulo,
         area: item.subtitulo || item.datos?.departamento || "Docente",
-        correo: item.datos?.correo || ""
+        correo: item.datos?.correo || "",
+        descripcion: item.descripcion || "",
+        foto: item.url || ""
       }));
-    } catch (errorApi) {
-      console.warn("Se usará el directorio local de respaldo.", errorApi);
-      docentes = await cargarJSON("data/docentes.json");
+
+    if (!docentes.length) {
+      contenedor.innerHTML = `<p class="estado">No hay docentes publicados.</p>`;
+      return;
     }
 
     contenedor.innerHTML = docentes
@@ -209,14 +237,16 @@ async function renderDocentes(idContenedor) {
         const inicial = d.area.charAt(0).toUpperCase();
 
         return `
-        <article class="tarjeta docente">
-          <div class="docente__avatar" aria-hidden="true">${escaparDato(inicial)}</div>
+        <article class="tarjeta docente" data-categoria="${escaparDato(d.area)}">
+          <div class="docente__avatar" aria-hidden="true">${d.foto ? `<img src="${escaparDato(resolverArchivoPublico(d.foto))}" alt="">` : escaparDato(inicial)}</div>
           <h3 class="docente__nombre">${escaparDato(d.nombre)}</h3>
           <p class="docente__area">${escaparDato(d.area)}</p>
-          ${d.correo ? `<a class="docente__correo" href="mailto:${escaparDato(d.correo)}">${escaparDato(d.correo)}</a>` : ""}
+          ${d.descripcion ? `<p class="tarjeta__texto">${escaparDato(d.descripcion)}</p>` : ""}
+          ${d.correo ? `<a class="docente__correo" href="mailto:${escaparDato(d.correo)}">${escaparDato(d.correo)}</a>` : '<span class="docente__correo">Por definir</span>'}
         </article>`;
       })
       .join("");
+    crearFiltrosAutomaticos(contenedor, docentes.map((docente) => docente.area), "filtrosDocentes");
   } catch (error) {
     contenedor.innerHTML = `<p class="estado">No se pudo cargar el directorio.</p>`;
   }

@@ -350,9 +350,19 @@ textarea.gestion-contenido__control {
   display: none !important;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1400px) {
   .gestion-contenido__encabezado {
     flex-direction: column;
+  }
+
+  .gestion-contenido__panel-encabezado {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .gestion-contenido__panel-encabezado
+  > .gestion-contenido__acciones {
+    justify-content: flex-start;
   }
 
   .gestion-contenido__resumen {
@@ -405,6 +415,279 @@ textarea.gestion-contenido__control {
   white-space: pre-wrap;
 }
 
+/* Vista semanal editable de la gestión de horarios */
+.horario-admin {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.horario-admin[hidden] {
+  display: none;
+}
+
+.horario-admin__barra {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.horario-admin__barra h2 {
+  margin: 0;
+  color: #173824;
+  font-family: var(--admin-fuente-titulos, Georgia, serif);
+  font-size: 1.35rem;
+}
+
+.horario-admin__barra p:not(.horario-admin__eyebrow) {
+  max-width: 720px;
+  margin: 0.4rem 0 0;
+  color: var(--admin-texto-secundario, #5d625d);
+  line-height: 1.5;
+}
+
+.horario-admin__eyebrow {
+  margin: 0 0 0.35rem;
+  color: #2b563a;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.horario-admin__guardado {
+  display: grid;
+  justify-items: end;
+  gap: 0.45rem;
+  min-width: 180px;
+}
+
+.horario-admin__guardado span {
+  color: var(--admin-texto-secundario, #5d625d);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.horario-admin__selectores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 300px)) 1fr;
+  align-items: end;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(43, 86, 58, 0.15);
+  border-radius: 14px;
+  background: #f7faf8;
+}
+
+.horario-admin__acciones-seccion {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--admin-borde, #dce2dd);
+}
+
+.horario-admin__tarjeta {
+  overflow: hidden;
+  border: 1px solid rgba(43, 86, 58, 0.18);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(31, 66, 44, 0.08);
+}
+
+.horario-admin__encabezado-tabla {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.4rem;
+  border-bottom: 1px solid rgba(43, 86, 58, 0.14);
+  background: linear-gradient(
+    135deg,
+    rgba(43, 86, 58, 0.08),
+    rgba(212, 175, 55, 0.1)
+  );
+}
+
+.horario-admin__encabezado-tabla h3 {
+  margin: 0.55rem 0 0;
+  color: #173824;
+  font-size: 1.3rem;
+}
+
+.horario-admin__etiqueta {
+  display: inline-block;
+  padding: 0.38rem 0.7rem;
+  border-radius: 999px;
+  background: #2b563a;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.horario-admin__profesor {
+  display: grid;
+  gap: 0.35rem;
+  width: min(330px, 100%);
+  color: #173824;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.horario-admin__tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+  background: #fff;
+}
+
+.horario-admin__tabla {
+  width: 100%;
+  min-width: 1080px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  color: #1f2937;
+  font-size: 0.86rem;
+  table-layout: fixed;
+}
+
+.horario-admin__tabla th {
+  padding: 0.8rem 0.55rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
+  background: #2b563a;
+  color: #fff;
+  text-align: center;
+  font-weight: 800;
+}
+
+.horario-admin__tabla th:nth-child(1) {
+  width: 92px;
+}
+
+.horario-admin__tabla th:nth-child(2) {
+  width: 125px;
+}
+
+.horario-admin__tabla th:last-child {
+  width: 190px;
+  border-right: 0;
+}
+
+.horario-admin__tabla td {
+  padding: 0.35rem;
+  border-right: 1px solid #edf0f2;
+  border-bottom: 1px solid #edf0f2;
+  vertical-align: middle;
+}
+
+.horario-admin__tabla td:last-child {
+  border-right: 0;
+}
+
+.horario-admin__tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.horario-admin__tabla tbody tr:nth-child(even):not(.horario-admin__fila--receso):not(.horario-admin__fila--almuerzo) {
+  background: #f9fafb;
+}
+
+.horario-admin__control-celda {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.horario-admin__control-celda:hover {
+  border-color: #d8e1da;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.horario-admin__control-celda:focus {
+  border-color: #547846;
+  outline: 3px solid rgba(84, 120, 70, 0.15);
+  background: #fff;
+}
+
+.horario-admin__control-celda--modificado {
+  border-color: rgba(212, 175, 55, 0.65);
+  background: #fffbed;
+}
+
+.horario-admin__fila--receso td {
+  border-bottom-color: #eadca8;
+  background: #f7f1dd;
+  color: #5f4a12;
+  font-weight: 700;
+}
+
+.horario-admin__fila--almuerzo td {
+  border-bottom-color: #cfe3d6;
+  background: #e8f3ec;
+  color: #1f4a31;
+  font-weight: 700;
+}
+
+.horario-admin__fila--inactiva td {
+  border-bottom-color: #d8ddda;
+  background: #eef1ef;
+  color: #667069;
+}
+
+.horario-admin__fila--inactiva td:first-child {
+  box-shadow: inset 4px 0 0 #8b9690;
+}
+
+.horario-admin__fila--inactiva .horario-admin__control-celda {
+  opacity: 0.72;
+}
+
+.horario-admin__acciones-celda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  text-align: center;
+}
+
+.horario-admin__vacio {
+  padding: 3rem 1.25rem;
+  border: 1px dashed rgba(43, 86, 58, 0.28);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fff, #f3f8f5 60%, #fbf6e3);
+  text-align: center;
+}
+
+.horario-admin__vacio strong {
+  color: #173824;
+  font-size: 1.1rem;
+}
+
+.horario-admin__vacio p {
+  margin: 0.45rem 0 0;
+  color: var(--admin-texto-secundario, #5d625d);
+}
+
+body.gestion-horarios-admin .gestion-contenido__panel,
+body.gestion-horarios-admin .horario-admin__selectores,
+body.gestion-horarios-admin .horario-admin__tarjeta {
+  border: 1.5px solid #1f2937;
+}
+
 @media (max-width: 640px) {
   .gestion-contenido__acciones-imagen {
     grid-template-columns: 1fr;
@@ -412,5 +695,31 @@ textarea.gestion-contenido__control {
 
   .gestion-contenido__acciones-imagen small {
     grid-column: auto;
+  }
+
+  .horario-admin__barra,
+  .horario-admin__encabezado-tabla {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .horario-admin__guardado {
+    justify-items: stretch;
+  }
+
+  .horario-admin__selectores {
+    grid-template-columns: 1fr;
+  }
+
+  .horario-admin__acciones-seccion {
+    justify-content: stretch;
+  }
+
+  .horario-admin__acciones-seccion .admin-boton {
+    flex: 1 1 150px;
+  }
+
+  .horario-admin__profesor {
+    width: 100%;
   }
 }

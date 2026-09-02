@@ -49,6 +49,9 @@
   const RUTA_DASHBOARD =
     "../dashboard/dashboard.html";
 
+  const RUTA_CAMBIO_OBLIGATORIO =
+    "cambiar-contrasena.html?obligatorio=1";
+
   /**
    * Guarda los datos temporales necesarios
    * para completar la verificación en dos pasos.
@@ -202,6 +205,13 @@
   async function cambiarContrasena(datos) {
     return apiClient.patch(
       endpoints.cambiarContrasena,
+      datos
+    );
+  }
+
+  async function cambiarContrasenaObligatoria(datos) {
+    return apiClient.patch(
+      endpoints.cambiarContrasenaObligatoria,
       datos
     );
   }
@@ -643,6 +653,10 @@
       if (
         respuesta?.datos?.autenticado
       ) {
+        if (respuesta.datos.administrador?.requiereCambioContrasena) {
+          global.location.replace(RUTA_CAMBIO_OBLIGATORIO);
+          return;
+        }
         global.location.replace(
           RUTA_DASHBOARD
         );
@@ -821,6 +835,11 @@
            */
           if (datos?.autenticado) {
             limpiarDatosVerificacion();
+
+            if (datos.administrador?.requiereCambioContrasena) {
+              global.location.replace(RUTA_CAMBIO_OBLIGATORIO);
+              return;
+            }
 
             global.location.replace(
               RUTA_DASHBOARD
@@ -1042,6 +1061,11 @@
 
           limpiarDatosVerificacion();
 
+          if (respuesta.datos.administrador?.requiereCambioContrasena) {
+            global.location.replace(RUTA_CAMBIO_OBLIGATORIO);
+            return;
+          }
+
           mostrarMensaje(
             elementos.mensaje,
             respuesta.mensaje ||
@@ -1139,6 +1163,7 @@
       obtenerSesion,
       cerrarSesion,
       cambiarContrasena,
+      cambiarContrasenaObligatoria,
       guardarDatosVerificacion,
       obtenerTokenVerificacion,
       obtenerCorreoDestino,

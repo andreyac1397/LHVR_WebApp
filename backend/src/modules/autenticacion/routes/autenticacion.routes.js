@@ -131,6 +131,14 @@ router.patch(
   )
 );
 
+router.patch(
+  "/cambiar-contrasena-obligatoria",
+  authenticationMiddleware,
+  autenticacionController.cambiarContrasenaObligatoria.bind(
+    autenticacionController
+  )
+);
+
 /*
  * Ruta protegida.
  *

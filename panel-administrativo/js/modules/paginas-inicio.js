@@ -647,9 +647,11 @@
             ) ===
               "ACCESO_RAPIDO";
 
+          // Los accesos inactivos permanecen editables.
+          // Solo los retirados dejan de aparecer en la lista.
           return (
             esAccesoRapido &&
-            comun.esSeccionVisible(
+            !comun.esSeccionArchivada(
               seccion
             )
           );
@@ -1441,15 +1443,6 @@
     return datos;
   }
 
-  function crearDatosOcultamientoAcceso(
-    seccion
-  ) {
-    return comun.crearDatosOcultamiento(
-      seccion,
-      "No existe un estado no visible para quitar el acceso rápido."
-    );
-  }
-
   /*
    * ==========================================================
    * 12. GUARDAR HERO
@@ -1716,10 +1709,8 @@
           const acceso
           of accesosPendientesOcultar
         ) {
-          await comun.guardarSeccion(
-            crearDatosOcultamientoAcceso(
-              acceso
-            )
+          await comun.retirarSeccion(
+            acceso.idSeccionPagina
           );
         }
 

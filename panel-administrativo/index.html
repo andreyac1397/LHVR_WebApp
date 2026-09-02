@@ -106,7 +106,9 @@
             }
 
             window.location.replace(
-              rutaDashboard
+              respuesta.datos.administrador?.requiereCambioContrasena
+                ? "pages/autenticacion/cambiar-contrasena.html?obligatorio=1"
+                : rutaDashboard
             );
 
             return;

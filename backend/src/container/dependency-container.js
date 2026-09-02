@@ -26,8 +26,29 @@ const SqlConfiguracionRepository = require(
   "../modules/configuracion-sitio/repositories/sql-configuracion.repository"
 );
 
-const SqlContenidoRepository = require(
-  "../shared/content-management/sql-contenido.repository"
+const SqlBoletinRepository = require(
+  "../modules/boletines/repositories/sql-boletin.repository"
+);
+const SqlCalendarioRepository = require(
+  "../modules/calendario/repositories/sql-calendario.repository"
+);
+const SqlBibliotecaRepository = require(
+  "../modules/biblioteca/repositories/sql-biblioteca.repository"
+);
+const SqlDocenteRepository = require(
+  "../modules/docentes/repositories/sql-docente.repository"
+);
+const SqlHorarioRepository = require(
+  "../modules/horarios/repositories/sql-horario.repository"
+);
+const SqlTramiteRepository = require(
+  "../modules/tramites/repositories/sql-tramite.repository"
+);
+const SqlRecursoApoyoRepository = require(
+  "../modules/recursos-apoyo/repositories/sql-recurso-apoyo.repository"
+);
+const SqlGaleriaRepository = require(
+  "../modules/galeria/repositories/sql-galeria.repository"
 );
 
 const SqlContactoRepository = require(
@@ -44,6 +65,10 @@ const SqlDashboardRepository = require(
 
 const SqlAdministradorRepository = require(
   "../modules/administradores/repositories/sql-administrador.repository"
+);
+
+const SqlChatRepository = require(
+  "../modules/chat/repositories/sql-chat.repository"
 );
 
 const AuditoriaService = require(
@@ -90,16 +115,36 @@ const ConfiguracionService = require(
   "../modules/configuracion-sitio/services/configuracion.service"
 );
 
-const ContenidoService = require(
-  "../shared/content-management/contenido.service"
+const BoletinService = require(
+  "../modules/boletines/services/boletin.service"
 );
 
 const CalendarioService = require(
   "../modules/calendario/services/calendario.service"
 );
 
+const BibliotecaService = require(
+  "../modules/biblioteca/services/biblioteca.service"
+);
+
+const DocenteService = require(
+  "../modules/docentes/services/docente.service"
+);
+
 const HorarioService = require(
   "../modules/horarios/services/horario.service"
+);
+
+const TramiteService = require(
+  "../modules/tramites/services/tramite.service"
+);
+
+const RecursoApoyoService = require(
+  "../modules/recursos-apoyo/services/recurso-apoyo.service"
+);
+
+const GaleriaService = require(
+  "../modules/galeria/services/galeria.service"
 );
 
 const ContactoService = require(
@@ -118,10 +163,8 @@ const AdministradorService = require(
   "../modules/administradores/services/administrador.service"
 );
 
-const {
-  MODULOS_CONTENIDO
-} = require(
-  "../shared/content-management/contenido-modulos"
+const ChatService = require(
+  "../modules/chat/services/chat.service"
 );
 
 const correoService = require(
@@ -156,8 +199,14 @@ const repositorioComunidad =
 const repositorioConfiguracion =
   new SqlConfiguracionRepository();
 
-const repositorioContenido =
-  new SqlContenidoRepository();
+const repositorioBoletin = new SqlBoletinRepository();
+const repositorioCalendario = new SqlCalendarioRepository();
+const repositorioBiblioteca = new SqlBibliotecaRepository();
+const repositorioDocente = new SqlDocenteRepository();
+const repositorioHorario = new SqlHorarioRepository();
+const repositorioTramite = new SqlTramiteRepository();
+const repositorioRecursoApoyo = new SqlRecursoApoyoRepository();
+const repositorioGaleria = new SqlGaleriaRepository();
 
 const repositorioContacto =
   new SqlContactoRepository();
@@ -170,6 +219,9 @@ const repositorioDashboard =
 
 const repositorioAdministrador =
   new SqlAdministradorRepository();
+
+const repositorioChat =
+  new SqlChatRepository();
 
 
 /*
@@ -190,6 +242,11 @@ const auditoriaService =
  */
 const enviarCodigo =
   correoService.enviarCodigoVerificacion.bind(
+    correoService
+  );
+
+const enviarCodigoRecuperacion =
+  correoService.enviarCodigoRecuperacion.bind(
     correoService
   );
 
@@ -217,7 +274,7 @@ const autenticacionService =
 const recuperacionContrasenaService =
   new RecuperacionContrasenaService(
     repositorioAutenticacion,
-    enviarCodigo,
+    enviarCodigoRecuperacion,
     auditoriaService
   );
 
@@ -230,7 +287,8 @@ const recuperacionContrasenaService =
 
 const paginaService =
   new PaginaService(
-    repositorioPagina
+    repositorioPagina,
+    auditoriaService
   );
 
 const seccionPaginaService =
@@ -301,42 +359,37 @@ const configuracionService =
  */
 
 const contenidoServices = {
-  boletines: new ContenidoService(
-    MODULOS_CONTENIDO.BOLETINES,
-    repositorioContenido,
-    auditoriaService
+  boletines: new BoletinService(
+    repositorioBoletin,
+    auditoriaService,
+    correoService
   ),
   calendario: new CalendarioService(
-    repositorioContenido,
+    repositorioCalendario,
     auditoriaService
   ),
-  biblioteca: new ContenidoService(
-    MODULOS_CONTENIDO.BIBLIOTECA,
-    repositorioContenido,
+  biblioteca: new BibliotecaService(
+    repositorioBiblioteca,
     auditoriaService
   ),
-  docentes: new ContenidoService(
-    MODULOS_CONTENIDO.DOCENTES,
-    repositorioContenido,
+  docentes: new DocenteService(
+    repositorioDocente,
     auditoriaService
   ),
   horarios: new HorarioService(
-    repositorioContenido,
+    repositorioHorario,
     auditoriaService
   ),
-  tramites: new ContenidoService(
-    MODULOS_CONTENIDO.TRAMITES,
-    repositorioContenido,
+  tramites: new TramiteService(
+    repositorioTramite,
     auditoriaService
   ),
-  "recursos-apoyo": new ContenidoService(
-    MODULOS_CONTENIDO.RECURSOS_APOYO,
-    repositorioContenido,
+  "recursos-apoyo": new RecursoApoyoService(
+    repositorioRecursoApoyo,
     auditoriaService
   ),
-  galeria: new ContenidoService(
-    MODULOS_CONTENIDO.GALERIA,
-    repositorioContenido,
+  galeria: new GaleriaService(
+    repositorioGaleria,
     auditoriaService
   )
 };
@@ -348,7 +401,8 @@ const contactoService = new ContactoService(
 
 const solicitudBibliocraService = new SolicitudBibliocraService(
   repositorioSolicitudBibliocra,
-  auditoriaService
+  auditoriaService,
+  correoService
 );
 
 const dashboardService = new DashboardService(
@@ -357,6 +411,13 @@ const dashboardService = new DashboardService(
 
 const administradorService = new AdministradorService(
   repositorioAdministrador,
+  auditoriaService,
+  correoService,
+  recuperacionContrasenaService
+);
+
+const chatService = new ChatService(
+  repositorioChat,
   auditoriaService
 );
 
@@ -375,11 +436,19 @@ module.exports = {
   repositorioOfertaAcademica,
   repositorioComunidad,
   repositorioConfiguracion,
-  repositorioContenido,
+  repositorioBoletin,
+  repositorioCalendario,
+  repositorioBiblioteca,
+  repositorioDocente,
+  repositorioHorario,
+  repositorioTramite,
+  repositorioRecursoApoyo,
+  repositorioGaleria,
   repositorioContacto,
   repositorioSolicitudBibliocra,
   repositorioDashboard,
   repositorioAdministrador,
+  repositorioChat,
   auditoriaService,
   servicioVerificacion,
   autenticacionService,
@@ -396,5 +465,7 @@ module.exports = {
   solicitudBibliocraService,
   dashboardService,
   administradorService,
-  enviarCodigo
+  chatService,
+  enviarCodigo,
+  enviarCodigoRecuperacion
 };

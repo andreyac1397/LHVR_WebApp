@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cambio de contraseña del panel administrativo LHVR">
+  <title>Cambiar contraseña | Panel administrativo LHVR</title>
+  <link rel="stylesheet" href="../../css/variables-admin.css">
+  <link rel="stylesheet" href="../../css/estilos-admin.css">
+  <link rel="stylesheet" href="../../css/autenticacion.css">
+  <link rel="stylesheet" href="../../css/modales-admin.css">
+  <link rel="stylesheet" href="../../css/responsive-admin.css">
+</head>
+<body class="pagina-autenticacion">
+  <main class="autenticacion">
+    <section class="autenticacion__contenedor" aria-labelledby="tituloCambioContrasena">
+      <div class="autenticacion__identidad">
+        <div class="autenticacion__marca">
+          <img class="autenticacion__logo" src="../../assets/logos/logo-liceo.jpg" alt="Logo del Liceo Hernán Vargas Ramírez">
+          <div class="autenticacion__institucion">
+            <p class="autenticacion__siglas">LHVR</p>
+            <h1 class="autenticacion__nombre-liceo">Liceo Hernán Vargas Ramírez</h1>
+            <p class="autenticacion__descripcion">Sistema de administración del sitio web institucional</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="autenticacion__panel">
+        <div class="autenticacion__formulario-contenedor">
+          <header class="autenticacion__encabezado">
+            <p id="etiquetaCambioContrasena" class="autenticacion__etiqueta">Mi cuenta</p>
+            <h2 id="tituloCambioContrasena" class="autenticacion__titulo">Cambiar contraseña</h2>
+            <p id="descripcionCambioContrasena" class="autenticacion__texto">Confirme su contraseña actual y cree una nueva.</p>
+          </header>
+
+          <div id="mensajeCambioContrasena" class="autenticacion__mensaje" role="alert" aria-live="polite" hidden></div>
+
+          <form id="formularioCambioContrasena" class="formulario-autenticacion" novalidate hidden>
+            <div class="campo-autenticacion">
+              <label class="campo-autenticacion__etiqueta" for="contrasenaActual">Contraseña actual o temporal</label>
+              <div class="campo-autenticacion__control">
+                <span class="campo-autenticacion__icono" aria-hidden="true">●</span>
+                <input class="campo-autenticacion__entrada" id="contrasenaActual" name="contrasenaActual" type="password" maxlength="128" autocomplete="current-password" required>
+              </div>
+            </div>
+
+            <div class="campo-autenticacion">
+              <label class="campo-autenticacion__etiqueta" for="contrasenaNueva">Contraseña nueva</label>
+              <div class="campo-autenticacion__control">
+                <span class="campo-autenticacion__icono" aria-hidden="true">●</span>
+                <input class="campo-autenticacion__entrada" id="contrasenaNueva" name="contrasenaNueva" type="password" minlength="12" maxlength="128" autocomplete="new-password" required>
+              </div>
+              <p class="campo-autenticacion__ayuda">Mínimo 12 caracteres, con mayúscula, minúscula, número y símbolo.</p>
+            </div>
+
+            <div class="campo-autenticacion">
+              <label class="campo-autenticacion__etiqueta" for="confirmarContrasenaNueva">Confirmar contraseña nueva</label>
+              <div class="campo-autenticacion__control">
+                <span class="campo-autenticacion__icono" aria-hidden="true">●</span>
+                <input class="campo-autenticacion__entrada" id="confirmarContrasenaNueva" name="confirmarContrasenaNueva" type="password" minlength="12" maxlength="128" autocomplete="new-password" required>
+              </div>
+            </div>
+
+            <button id="botonCambiarContrasena" class="boton-autenticacion" type="submit">
+              <span class="boton-autenticacion__texto">Guardar contraseña</span>
+              <span class="boton-autenticacion__cargador" aria-hidden="true" hidden></span>
+            </button>
+          </form>
+
+          <div class="autenticacion__acciones-secundarias">
+            <a id="enlaceVolverDashboard" class="formulario-autenticacion__enlace" href="../dashboard/dashboard.html">Volver al panel</a>
+            <button id="botonCerrarSesionCambio" class="formulario-autenticacion__enlace" type="button">Cerrar sesión</button>
+          </div>
+
+          <div class="autenticacion__seguridad"><span class="autenticacion__seguridad-icono" aria-hidden="true">🔒</span><p>La contraseña se almacena únicamente como hash seguro y no puede ser consultada por otros administradores.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../js/config/api-admin.config.js" defer></script>
+  <script src="../../js/core/api-client.js" defer></script>
+  <script src="../../js/modules/autenticacion.js" defer></script>
+  <script src="../../js/components/modal-admin.js" defer></script>
+  <script src="../../js/modules/cambiar-contrasena.js?v=20260820-1" defer></script>
+</body>
+</html>

@@ -20,6 +20,9 @@
   const RUTA_INICIAR_SESION =
     "../autenticacion/iniciar-sesion.html";
 
+  const RUTA_CAMBIO_OBLIGATORIO =
+    "../autenticacion/cambiar-contrasena.html?obligatorio=1";
+
   /*
    * Guarda temporalmente en memoria los datos
    * de la sesión confirmada.
@@ -189,7 +192,10 @@
           ),
 
         nombreEstado:
-          administrador.nombreEstado
+          administrador.nombreEstado,
+
+        requiereCambioContrasena:
+          Boolean(administrador.requiereCambioContrasena)
       },
 
       fechaEmision:
@@ -283,6 +289,11 @@
         obtenerDatosSesion(
           respuesta
         );
+
+      if (sesion.administrador.requiereCambioContrasena) {
+        global.location.replace(RUTA_CAMBIO_OBLIGATORIO);
+        return null;
+      }
 
       publicarSesion(
         sesion

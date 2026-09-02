@@ -218,11 +218,44 @@ function construirEncabezado() {
 
         <nav aria-label="Menú principal">
           <ul
-            class="menu"
-            id="menuPrincipal"
+          class="menu"
+          id="menuPrincipal"
+      >
+        ${enlaces}
+
+        <li class="menu__item-admin">
+          <a
+            class="menu__enlace menu__enlace--admin"
+            href="${base}../panel-administrativo/pages/autenticacion/iniciar-sesion.html"
+            aria-label="Acceder al panel administrativo"
           >
-            ${enlaces}
-          </ul>
+            <svg
+              class="menu__icono-admin"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect
+                x="5"
+                y="11"
+                width="14"
+                height="10"
+                rx="2"
+              ></rect>
+
+              <path
+                d="M8 11V7a4 4 0 0 1 8 0v4"
+              ></path>
+            </svg>
+
+            <span>Admin</span>
+          </a>
+        </li>
+      </ul>
         </nav>
 
       </div>
@@ -622,6 +655,12 @@ function activarLightboxGaleria() {
         return;
       }
 
+      if (item.dataset.lightboxActivo === "true") {
+        return;
+      }
+
+      item.dataset.lightboxActivo = "true";
+
       item.setAttribute(
         "tabindex",
         "0"
@@ -667,39 +706,43 @@ function activarLightboxGaleria() {
   );
 
 
-  botonCerrar.addEventListener(
-    "click",
-    cerrarLightbox
-  );
+  if (lightbox.dataset.eventosActivos !== "true") {
+    lightbox.dataset.eventosActivos = "true";
+
+    botonCerrar.addEventListener(
+      "click",
+      cerrarLightbox
+    );
 
 
-  lightbox.addEventListener(
-    "click",
-    (evento) => {
-      if (
-        evento.target ===
-        lightbox
-      ) {
-        cerrarLightbox();
+    lightbox.addEventListener(
+      "click",
+      (evento) => {
+        if (
+          evento.target ===
+          lightbox
+        ) {
+          cerrarLightbox();
+        }
       }
-    }
-  );
+    );
 
 
-  document.addEventListener(
-    "keydown",
-    (evento) => {
-      if (
-        evento.key ===
-          "Escape" &&
-        lightbox.classList.contains(
-          "lightbox--activo"
-        )
-      ) {
-        cerrarLightbox();
+    document.addEventListener(
+      "keydown",
+      (evento) => {
+        if (
+          evento.key ===
+            "Escape" &&
+          lightbox.classList.contains(
+            "lightbox--activo"
+          )
+        ) {
+          cerrarLightbox();
+        }
       }
-    }
-  );
+    );
+  }
 }
 
 
@@ -792,6 +835,40 @@ function cargarConfiguracionPublica() {
 
 
 /* ============================================================
+   8. CHAT PÚBLICO REUTILIZABLE
+   ============================================================ */
+
+function cargarChatPublico() {
+  const base = obtenerBase();
+
+  if (!document.getElementById("estilosChatPublico")) {
+    const estilos = document.createElement("link");
+    estilos.id = "estilosChatPublico";
+    estilos.rel = "stylesheet";
+    estilos.href = `${base}css/chat-publico.css?v=20260820-1`;
+    document.head.appendChild(estilos);
+  }
+
+  if (window.CHAT_PUBLICO_LHVR?.iniciar) {
+    window.CHAT_PUBLICO_LHVR.iniciar();
+    return;
+  }
+
+  if (document.getElementById("scriptChatPublico")) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.id = "scriptChatPublico";
+  script.src = `${base}js/chat-publico.js?v=20260820-2`;
+  script.addEventListener("load", () => {
+    window.CHAT_PUBLICO_LHVR?.iniciar?.();
+  });
+  document.body.appendChild(script);
+}
+
+
+/* ============================================================
    INICIO
    ============================================================ */
 
@@ -821,5 +898,7 @@ document.addEventListener(
      * estáticos por los valores de configuracion_sitio.
      */
     cargarConfiguracionPublica();
+
+    cargarChatPublico();
   }
 );

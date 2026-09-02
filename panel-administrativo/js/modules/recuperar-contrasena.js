@@ -117,6 +117,17 @@
     );
   }
 
+  function cargarSolicitudDesdeEnlace() {
+    const parametros = new URLSearchParams(global.location.search);
+    const tokenRecuperacion = String(parametros.get("tokenRecuperacion") || "").trim();
+    if (!tokenRecuperacion) return;
+    const correo = normalizarCorreo(parametros.get("correo") || "");
+    sessionStorage.setItem(CLAVE_TOKEN_RECUPERACION, tokenRecuperacion);
+    sessionStorage.setItem(CLAVE_CORREO_RECUPERACION, correo);
+    sessionStorage.setItem(CLAVE_EXPIRACION_RECUPERACION, "");
+    global.history.replaceState({}, document.title, global.location.pathname);
+  }
+
   /**
    * Guarda el token autorizado para
    * crear la contraseña nueva.
@@ -728,6 +739,7 @@
    * de recuperación.
    */
   function configurarFormularios() {
+    cargarSolicitudDesdeEnlace();
     const formularioCorreo =
       document.getElementById(
         "formularioSolicitarRecuperacion"

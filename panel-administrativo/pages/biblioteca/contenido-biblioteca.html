@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Administración de Biblioteca BiblioCRA del LHVR"><title>Biblioteca BiblioCRA | Panel administrativo LHVR</title>
+<link rel="stylesheet" href="../../css/variables-admin.css"><link rel="stylesheet" href="../../css/estilos-admin.css"><link rel="stylesheet" href="../../css/barra-lateral.css"><link rel="stylesheet" href="../../css/formularios-admin.css"><link rel="stylesheet" href="../../css/alertas-admin.css"><link rel="stylesheet" href="../../css/modales-admin.css"><link rel="stylesheet" href="../../css/gestion-contenido-admin.css"><link rel="stylesheet" href="../../css/biblioteca-admin.css?v=20260820-9"><link rel="stylesheet" href="../../css/responsive-admin.css"></head>
+<body class="pagina-contenido" data-titulo-pagina="Biblioteca BiblioCRA" data-pagina-slug="biblioteca"><div id="cargadorProteccion" class="cargador-proteccion" role="status"><div class="cargador-proteccion__contenido"><span class="cargador-proteccion__indicador"></span><div><p class="cargador-proteccion__titulo">Comprobando sesión</p><p class="cargador-proteccion__texto">Espere un momento mientras validamos su acceso.</p></div></div></div>
+<main id="contenidoPagina" data-titulo="Biblioteca BiblioCRA" hidden><div id="contenidoBibliotecaAdmin" class="admin-pagina pagina-contenido-admin biblioteca-admin" hidden>
+<section class="admin-pagina__encabezado"><div class="admin-pagina__titulo-contenedor"><span class="admin-pagina__etiqueta">Gestión de páginas</span><h1 class="admin-pagina__titulo">Biblioteca BiblioCRA</h1><p class="admin-pagina__descripcion">Administre el encabezado, los textos y las tarjetas que aparecen en la página pública.</p></div><div class="admin-pagina__acciones"><button id="botonRecargarBiblioteca" class="admin-boton admin-boton--secundario" type="button">Recargar contenido</button><a class="admin-boton admin-boton--primario" href="../../../frontend-publico/pages/biblioteca-recursos.html" target="_blank" rel="noopener">Ver página pública</a></div></section>
+<section class="admin-panel pagina-contenido-admin__resumen"><header class="admin-panel__encabezado"><div><h2 class="admin-panel__titulo">Información de la página</h2><p class="admin-panel__descripcion">Datos generales de la página Biblioteca.</p></div></header><div class="admin-panel__contenido"><dl class="pagina-contenido-admin__datos"><div class="pagina-contenido-admin__dato"><dt>Nombre</dt><dd id="nombrePaginaBiblioteca">Cargando...</dd></div><div class="pagina-contenido-admin__dato"><dt>Dirección</dt><dd id="rutaPaginaBiblioteca">Cargando...</dd></div><div class="pagina-contenido-admin__dato"><dt>Estado</dt><dd><span id="estadoPaginaBiblioteca" class="admin-etiqueta">Cargando...</span></dd></div><div class="pagina-contenido-admin__dato"><dt>Última actualización</dt><dd id="fechaPaginaBiblioteca">Cargando...</dd></div></dl></div></section>
+<div id="mensajeBiblioteca" class="alerta-admin" role="alert" aria-live="polite" hidden></div>
+<section class="admin-panel"><header class="admin-panel__encabezado"><div><h2 class="admin-panel__titulo">Encabezado de la página</h2><p class="admin-panel__descripcion">Edite el título y la descripción principal. Este bloque no es una tarjeta.</p></div></header><div class="admin-panel__contenido"><form id="formularioEncabezadoBiblioteca" class="formulario-admin"><div class="formulario-admin__cuadricula"><div class="formulario-admin__grupo"><label class="formulario-admin__etiqueta" for="tituloBiblioteca">Título *</label><input id="tituloBiblioteca" class="formulario-admin__control" maxlength="200" required></div><div class="formulario-admin__grupo"><label class="formulario-admin__etiqueta" for="estadoBiblioteca">Estado *</label><select id="estadoBiblioteca" class="formulario-admin__control" required><option value="">Seleccione un estado</option></select></div></div><div class="formulario-admin__grupo"><label class="formulario-admin__etiqueta" for="descripcionBiblioteca">Descripción</label><textarea id="descripcionBiblioteca" class="formulario-admin__control formulario-admin__control--textarea" maxlength="500" rows="3"></textarea></div><div class="formulario-admin__acciones"><button id="botonGuardarEncabezadoBiblioteca" class="admin-boton admin-boton--primario" type="submit">Guardar encabezado</button></div></form></div></section>
+<section class="admin-panel"><header class="admin-panel__encabezado biblioteca-admin__barra"><div><h2 class="admin-panel__titulo">Contenido de Biblioteca</h2><p class="admin-panel__descripcion">Administre las tarjetas de cada sección. Los formularios se abren en una ventana separada.</p></div><div class="biblioteca-admin__version"><label class="formulario-admin__grupo"><span class="formulario-admin__etiqueta">Versión</span><select id="selectorColeccionBiblioteca" class="formulario-admin__control"></select></label><div class="biblioteca-admin__acciones"><button id="botonEliminarVersionBiblioteca" class="admin-boton admin-boton--peligro" type="button">Eliminar versión</button><button id="botonPublicarBiblioteca" class="admin-boton admin-boton--dorado" type="button">Publicar versión</button></div></div></header><div id="seccionesBibliotecaAdmin" class="admin-panel__contenido biblioteca-admin__secciones"></div></section>
+<section class="admin-panel"><header class="admin-panel__encabezado"><div><h2 class="admin-panel__titulo">Versiones e importaciones</h2><p class="admin-panel__descripcion">Consulte y elimine versiones completas de Biblioteca. Al eliminar una versión también se retira su historial de importación relacionado.</p></div></header><div class="admin-panel__contenido"><div class="biblioteca-admin__tabla-contenedor"><table class="biblioteca-admin__tabla"><thead><tr><th>Versión</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="cuerpoVersionesBiblioteca"></tbody></table></div><p id="versionesBibliotecaVacias" class="biblioteca-admin__vacio" hidden>No hay versiones registradas.</p></div></section>
+<footer class="pagina-contenido-admin__pie"><p>© 2026 Liceo Hernán Vargas Ramírez</p><span>Gestión de la página Biblioteca</span></footer></div></main>
+<section id="modalTarjetaBiblioteca" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalTarjetaBiblioteca" hidden>
+  <div class="gestion-contenido__modal-contenido">
+    <header class="gestion-contenido__modal-encabezado">
+      <h2 id="tituloModalTarjetaBiblioteca">Editar tarjeta</h2>
+      <button id="botonCerrarModalTarjetaBiblioteca" class="admin-boton admin-boton--texto" type="button" aria-label="Cerrar formulario">Cerrar</button>
+    </header>
+    <form id="formularioTarjetaBiblioteca" class="gestion-contenido__formulario">
+      <div class="gestion-contenido__modal-cuerpo formulario-admin__cuadricula">
+        <label class="formulario-admin__grupo formulario-admin__grupo--completo">
+          <span class="formulario-admin__etiqueta">Título *</span>
+          <input id="tarjetaBibliotecaTitulo" class="formulario-admin__control" name="titulo" maxlength="250" required>
+        </label>
+        <label class="formulario-admin__grupo">
+          <span class="formulario-admin__etiqueta">Etiqueta</span>
+          <input id="tarjetaBibliotecaEtiqueta" class="formulario-admin__control" name="etiqueta" maxlength="80">
+        </label>
+        <label class="formulario-admin__grupo">
+          <span class="formulario-admin__etiqueta">Orden</span>
+          <input id="tarjetaBibliotecaOrden" class="formulario-admin__control" name="orden" type="number" min="1" max="99" required>
+        </label>
+        <label class="formulario-admin__grupo formulario-admin__grupo--completo">
+          <span class="formulario-admin__etiqueta">Descripción *</span>
+          <textarea id="tarjetaBibliotecaDescripcion" class="formulario-admin__control formulario-admin__control--textarea" name="descripcion" rows="5" maxlength="4000" required></textarea>
+        </label>
+
+        <div id="campoImagenTarjetaBiblioteca" class="formulario-admin__grupo formulario-admin__grupo--completo">
+          <span class="formulario-admin__etiqueta">Imagen principal</span>
+          <div class="biblioteca-admin__selector-imagen">
+            <div class="biblioteca-admin__vista-imagen">
+              <img id="vistaPreviaImagenBiblioteca" alt="Vista previa de la imagen seleccionada" hidden>
+              <span id="imagenBibliotecaVacia">No hay una imagen seleccionada.</span>
+            </div>
+            <div class="biblioteca-admin__selector-acciones">
+              <input id="archivoImagenBiblioteca" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" hidden>
+              <button id="botonSeleccionarImagenBiblioteca" class="admin-boton admin-boton--secundario" type="button">Seleccionar imagen</button>
+              <button id="botonQuitarImagenBiblioteca" class="admin-boton admin-boton--texto" type="button">Quitar imagen</button>
+            </div>
+          </div>
+          <small>Formatos JPG, PNG o WebP. Tamaño máximo: 5 MB.</small>
+        </div>
+
+        <div id="campoImagenesTarjetaBiblioteca" class="formulario-admin__grupo formulario-admin__grupo--completo">
+          <span class="formulario-admin__etiqueta">Imágenes adicionales</span>
+          <div id="vistasImagenesBiblioteca" class="biblioteca-admin__miniaturas"></div>
+          <div class="biblioteca-admin__selector-acciones">
+            <input id="archivosImagenesBiblioteca" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" multiple hidden>
+            <button id="botonSeleccionarImagenesBiblioteca" class="admin-boton admin-boton--secundario" type="button">Seleccionar imágenes</button>
+            <button id="botonQuitarImagenesBiblioteca" class="admin-boton admin-boton--texto" type="button">Quitar todas</button>
+          </div>
+        </div>
+
+        <label id="campoAltImagenTarjetaBiblioteca" class="formulario-admin__grupo formulario-admin__grupo--completo">
+          <span class="formulario-admin__etiqueta">Texto alternativo de la imagen</span>
+          <input id="tarjetaBibliotecaAltImagen" class="formulario-admin__control" name="altImagen" maxlength="300">
+        </label>
+        <label class="formulario-admin__grupo formulario-admin__grupo--completo">
+          <span class="formulario-admin__etiqueta">Enlace o botón</span>
+          <input id="tarjetaBibliotecaUrl" class="formulario-admin__control" name="url" maxlength="1000" placeholder="https://... o una ruta interna">
+        </label>
+        <label class="formulario-admin__grupo">
+          <span class="formulario-admin__etiqueta">Texto del botón</span>
+          <input id="tarjetaBibliotecaTextoBoton" class="formulario-admin__control" name="textoBoton" maxlength="80" placeholder="Ver recurso">
+        </label>
+        <label class="formulario-admin__grupo">
+          <span class="formulario-admin__etiqueta">Estado</span>
+          <select id="tarjetaBibliotecaEstado" class="formulario-admin__control" name="estado"><option value="PUBLICADO">PUBLICADO</option><option value="BORRADOR">BORRADOR</option><option value="INACTIVO">INACTIVO</option><option value="ARCHIVADO">ARCHIVADO</option></select>
+        </label>
+      </div>
+      <footer class="gestion-contenido__modal-pie">
+        <button id="botonCancelarTarjetaBiblioteca" class="admin-boton admin-boton--secundario" type="button">Cancelar</button>
+        <button class="admin-boton admin-boton--primario" type="submit">Guardar cambios</button>
+      </footer>
+    </form>
+  </div>
+</section>
+<script src="../../js/config/api-admin.config.js" defer></script><script src="../../js/core/api-client.js" defer></script><script src="../../js/core/sesion-administrador.js" defer></script><script src="../../js/modules/autenticacion.js" defer></script><script src="../../js/core/proteccion-rutas.js" defer></script><script src="../../js/components/alertas-admin.js" defer></script><script src="../../js/components/modal-admin.js" defer></script><script src="../../js/modules/biblioteca-contenido.js?v=20260820-9" defer></script><script src="../../js/components/layout-admin.js" defer></script></body></html>

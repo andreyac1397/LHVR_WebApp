@@ -140,3 +140,9 @@ body[data-pagina="docentes"] .cuadricula {
     font-size: 0.74rem;
   }
 }
+.docente__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}

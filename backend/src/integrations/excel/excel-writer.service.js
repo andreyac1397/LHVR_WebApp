@@ -82,7 +82,62 @@ class ExcelWriterService {
     );
   }
 
-  crearArchivos(filas) {
+  normalizarHojas(hojas) {
+    if (!Array.isArray(hojas) || hojas.length === 0) {
+      throw new Error(
+        "Se requiere al menos una hoja para crear el Excel."
+      );
+    }
+
+    const nombresUsados = new Set();
+
+    return hojas.map((hoja, indice) => {
+      if (!Array.isArray(hoja?.filas) || hoja.filas.length === 0) {
+        throw new Error(
+          `La hoja ${indice + 1} debe contener al menos una fila.`
+        );
+      }
+
+      const base = String(hoja.nombre || `Hoja ${indice + 1}`)
+        .replace(/[\\/*?:\[\]]/g, "-")
+        .trim()
+        .slice(0, 31) || `Hoja ${indice + 1}`;
+      let nombre = base;
+      let consecutivo = 2;
+
+      while (nombresUsados.has(nombre.toLocaleLowerCase("es"))) {
+        const sufijo = ` (${consecutivo})`;
+        nombre = `${base.slice(0, 31 - sufijo.length)}${sufijo}`;
+        consecutivo += 1;
+      }
+
+      nombresUsados.add(nombre.toLocaleLowerCase("es"));
+
+      return {
+        nombre,
+        filas: hoja.filas
+      };
+    });
+  }
+
+  crearArchivos(hojas) {
+    const tiposHojas = hojas.map((_hoja, indice) =>
+      '<Override PartName="/xl/worksheets/sheet' +
+      `${indice + 1}.xml" ContentType="application/` +
+      'vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
+    ).join("");
+    const hojasLibro = hojas.map((hoja, indice) =>
+      `<sheet name="${this.escaparXml(hoja.nombre)}" ` +
+      `sheetId="${indice + 1}" r:id="rId${indice + 1}"/>`
+    ).join("");
+    const relacionesHojas = hojas.map((_hoja, indice) =>
+      `<Relationship Id="rId${indice + 1}" ` +
+      'Type="http://schemas.openxmlformats.org/' +
+      'officeDocument/2006/relationships/worksheet" ' +
+      `Target="worksheets/sheet${indice + 1}.xml"/>`
+    ).join("");
+    const relacionEstilos = hojas.length + 1;
+
     return [
       {
         nombre: "[Content_Types].xml",
@@ -95,8 +150,7 @@ class ExcelWriterService {
           '<Default Extension="xml" ContentType="application/xml"/>' +
           '<Override PartName="/xl/workbook.xml" ContentType="application/' +
           'vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>' +
-          '<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/' +
-          'vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>' +
+          tiposHojas +
           '<Override PartName="/xl/styles.xml" ContentType="application/' +
           'vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>' +
           '</Types>'
@@ -119,8 +173,7 @@ class ExcelWriterService {
           '<workbook xmlns="http://schemas.openxmlformats.org/' +
           'spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/' +
           'officeDocument/2006/relationships">' +
-          '<sheets><sheet name="Horarios" sheetId="1" r:id="rId1"/>' +
-          '</sheets></workbook>'
+          `<sheets>${hojasLibro}</sheets></workbook>`
       },
       {
         nombre: "xl/_rels/workbook.xml.rels",
@@ -128,10 +181,8 @@ class ExcelWriterService {
           '<?xml version="1.0" encoding="UTF-8"?>' +
           '<Relationships xmlns="http://schemas.openxmlformats.org/' +
           'package/2006/relationships">' +
-          '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/' +
-          'officeDocument/2006/relationships/worksheet" ' +
-          'Target="worksheets/sheet1.xml"/>' +
-          '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/' +
+          relacionesHojas +
+          `<Relationship Id="rId${relacionEstilos}" Type="http://schemas.openxmlformats.org/` +
           'officeDocument/2006/relationships/styles" Target="styles.xml"/>' +
           '</Relationships>'
       },
@@ -152,10 +203,10 @@ class ExcelWriterService {
           'borderId="0" xfId="0" applyFont="1"/></cellXfs>' +
           '</styleSheet>'
       },
-      {
-        nombre: "xl/worksheets/sheet1.xml",
-        contenido: this.crearHoja(filas)
-      }
+      ...hojas.map((hoja, indice) => ({
+        nombre: `xl/worksheets/sheet${indice + 1}.xml`,
+        contenido: this.crearHoja(hoja.filas)
+      }))
     ];
   }
 
@@ -233,7 +284,20 @@ class ExcelWriterService {
       );
     }
 
-    return this.crearZip(this.crearArchivos(filas));
+    return this.crearLibro([
+      {
+        nombre: "Horarios",
+        filas
+      }
+    ]);
+  }
+
+  crearLibro(hojas) {
+    const hojasNormalizadas = this.normalizarHojas(hojas);
+
+    return this.crearZip(
+      this.crearArchivos(hojasNormalizadas)
+    );
   }
 }
 

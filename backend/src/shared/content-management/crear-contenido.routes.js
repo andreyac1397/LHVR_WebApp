@@ -51,6 +51,13 @@ function crearContenidoRoutes(controlador, opciones = {}) {
     controlador.listarImportaciones
   );
 
+  if (typeof opciones.descargarExportacion === "function") {
+    router.get(
+      "/colecciones/:idColeccion/exportar.xlsx",
+      opciones.descargarExportacion
+    );
+  }
+
   if (typeof opciones.analizarArchivo === "function") {
     router.post(
       "/analizar-archivo",
@@ -69,6 +76,26 @@ function crearContenidoRoutes(controlador, opciones = {}) {
     controlador.publicarColeccion
   );
 
+  router.put(
+    "/colecciones/:idColeccion/guardar-cambios",
+    controlador.guardarCambios
+  );
+
+  router.post(
+    "/colecciones/:idColeccion/secciones",
+    controlador.crearSeccion
+  );
+
+  router.delete(
+    "/colecciones/:idColeccion/secciones/:seccion",
+    controlador.eliminarSeccion
+  );
+
+  router.delete(
+    "/colecciones/:idColeccion",
+    controlador.eliminarColeccion
+  );
+
   router.post(
     "/elementos",
     controlador.guardarElemento
@@ -77,6 +104,11 @@ function crearContenidoRoutes(controlador, opciones = {}) {
   router.put(
     "/elementos/:idElemento",
     controlador.actualizarElemento
+  );
+
+  router.delete(
+    "/elementos/:idElemento/permanente",
+    controlador.eliminarElemento
   );
 
   router.delete(

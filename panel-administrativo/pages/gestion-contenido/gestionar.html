@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="../../css/barra-lateral.css">
   <link rel="stylesheet" href="../../css/alertas-admin.css">
   <link rel="stylesheet" href="../../css/modales-admin.css">
+  <link rel="stylesheet" href="../../css/formularios-admin.css">
   <link rel="stylesheet" href="../../css/gestion-contenido-admin.css">
+  <link rel="stylesheet" href="../../css/boletines-correo.css">
   <link rel="stylesheet" href="../../css/responsive-admin.css">
 </head>
 <body data-titulo-pagina="Gestión de contenido">
@@ -26,18 +28,37 @@
 
   <main id="contenidoPagina" data-titulo="Gestión de contenido" hidden>
     <div id="contenidoDashboard" class="admin-pagina gestion-contenido" hidden>
-      <header class="gestion-contenido__encabezado">
-        <div>
+      <header class="gestion-contenido__encabezado admin-pagina__encabezado">
+        <div class="admin-pagina__titulo-contenedor">
           <p class="admin-pagina__etiqueta">Contenido público</p>
-          <h1 id="tituloGestionContenido" class="gestion-contenido__titulo">Gestión de contenido</h1>
-          <p id="descripcionGestionContenido" class="gestion-contenido__descripcion"></p>
+          <h1 id="tituloGestionContenido" class="gestion-contenido__titulo admin-pagina__titulo">Gestión de contenido</h1>
+          <p id="descripcionGestionContenido" class="gestion-contenido__descripcion admin-pagina__descripcion"></p>
         </div>
-        <div class="gestion-contenido__acciones">
+        <div class="gestion-contenido__acciones admin-pagina__acciones">
           <button id="botonRecargarContenido" class="admin-boton admin-boton--secundario" type="button">Recargar</button>
           <button id="botonImportarContenido" class="admin-boton admin-boton--secundario" type="button">Importar</button>
           <button id="botonNuevoElemento" class="admin-boton admin-boton--primario" type="button">Agregar</button>
         </div>
       </header>
+
+      <section id="informacionPaginaModulo" class="admin-panel pagina-contenido-admin__resumen" hidden>
+        <header class="admin-panel__encabezado"><div><h2 class="admin-panel__titulo">Información de la página</h2><p class="admin-panel__descripcion">Datos generales de la página pública.</p></div></header>
+        <div class="admin-panel__contenido"><dl class="pagina-contenido-admin__datos">
+          <div class="pagina-contenido-admin__dato"><dt>Nombre</dt><dd id="nombrePaginaModulo">Cargando...</dd></div>
+          <div class="pagina-contenido-admin__dato"><dt>Dirección</dt><dd id="rutaPaginaModulo">Cargando...</dd></div>
+          <div class="pagina-contenido-admin__dato"><dt>Estado</dt><dd><span id="estadoPaginaModulo" class="admin-etiqueta">Cargando...</span></dd></div>
+          <div class="pagina-contenido-admin__dato"><dt>Última actualización</dt><dd id="fechaPaginaModulo">Cargando...</dd></div>
+        </dl></div>
+      </section>
+
+      <section id="encabezadoPaginaModulo" class="admin-panel" hidden>
+        <header class="admin-panel__encabezado"><div><h2 class="admin-panel__titulo">Encabezado de la página</h2><p class="admin-panel__descripcion">Edite el título y la descripción que aparecen en la franja principal.</p></div></header>
+        <div class="admin-panel__contenido"><form id="formularioEncabezadoModulo" class="formulario-admin">
+          <div class="formulario-admin__cuadricula"><div class="formulario-admin__grupo"><label class="formulario-admin__etiqueta" for="tituloEncabezadoModulo">Título *</label><input id="tituloEncabezadoModulo" class="formulario-admin__control" maxlength="200" required></div><div class="formulario-admin__grupo"><label class="formulario-admin__etiqueta" for="estadoEncabezadoModulo">Estado *</label><select id="estadoEncabezadoModulo" class="formulario-admin__control" required></select></div></div>
+          <div class="formulario-admin__grupo"><label class="formulario-admin__etiqueta" for="descripcionEncabezadoModulo">Descripción</label><textarea id="descripcionEncabezadoModulo" class="formulario-admin__control formulario-admin__control--textarea" maxlength="500" rows="3"></textarea></div>
+          <div class="formulario-admin__acciones"><button class="admin-boton admin-boton--primario" type="submit">Guardar encabezado</button></div>
+        </form></div>
+      </section>
 
       <section class="gestion-contenido__resumen" aria-label="Resumen">
         <article class="gestion-contenido__tarjeta-resumen"><strong id="resumenColecciones">0</strong><span>Versiones</span></article>
@@ -46,22 +67,27 @@
         <article class="gestion-contenido__tarjeta-resumen"><strong id="resumenBorradores">0</strong><span>Borradores</span></article>
       </section>
 
-      <section class="gestion-contenido__panel">
-        <header class="gestion-contenido__panel-encabezado">
+      <section class="gestion-contenido__panel admin-panel">
+        <header class="gestion-contenido__panel-encabezado admin-panel__encabezado">
           <div class="gestion-contenido__campo">
             <label for="selectorColeccion">Versión de contenido</label>
             <select id="selectorColeccion" class="gestion-contenido__control"></select>
           </div>
           <div class="gestion-contenido__acciones">
             <button id="botonNuevaColeccion" class="admin-boton admin-boton--secundario" type="button">Nueva versión</button>
+            <button id="botonEliminarColeccion" class="admin-boton admin-boton--peligro" type="button" hidden>Eliminar versión</button>
             <button id="botonPublicarColeccion" class="admin-boton admin-boton--dorado" type="button">Publicar versión</button>
           </div>
         </header>
         <div class="gestion-contenido__panel-cuerpo">
-          <div class="gestion-contenido__filtros">
+          <div id="filtrosContenidoGenerico" class="gestion-contenido__filtros">
             <label class="gestion-contenido__campo">
               <span>Buscar</span>
               <input id="filtroTextoContenido" class="gestion-contenido__control" type="search" placeholder="Título o descripción">
+            </label>
+            <label id="campoFiltroCategoriaContenido" class="gestion-contenido__campo" hidden>
+              <span>Categoría</span>
+              <select id="filtroCategoriaContenido" class="gestion-contenido__control"><option value="">Todas</option></select>
             </label>
             <label class="gestion-contenido__campo">
               <span>Estado</span>
@@ -75,12 +101,117 @@
             </label>
           </div>
 
-          <div class="gestion-contenido__tabla-contenedor">
+          <div id="tablaContenidoGenerica" class="gestion-contenido__tabla-contenedor">
             <table class="gestion-contenido__tabla">
               <thead><tr><th>Contenido</th><th>Fecha</th><th>Estado</th><th>Orden</th><th>Acciones</th></tr></thead>
               <tbody id="cuerpoTablaContenido"></tbody>
             </table>
             <p id="estadoVacioContenido" class="gestion-contenido__estado-vacio">No hay registros en esta versión.</p>
+          </div>
+
+          <section id="seccionTarjetasContenidoModulo" class="admin-panel comunidad-admin" hidden>
+            <header class="admin-panel__encabezado">
+              <div><h2 id="tituloTarjetasContenidoModulo" class="admin-panel__titulo">Contenido</h2><p class="admin-panel__descripcion">Administre las tarjetas publicadas en esta página.</p></div>
+              <div id="accionesTarjetasContenidoModulo" class="admin-panel__acciones"></div>
+            </header>
+            <div class="admin-panel__contenido">
+              <div id="tarjetasContenidoModulo" class="comunidad-admin__tarjetas" aria-live="polite"></div>
+            </div>
+          </section>
+
+          <section id="editorHorarioAdmin" class="horario-admin" aria-labelledby="tituloEditorHorarioAdmin" hidden>
+            <header class="horario-admin__barra">
+              <div>
+                <p class="horario-admin__eyebrow">Vista previa de la versión</p>
+                <h2 id="tituloEditorHorarioAdmin">Horario semanal editable</h2>
+                <p>Seleccione un nivel y una sección. Edite las celdas y guarde los cambios antes de publicar.</p>
+              </div>
+              <div class="horario-admin__guardado">
+                <span id="estadoCambiosHorario" aria-live="polite">Sin cambios pendientes</span>
+                <button id="botonGuardarHorario" class="admin-boton admin-boton--primario" type="button" disabled>
+                  Guardar cambios
+                </button>
+              </div>
+            </header>
+
+            <div class="horario-admin__selectores">
+              <label class="gestion-contenido__campo">
+                <span>Nivel</span>
+                <select id="selectorNivelHorario" class="gestion-contenido__control"></select>
+              </label>
+              <label class="gestion-contenido__campo">
+                <span>Sección</span>
+                <select id="selectorSeccionHorario" class="gestion-contenido__control"></select>
+              </label>
+              <div id="accionesHorario" class="horario-admin__acciones-seccion" aria-label="Acciones del horario">
+                <button id="botonDescargarHorarios" class="admin-boton admin-boton--secundario" type="button">
+                  Descargar Excel
+                </button>
+                <button id="botonNuevaSeccionHorario" class="admin-boton admin-boton--secundario" type="button">
+                  Nueva sección
+                </button>
+                <button id="botonEliminarSeccionHorario" class="admin-boton admin-boton--peligro" type="button">
+                  Eliminar sección
+                </button>
+              </div>
+            </div>
+
+            <div id="contenidoEditorHorario"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="gestionCorreosBoletines" class="admin-panel boletines-correo" hidden>
+        <header class="admin-panel__encabezado boletines-correo__encabezado">
+          <div>
+            <h2 class="admin-panel__titulo">Gestión de correos</h2>
+            <p class="admin-panel__descripcion">Administre el directorio institucional y consulte el historial de boletines enviados.</p>
+          </div>
+          <div class="boletines-correo__pestanas" role="tablist" aria-label="Secciones de correo">
+            <button class="admin-boton admin-boton--primario" id="pestanaDirectorioCorreo" type="button" role="tab" aria-selected="true">Directorio</button>
+            <button class="admin-boton admin-boton--secundario" id="pestanaHistorialCorreo" type="button" role="tab" aria-selected="false">Historial de envíos</button>
+          </div>
+        </header>
+
+        <div class="admin-panel__contenido">
+          <div id="panelDirectorioCorreo" role="tabpanel" aria-labelledby="pestanaDirectorioCorreo">
+            <div class="boletines-correo__filtros">
+              <label class="gestion-contenido__campo boletines-correo__buscar">
+                <span>Buscar</span>
+                <input id="buscarDestinatarioCorreo" class="gestion-contenido__control" type="search" placeholder="Nombre o correo electrónico">
+              </label>
+              <label class="gestion-contenido__campo">
+                <span>Categoría</span>
+                <select id="filtroCategoriaCorreo" class="gestion-contenido__control"><option value="">Todas</option></select>
+              </label>
+              <label class="gestion-contenido__campo">
+                <span>Estado</span>
+                <select id="filtroEstadoCorreo" class="gestion-contenido__control"><option value="">Todos</option><option value="true">Activos</option><option value="false">Inactivos</option></select>
+              </label>
+              <button id="botonNuevoDestinatarioCorreo" class="admin-boton admin-boton--primario" type="button">Nuevo destinatario</button>
+            </div>
+            <div class="gestion-contenido__tabla-contenedor">
+              <table class="gestion-contenido__tabla boletines-correo__tabla">
+                <thead><tr><th scope="col">Seleccionar</th><th scope="col">Nombre</th><th scope="col">Correo</th><th scope="col">Categorías</th><th scope="col">Estado</th><th scope="col">Acciones</th></tr></thead>
+                <tbody id="cuerpoDestinatariosCorreo"></tbody>
+              </table>
+              <p id="vacioDestinatariosCorreo" class="gestion-contenido__estado-vacio" hidden>No hay destinatarios que coincidan con los filtros.</p>
+            </div>
+            <div class="boletines-correo__paginacion">
+              <button id="anteriorDestinatariosCorreo" class="admin-boton admin-boton--secundario" type="button">Anterior</button>
+              <span id="paginaDestinatariosCorreo">Página 1 de 1</span>
+              <button id="siguienteDestinatariosCorreo" class="admin-boton admin-boton--secundario" type="button">Siguiente</button>
+            </div>
+          </div>
+
+          <div id="panelHistorialCorreo" role="tabpanel" aria-labelledby="pestanaHistorialCorreo" hidden>
+            <div class="gestion-contenido__tabla-contenedor">
+              <table class="gestion-contenido__tabla boletines-correo__tabla">
+                <thead><tr><th scope="col">Boletín</th><th scope="col">Fecha</th><th scope="col">Destinatarios</th><th scope="col">Enviados</th><th scope="col">Fallidos</th><th scope="col">Estado</th><th scope="col">Acción</th></tr></thead>
+                <tbody id="cuerpoHistorialCorreo"></tbody>
+              </table>
+              <p id="vacioHistorialCorreo" class="gestion-contenido__estado-vacio" hidden>No hay envíos de boletines registrados.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -88,18 +219,56 @@
   </main>
 
   <section id="modalElemento" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalElemento" hidden>
-    <div class="gestion-contenido__modal-contenido">
-      <header class="gestion-contenido__modal-encabezado">
+    <div class="gestion-contenido__modal-contenido comunidad-modal">
+      <header class="gestion-contenido__modal-encabezado comunidad-modal__encabezado">
         <h2 id="tituloModalElemento">Agregar contenido</h2>
-        <button id="botonCerrarModalElemento" class="admin-boton admin-boton--texto" type="button" aria-label="Cerrar">Cerrar</button>
+        <button id="botonCerrarModalElemento" class="comunidad-modal__cerrar" type="button" aria-label="Cerrar">×</button>
       </header>
       <form id="formularioElemento" class="gestion-contenido__formulario">
-        <div class="gestion-contenido__modal-cuerpo">
+        <div class="gestion-contenido__modal-cuerpo comunidad-modal__contenido">
           <div id="camposElemento" class="gestion-contenido__cuadricula"></div>
         </div>
         <footer class="gestion-contenido__modal-pie">
           <button id="botonCancelarElemento" class="admin-boton admin-boton--secundario" type="button">Cancelar</button>
           <button class="admin-boton admin-boton--primario" type="submit">Guardar</button>
+        </footer>
+      </form>
+    </div>
+  </section>
+
+  <section id="modalSeccionHorario" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalSeccionHorario" hidden>
+    <div class="gestion-contenido__modal-contenido">
+      <header class="gestion-contenido__modal-encabezado">
+        <div>
+          <h2 id="tituloModalSeccionHorario">Crear sección de horario</h2>
+          <p>Se agregarán 12 lecciones vacías y los recreos institucionales.</p>
+        </div>
+        <button id="botonCerrarModalSeccionHorario" class="admin-boton admin-boton--texto" type="button">Cerrar</button>
+      </header>
+      <form id="formularioSeccionHorario" class="gestion-contenido__formulario">
+        <div class="gestion-contenido__modal-cuerpo gestion-contenido__cuadricula">
+          <label class="gestion-contenido__campo">
+            <span>Nivel</span>
+            <select id="nivelNuevaSeccionHorario" class="gestion-contenido__control" name="nivel" required>
+              <option value="7">Séptimo</option>
+              <option value="8">Octavo</option>
+              <option value="9">Noveno</option>
+              <option value="10">Décimo</option>
+              <option value="11">Undécimo</option>
+            </select>
+          </label>
+          <label class="gestion-contenido__campo">
+            <span>Número de sección</span>
+            <input id="numeroNuevaSeccionHorario" class="gestion-contenido__control" name="numeroSeccion" type="number" min="1" max="20" value="1" required>
+          </label>
+          <label class="gestion-contenido__campo gestion-contenido__campo--completo">
+            <span>Profesor guía (opcional)</span>
+            <input class="gestion-contenido__control" name="profesorGuia" maxlength="250" placeholder="Puede completarlo después en la tabla">
+          </label>
+        </div>
+        <footer class="gestion-contenido__modal-pie">
+          <button id="botonCancelarSeccionHorario" class="admin-boton admin-boton--secundario" type="button">Cancelar</button>
+          <button class="admin-boton admin-boton--primario" type="submit">Crear plantilla</button>
         </footer>
       </form>
     </div>
@@ -193,6 +362,29 @@
     </div>
   </section>
 
+  <section id="modalDestinatarioCorreo" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalDestinatarioCorreo" hidden>
+    <div class="gestion-contenido__modal-contenido">
+      <header class="gestion-contenido__modal-encabezado"><h2 id="tituloModalDestinatarioCorreo">Nuevo destinatario</h2><button id="cerrarModalDestinatarioCorreo" class="admin-boton admin-boton--texto" type="button">Cerrar</button></header>
+      <form id="formularioDestinatarioCorreo" class="gestion-contenido__formulario">
+        <div class="gestion-contenido__modal-cuerpo gestion-contenido__cuadricula">
+          <label class="gestion-contenido__campo"><span>Nombre completo *</span><input class="gestion-contenido__control" name="nombreCompleto" maxlength="180" required></label>
+          <label class="gestion-contenido__campo"><span>Correo electrónico *</span><input class="gestion-contenido__control" name="correo" type="email" maxlength="254" required></label>
+          <fieldset class="boletines-correo__fieldset gestion-contenido__campo--completo"><legend>Categorías *</legend><div id="categoriasFormularioDestinatario" class="boletines-correo__opciones"></div></fieldset>
+          <label class="gestion-contenido__campo"><span>Estado</span><select class="gestion-contenido__control" name="activo"><option value="true">Activo</option><option value="false">Inactivo</option></select></label>
+        </div>
+        <footer class="gestion-contenido__modal-pie"><button id="cancelarModalDestinatarioCorreo" class="admin-boton admin-boton--secundario" type="button">Cancelar</button><button class="admin-boton admin-boton--primario" type="submit">Guardar destinatario</button></footer>
+      </form>
+    </div>
+  </section>
+
+  <section id="modalListaCorreo" class="gestion-contenido__modal" role="dialog" aria-modal="true" aria-labelledby="tituloModalListaCorreo" hidden>
+    <div class="gestion-contenido__modal-contenido gestion-contenido__modal-contenido--amplio">
+      <header class="gestion-contenido__modal-encabezado"><div><h2 id="tituloModalListaCorreo">Destinatarios seleccionados</h2><p id="descripcionModalListaCorreo"></p></div><button id="cerrarModalListaCorreo" class="admin-boton admin-boton--texto" type="button">Cerrar</button></header>
+      <div class="gestion-contenido__modal-cuerpo"><div class="gestion-contenido__tabla-contenedor"><table class="gestion-contenido__tabla"><thead id="cabeceraModalListaCorreo"></thead><tbody id="cuerpoModalListaCorreo"></tbody></table></div></div>
+      <footer class="gestion-contenido__modal-pie"><button id="aceptarModalListaCorreo" class="admin-boton admin-boton--primario" type="button">Cerrar</button></footer>
+    </div>
+  </section>
+
   <script src="../../js/config/api-admin.config.js" defer></script>
   <script src="../../js/core/api-client.js" defer></script>
   <script src="../../js/core/sesion-administrador.js" defer></script>
@@ -202,6 +394,7 @@
   <script src="../../js/components/modal-admin.js" defer></script>
   <script src="../../js/modules/configuracion-gestion-contenido.js" defer></script>
   <script src="../../js/modules/gestion-contenido-admin.js" defer></script>
+  <script src="../../js/modules/boletines-correo.js" defer></script>
   <script src="../../js/components/layout-admin.js" defer></script>
 </body>
 </html>

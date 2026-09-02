@@ -15,6 +15,14 @@
       `formulario-bibliocra__nota formulario-bibliocra__nota--${tipo}`;
   }
 
+  function fechaLocalActual() {
+    const ahora = new Date();
+    const anio = ahora.getFullYear();
+    const mes = String(ahora.getMonth() + 1).padStart(2, "0");
+    const dia = String(ahora.getDate()).padStart(2, "0");
+    return `${anio}-${mes}-${dia}`;
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     const formulario = document.getElementById(
       "formularioSolicitudBibliocra"
@@ -28,8 +36,17 @@
     }
 
     const fecha = formulario.querySelector('[name="fecha"]');
+    const fechaDevolucion = formulario.querySelector(
+      '[name="fechaDevolucion"]'
+    );
     if (fecha && !fecha.value) {
-      fecha.value = new Date().toISOString().slice(0, 10);
+      fecha.value = fechaLocalActual();
+    }
+    if (fecha && fechaDevolucion) {
+      fechaDevolucion.min = fecha.value;
+      fecha.addEventListener("change", () => {
+        fechaDevolucion.min = fecha.value;
+      });
     }
 
     formulario.addEventListener("submit", async (evento) => {
@@ -45,6 +62,20 @@
       const titulo = String(datosFormulario.get("titulo") || "").trim();
       const boton = formulario.querySelector('button[type="submit"]');
 
+      if (
+        fecha?.value &&
+        fechaDevolucion?.value &&
+        fechaDevolucion.value < fecha.value
+      ) {
+        mostrarEstado(
+          estado,
+          "La fecha de devolución no puede ser anterior a la solicitud.",
+          "error"
+        );
+        fechaDevolucion.focus();
+        return;
+      }
+
       const datos = {
         nombreSolicitante: nombre,
         correo: String(datosFormulario.get("correo") || "").trim(),
@@ -58,6 +89,7 @@
         autor: datosFormulario.get("autor"),
         fechaDevolucion: datosFormulario.get("fechaDevolucion"),
         tipoPrestamo: datosFormulario.get("tipoPrestamo"),
+        confirmacion: datosFormulario.get("confirmacion") === "on",
         sitioWeb: datosFormulario.get("sitioWeb")
       };
 
@@ -92,7 +124,10 @@
         );
         formulario.reset();
         if (fecha) {
-          fecha.value = new Date().toISOString().slice(0, 10);
+          fecha.value = fechaLocalActual();
+        }
+        if (fechaDevolucion) {
+          fechaDevolucion.min = fecha?.value || "";
         }
       } catch (error) {
         mostrarEstado(

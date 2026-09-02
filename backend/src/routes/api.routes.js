@@ -52,6 +52,10 @@ const administradorRoutes = require(
   "../modules/administradores/routes/administrador.routes"
 );
 
+const chatRoutes = require(
+  "../modules/chat/routes/chat.routes"
+);
+
 const {
   respuestaExitosa
 } = require(
@@ -166,6 +170,11 @@ router.use(
 router.use(
   "/administradores",
   administradorRoutes
+);
+
+router.use(
+  "/chat",
+  chatRoutes
 );
 
 

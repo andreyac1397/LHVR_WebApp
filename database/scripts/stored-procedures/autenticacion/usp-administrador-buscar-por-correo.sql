@@ -42,6 +42,7 @@ BEGIN
         ea.activo AS estado_activo,
         a.correo_verificado,
         a.requiere_verificacion,
+        a.requiere_cambio_contrasena,
         a.ultimo_acceso,
         a.fecha_creacion,
         a.fecha_actualizacion

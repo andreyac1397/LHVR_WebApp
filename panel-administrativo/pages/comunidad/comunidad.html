@@ -277,6 +277,108 @@
 
 
       <!-- ==================================================
+           ENCABEZADO Y ESTADO GENERAL
+           ================================================== -->
+
+      <section
+        class="admin-panel comunidad-admin__seccion-fija"
+        aria-labelledby="tituloEncabezadoComunidadAdmin"
+      >
+
+        <header class="admin-panel__encabezado">
+          <div>
+            <h2
+              id="tituloEncabezadoComunidadAdmin"
+              class="admin-panel__titulo"
+            >
+              Encabezado de la página
+            </h2>
+
+            <p class="admin-panel__descripcion">
+              Edite el título, la descripción y el estado del encabezado de Comunidad.
+            </p>
+          </div>
+        </header>
+
+        <div class="admin-panel__contenido">
+          <div
+            id="formularioEncabezadoComunidad"
+            class="formulario-admin"
+          >
+            <div class="formulario-admin__cuadricula">
+              <div class="formulario-admin__grupo">
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="encabezadoComunidadTitulo"
+                >
+                  Título de la página
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <input
+                  id="encabezadoComunidadTitulo"
+                  class="formulario-admin__control"
+                  type="text"
+                  maxlength="200"
+                  autocomplete="off"
+                  required
+                >
+              </div>
+
+              <div class="formulario-admin__grupo">
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="encabezadoComunidadEstado"
+                >
+                  Estado del encabezado
+                  <span aria-hidden="true">*</span>
+                </label>
+
+                <select
+                  id="encabezadoComunidadEstado"
+                  class="formulario-admin__control"
+                  required
+                ></select>
+              </div>
+            </div>
+
+            <div class="formulario-admin__grupo">
+              <label
+                class="formulario-admin__etiqueta"
+                for="encabezadoComunidadDescripcion"
+              >
+                Descripción
+              </label>
+
+              <textarea
+                id="encabezadoComunidadDescripcion"
+                class="formulario-admin__control formulario-admin__control--textarea"
+                maxlength="500"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <div class="formulario-admin__acciones">
+              <button
+                id="botonGuardarEncabezadoComunidad"
+                class="admin-boton admin-boton--primario"
+                type="button"
+              >
+                <span
+                  id="cargadorEncabezadoComunidad"
+                  class="admin-cargador admin-cargador--pequeno"
+                  hidden
+                ></span>
+                Guardar encabezado
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================
            INTRODUCCIÓN DE COMUNIDAD
            ================================================== -->
 

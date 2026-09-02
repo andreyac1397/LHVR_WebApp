@@ -17,6 +17,18 @@ router.post(
 );
 router.use(authenticationMiddleware);
 router.get("/administracion", solicitudBibliocraController.listar);
+router.get(
+  "/administracion/destinatarios",
+  solicitudBibliocraController.listarDestinatarios
+);
+router.post(
+  "/administracion/destinatarios",
+  solicitudBibliocraController.agregarDestinatario
+);
+router.delete(
+  "/administracion/destinatarios/:idDestinatario",
+  solicitudBibliocraController.eliminarDestinatario
+);
 router.patch("/administracion/:idSolicitud", solicitudBibliocraController.actualizar);
 
 module.exports = router;

@@ -30,7 +30,7 @@
     );
 
   const ENDPOINT_CONTENIDO =
-    `${API_BASE_URL}/paginas/publicas/` +
+    `${API_BASE_URL}/paginas/publicas-parciales/` +
     `${encodeURIComponent(
       SLUG_PAGINA
     )}`;
@@ -130,6 +130,23 @@
 
     elemento.hidden =
       !visible;
+
+    elemento.setAttribute(
+      "aria-hidden",
+      visible ? "false" : "true"
+    );
+
+    if (visible) {
+      elemento.style.removeProperty(
+        "display"
+      );
+    } else {
+      elemento.style.setProperty(
+        "display",
+        "none",
+        "important"
+      );
+    }
   }
 
 
@@ -252,7 +269,18 @@
   function renderizarEncabezado(
     pagina
   ) {
-    if (!pagina) {
+    const visible =
+      pagina?.encabezadoVisible !==
+        false;
+
+    establecerVisibilidad(
+      porId(
+        "encabezadoContactoPublico"
+      ),
+      visible
+    );
+
+    if (!pagina || !visible) {
       return;
     }
 
@@ -279,6 +307,13 @@
         "descripcionEncabezadoContacto"
       ),
       descripcion
+    );
+
+    establecerVisibilidad(
+      porId(
+        "descripcionEncabezadoContacto"
+      ),
+      Boolean(descripcion)
     );
 
     if (titulo) {
@@ -309,14 +344,14 @@
      *
      * Si la API no respondió, el HTML estático queda intacto.
      */
+    establecerVisibilidad(
+      bloque,
+      Boolean(seccion)
+    );
+
     if (!seccion) {
       return;
     }
-
-    establecerVisibilidad(
-      bloque,
-      true
-    );
 
     establecerTexto(
       porId(
@@ -342,14 +377,14 @@
         "bloqueUbicacionContactoPublico"
       );
 
+    establecerVisibilidad(
+      bloque,
+      Boolean(seccion)
+    );
+
     if (!seccion) {
       return;
     }
-
-    establecerVisibilidad(
-      bloque,
-      true
-    );
 
     establecerTexto(
       porId(
@@ -481,14 +516,14 @@
         "bloqueFormularioContactoPublico"
       );
 
+    establecerVisibilidad(
+      bloque,
+      Boolean(seccion)
+    );
+
     if (!seccion) {
       return;
     }
-
-    establecerVisibilidad(
-      bloque,
-      true
-    );
 
     establecerTexto(
       porId(
@@ -534,6 +569,13 @@
   function renderizarPagina(
     pagina
   ) {
+    establecerVisibilidad(
+      porId(
+        "contenidoContactoPublico"
+      ),
+      true
+    );
+
     renderizarEncabezado(
       pagina
     );
@@ -541,6 +583,16 @@
     renderizarDatosContacto();
 
     renderizarUbicacion();
+
+    establecerVisibilidad(
+      porId(
+        "columnaDatosContactoPublico"
+      ),
+      Boolean(
+        obtenerSeccion(CLAVES.DATOS) ||
+        obtenerSeccion(CLAVES.UBICACION)
+      )
+    );
 
     renderizarFormulario();
 
@@ -586,9 +638,18 @@
     if (
       !respuesta.ok
     ) {
-      throw new Error(
+      const error = new Error(
         `No fue posible cargar Contacto. Código ${respuesta.status}.`
       );
+
+      error.statusCode =
+        respuesta.status;
+
+      error.codigo =
+        cuerpo?.codigo ||
+        `HTTP_${respuesta.status}`;
+
+      throw error;
     }
 
     const datos =
@@ -658,9 +719,27 @@
         error
       );
 
-      document.body.dataset
-        .contenidoDinamico =
-          "respaldo";
+      const paginaNoDisponible =
+        error.statusCode === 404 ||
+        error.codigo ===
+          "PAGINA_NO_DISPONIBLE";
+
+      if (paginaNoDisponible) {
+        establecerVisibilidad(
+          porId(
+            "contenidoContactoPublico"
+          ),
+          false
+        );
+
+        document.body.dataset
+          .contenidoDinamico =
+            "no-disponible";
+      } else {
+        document.body.dataset
+          .contenidoDinamico =
+            "respaldo";
+      }
     }
   }
 

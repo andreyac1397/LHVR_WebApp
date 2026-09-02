@@ -1,8 +1,7 @@
 /* ============================================================
    CONTENIDO DE MÓDULOS PÚBLICOS
    ------------------------------------------------------------
-   Conecta Biblioteca y Galería con la API y conserva el HTML
-   original como respaldo cuando no existe contenido publicado.
+   Conecta Biblioteca y Galería con la API pública.
    ============================================================ */
 (function iniciarContenidoModulos(global) {
   "use strict";
@@ -74,6 +73,8 @@
       return;
     }
 
+    contenedor.replaceChildren();
+
     try {
       const elementos = await obtenerElementos("galeria");
       const imagenes = elementos
@@ -84,11 +85,12 @@
         .filter((item) => item.urlResuelta);
 
       if (imagenes.length === 0) {
+        contenedor.innerHTML = '<p class="estado">No hay imágenes publicadas.</p>';
         return;
       }
 
       contenedor.innerHTML = imagenes.map((item) => `
-        <figure class="galeria__item">
+        <figure class="galeria__item" data-categoria="${escapar(item.datos?.categoria || "General")}">
           <img
             src="${escapar(item.urlResuelta)}"
             alt="${escapar(item.descripcion || item.titulo)}"
@@ -100,14 +102,20 @@
         </figure>
       `).join("");
 
+      if (typeof global.crearFiltrosAutomaticos === "function") {
+        global.crearFiltrosAutomaticos(
+          contenedor,
+          imagenes.map((item) => item.datos?.categoria || "General"),
+          "filtrosGaleria"
+        );
+      }
+
       if (typeof global.activarLightboxGaleria === "function") {
         global.activarLightboxGaleria();
       }
     } catch (error) {
-      console.warn(
-        "Se conserva la galería estática porque la API no está disponible.",
-        error
-      );
+      contenedor.innerHTML = '<p class="estado">No fue posible cargar la galería.</p>';
+      console.warn("No fue posible cargar la galería desde la API.", error);
     }
   }
 

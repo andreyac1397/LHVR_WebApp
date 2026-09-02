@@ -1,0 +1,28 @@
+.tramites-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+.tramites-admin__barra-tarjetas { align-items: flex-end; }
+.tramites-admin__controles-version { display: flex; align-items: flex-end; flex-wrap: wrap; gap: .75rem; }
+.tramites-admin__controles-version .formulario-admin__grupo { min-width: 210px; margin: 0; }
+.tramites-admin__resumen { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; color: var(--admin-texto-secundario, #5d625d); }
+.tramites-admin__tarjetas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tramite-admin__vista { min-height: 225px; }
+.tramite-admin__categoria { display: inline-flex; width: fit-content; padding: .3rem .65rem; border-radius: 999px; background: #edf4ee; color: #27563a; font-size: .78rem; font-weight: 700; text-transform: capitalize; }
+.tramite-admin__descripcion { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 4; }
+.tramite-admin__enlace { overflow: hidden; color: var(--admin-texto-secundario, #5d625d); font-size: .78rem; text-overflow: ellipsis; white-space: nowrap; }
+.tramite-admin__acciones { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+.tramite-admin__cancelar[hidden] { display: none; }
+.tramites-admin__tarjetas > .comunidad-admin__tarjeta:has(details[open]) { grid-column: span 2; }
+#mensajeTramites[data-tipo="error"] { border-color: #d6a4a4; background: #fff3f3; color: #812f2f; }
+#mensajeTramites[data-tipo="exito"] { border-color: #a9c8b0; background: #f1f8f2; color: #245535; }
+@media (min-width: 1500px) { .tramites-admin__tarjetas { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 1100px) { .tramites-admin__tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  .tramites-admin__tarjetas { grid-template-columns: 1fr; }
+  .tramites-admin__tarjetas > .comunidad-admin__tarjeta:has(details[open]) { grid-column: auto; }
+  .tramites-admin__controles-version, .tramites-admin__controles-version > * { width: 100%; }
+}

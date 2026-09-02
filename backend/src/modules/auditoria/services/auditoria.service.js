@@ -349,10 +349,20 @@ class AuditoriaService {
   }
 
   listarAuditoria(filtros = {}) {
+    const paginaRecibida = Number(filtros.pagina);
+    const limiteRecibido = Number(filtros.limite);
+    const pagina = Number.isInteger(paginaRecibida) && paginaRecibida > 0
+      ? paginaRecibida
+      : 1;
+    const limite = Number.isInteger(limiteRecibido) && limiteRecibido > 0
+      ? Math.min(100, limiteRecibido)
+      : 20;
     return this.repositorio.listarAuditoria({
       modulo: this.normalizarTextoOpcional(filtros.modulo, 60)?.toUpperCase(),
       accion: this.normalizarTextoOpcional(filtros.accion, 50)?.toUpperCase(),
-      busqueda: this.normalizarTextoOpcional(filtros.busqueda, 250)
+      busqueda: this.normalizarTextoOpcional(filtros.busqueda, 250),
+      pagina,
+      limite
     });
   }
 }

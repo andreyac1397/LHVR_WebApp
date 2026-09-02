@@ -103,6 +103,37 @@
 
   function obtenerElementos() {
     return {
+      /* Encabezado y estado general. */
+      formularioEncabezado:
+        comun.porId(
+          "formularioEncabezadoComunidad"
+        ),
+
+      encabezadoTitulo:
+        comun.porId(
+          "encabezadoComunidadTitulo"
+        ),
+
+      encabezadoDescripcion:
+        comun.porId(
+          "encabezadoComunidadDescripcion"
+        ),
+
+      encabezadoEstado:
+        comun.porId(
+          "encabezadoComunidadEstado"
+        ),
+
+      botonGuardarEncabezado:
+        comun.porId(
+          "botonGuardarEncabezadoComunidad"
+        ),
+
+      cargadorEncabezado:
+        comun.porId(
+          "cargadorEncabezadoComunidad"
+        ),
+
       /* ======================================================
          TARJETAS
          ====================================================== */
@@ -633,6 +664,122 @@
         : [];
 
     return datos;
+  }
+
+
+  function renderizarEncabezado() {
+    const elementos =
+      obtenerElementos();
+
+    const pagina =
+      comun.obtenerPaginaActual();
+
+    if (!pagina) {
+      return;
+    }
+
+    if (elementos.encabezadoTitulo) {
+      elementos.encabezadoTitulo.value =
+        pagina.titulo || "";
+    }
+
+    if (elementos.encabezadoDescripcion) {
+      elementos.encabezadoDescripcion.value =
+        pagina.descripcion || "";
+    }
+
+    comun.llenarSelectEstados(
+      elementos.encabezadoEstado,
+      pagina.idEstadoPublicacion
+    );
+  }
+
+
+  function obtenerDatosEncabezado() {
+    const elementos =
+      obtenerElementos();
+
+    const pagina =
+      comun.obtenerPaginaActual();
+
+    const titulo =
+      comun.texto(
+        elementos.encabezadoTitulo
+          ?.value
+      );
+
+    const descripcion =
+      comun.texto(
+        elementos.encabezadoDescripcion
+          ?.value
+      );
+
+    const idEstadoPublicacion =
+      comun.validarEstado(
+        elementos.encabezadoEstado
+      );
+
+    comun.marcarInvalido(
+      elementos.encabezadoTitulo,
+      !titulo
+    );
+
+    if (!pagina?.idPagina) {
+      comun.mostrarMensaje(
+        "No se encontró la página Comunidad.",
+        "error"
+      );
+
+      return null;
+    }
+
+    if (!titulo) {
+      comun.mostrarMensaje(
+        "Debe indicar el título de Comunidad.",
+        "error"
+      );
+
+      return null;
+    }
+
+    if (!idEstadoPublicacion) {
+      comun.mostrarMensaje(
+        "Seleccione el estado del encabezado de Comunidad.",
+        "error"
+      );
+
+      return null;
+    }
+
+    return {
+      idPagina: pagina.idPagina,
+      titulo,
+      descripcion: descripcion || null,
+      idEstadoPublicacion
+    };
+  }
+
+
+  async function guardarEncabezado() {
+    const elementos =
+      obtenerElementos();
+
+    await comun.ejecutarProcesoGuardado({
+      formulario:
+        elementos.formularioEncabezado,
+      boton:
+        elementos.botonGuardarEncabezado,
+      cargador:
+        elementos.cargadorEncabezado,
+      validar:
+        obtenerDatosEncabezado,
+      async ejecutar(datos) {
+        await comun.guardarPagina(datos);
+      },
+      recargar: true,
+      mensajeExito:
+        "El encabezado de Comunidad fue guardado correctamente."
+    });
   }
 
 
@@ -3528,6 +3675,14 @@
       obtenerElementos();
 
 
+    elementos
+      .botonGuardarEncabezado
+      ?.addEventListener(
+        "click",
+        guardarEncabezado
+      );
+
+
     /* ========================================================
        INTRODUCCIÓN
        ======================================================== */
@@ -3652,6 +3807,8 @@
      * Cada parte se renderiza en su propio bloque.
      */
 
+    renderizarEncabezado();
+
     renderizarIntroduccion();
 
     renderizarTarjetas();
@@ -3709,7 +3866,7 @@
         "Editar Comunidad",
 
       descripcion:
-        "Administre la introducción, las tarjetas y el cierre de la página Comunidad.",
+        "Administre el encabezado, la introducción, las tarjetas y el cierre de la página Comunidad.",
 
       descripcionResumen:
         "Datos generales obtenidos desde el registro de la página Comunidad.",
@@ -3740,6 +3897,8 @@
       configurarEventos,
       reiniciarEstado,
       cargarDatosComunidad,
+      renderizarEncabezado,
+      guardarEncabezado,
       renderizarIntroduccion,
       renderizarTarjetas,
       renderizarCierre,

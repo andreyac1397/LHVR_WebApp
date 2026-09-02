@@ -42,6 +42,17 @@
     }),
     campo("orden", "Orden", "number")
   ];
+  const tiposBoletin = [
+    { valor: "comunicado", etiqueta: "Comunicado" },
+    { valor: "circular", etiqueta: "Circular" },
+    { valor: "noticia", etiqueta: "Noticia" },
+    { valor: "actividad", etiqueta: "Actividad" },
+    { valor: "recordatorio", etiqueta: "Recordatorio" },
+    { valor: "boletin", etiqueta: "Edición/Boletín" }
+  ];
+  const areasDocentes = ["Español", "Matemática / Matemáticas", "Ciencias", "Estudios Sociales / Cívica", "Inglés", "Francés", "Música", "Artes Plásticas", "Educación Física", "Religión", "Orientación", "Educación para el Hogar / Artes Industriales", "Formación Técnica", "Tecnología / Informática", "Biología", "Física matemática", "Química", "Psicología", "Filosofía", "Paz y Convivencia", "Club"];
+  const categoriasRecursos = ["Tecnología y certificaciones", "Matemática y ciencias", "Idiomas", "Herramientas para trabajos y clases"];
+  const categoriasGaleria = ["Instalaciones", "Actividades estudiantiles", "Deporte", "Cultura y arte", "Vida institucional", "Proyectos académicos"];
 
   function validarCalendario(filas, contexto) {
     const errores = [];
@@ -152,7 +163,7 @@
     const horas = valor(fila, "horas", "horario", "hora");
 
     return {
-      claveExterna: `${normalizarClave(seccion)}-${normalizarClave(leccion)}`,
+      claveExterna: crearClaveHorario({ seccion, lec: leccion, horas }),
       titulo: `${seccion} · Lección ${leccion}`,
       descripcion: `${horas}${valor(fila, "profesor_guia") ? ` · ${valor(fila, "profesor_guia")}` : ""}`,
       estado: "PUBLICADO",
@@ -171,20 +182,31 @@
     };
   }
 
+  function crearClaveHorario(datos = {}) {
+    return [datos.seccion, datos.lec, datos.horas]
+      .map(normalizarClave)
+      .join("-");
+  }
+
   const configuraciones = {
     boletines: {
       apiBase: "boletines",
+      paginaSlug: "boletines",
+      rutaPublica: "/pages/boletines.html",
+      usarTarjetas: true,
+      campoCategoria: "categoria",
       titulo: "Gestión de boletines",
       descripcion: "Cree ediciones, revise sus datos y publique la versión que verá la comunidad.",
       singular: "boletín",
       plural: "Boletines",
       campos: [
         ...camposComunes,
+        campo("categoria", "Tipo", "select", { origen: "datos", requerido: true, opciones: tiposBoletin }),
         campo("fechaInicio", "Fecha de publicación", "date"),
         campo("url", "Enlace o archivo", "url", { completo: true }),
         campo("edicion", "Edición", "text", { origen: "datos" })
       ],
-      importacion: { habilitada: true, columnas: ["titulo", "descripcion", "fecha", "url"] }
+      importacion: { habilitada: false, columnas: [] }
     },
     calendario: {
       apiBase: "calendario",
@@ -234,6 +256,10 @@
     },
     docentes: {
       apiBase: "docentes",
+      paginaSlug: "docentes",
+      rutaPublica: "/pages/directorio-docente.html",
+      usarTarjetas: true,
+      campoCategoria: "departamento",
       titulo: "Gestión de docentes",
       descripcion: "Mantenga actualizado el directorio docente y publique una versión revisada.",
       singular: "docente",
@@ -243,8 +269,8 @@
         campo("subtitulo", "Puesto o especialidad", "text"),
         campo("descripcion", "Información adicional", "textarea", { completo: true }),
         campo("correo", "Correo", "email", { origen: "datos" }),
-        campo("departamento", "Departamento", "text", { origen: "datos" }),
-        campo("url", "Fotografía", "text", { subirImagen: true, completo: true }),
+        campo("departamento", "Área", "select", { origen: "datos", requerido: true, opciones: areasDocentes }),
+        campo("idArchivo", "Fotografía", "image", { completo: true }),
         campo("estado", "Estado", "select", { opciones: ["PUBLICADO", "BORRADOR", "INACTIVO"] }),
         campo("orden", "Orden", "number")
       ],
@@ -256,6 +282,7 @@
       descripcion: "Descargue la plantilla, cargue XLSX/CSV, corrija la tabla y publique solamente cuando esté revisada.",
       singular: "bloque de horario",
       plural: "Horarios",
+      crearClaveExterna: crearClaveHorario,
       campos: [
         campo("titulo", "Identificación", "text", { requerido: true }),
         campo("seccion", "Sección", "text", { origen: "datos", requerido: true }),
@@ -296,6 +323,10 @@
     },
     "recursos-apoyo": {
       apiBase: "recursos-apoyo",
+      paginaSlug: "recursos-apoyo",
+      rutaPublica: "/pages/enlaces-interes.html",
+      usarTarjetas: true,
+      campoCategoria: "publico",
       titulo: "Gestión de recursos de apoyo",
       descripcion: "Organice y publique enlaces, guías y recursos para estudiantes y familias.",
       singular: "recurso",
@@ -303,12 +334,16 @@
       campos: [
         ...camposComunes,
         campo("url", "Enlace", "url", { completo: true }),
-        campo("categoria", "Categoría", "text", { origen: "datos" })
+        campo("publico", "Categoría", "select", { origen: "datos", requerido: true, opciones: categoriasRecursos })
       ],
-      importacion: { habilitada: true, columnas: ["titulo", "descripcion", "url", "categoria"] }
+      importacion: { habilitada: true, columnas: ["titulo", "descripcion", "url", "publico"] }
     },
     galeria: {
       apiBase: "galeria",
+      paginaSlug: "galeria",
+      rutaPublica: "/pages/galeria.html",
+      usarTarjetas: true,
+      campoCategoria: "categoria",
       titulo: "Gestión de galería",
       descripcion: "Suba imágenes, agregue texto alternativo, ordénelas y publique una colección revisada.",
       singular: "imagen",
@@ -316,7 +351,8 @@
       campos: [
         campo("titulo", "Título", "text", { requerido: true }),
         campo("descripcion", "Texto alternativo", "textarea", { completo: true, requerido: true }),
-        campo("url", "Imagen", "text", { subirImagen: true, completo: true, requerido: true }),
+        campo("categoria", "Categoría", "select", { origen: "datos", requerido: true, opciones: categoriasGaleria }),
+        campo("idArchivo", "Imagen", "image", { completo: true, requerido: true }),
         campo("estado", "Estado", "select", { opciones: ["PUBLICADO", "BORRADOR", "INACTIVO"] }),
         campo("orden", "Orden", "number")
       ],

@@ -1735,7 +1735,107 @@
         hidden
       >
 
-              <!-- ================================================
+        <!-- ================================================
+             ENCABEZADO Y ESTADO GENERAL
+             ================================================ -->
+
+        <section
+          class="admin-panel"
+          aria-labelledby="tituloPanelEncabezadoContacto"
+        >
+          <header class="admin-panel__encabezado">
+            <div>
+              <h2
+                id="tituloPanelEncabezadoContacto"
+                class="admin-panel__titulo"
+              >
+                Encabezado de la página
+              </h2>
+
+              <p class="admin-panel__descripcion">
+                Edite el título, la descripción y el estado del encabezado de Contacto.
+              </p>
+            </div>
+          </header>
+
+          <div class="admin-panel__contenido">
+            <form
+              id="formularioEncabezadoContacto"
+              class="formulario-admin"
+              novalidate
+            >
+              <div class="formulario-admin__cuadricula">
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="tituloEncabezadoContactoAdmin"
+                  >
+                    Título de la página
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <input
+                    id="tituloEncabezadoContactoAdmin"
+                    class="formulario-admin__control"
+                    type="text"
+                    maxlength="200"
+                    autocomplete="off"
+                    required
+                  >
+                </div>
+
+                <div class="formulario-admin__grupo">
+                  <label
+                    class="formulario-admin__etiqueta"
+                    for="estadoEncabezadoContactoAdmin"
+                  >
+                    Estado del encabezado
+                    <span aria-hidden="true">*</span>
+                  </label>
+
+                  <select
+                    id="estadoEncabezadoContactoAdmin"
+                    class="formulario-admin__control"
+                    required
+                  ></select>
+                </div>
+              </div>
+
+              <div class="formulario-admin__grupo">
+                <label
+                  class="formulario-admin__etiqueta"
+                  for="descripcionEncabezadoContactoAdmin"
+                >
+                  Descripción
+                </label>
+
+                <textarea
+                  id="descripcionEncabezadoContactoAdmin"
+                  class="formulario-admin__control formulario-admin__control--textarea"
+                  maxlength="500"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="formulario-admin__acciones">
+                <button
+                  id="botonGuardarEncabezadoContacto"
+                  class="admin-boton admin-boton--primario"
+                  type="submit"
+                >
+                  <span
+                    id="cargadorGuardarEncabezadoContacto"
+                    class="admin-cargador admin-cargador--pequeno"
+                    hidden
+                  ></span>
+                  Guardar encabezado
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ================================================
              INFORMACIÓN INSTITUCIONAL
              ================================================ -->
 

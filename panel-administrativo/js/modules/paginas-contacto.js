@@ -120,6 +120,37 @@
       comun.porId;
 
     return {
+      /* Encabezado y estado general. */
+      formularioEncabezado:
+        porId(
+          "formularioEncabezadoContacto"
+        ),
+
+      tituloEncabezado:
+        porId(
+          "tituloEncabezadoContactoAdmin"
+        ),
+
+      descripcionEncabezado:
+        porId(
+          "descripcionEncabezadoContactoAdmin"
+        ),
+
+      estadoEncabezado:
+        porId(
+          "estadoEncabezadoContactoAdmin"
+        ),
+
+      botonGuardarEncabezado:
+        porId(
+          "botonGuardarEncabezadoContacto"
+        ),
+
+      cargadorGuardarEncabezado:
+        porId(
+          "cargadorGuardarEncabezadoContacto"
+        ),
+
       /*
        * Información institucional.
        */
@@ -312,6 +343,123 @@
           "cargadorGuardarContenidoContacto"
         )
     };
+  }
+
+  function renderizarEncabezado() {
+    const elementos =
+      obtenerElementos();
+
+    const pagina =
+      comun.obtenerPaginaActual();
+
+    if (!pagina) {
+      return;
+    }
+
+    if (elementos.tituloEncabezado) {
+      elementos.tituloEncabezado.value =
+        pagina.titulo || "";
+    }
+
+    if (elementos.descripcionEncabezado) {
+      elementos.descripcionEncabezado.value =
+        pagina.descripcion || "";
+    }
+
+    comun.llenarSelectEstados(
+      elementos.estadoEncabezado,
+      pagina.idEstadoPublicacion
+    );
+  }
+
+  function obtenerDatosEncabezado() {
+    const elementos =
+      obtenerElementos();
+
+    const pagina =
+      comun.obtenerPaginaActual();
+
+    const titulo =
+      comun.texto(
+        elementos.tituloEncabezado
+          ?.value
+      );
+
+    const descripcion =
+      comun.texto(
+        elementos.descripcionEncabezado
+          ?.value
+      );
+
+    const idEstadoPublicacion =
+      comun.validarEstado(
+        elementos.estadoEncabezado
+      );
+
+    comun.marcarInvalido(
+      elementos.tituloEncabezado,
+      !titulo
+    );
+
+    if (!pagina?.idPagina) {
+      comun.mostrarMensaje(
+        "No se encontró la página Contacto.",
+        "error"
+      );
+
+      return null;
+    }
+
+    if (!titulo) {
+      comun.mostrarMensaje(
+        "Debe indicar el título de Contacto.",
+        "error"
+      );
+
+      return null;
+    }
+
+    if (!idEstadoPublicacion) {
+      comun.mostrarMensaje(
+        "Seleccione el estado del encabezado de Contacto.",
+        "error"
+      );
+
+      return null;
+    }
+
+    return {
+      idPagina: pagina.idPagina,
+      titulo,
+      descripcion: descripcion || null,
+      idEstadoPublicacion
+    };
+  }
+
+  async function guardarEncabezado(
+    evento
+  ) {
+    evento.preventDefault();
+
+    const elementos =
+      obtenerElementos();
+
+    await comun.ejecutarProcesoGuardado({
+      formulario:
+        elementos.formularioEncabezado,
+      boton:
+        elementos.botonGuardarEncabezado,
+      cargador:
+        elementos.cargadorGuardarEncabezado,
+      validar:
+        obtenerDatosEncabezado,
+      async ejecutar(datos) {
+        await comun.guardarPagina(datos);
+      },
+      recargar: true,
+      mensajeExito:
+        "El encabezado de Contacto fue guardado correctamente."
+    });
   }
 
   /*
@@ -1791,6 +1939,13 @@
     const elementos =
       obtenerElementos();
 
+    elementos
+      .formularioEncabezado
+      ?.addEventListener(
+        "submit",
+        guardarEncabezado
+      );
+
     /*
      * Información institucional.
      */
@@ -1863,6 +2018,10 @@
       elementos.facebook,
       elementos.googleMaps,
 
+      elementos.tituloEncabezado,
+      elementos.descripcionEncabezado,
+      elementos.estadoEncabezado,
+
       elementos.tituloSeccionDatos,
       elementos.estadoSeccionDatos,
       elementos.tituloSeccionUbicacion,
@@ -1928,6 +2087,8 @@
      */
     await cargarConfiguracionContacto();
 
+    renderizarEncabezado();
+
     /*
      * Nombre, sigla, lema, modalidad, jornada y niveles.
      */
@@ -1961,7 +2122,7 @@
         "Contacto y ubicación",
 
       descripcion:
-        "Administre la información institucional, los datos de contacto, la ubicación y el contenido mostrado en la página pública.",
+        "Administre el encabezado, la información institucional, los datos de contacto, la ubicación y el contenido mostrado en la página pública.",
 
       descripcionResumen:
         "Datos generales de la página Contacto y ubicación.",

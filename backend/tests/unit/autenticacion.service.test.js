@@ -25,7 +25,8 @@ async function crearContexto(
     estadoActivo: true,
     permiteAcceso: true,
     correoVerificado: true,
-    requiereVerificacion
+    requiereVerificacion,
+    requiereCambioContrasena: true
   };
 
   const llamadas = {
@@ -136,6 +137,7 @@ test("crea una sesión real cuando la cuenta no requiere segundo factor", async 
     ),
     false
   );
+  assert.equal(resultado.administrador.requiereCambioContrasena, true);
 });
 
 test("mantiene el flujo de verificación para cuentas con segundo factor", async () => {
